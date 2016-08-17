@@ -1,0 +1,8 @@
+*.xpi
+.eslintrc.json
+.git
+.jpmignore
+LICENSE
+README.md
+index.js
+node_modules/
