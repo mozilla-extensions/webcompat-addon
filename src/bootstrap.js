@@ -4,7 +4,7 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 
 // for now we ship a stub, that can be upgraded as-needed after release
-function startup() {}
-function shutdown() {}
-function install() {}
-function uninstall() {}
+function startup() {} // eslint-disable-line no-unused-vars
+function shutdown() {} // eslint-disable-line no-unused-vars
+function install() {} // eslint-disable-line no-unused-vars
+function uninstall() {} // eslint-disable-line no-unused-vars

@@ -1,0 +1,8 @@
+{
+  "globals": {
+    "add_task": true,
+    "is": true,
+    "isnot": true,
+    "ok": true
+  }
+}
