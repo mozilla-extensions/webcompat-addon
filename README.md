@@ -35,7 +35,8 @@ dependencies with `npm install`.
 
 ### Run the automated test suite
 
-ToDo.
+1. Run `npm run jake test`
+2. Wait!
 
 License
 -------
