@@ -16,3 +16,4 @@ FINAL_TARGET_PP_FILES.features['webcompat@mozilla.org'] += [
 ]
 
 BROWSER_CHROME_MANIFESTS += ['test/browser.ini']
+JAR_MANIFESTS += ['jar.mn']

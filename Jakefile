@@ -33,6 +33,7 @@ const BUILD_IGNORE_PATHS = [
  * an .xpi.
  */
 const XPI_IGNORE_PATHS = [
+  "jar.mn",
   "moz.build",
   "test/"
 ];
@@ -114,20 +115,49 @@ function preprocessFile(file, customVars = {}) {
       reject(`Preprocess failed: no such file: ${file}`);
     }
 
-    let scriptLocation = path.join(getMozillaCentralLocation(),
-      "python/mozbuild/mozbuild/preprocessor.py"),
-      ppArgs = buildPreprocessorVariableArgs(customVars),
-      inputFilename = path.join(BUILD_DIR, file),
-      outputFilename = path.join(BUILD_DIR, file.replace(".in", "")),
-      ppCall = `python ${scriptLocation} ${ppArgs} -o ${outputFilename} ${inputFilename}`;
+    try {
+      let scriptLocation = path.join(getMozillaCentralLocation(),
+        "python/mozbuild/mozbuild/preprocessor.py");
+      let ppArgs = buildPreprocessorVariableArgs(customVars);
+      let inputFilename = path.join(BUILD_DIR, file);
+      let outputFilename = path.join(BUILD_DIR, file.replace(".in", ""));
+      let ppCall = `python ${scriptLocation} ${ppArgs} -o ${outputFilename} ${inputFilename}`;
 
-    exec(ppCall, (error, stdout, stderr) => {
-      if (error || stderr) {
-        reject({error, stderr});
-      }
+      exec(ppCall, (error, stdout, stderr) => {
+        if (error || stderr) {
+          reject({error, stderr});
+        }
 
-      resolve();
-    });
+        resolve();
+      });
+    } catch (ex) {
+      reject(ex);
+    }
+  });
+}
+
+/**
+ * Generates a chrome.manifest from a jar.mn
+ *
+ * @returns {promise}
+ */
+function generateChromeManifest() {
+  return new Promise((resolve, reject) => {
+    let jarFilename = path.join(BUILD_DIR, "jar.mn");
+    try {
+      fs.statSync(jarFilename).isFile();
+    } catch (ex) {
+      reject("Building chrome.manifest failed: no such file: jar.mn");
+    }
+
+    let jarContents = fs.readFileSync(jarFilename).toString();
+    let manifestContents = jarContents.split("\n")
+      .filter((line) => line[0] === "%")
+      .map((line) => line.replace(/%/g, "").trim())
+      .join("\n");
+
+    fs.writeFileSync(path.join(BUILD_DIR, "chrome.manifest"), manifestContents);
+    resolve();
   });
 }
 
@@ -147,20 +177,35 @@ task("export-mc", ["build"], () => {
 desc("Exports the sources into an .xpi for update shipping");
 task("export-xpi", ["build"], {async: true}, () => {
   Promise.all(PREPROCESS_FILES.map((ppFile) => preprocessFile(ppFile)))
-    .catch(console.error)
+    .then(() => generateChromeManifest())
     .then(() => {
       XPI_IGNORE_PATHS.concat(PREPROCESS_FILES).forEach((ignorePath) => {
         jake.rmRf(path.join(BUILD_DIR, ignorePath));
       });
 
-      jake.exec(`cd ${BUILD_DIR}; zip webcompat.xpi *`, complete);
-    });
+      return jake.exec(`cd ${BUILD_DIR}; zip -r webcompat.xpi *`, complete);
+    })
+    .catch(console.error);
 });
 
 desc("Exports and runs the addon inside mozilla-central");
 task("run-mc", ["export-mc"], {async: true}, () => {
   let mcLocation = getMozillaCentralLocation();
-  jake.exec(`${mcLocation}/mach run`, {printStdout: true}, complete);
+  jake.exec(
+    `cd ${mcLocation}; ./mach build faster; ./mach run`,
+    {printStdout: true},
+    complete
+  );
+});
+
+desc("Runs automated tests");
+task("test", ["export-mc"], {async: true}, () => {
+  let mcLocation = getMozillaCentralLocation();
+  jake.exec(
+    `cd ${mcLocation}; ./mach build faster; ./mach mochitest browser/extensions/webcompat`,
+    {printStdout: true},
+    complete
+  );
 });
 
 namespace("building", () => {
