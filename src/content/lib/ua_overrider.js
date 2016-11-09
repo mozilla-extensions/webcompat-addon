@@ -71,7 +71,7 @@ class UAOverrider { // eslint-disable-line
   }
 
   /**
-   * This function returns an User Agent based on the URI passed into. All
+   * This function returns a User Agent based on the URI passed into. All
    * override rules are defined in data/ua_overrides.js and the required format
    * is explained there.
    *
