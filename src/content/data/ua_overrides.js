@@ -9,7 +9,7 @@
  *   * `baseDomain`, required: The base domain that further checks and user
  *     agents override are applied to. This does not include subdomains.
  *   * `uriMatcher`: Function that gets the requested URI passed in the first
- *     argument and needs to return boolean wheather or not the override should
+ *     argument and needs to return boolean whether or not the override should
  *     be applied. If not provided, the user agent override will be applied
  *     every time.
  *   * `uaTransformer`, required: Function that gets the original Firefox user
