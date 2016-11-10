@@ -1,3 +1,8 @@
 [features/webcompat@mozilla.org] chrome.jar:
 % content webcompat %content/
   content/  (content/*)
+
+[features/webcompat@mozilla.org] webextension.jar:
+% override webcompat %/
+  manifest.json (webextension/manifest.json)
+  tablog.js (webextension/tablog.js)
