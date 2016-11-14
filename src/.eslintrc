@@ -5,7 +5,8 @@
     "node": true
   },
   "globals": {
-    "Components": true
+    "Components": true,
+    "chrome": true
   },
   "plugins": [
     "json",
