@@ -29,7 +29,7 @@ function UAEnablePrefObserver() {
 function install() {} // eslint-disable-line no-unused-vars
 function uninstall() {} // eslint-disable-line no-unused-vars
 
-function startup({webExtension}) {
+function startup({webExtension}) { // eslint-disable-line no-unused-vars
   // Intentionally set the preference to true on every browser restart to
   // avoid site breakage by accidentally toggled preferences or by leaving
   // it off after debugging a site.
