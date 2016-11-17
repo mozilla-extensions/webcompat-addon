@@ -39,6 +39,18 @@
  */
 
 const UAOverrides = [ // eslint-disable-line
+  /*
+   * https://github.com/webcompat/web-bugs/issues/3714
+   *
+   * Server-side User Agent check, apparently checks for the existance of
+   * AppleWebKit, Chrome, Safari, and its version numbers in the User Agent.
+   * Appending them to the Firefox UA works.
+   */
+  {
+    baseDomain: "google.com",
+    uriMatcher: (uri) => uri.startsWith("https://play.google.com/newsstand/web"),
+    uaTransformer: (originalUA) => `${originalUA} AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.98 Safari/537.36`
+  }
 ];
 
 this.EXPORTED_SYMBOLS = ["UAOverrides"];
