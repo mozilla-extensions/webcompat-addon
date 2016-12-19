@@ -40,14 +40,15 @@
 
 const UAOverrides = [ // eslint-disable-line
   /*
-   * This is a dummy override that applies a Chrome UA to webcompat.com so we
-   * show the Chrome Add-on download instead of the link to addons.mozilla.org.
+   * This is a dummy override that applies a Chrome UA to a dummy site that
+   * blocks all browsers but Chrome.
    *
    * This was only put in place to allow QA to test this system addon on an
    * actual site, since we were not able to find a proper override in time.
    */
   {
-    baseDomain: "webcompat.com",
+    baseDomain: "schub.io",
+    uriMatcher: (uri) => uri.includes("webcompat-ua-dummy.schub.io"),
     uaTransformer: (originalUA) => {
       let prefix = originalUA.substr(0, originalUA.indexOf(")")+1);
       return `${prefix} AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.98 Safari/537.36`
