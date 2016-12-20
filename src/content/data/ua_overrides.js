@@ -38,7 +38,8 @@
  * ```
  */
 
-const UAOverrides = [ // eslint-disable-line
+const UAOverrides = [
+
   /*
    * This is a dummy override that applies a Chrome UA to a dummy site that
    * blocks all browsers but Chrome.
@@ -50,10 +51,10 @@ const UAOverrides = [ // eslint-disable-line
     baseDomain: "schub.io",
     uriMatcher: (uri) => uri.includes("webcompat-ua-dummy.schub.io"),
     uaTransformer: (originalUA) => {
-      let prefix = originalUA.substr(0, originalUA.indexOf(")")+1);
-      return `${prefix} AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.98 Safari/537.36`
+      let prefix = originalUA.substr(0, originalUA.indexOf(")") + 1);
+      return `${prefix} AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.98 Safari/537.36`;
     }
   }
 ];
 
-this.EXPORTED_SYMBOLS = ["UAOverrides"];
+this.EXPORTED_SYMBOLS = ["UAOverrides"]; /* exported UAOverrides */

@@ -1,8 +1,7 @@
 {
   "env": {
     "browser": true,
-    "es6": true,
-    "node": true
+    "es6": true
   },
   "globals": {
     "Components": true,
@@ -10,7 +9,8 @@
   },
   "plugins": [
     "json",
-    "promise"
+    "promise",
+    "mozilla"
   ],
   "extends": [
     "eslint:recommended"
@@ -19,6 +19,10 @@
     "promise/always-return": 2,
     "promise/catch-or-return": 2,
     "promise/param-names": 2,
+
+    "mozilla/balanced-listeners": 2,
+    "mozilla/import-globals": 2,
+    "mozilla/mark-test-function-used": 1,
 
     "accessor-pairs": [2, {"setWithoutGet": true, "getWithoutSet": false}],
     "array-bracket-spacing": [2, "never"],
@@ -114,7 +118,7 @@
     "no-floating-decimal": 2,
     "no-func-assign": 2,
     "no-implicit-coercion": [2, {"allow": ["!!"]}],
-    "no-implicit-globals": 2,
+    "no-implicit-globals": 0,
     "no-implied-eval": 2,
     "no-inline-comments": 0,
     "no-inner-declarations": 2,

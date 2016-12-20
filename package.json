@@ -8,15 +8,16 @@
   "version": "0.0.1",
 
   "scripts": {
-    "jake": "./node_modules/.bin/jake"
+    "jake": "./node_modules/.bin/jake",
+    "lint": "./node_modules/.bin/eslint src/"
   },
 
   "devDependencies": {
     "eslint": "^3.4.0",
     "eslint-plugin-json": "^1.2.0",
     "eslint-plugin-mocha": "^4.5.1",
-    "eslint-plugin-mozilla": "0.0.3",
-    "eslint-plugin-promise": "^2.0.1",
+    "eslint-plugin-mozilla": "0.2.3",
+    "eslint-plugin-promise": "^3.4.0",
     "jake": "^8.0.12"
   }
 }

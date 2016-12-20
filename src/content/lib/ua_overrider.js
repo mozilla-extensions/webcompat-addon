@@ -2,8 +2,6 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 
-/* globals XPCOMUtils, Services, eTLDService */
-
 const {classes: Cc, interfaces: Ci, utils: Cu} = Components;
 
 Cu.import("resource://gre/modules/XPCOMUtils.jsm");
@@ -14,7 +12,7 @@ const NS_HTTP_ON_USERAGENT_REQUEST_TOPIC = "http-on-useragent-request";
 XPCOMUtils.defineLazyModuleGetter(this, "Services", "resource://gre/modules/Services.jsm");
 XPCOMUtils.defineLazyServiceGetter(this, "eTLDService", "@mozilla.org/network/effective-tld-service;1", "nsIEffectiveTLDService");
 
-class UAOverrider { // eslint-disable-line
+class UAOverrider {
   constructor(overrides) {
     this._overrides = {};
     this._overrideForURICache = new Map();
@@ -100,4 +98,4 @@ class UAOverrider { // eslint-disable-line
   }
 }
 
-this.EXPORTED_SYMBOLS = ["UAOverrider"];
+this.EXPORTED_SYMBOLS = ["UAOverrider"]; /* exported UAOverrider */

@@ -2,8 +2,6 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 
-/* globals XPCOMUtils, Services, UAOverrider UAOverrides */
-
 Components.utils.import("resource://gre/modules/XPCOMUtils.jsm");
 
 const UA_ENABLE_PREF_NAME = "extensions.webcompat.perform_ua_overrides";
@@ -26,10 +24,10 @@ function UAEnablePrefObserver() {
   }
 }
 
-function install() {} // eslint-disable-line no-unused-vars
-function uninstall() {} // eslint-disable-line no-unused-vars
+this.install = function() {};
+this.uninstall = function() {};
 
-function startup({webExtension}) { // eslint-disable-line no-unused-vars
+this.startup = function({webExtension}) {
   // Intentionally set the preference to true on every browser restart to
   // avoid site breakage by accidentally toggled preferences or by leaving
   // it off after debugging a site.
@@ -62,13 +60,13 @@ function startup({webExtension}) { // eslint-disable-line no-unused-vars
   }).catch((reason) => {
     console.log(reason);
   });
-}
+};
 
 // TODO: Figure out how to remove listener when bootstrapped addon shutdown
-function shutdown() { // eslint-disable-line no-unused-vars
+this.shutdown = function() {
   Services.prefs.removeObserver(UA_ENABLE_PREF_NAME, UAEnablePrefObserver);
 
   if (overrider) {
     overrider.uninit();
   }
-}
+};
