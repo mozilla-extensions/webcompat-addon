@@ -64,13 +64,21 @@ this.startup = function({webExtension}) {
   overrider = new UAOverrider(UAOverrides);
   overrider.init();
 
-  // Init webExtension to listen tab update status
+  // Initialize the embedded WebExtension that gets used to log a notifications
+  // about altered User Agents into the sites developer console.
+  // Per default, we can only log into the Browser Console, which is not very
+  // helpful in our use case since we want to talk to the site's developers.
+  // Note that this is only a temporary solution, which will get replaced
+  // by a more advanced implementation that will include some additional
+  // information like the reason why we override the User Agent.
   webExtension.startup().then((api) => {
     const {browser} = api;
-    // tabUpdateHandler receives tab updated event from WebExtension tablog.js
-    // While tab status changes to loading, tablog.js queries this URI is overrided or not.
-    // tabUpdateHandler uses sendResponse sends result to tablog.js
-    // tablog.js can determine to print web console log or not.
+
+    // In tablog.js, we have a listener to tabs.onUpdated. That listener sends
+    // a message to us, containing the URL that has been loaded. Here, we check
+    // if the URL is one of the URLs we store User Agent overrides for and if
+    // so, we return true back to the background script, which in turn displays
+    // a message in the site's developer console.
     tabUpdateHandler = function(message, sender, sendResponse) {
       try {
         if (overrider) {
@@ -89,7 +97,6 @@ this.startup = function({webExtension}) {
   });
 };
 
-// TODO: Figure out how to remove listener when bootstrapped addon shutdown
 this.shutdown = function() {
   Services.prefs.removeObserver(UA_ENABLE_PREF_NAME, UAEnablePrefObserver);
 
