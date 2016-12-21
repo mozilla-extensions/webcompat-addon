@@ -1,5 +1,4 @@
 {
-
   "description": "WebCompat Go Faster Web Extension",
   "manifest_version": 2,
   "name": "webcompat-extension",

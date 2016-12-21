@@ -23,7 +23,7 @@ function UAEnablePrefObserver() {
     overrider.init();
   } else if (!isEnabled && overrider) {
     overrider.uninit();
-    overrider = false;
+    overrider = null;
   }
 }
 
