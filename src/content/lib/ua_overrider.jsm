@@ -70,7 +70,7 @@ class UAOverrider {
 
   /**
    * This function returns a User Agent based on the URI passed into. All
-   * override rules are defined in data/ua_overrides.js and the required format
+   * override rules are defined in data/ua_overrides.jsm and the required format
    * is explained there.
    *
    * Since it is expected and designed to have more than one override per base

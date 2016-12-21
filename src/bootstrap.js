@@ -10,8 +10,8 @@ const PREF_DEFAULTS = {perform_ua_overrides: true};
 const UA_ENABLE_PREF_NAME = "extensions.webcompat.perform_ua_overrides";
 
 XPCOMUtils.defineLazyModuleGetter(this, "Services", "resource://gre/modules/Services.jsm");
-XPCOMUtils.defineLazyModuleGetter(this, "UAOverrider", "chrome://webcompat/content/lib/ua_overrider.js");
-XPCOMUtils.defineLazyModuleGetter(this, "UAOverrides", "chrome://webcompat/content/data/ua_overrides.js");
+XPCOMUtils.defineLazyModuleGetter(this, "UAOverrider", "chrome://webcompat/content/lib/ua_overrider.jsm");
+XPCOMUtils.defineLazyModuleGetter(this, "UAOverrides", "chrome://webcompat/content/data/ua_overrides.jsm");
 
 let overrider;
 let tabUpdateHandler;
