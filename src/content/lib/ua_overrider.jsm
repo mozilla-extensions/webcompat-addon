@@ -58,6 +58,11 @@ class UAOverrider {
   getUAForURI(uri) {
     let bareUri = uri.specIgnoringRef;
     if (this._overrideForURICache.has(bareUri)) {
+      // Although the cache could have an entry to a bareUri, `false` is also
+      // a value that could be cached. A `false` cache entry means that there
+      // is no override for this URI.
+      // We cache these to avoid having to walk through all overrides to see
+      // if a domain matches.
       let cachedUA = this._overrideForURICache.get(bareUri);
       return (cachedUA ? cachedUA : DefaultUA);
     }
