@@ -74,6 +74,21 @@ class UAOverrider {
   }
 
   /**
+   * This function gets called from within the embedded webextension to check
+   * if the current site has been overriden or not. We only check the cached
+   * URI list here, but that's safe in our case since the tabUpdateHandler will
+   * always run after our message observer.
+   */
+  hasUAForURIInCache(uri) {
+    let bareUri = uri.specIgnoringRef;
+    if (this._overrideForURICache.has(bareUri)) {
+      return !!this._overrideForURICache.get(bareUri);
+    }
+
+    return false;
+  }
+
+  /**
    * This function returns a User Agent based on the URI passed into. All
    * override rules are defined in data/ua_overrides.jsm and the required format
    * is explained there.
