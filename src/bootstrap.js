@@ -82,8 +82,8 @@ this.startup = function({webExtension}) {
     tabUpdateHandler = function(message, sender, sendResponse) {
       try {
         if (overrider) {
-          let uaOverride = overrider.getUAForURI(Services.io.newURI(message.url, null, null));
-          sendResponse({reply: !!uaOverride});
+          let hasUAOverride = overrider.hasUAForURIInCache(Services.io.newURI(message.url, null, null));
+          sendResponse({reply: hasUAOverride});
         }
       } catch (exception) {
         sendResponse({reply: false});
