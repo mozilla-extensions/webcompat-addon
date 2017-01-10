@@ -63,8 +63,7 @@ class UAOverrider {
       // is no override for this URI.
       // We cache these to avoid having to walk through all overrides to see
       // if a domain matches.
-      let cachedUA = this._overrideForURICache.get(bareUri);
-      return (cachedUA ? cachedUA : DefaultUA);
+      return this._overrideForURICache.get(bareUri);
     }
 
     let finalUA = this.lookupUAOverride(uri);
