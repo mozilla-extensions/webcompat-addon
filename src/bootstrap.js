@@ -82,7 +82,7 @@ this.startup = function({webExtension}) {
     tabUpdateHandler = function(message, sender, sendResponse) {
       try {
         if (overrider) {
-          let hasUAOverride = overrider.hasUAForURIInCache(Services.io.newURI(message.url, null, null));
+          let hasUAOverride = overrider.hasUAForURIInCache(Services.io.newURI(message.url));
           sendResponse({reply: hasUAOverride});
         }
       } catch (exception) {
@@ -91,7 +91,7 @@ this.startup = function({webExtension}) {
     };
 
     browser.runtime.onMessage.addListener(tabUpdateHandler);
-    return;
+    return true;
   }).catch((reason) => {
     console.log(reason);
   });

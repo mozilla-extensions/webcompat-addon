@@ -11,7 +11,7 @@ XPCOMUtils.defineLazyModuleGetter(this, "UAOverrider", "chrome://webcompat/conte
 XPCOMUtils.defineLazyServiceGetter(this, "IOService", "@mozilla.org/network/io-service;1", "nsIIOService");
 
 function getnsIURI(uri) {
-  return IOService.newURI(uri, "utf-8", null);
+  return IOService.newURI(uri, "utf-8");
 }
 
 add_task(function test() {
