@@ -5,6 +5,7 @@
 const {classes: Cc, interfaces: Ci, utils: Cu} = Components;
 
 Cu.import("resource://gre/modules/XPCOMUtils.jsm");
+Cu.import("resource://gre/modules/Console.jsm");
 
 const DefaultUA = Cc["@mozilla.org/network/protocol;1?name=http"].getService(Ci.nsIHttpProtocolHandler).userAgent;
 const NS_HTTP_ON_USERAGENT_REQUEST_TOPIC = "http-on-useragent-request";
@@ -51,6 +52,7 @@ class UAOverrider {
     let uaOverride = this.getUAForURI(channel.URI);
 
     if (uaOverride) {
+      console.log("The user agent has been overridden for compatibility reasons.");
       channel.setRequestHeader("User-Agent", uaOverride, false);
     }
   }

@@ -14,7 +14,6 @@ XPCOMUtils.defineLazyModuleGetter(this, "UAOverrider", "chrome://webcompat/conte
 XPCOMUtils.defineLazyModuleGetter(this, "UAOverrides", "chrome://webcompat/content/data/ua_overrides.jsm");
 
 let overrider;
-let tabUpdateHandler;
 
 function UAEnablePrefObserver() {
   let isEnabled = Services.prefs.getBoolPref(UA_ENABLE_PREF_NAME);
@@ -63,38 +62,6 @@ this.startup = function({webExtension}) {
 
   overrider = new UAOverrider(UAOverrides);
   overrider.init();
-
-  // Initialize the embedded WebExtension that gets used to log a notifications
-  // about altered User Agents into the sites developer console.
-  // Per default, we can only log into the Browser Console, which is not very
-  // helpful in our use case since we want to talk to the site's developers.
-  // Note that this is only a temporary solution, which will get replaced
-  // by a more advanced implementation that will include some additional
-  // information like the reason why we override the User Agent.
-  webExtension.startup().then((api) => {
-    const {browser} = api;
-
-    // In tablog.js, we have a listener to tabs.onUpdated. That listener sends
-    // a message to us, containing the URL that has been loaded. Here, we check
-    // if the URL is one of the URLs we store User Agent overrides for and if
-    // so, we return true back to the background script, which in turn displays
-    // a message in the site's developer console.
-    tabUpdateHandler = function(message, sender, sendResponse) {
-      try {
-        if (overrider) {
-          let hasUAOverride = overrider.hasUAForURIInCache(Services.io.newURI(message.url));
-          sendResponse({reply: hasUAOverride});
-        }
-      } catch (exception) {
-        sendResponse({reply: false});
-      }
-    };
-
-    browser.runtime.onMessage.addListener(tabUpdateHandler);
-    return true;
-  }).catch((reason) => {
-    console.log(reason);
-  });
 };
 
 this.shutdown = function() {
