@@ -16,7 +16,6 @@ XPCOMUtils.defineLazyServiceGetter(this, "eTLDService", "@mozilla.org/network/ef
 class UAOverrider {
   constructor(overrides) {
     this._overrides = {};
-    this._overrideForURICache = new Map();
 
     this.initOverrides(overrides);
   }
@@ -49,29 +48,12 @@ class UAOverrider {
     }
 
     let channel = subject.QueryInterface(Components.interfaces.nsIHttpChannel);
-    let uaOverride = this.getUAForURI(channel.URI);
+    let uaOverride = this.lookupUAOverride(channel.URI);
 
     if (uaOverride) {
       console.log("The user agent has been overridden for compatibility reasons.");
       channel.setRequestHeader("User-Agent", uaOverride, false);
     }
-  }
-
-  getUAForURI(uri) {
-    let bareUri = uri.specIgnoringRef;
-    if (this._overrideForURICache.has(bareUri)) {
-      // Although the cache could have an entry to a bareUri, `false` is also
-      // a value that could be cached. A `false` cache entry means that there
-      // is no override for this URI.
-      // We cache these to avoid having to walk through all overrides to see
-      // if a domain matches.
-      return this._overrideForURICache.get(bareUri);
-    }
-
-    let finalUA = this.lookupUAOverride(uri);
-    this._overrideForURICache.set(bareUri, finalUA);
-
-    return finalUA;
   }
 
   /**
@@ -88,21 +70,6 @@ class UAOverrider {
     } catch (_) {
       return false;
     }
-  }
-
-  /**
-   * This function gets called from within the embedded webextension to check
-   * if the current site has been overriden or not. We only check the cached
-   * URI list here, but that's safe in our case since the tabUpdateHandler will
-   * always run after our message observer.
-   */
-  hasUAForURIInCache(uri) {
-    let bareUri = uri.specIgnoringRef;
-    if (this._overrideForURICache.has(bareUri)) {
-      return !!this._overrideForURICache.get(bareUri);
-    }
-
-    return false;
   }
 
   /**
