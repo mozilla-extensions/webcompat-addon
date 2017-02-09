@@ -75,6 +75,22 @@ class UAOverrider {
   }
 
   /**
+   * Try to use the eTLDService to get the base domain (will return example.com
+   * for http://foo.bar.example.com/foo/bar).
+   *
+   * However, the eTLDService is a bit picky and throws whenever we pass a
+   * blank host name or an IP into it, see bug 1337785. Since we do not plan on
+   * override UAs for such cases, we simply catch everything and return false.
+   */
+  getBaseDomainFromURI(uri) {
+    try {
+      return eTLDService.getBaseDomain(uri);
+    } catch (_) {
+      return false;
+    }
+  }
+
+  /**
    * This function gets called from within the embedded webextension to check
    * if the current site has been overriden or not. We only check the cached
    * URI list here, but that's safe in our case since the tabUpdateHandler will
@@ -106,8 +122,8 @@ class UAOverrider {
    * uriMatchers would return true, the first one gets applied.
    */
   lookupUAOverride(uri) {
-    let baseDomain = eTLDService.getBaseDomain(uri);
-    if (this._overrides[baseDomain]) {
+    let baseDomain = this.getBaseDomainFromURI(uri);
+    if (baseDomain && this._overrides[baseDomain]) {
       for (let uaOverride of this._overrides[baseDomain]) {
         if (uaOverride.uriMatcher(uri.specIgnoringRef)) {
           return uaOverride.uaTransformer(DefaultUA);
