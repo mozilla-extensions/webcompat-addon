@@ -54,6 +54,33 @@ const UAOverrides = [
       let prefix = originalUA.substr(0, originalUA.indexOf(")") + 1);
       return `${prefix} AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.98 Safari/537.36`;
     }
+  },
+
+  /*
+   * web-bug #4032 - video doesn't play on netflix.com
+   * https://github.com/webcompat/web-bugs/issues/4032
+   *
+   * Netflix uses a server-side feature detection on their watch page. On
+   * Firefox Linux, they claim we don't support HTML5 video with DRM, although
+   * the support for Widevine on Firefox Linux is good enough for Netflix these
+   * days.
+   *
+   * Their check only looks for a Chrome snippet in the user agent, so we're
+   * fine with simply appending it.
+   *
+   * Note that this will only return a modified UA on Linux installations, since
+   * other operating systems are already officially supported by Netflix.
+   */
+  {
+    baseDomain: "netflix.com",
+    uriMatcher: (uri) => uri.includes("/watch/"),
+    uaTransformer: (originalUA) => {
+      if(!originalUA.includes("Linux")) {
+        return originalUA;
+      }
+
+      return `${originalUA} Chrome/55.0.2883.87`;
+    }
   }
 ];
 
