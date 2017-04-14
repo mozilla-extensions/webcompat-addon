@@ -60,7 +60,7 @@ this.startup = function({webExtension}) {
   // breakage by accidentally toggled preferences or by leaving it off after
   // debugging a site.
   Services.prefs.clearUserPref(UA_ENABLE_PREF_NAME);
-  Services.prefs.addObserver(UA_ENABLE_PREF_NAME, UAEnablePrefObserver, false);
+  Services.prefs.addObserver(UA_ENABLE_PREF_NAME, UAEnablePrefObserver);
 
   // Listen to the useragentoverrides-initialized notification we get and
   // initialize our overrider there. This is done to avoid slowing down the
