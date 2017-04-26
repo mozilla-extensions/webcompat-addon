@@ -51,7 +51,7 @@ class UAOverrider {
     let uaOverride = this.lookupUAOverride(channel.URI);
 
     if (uaOverride) {
-      console.log("The user agent has been overridden for compatibility reasons.");
+      this.sendDevtoolsNotification(channel);
       channel.setRequestHeader("User-Agent", uaOverride, false);
     }
   }
@@ -99,6 +99,28 @@ class UAOverrider {
     }
 
     return false;
+  }
+
+  /**
+   * Logs a message to the developer tools to inform site developers that
+   * we have indeed touched the user agent.
+   */
+  sendDevtoolsNotification(channel) {
+    let scriptError = Cc["@mozilla.org/scripterror;1"].createInstance(Ci.nsIScriptError);
+    let consoleService = Cc['@mozilla.org/consoleservice;1'].getService(Ci.nsIConsoleService);
+
+    let message = "The user agent for this request has been overridden to ensure Web Compatibility.";
+    scriptError.initWithWindowID(
+      message,
+      null,
+      null,
+      null,
+      null,
+      Ci.nsIScriptError.warningFlag,
+      "webcompat",
+      channel.topLevelOuterContentWindowId
+    );
+    consoleService.logMessage(scriptError);
   }
 }
 
