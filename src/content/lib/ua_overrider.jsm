@@ -51,8 +51,8 @@ class UAOverrider {
     let uaOverride = this.lookupUAOverride(channel.URI);
 
     if (uaOverride) {
-      this.sendDevtoolsNotification(channel);
-      channel.setRequestHeader("User-Agent", uaOverride, false);
+      this.sendDevtoolsNotification(channel, uaOverride.override);
+      channel.setRequestHeader("User-Agent", uaOverride.newUA, false);
     }
   }
 
@@ -93,7 +93,10 @@ class UAOverrider {
     if (baseDomain && this._overrides[baseDomain]) {
       for (let uaOverride of this._overrides[baseDomain]) {
         if (uaOverride.uriMatcher(uri.specIgnoringRef)) {
-          return uaOverride.uaTransformer(DefaultUA);
+          return {
+            newUA: uaOverride.uaTransformer(DefaultUA),
+            override: uaOverride
+          };
         }
       }
     }
@@ -105,11 +108,15 @@ class UAOverrider {
    * Logs a message to the developer tools to inform site developers that
    * we have indeed touched the user agent.
    */
-  sendDevtoolsNotification(channel) {
+  sendDevtoolsNotification(channel, override) {
     let scriptError = Cc["@mozilla.org/scripterror;1"].createInstance(Ci.nsIScriptError);
     let consoleService = Cc['@mozilla.org/consoleservice;1'].getService(Ci.nsIConsoleService);
 
     let message = "The user agent for this request has been overridden to ensure Web Compatibility.";
+    if (override.moreInfo) {
+      message += ` For more information, see ${override.moreInfo}`;
+    }
+
     scriptError.initWithWindowID(
       message,
       null,

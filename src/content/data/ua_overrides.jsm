@@ -8,6 +8,9 @@
  *
  *   * `baseDomain`, required: The base domain that further checks and user
  *     agents override are applied to. This does not include subdomains.
+ *   * `moreInfo`: An URL to a web page that contains more information about
+ *     why the override was put in place and explaining how the override can
+ *     be disabled.
  *   * `uriMatcher`: Function that gets the requested URI passed in the first
  *     argument and needs to return boolean whether or not the override should
  *     be applied. If not provided, the user agent override will be applied
@@ -49,6 +52,7 @@ const UAOverrides = [
    */
   {
     baseDomain: "schub.io",
+    moreInfo: "https://wiki.mozilla.org/Compatibility/Go_Faster_Addon",
     uriMatcher: (uri) => uri.includes("webcompat-ua-dummy.schub.io"),
     uaTransformer: (originalUA) => {
       let prefix = originalUA.substr(0, originalUA.indexOf(")") + 1);
