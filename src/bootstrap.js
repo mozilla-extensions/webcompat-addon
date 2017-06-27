@@ -21,7 +21,6 @@ function UAEnablePrefObserver() {
     overrider = new UAOverrider(UAOverrides);
     overrider.init();
   } else if (!isEnabled && overrider) {
-    overrider.uninit();
     overrider = null;
   }
 }
@@ -66,8 +65,4 @@ this.startup = function({webExtension}) {
 
 this.shutdown = function() {
   Services.prefs.removeObserver(UA_ENABLE_PREF_NAME, UAEnablePrefObserver);
-
-  if (overrider) {
-    overrider.uninit();
-  }
 };
