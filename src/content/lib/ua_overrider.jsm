@@ -42,6 +42,8 @@ class UAOverrider {
       console.log("The user agent has been overridden for compatibility reasons.");
       return uaOverride;
     }
+
+    return false;
   }
 
   /**

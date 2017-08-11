@@ -24,8 +24,7 @@ const SRC_DIR = "./src";
  * mozilla-central.
  */
 const BUILD_IGNORE_PATHS = [
-  ".eslintrc",
-  "test/.eslintrc"
+  ".eslintrc.js"
 ];
 
 /**

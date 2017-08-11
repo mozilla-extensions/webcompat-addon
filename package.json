@@ -2,22 +2,20 @@
   "name": "webcompat-gofaster",
   "title": "Web Compat",
   "description": "Urgent post-release fixes for web compatibility.",
-
   "license": "MPL-2.0",
   "repository": "https://github.com/mozilla/webcompat-addon",
   "version": "1.1.0",
-
   "scripts": {
     "jake": "./node_modules/.bin/jake",
     "lint": "./node_modules/.bin/eslint src/"
   },
-
   "devDependencies": {
-    "eslint": "^3.4.0",
+    "eslint": "3.19.0",
     "eslint-plugin-json": "^1.2.0",
-    "eslint-plugin-mocha": "^4.5.1",
-    "eslint-plugin-mozilla": "0.2.3",
-    "eslint-plugin-promise": "^3.4.0",
+    "eslint-plugin-mocha": "^4.11.0",
+    "eslint-plugin-mozilla": "^0.4.2",
+    "eslint-plugin-no-unsanitized": "2.0.1",
+    "eslint-plugin-promise": "^3.5.0",
     "jake": "^8.0.12"
   }
 }
