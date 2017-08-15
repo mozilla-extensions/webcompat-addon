@@ -19,7 +19,27 @@ class UAOverrider {
   }
 
   initOverrides(overrides) {
+    // on xpcshell tests, there is no impleentation for nsIXULAppInfo, so this
+    // might fail there. To have all of our test cases running at all times,
+    // assume they are on Desktop for now.
+    let currentApplication = "firefox";
+    try {
+      let appInfo = Cc["@mozilla.org/xre/app-info;1"].getService(Ci.nsIXULAppInfo);
+      currentApplication = appInfo.name.toLowerCase();
+    } catch(_) {}
+
     for (let override of overrides) {
+      // Firefox for Desktop is the default application for all overrides.
+      if (!override.applications) {
+        override.applications = ["firefox"];
+      }
+
+      // If the current application is not targeted by the override in question,
+      // we can skip adding the override to our checks entirely.
+      if (!override.applications.includes(currentApplication)) {
+        continue;
+      }
+
       if (!this._overrides[override.baseDomain]) {
         this._overrides[override.baseDomain] = [];
       }
