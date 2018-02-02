@@ -160,17 +160,30 @@ function generateChromeManifest() {
   });
 }
 
+/**
+ * Exports the files to a target, used to export into mozilla-central
+ *
+ */
+function exportFiles(target) {
+  let mcLocation = getMozillaCentralLocation();
+  let extTargetDir = path.join(mcLocation, target);
+  jake.rmRf(extTargetDir);
+  jake.cpR(BUILD_DIR, extTargetDir);
+
+  console.log(`Exported built sources into ${extTargetDir}`);
+}
+
 desc(`Builds the extension into the ${BUILD_DIR}/ directory`);
 task("build", ["building:cleanup", "building:copy"], () => {});
 
 desc("Exports the sources into mozilla-central");
 task("export-mc", ["build"], () => {
-  let mcLocation = getMozillaCentralLocation();
-  let extTargetDir = path.join(mcLocation, "browser/extensions/webcompat");
-  jake.rmRf(extTargetDir);
-  jake.cpR(BUILD_DIR, extTargetDir);
+  exportFiles("browser/extensions/webcompat");
+});
 
-  console.log(`Exported built sources into ${extTargetDir}`);
+desc("Exports the sources into the mozilla-central for android");
+task("export-mc-android", ["build"], () => {
+  exportFiles("mobile/android/extensions/webcompat");
 });
 
 desc("Exports the sources into an .xpi for update shipping");
