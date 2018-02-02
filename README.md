@@ -3,6 +3,12 @@ WebCompat Go Faster add-on
 
 This is the development repository for the Firefox WebCompat Go Faster add-on
 
+Writing site patches, overrides and injections
+----------------------------------------------
+
+Detailed information on our policies on writing overrides, as well as technical
+information, can be found in the [Mozilla Wiki](https://wiki.mozilla.org/Compatibility/Go_Faster_Addon/Override_Policies_and_Workflows).
+
 Build instructions
 ------------------
 
