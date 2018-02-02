@@ -48,8 +48,8 @@ const PREPREOCESSOR_DEFINES = {
    * (the minimal version) is set to the first release this has ever been
    * tested in and the MOZ_APP_MAXVERSION is set to the current nightly.
    */
-  "MOZ_APP_VERSION": "49.0a1",
-  "MOZ_APP_MAXVERSION": "52.*"
+  "MOZ_APP_VERSION": "59.0b5",
+  "MOZ_APP_MAXVERSION": "99.*"
 };
 
 /**
@@ -161,6 +161,35 @@ function generateChromeManifest() {
 }
 
 /**
+ * Replaces file list placeholders in moz.build
+ *
+ * returns {promise}
+ */
+function replaceFilelistPlaceholders(cssInjections, jsInjections) {
+  return new Promise((resolve, reject) => {
+    let formatList = (files) => {
+      files = files.map((filename) => filename.replace("build/", ""));
+      return "'" + files.join("', \n  '") + "'"
+    };
+
+    let mozBuildFilename = path.join(BUILD_DIR, "moz.build");
+    try {
+      fs.statSync(mozBuildFilename).isFile();
+    } catch (ex) {
+      reject("Cannot generate the injection file list: no moz.build");
+    }
+
+    let mozBuildContents = fs.readFileSync(mozBuildFilename).toString();
+    mozBuildContents = mozBuildContents
+      .replace("@CSS_INJECTIONS@", formatList(cssInjections))
+      .replace("@JS_INJECTIONS@", formatList(jsInjections))
+
+    fs.writeFileSync(mozBuildFilename, mozBuildContents);
+    resolve();
+  });
+}
+
+/**
  * Exports the files to a target, used to export into mozilla-central
  *
  */
@@ -174,7 +203,7 @@ function exportFiles(target) {
 }
 
 desc(`Builds the extension into the ${BUILD_DIR}/ directory`);
-task("build", ["building:cleanup", "building:copy"], () => {});
+task("build", ["building:cleanup", "building:copy", "building:injectionfilelist"], () => {});
 
 desc("Exports the sources into mozilla-central");
 task("export-mc", ["build"], () => {
@@ -204,7 +233,7 @@ desc("Exports and runs the addon inside mozilla-central");
 task("run-mc", ["export-mc"], {async: true}, () => {
   let mcLocation = getMozillaCentralLocation();
   jake.exec(
-    `cd ${mcLocation}; ./mach build faster; ./mach run`,
+    `cd ${mcLocation}; ./mach build; ./mach run`,
     {printStdout: true},
     complete
   );
@@ -214,7 +243,7 @@ desc("Runs automated tests");
 task("test", ["export-mc"], {async: true}, () => {
   let mcLocation = getMozillaCentralLocation();
   jake.exec(
-    `cd ${mcLocation}; ./mach build faster; ./mach mochitest browser/extensions/webcompat`,
+    `cd ${mcLocation}; ./mach build; ./mach mochitest browser/extensions/webcompat`,
     {printStdout: true},
     complete
   );
@@ -232,5 +261,18 @@ namespace("building", () => {
     BUILD_IGNORE_PATHS.forEach((ignorePath) => {
       jake.rmRf(path.join(BUILD_DIR, ignorePath));
     });
+  });
+
+  desc("Generates a list of injection files required for 'moz.build'");
+  task("injectionfilelist", () => {
+    let getFilelist = (injectionType) => {
+      let files = path.join(BUILD_DIR, "webextension", "injections", injectionType, "*");
+      return (new jake.FileList()).include(files).toArray()
+    };
+
+    replaceFilelistPlaceholders(
+      getFilelist("css"),
+      getFilelist("js")
+    );
   });
 });

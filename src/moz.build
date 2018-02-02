@@ -11,6 +11,19 @@ FINAL_TARGET_FILES.features['webcompat@mozilla.org'] += [
   'bootstrap.js'
 ]
 
+FINAL_TARGET_FILES.features['webcompat@mozilla.org']['webextension'] += [
+  'webextension/background.js',
+  'webextension/manifest.json'
+]
+
+FINAL_TARGET_FILES.features['webcompat@mozilla.org']['webextension']['injections']['css'] += [
+  @CSS_INJECTIONS@
+]
+
+FINAL_TARGET_FILES.features['webcompat@mozilla.org']['webextension']['injections']['js'] += [
+  @JS_INJECTIONS@
+]
+
 FINAL_TARGET_PP_FILES.features['webcompat@mozilla.org'] += [
   'install.rdf.in'
 ]
