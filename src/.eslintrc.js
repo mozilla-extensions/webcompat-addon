@@ -9,8 +9,9 @@ module.exports = {
     "es6": true
   },
   "globals": {
-    "Components": true,
-    "chrome": true
+    "chrome": true,
+    "ChromeUtils": true,
+    "Components": true
   },
   "plugins": [
     "mozilla",

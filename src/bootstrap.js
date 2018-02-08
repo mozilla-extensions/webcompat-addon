@@ -18,8 +18,13 @@ const INJECTIONS_ENABLE_PREF_NAME = "extensions.webcompat.perform_injections";
 const UA_OVERRIDES_INIT_TOPIC = "useragentoverrides-initialized";
 const UA_ENABLE_PREF_NAME = "extensions.webcompat.perform_ua_overrides";
 
-XPCOMUtils.defineLazyModuleGetter(this, "UAOverrider", "chrome://webcompat/content/lib/ua_overrider.jsm");
-XPCOMUtils.defineLazyModuleGetter(this, "UAOverrides", "chrome://webcompat/content/data/ua_overrides.jsm");
+if (XPCOMUtils.defineLazyModuleGetter) {
+  XPCOMUtils.defineLazyModuleGetter(this, "UAOverrider", "chrome://webcompat/content/lib/ua_overrider.jsm");
+  XPCOMUtils.defineLazyModuleGetter(this, "UAOverrides", "chrome://webcompat/content/data/ua_overrides.jsm");
+} else {
+  ChromeUtils.defineModuleGetter(this, "UAOverrider", "chrome://webcompat/content/lib/ua_overrider.jsm");
+  ChromeUtils.defineModuleGetter(this, "UAOverrides", "chrome://webcompat/content/data/ua_overrides.jsm");
+}
 
 let overrider;
 let webextensionPort;
