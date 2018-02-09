@@ -23,9 +23,8 @@ class UAOverrider {
     // assume they are on Desktop for now.
     let currentApplication = "firefox";
     try {
-      let appInfo = Cc["@mozilla.org/xre/app-info;1"].getService(Ci.nsIXULAppInfo);
-      currentApplication = appInfo.name.toLowerCase();
-    } catch(_) {}
+      currentApplication = Services.appinfo.name.toLowerCase();
+    } catch (_) {}
 
     for (let override of overrides) {
       // Firefox for Desktop is the default application for all overrides.
