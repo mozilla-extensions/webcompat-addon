@@ -13,6 +13,8 @@ const contentScripts = [
   }
 ];
 
+/* globals browser */
+
 let port = browser.runtime.connect();
 let registeredContentScripts = [];
 
