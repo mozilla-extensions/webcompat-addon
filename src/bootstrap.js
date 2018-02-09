@@ -8,24 +8,38 @@ Cu.import("resource://gre/modules/XPCOMUtils.jsm");
 Cu.import("resource://gre/modules/Services.jsm");
 
 const PREF_BRANCH = "extensions.webcompat.";
-const PREF_DEFAULTS = {perform_ua_overrides: true};
+const PREF_DEFAULTS = {
+  perform_injections: true,
+  perform_ua_overrides: true
+};
+
+const INJECTIONS_ENABLE_PREF_NAME = "extensions.webcompat.perform_injections";
 
 const UA_OVERRIDES_INIT_TOPIC = "useragentoverrides-initialized";
 const UA_ENABLE_PREF_NAME = "extensions.webcompat.perform_ua_overrides";
 
-XPCOMUtils.defineLazyModuleGetter(this, "UAOverrider", "chrome://webcompat/content/lib/ua_overrider.jsm");
-XPCOMUtils.defineLazyModuleGetter(this, "UAOverrides", "chrome://webcompat/content/data/ua_overrides.jsm");
+if (XPCOMUtils.defineLazyModuleGetter) {
+  XPCOMUtils.defineLazyModuleGetter(this, "UAOverrider", "chrome://webcompat/content/lib/ua_overrider.jsm");
+  XPCOMUtils.defineLazyModuleGetter(this, "UAOverrides", "chrome://webcompat/content/data/ua_overrides.jsm");
+} else {
+  ChromeUtils.defineModuleGetter(this, "UAOverrider", "chrome://webcompat/content/lib/ua_overrider.jsm");
+  ChromeUtils.defineModuleGetter(this, "UAOverrides", "chrome://webcompat/content/data/ua_overrides.jsm");
+}
 
 let overrider;
+let webextensionPort;
+
+function InjectionsEnablePrefObserver() {
+  let isEnabled = Services.prefs.getBoolPref(INJECTIONS_ENABLE_PREF_NAME);
+  webextensionPort.postMessage({
+    type: "injection-pref-changed",
+    prefState: isEnabled
+  });
+}
 
 function UAEnablePrefObserver() {
   let isEnabled = Services.prefs.getBoolPref(UA_ENABLE_PREF_NAME);
-  if (isEnabled && !overrider) {
-    overrider = new UAOverrider(UAOverrides);
-    overrider.init();
-  } else if (!isEnabled && overrider) {
-    overrider = null;
-  }
+  overrider.setShouldOverride(isEnabled);
 }
 
 function setDefaultPrefs() {
@@ -59,6 +73,9 @@ this.startup = function({webExtension}) {
   // Intentionally reset the preference on every browser restart to avoid site
   // breakage by accidentally toggled preferences or by leaving it off after
   // debugging a site.
+  Services.prefs.clearUserPref(INJECTIONS_ENABLE_PREF_NAME);
+  Services.prefs.addObserver(INJECTIONS_ENABLE_PREF_NAME, InjectionsEnablePrefObserver);
+
   Services.prefs.clearUserPref(UA_ENABLE_PREF_NAME);
   Services.prefs.addObserver(UA_ENABLE_PREF_NAME, UAEnablePrefObserver);
 
@@ -78,8 +95,19 @@ this.startup = function({webExtension}) {
     }
   };
   Services.obs.addObserver(startupWatcher, UA_OVERRIDES_INIT_TOPIC);
+
+  webExtension.startup().then((api) => {
+    api.browser.runtime.onConnect.addListener((port) => {
+      webextensionPort = port;
+    });
+
+    return Promise.resolve();
+  }).catch((ex) => {
+    console.error(ex);
+  });
 };
 
 this.shutdown = function() {
+  Services.prefs.removeObserver(INJECTIONS_ENABLE_PREF_NAME, InjectionsEnablePrefObserver);
   Services.prefs.removeObserver(UA_ENABLE_PREF_NAME, UAEnablePrefObserver);
 };

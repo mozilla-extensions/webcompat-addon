@@ -7,19 +7,46 @@ const {classes: Cc, interfaces: Ci, utils: Cu} = Components;
 Cu.import("resource://gre/modules/XPCOMUtils.jsm");
 Cu.import("resource://gre/modules/Console.jsm");
 
-XPCOMUtils.defineLazyModuleGetter(this, "Services", "resource://gre/modules/Services.jsm");
-XPCOMUtils.defineLazyModuleGetter(this, "UserAgentOverrides", "resource://gre/modules/UserAgentOverrides.jsm");
+if (XPCOMUtils.defineLazyModuleGetter) {
+  XPCOMUtils.defineLazyModuleGetter(this, "Services", "resource://gre/modules/Services.jsm");
+  XPCOMUtils.defineLazyModuleGetter(this, "UserAgentOverrides", "resource://gre/modules/UserAgentOverrides.jsm");
+} else {
+  ChromeUtils.defineModuleGetter(this, "Services", "resource://gre/modules/Services.jsm");
+  ChromeUtils.defineModuleGetter(this, "UserAgentOverrides", "resource://gre/modules/UserAgentOverrides.jsm");
+}
+
 XPCOMUtils.defineLazyServiceGetter(this, "eTLDService", "@mozilla.org/network/effective-tld-service;1", "nsIEffectiveTLDService");
 
 class UAOverrider {
   constructor(overrides) {
     this._overrides = {};
+    this._shouldOverride = true;
 
     this.initOverrides(overrides);
   }
 
   initOverrides(overrides) {
+    // on xpcshell tests, there is no impleentation for nsIXULAppInfo, so this
+    // might fail there. To have all of our test cases running at all times,
+    // assume they are on Desktop for now.
+    let currentApplication = "firefox";
+    try {
+      let appInfo = Cc["@mozilla.org/xre/app-info;1"].getService(Ci.nsIXULAppInfo);
+      currentApplication = appInfo.name.toLowerCase();
+    } catch(_) {}
+
     for (let override of overrides) {
+      // Firefox for Desktop is the default application for all overrides.
+      if (!override.applications) {
+        override.applications = ["firefox"];
+      }
+
+      // If the current application is not targeted by the override in question,
+      // we can skip adding the override to our checks entirely.
+      if (!override.applications.includes(currentApplication)) {
+        continue;
+      }
+
       if (!this._overrides[override.baseDomain]) {
         this._overrides[override.baseDomain] = [];
       }
@@ -32,11 +59,26 @@ class UAOverrider {
     }
   }
 
+  /**
+   * Used for disabling overrides when the pref has been flipped to false.
+   *
+   * Since we no longer use our own event handlers, we check this bool in our
+   * override callback and simply return early if we are not supposed to do
+   * anything.
+   */
+  setShouldOverride(newState) {
+    this._shouldOverride = newState;
+  }
+
   init() {
     UserAgentOverrides.addComplexOverride(this.overrideCallback.bind(this));
   }
 
   overrideCallback(channel, defaultUA) {
+    if (!this._shouldOverride) {
+      return false;
+    }
+
     let uaOverride = this.lookupUAOverride(channel.URI, defaultUA);
     if (uaOverride) {
       console.log("The user agent has been overridden for compatibility reasons.");
