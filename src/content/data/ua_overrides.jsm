@@ -28,4 +28,4 @@ const UAOverrides = [
   }
 ];
 
-this.EXPORTED_SYMBOLS = ["UAOverrides"]; /* exported UAOverrides */
+var EXPORTED_SYMBOLS = ["UAOverrides"]; /* exported UAOverrides */
