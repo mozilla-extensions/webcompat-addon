@@ -1,12 +1,9 @@
 "use strict";
 
-// eslint-disable-next-line no-eval
-window.eval(`(function() {
-  Object.defineProperty(window, "isTestFeatureSupported", {
-    get: function() {
-      return true;
-    },
+Object.defineProperty(window.wrappedJSObject, "isTestFeatureSupported", {
+  get: exportFunction(function() {
+    return true;
+  }, window),
 
-    set: function() {}
-  });
-}());`);
+  set: exportFunction(function() {}, window)
+});
