@@ -19,11 +19,13 @@ let port = browser.runtime.connect();
 let registeredContentScripts = [];
 
 function registerContentScripts() {
-  let registrations = contentScripts.map((contentScript) => browser.contentScripts.register(contentScript));
-  Promise.all(registrations).then((contentScriptHandles) => {
-    registeredContentScripts = contentScriptHandles;
-  }).catch((ex) => {
-    console.error("Registering WebCompat GoFaster content scripts failed: ", ex);
+  contentScripts.forEach(async (contentScript) => {
+    try {
+      let handle = await browser.contentScripts.register(contentScript);
+      registeredContentScripts.push(handle);
+    } catch (ex) {
+      console.error("Registering WebCompat GoFaster content scripts failed: ", ex);
+    }
   });
 }
 
