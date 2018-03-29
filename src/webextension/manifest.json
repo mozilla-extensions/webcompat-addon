@@ -7,7 +7,6 @@
   "applications": {
     "gecko": {
       "id": "webcompat@mozilla.org",
-      "strict_max_version": "99.*",
       "strict_min_version": "59.0b5"
     }
   },
