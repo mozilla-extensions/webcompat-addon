@@ -76,7 +76,7 @@ this.startup = function({webExtension}) {
   // initialize our overrider there. This is done to avoid slowing down the
   // apparent startup proces, since we avoid loading anything before the first
   // window is visible to the user. See bug 1371442 for details.
-  let startupWatcher = {
+  let uaStartupObserver = {
     observe(aSubject, aTopic, aData) {
       if (aTopic !== UA_OVERRIDES_INIT_TOPIC) {
         return;
@@ -87,17 +87,26 @@ this.startup = function({webExtension}) {
       overrider.init();
     }
   };
-  Services.obs.addObserver(startupWatcher, UA_OVERRIDES_INIT_TOPIC);
+  Services.obs.addObserver(uaStartupObserver, UA_OVERRIDES_INIT_TOPIC);
 
-  webExtension.startup().then((api) => {
-    api.browser.runtime.onConnect.addListener((port) => {
-      webextensionPort = port;
-    });
+  // Observe browser-delayed-startup-finished and only initialize our embedded
+  // WebExtension after that. Otherwise, we'd try to initialize as soon as the
+  // browser starts up, which adds a heavy startup penalty.
+  let appStartupObserver = {
+    observe(aSubject, aTopic, aData) {
+      webExtension.startup().then((api) => {
+        api.browser.runtime.onConnect.addListener((port) => {
+          webextensionPort = port;
+        });
 
-    return Promise.resolve();
-  }).catch((ex) => {
-    console.error(ex);
-  });
+        return Promise.resolve();
+      }).catch((ex) => {
+        console.error(ex);
+      });
+      Services.obs.removeObserver(this, "browser-delayed-startup-finished");
+    }
+  };
+  Services.obs.addObserver(appStartupObserver, "browser-delayed-startup-finished");
 };
 
 this.shutdown = function() {
