@@ -13,6 +13,8 @@ const PREF_DEFAULTS = {
 
 const INJECTIONS_ENABLE_PREF_NAME = "extensions.webcompat.perform_injections";
 
+const BROWSER_STARTUP_FINISHED_TOPIC = "browser-delayed-startup-finished";
+
 const UA_OVERRIDES_INIT_TOPIC = "useragentoverrides-initialized";
 const UA_ENABLE_PREF_NAME = "extensions.webcompat.perform_ua_overrides";
 
@@ -103,10 +105,10 @@ this.startup = function({webExtension}) {
       }).catch((ex) => {
         console.error(ex);
       });
-      Services.obs.removeObserver(this, "browser-delayed-startup-finished");
+      Services.obs.removeObserver(this, BROWSER_STARTUP_FINISHED_TOPIC);
     }
   };
-  Services.obs.addObserver(appStartupObserver, "browser-delayed-startup-finished");
+  Services.obs.addObserver(appStartupObserver, BROWSER_STARTUP_FINISHED_TOPIC);
 };
 
 this.shutdown = function() {
