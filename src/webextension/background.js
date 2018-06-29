@@ -10,6 +10,12 @@ const contentScripts = [
     css: [{file: "injections/css/bug0000000-dummy-css-injection.css"}],
     js: [{file: "injections/js/bug0000000-dummy-js-injection.js"}],
     runAt: "document_start"
+  },
+  {
+    matches: ["http://202.166.205.141/bbvrs/*"],
+    js: [{file: "injections/js/bug1472081-election.gov.np-window.sidebar-shim.js"}],
+    runAt: "document_start",
+    allFrames: true
   }
 ];
 
