@@ -10,6 +10,11 @@ const contentScripts = [
     css: [{file: "injections/css/bug0000000-dummy-css-injection.css"}],
     js: [{file: "injections/js/bug0000000-dummy-js-injection.js"}],
     runAt: "document_start"
+  },
+  {
+    matches: ["*://*.bankofamerica.com/*"],
+    js: [{file: "injections/js/bug1472075-bankofamerica.com-ua-change.js"}],
+    runAt: "document_start"
   }
 ];
 
