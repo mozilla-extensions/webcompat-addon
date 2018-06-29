@@ -10,6 +10,11 @@ const contentScripts = [
     css: [{file: "injections/css/bug0000000-dummy-css-injection.css"}],
     js: [{file: "injections/js/bug0000000-dummy-js-injection.js"}],
     runAt: "document_start"
+  },
+  {
+    matches: ["http://histography.io/*"],
+    js: [{file: "injections/js/bug1457335-histography.io-ua-change.js"}],
+    runAt: "document_start"
   }
 ];
 
