@@ -23,6 +23,12 @@ const contentScripts = [
     matches: ["*://*.bankofamerica.com/*"],
     js: [{file: "injections/js/bug1472075-bankofamerica.com-ua-change.js"}],
     runAt: "document_start"
+  },
+  {
+    matches: ["http://202.166.205.141/bbvrs/*"],
+    js: [{file: "injections/js/bug1472081-election.gov.np-window.sidebar-shim.js"}],
+    runAt: "document_start",
+    allFrames: true
   }
 ];
 
