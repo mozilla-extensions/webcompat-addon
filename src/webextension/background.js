@@ -14,10 +14,12 @@ const contentScripts = [
   {
     matches: ["https://ib.absa.co.za/*"],
     js: [{file: "injections/js/bug1452707-window.controllers-shim-ib.absa.co.za.js"}],
+    runAt: "document_start"
   },
   {
     matches: ["http://histography.io/*"],
     js: [{file: "injections/js/bug1457335-histography.io-ua-change.js"}],
+    runAt: "document_start"
   },
   {
     matches: ["*://*.bankofamerica.com/*"],
