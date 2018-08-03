@@ -169,7 +169,7 @@ function replaceFilelistPlaceholders(cssInjections, jsInjections) {
   return new Promise((resolve, reject) => {
     let formatList = (files) => {
       files = files.map((filename) => filename.replace("build/", ""));
-      return "'" + files.join("', \n  '") + "'"
+      return "'" + files.join("',\n  '") + "'"
     };
 
     let mozBuildFilename = path.join(BUILD_DIR, "moz.build");
