@@ -10,6 +10,11 @@ const contentScripts = [
     css: [{file: "injections/css/bug0000000-dummy-css-injection.css"}],
     js: [{file: "injections/js/bug0000000-dummy-js-injection.js"}],
     runAt: "document_start"
+  },
+  {
+    matches: ["https://ib.absa.co.za/*"],
+    js: [{file: "injections/js/bug1452707-window.controllers-shim-ib.absa.co.za.js"}],
+    runAt: "document_start"
   }
 ];
 
