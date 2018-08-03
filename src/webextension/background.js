@@ -18,6 +18,10 @@ const contentScripts = [
   {
     matches: ["http://histography.io/*"],
     js: [{file: "injections/js/bug1457335-histography.io-ua-change.js"}],
+  },
+  {
+    matches: ["*://*.bankofamerica.com/*"],
+    js: [{file: "injections/js/bug1472075-bankofamerica.com-ua-change.js"}],
     runAt: "document_start"
   }
 ];
