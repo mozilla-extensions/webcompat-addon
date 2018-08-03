@@ -28,7 +28,24 @@ const UAOverrides = [
   },
 
   /*
+   * Bug 1480710 - m.imgur.com - Build UA override
+   * WebCompat issue #13154 - https://webcompat.com/issues/13154
    *
+   * imgur returns a 404 for requests to CSS and JS file if requested with a Fennec
+   * User Agent. By removing the Fennec identifies and adding Chrome Mobile's, we
+   * receive the correct CSS and JS files.
+   */
+  {
+    baseDomain: "imgur.com",
+    applications: ["fennec"],
+    uriMatcher: (uri) => uri.includes("m.imgur.com"),
+    uaTransformer: (originalUA) => {
+      let prefix = originalUA.substr(0, originalUA.indexOf(")") + 1);
+      return prefix + " AppleWebKit/537.36 (KHTML, like Gecko) Chrome/68.0.3440.85 Mobile Safari/537.36";
+    }
+  },
+
+  /*
    * Bug 755590 - sites.google.com - top bar doesn't show up in Firefox for Android
    *
    * Google Sites does show a different top bar template based on the User Agent.
