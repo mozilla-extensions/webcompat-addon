@@ -34,6 +34,12 @@ const contentScripts = {
       js: [{file: "injections/js/bug1472081-election.gov.np-window.sidebar-shim.js"}],
       runAt: "document_start",
       allFrames: true
+    },
+    {
+      matches: ["*://portalminasnet.com/*"],
+      js: [{file: "injections/js/bug1482066-portalminasnet.com-window.sidebar-shim.js"}],
+      runAt: "document_start",
+      allFrames: true
     }
   ],
   android: []
