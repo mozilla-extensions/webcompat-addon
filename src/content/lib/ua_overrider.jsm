@@ -16,7 +16,7 @@ class UAOverrider {
   }
 
   initOverrides(overrides) {
-    // on xpcshell tests, there is no impleentation for nsIXULAppInfo, so this
+    // on xpcshell tests, there is no implementation for nsIXULAppInfo, so this
     // might fail there. To have all of our test cases running at all times,
     // assume they are on Desktop for now.
     let currentApplication = "firefox";
