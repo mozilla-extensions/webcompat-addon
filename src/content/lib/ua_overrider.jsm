@@ -22,7 +22,9 @@ class UAOverrider {
     let currentApplication = "firefox";
     try {
       currentApplication = Services.appinfo.name.toLowerCase();
-    } catch (_) {}
+    } catch (ex) {
+      console.warn("Getting appinfo.name failed, assuming we run on Desktop.", ex);
+    }
 
     for (let override of overrides) {
       // Firefox for Desktop is the default application for all overrides.
@@ -88,7 +90,8 @@ class UAOverrider {
   getBaseDomainFromURI(uri) {
     try {
       return Services.eTLD.getBaseDomain(uri);
-    } catch (_) {
+    } catch (ex) {
+      console.error(`Could not getBaseDomain() for "${uri}"`, ex);
       return false;
     }
   }
