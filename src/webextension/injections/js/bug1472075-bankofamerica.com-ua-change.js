@@ -15,7 +15,7 @@
 if (!navigator.platform.includes("Win") && !navigator.userAgent.includes("Android")) {
   const WINDOWS_UA = navigator.userAgent.replace(/\(.*; rv:/i, "(Windows NT 10.0; Win64; x64; rv:");
 
-  Object.defineProperty(window.wrappedJSObject.navigator, "userAgent", {
+  Object.defineProperty(window.navigator.wrappedJSObject, "userAgent", {
     get: exportFunction(function() {
       return WINDOWS_UA;
     }, window),
@@ -23,7 +23,7 @@ if (!navigator.platform.includes("Win") && !navigator.userAgent.includes("Androi
     set: exportFunction(function() {}, window)
   });
 
-  Object.defineProperty(window.wrappedJSObject.navigator, "appVersion", {
+  Object.defineProperty(window.navigator.wrappedJSObject, "appVersion", {
     get: exportFunction(function() {
       return "appVersion";
     }, window),
@@ -31,7 +31,7 @@ if (!navigator.platform.includes("Win") && !navigator.userAgent.includes("Androi
     set: exportFunction(function() {}, window)
   });
 
-  Object.defineProperty(window.wrappedJSObject.navigator, "platform", {
+  Object.defineProperty(window.navigator.wrappedJSObject, "platform", {
     get: exportFunction(function() {
       return "Win64";
     }, window),

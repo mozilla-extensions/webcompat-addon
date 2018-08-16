@@ -13,7 +13,7 @@
 
 const CHROME_UA = navigator.userAgent + " Chrome for WebCompat";
 
-Object.defineProperty(window.wrappedJSObject.navigator, "userAgent", {
+Object.defineProperty(window.navigator.wrappedJSObject, "userAgent", {
   get: exportFunction(function() {
     return CHROME_UA;
   }, window),
@@ -21,7 +21,7 @@ Object.defineProperty(window.wrappedJSObject.navigator, "userAgent", {
   set: exportFunction(function() {}, window)
 });
 
-Object.defineProperty(window.wrappedJSObject.navigator, "vendor", {
+Object.defineProperty(window.navigator.wrappedJSObject, "vendor", {
   get: exportFunction(function() {
     return "Google Inc.";
   }, window),
