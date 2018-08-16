@@ -12,7 +12,7 @@
 
 /* globals exportFunction */
 
-if (!navigator.platform.includes("Win") && !navigator.userAgent.includes("Android")) {
+if (!navigator.platform.includes("Win")) {
   const WINDOWS_UA = navigator.userAgent.replace(/\(.*; rv:/i, "(Windows NT 10.0; Win64; x64; rv:");
 
   Object.defineProperty(window.navigator.wrappedJSObject, "userAgent", {
