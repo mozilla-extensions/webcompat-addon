@@ -6,7 +6,7 @@
  *
  * This site is blocking onmousedown and onclick if window.sidebar is something
  * that evaluates to true, rendering the form fields unusable. This patch
- * overrides window.sidebar with false, so the blockign event handlers won't
+ * overrides window.sidebar with false, so the blocking event handlers won't
  * get registered.
  */
 
