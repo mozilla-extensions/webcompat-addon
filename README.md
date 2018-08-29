@@ -26,7 +26,7 @@ dependencies with `npm install`.
 
 ### Exporting the sources to `mozilla-central`
 
-1. Run `npm run jake export-mc`.
+1. Run `npm run jake export-mc` for Desktop or `npm run jake export-mc-android` for Android.
 2. Find the exported files in your `mozilla-central` directory, ready to commit.
 
 ### Run the changed extension sources
