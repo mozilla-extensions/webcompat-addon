@@ -40,7 +40,12 @@ const contentScripts = {
       js: [{file: "injections/js/bug1482066-portalminasnet.com-window.sidebar-shim.js"}],
       runAt: "document_start",
       allFrames: true
-    }
+    },
+    {
+      matches: ["https://gitter.im/*"],
+      js: [{file: "injections/js/bug1432935-webkit-scrollbar-display-none.js"}],
+      runAt: "document_end",
+    },
   ],
   android: []
 };
