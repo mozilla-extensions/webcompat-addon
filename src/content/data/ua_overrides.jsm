@@ -59,6 +59,23 @@ const UAOverrides = [
     uaTransformer: (originalUA) => {
       return originalUA + " Chrome/68.0.3440.85 Mobile Safari/537.366";
     }
+  },
+
+  /*
+   * Bug 945963 - tieba.baidu.com serves simplified mobile content to Firefox Android
+   * WebCompat issue #18455 - https://webcompat.com/issues/18455
+   *
+   * tieba.baidu.com and tiebac.baidu.com serve a heavily simplified and less functional
+   * mobile experience to Firefox for Android users. Adding the AppleWebKit indicator
+   * to the User Agent gets us the same experience.
+   */
+  {
+    baseDomain: "baidu.com",
+    applications: ["fennec"],
+    uriMatcher: (uri) => ["tieba.baidu.com", "tiebac.baidu.com"].some((domain) => uri.includes(domain)),
+    uaTransformer: (originalUA) => {
+      return originalUA + " AppleWebKit/537.36 (KHTML, like Gecko)";
+    }
   }
 ];
 
