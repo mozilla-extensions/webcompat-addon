@@ -32,32 +32,7 @@ const BUILD_IGNORE_PATHS = [
  * an .xpi.
  */
 const XPI_IGNORE_PATHS = [
-  "jar.mn",
-  "moz.build",
-  "test/"
-];
-
-/**
- * List of preprocessor defines that get applied whenever the preprocessor is
- * getting involved.
- */
-const PREPREOCESSOR_DEFINES = {
-  /**
-   * These two get set by mach based on the current Firefox versions. We do
-   * not have access to that information, which is why the MOZ_APP_VERSION
-   * (the minimal version) is set to the first release this has ever been
-   * tested in and the MOZ_APP_MAXVERSION is set to the current nightly.
-   */
-  "MOZ_APP_VERSION": "59.0b5",
-  "MOZ_APP_MAXVERSION": "99.*"
-};
-
-/**
- * List of files that need preprocessing by the mozilla-central build
- * preprocessor when building the XPI.
- */
-const PREPROCESS_FILES = [
-  "install.rdf.in"
+  "moz.build"
 ];
 
 /**
@@ -84,80 +59,6 @@ function getMozillaCentralLocation() {
   }
 
   return mcLocation;
-}
-
-/**
- * Builds an argument string for the use with the preprocessor.
- *
- * @param {object} customVars name => value for additional variables to pass into the preprocessor
- * @returns {string} an argument string to pass to preprocessor.py
- */
-function buildPreprocessorVariableArgs(customVars = {}) {
-  let vars = Object.assign({}, PREPREOCESSOR_DEFINES, customVars);
-  return Object.keys(vars)
-    .map((name) => `-D ${name}='${vars[name]}'`)
-    .join(" ");
-}
-
-/**
- * Preprocesses a file.
- *
- * @param {string} file the path to the file relative to BUILD_DIR
- * @param {object} customVars additional preprocessor variables for this file
- * @returns {promise}
- */
-function preprocessFile(file, customVars = {}) {
-  return new Promise((resolve, reject) => {
-    try {
-      fs.statSync(path.join(BUILD_DIR, file)).isFile();
-    } catch (ex) {
-      reject(`Preprocess failed: no such file: ${file}`);
-    }
-
-    try {
-      let scriptLocation = path.join(getMozillaCentralLocation(),
-        "python/mozbuild/mozbuild/preprocessor.py");
-      let ppArgs = buildPreprocessorVariableArgs(customVars);
-      let inputFilename = path.join(BUILD_DIR, file);
-      let outputFilename = path.join(BUILD_DIR, file.replace(".in", ""));
-      let ppCall = `python ${scriptLocation} ${ppArgs} -o ${outputFilename} ${inputFilename}`;
-
-      exec(ppCall, (error, stdout, stderr) => {
-        if (error || stderr) {
-          reject({error, stderr});
-        }
-
-        resolve();
-      });
-    } catch (ex) {
-      reject(ex);
-    }
-  });
-}
-
-/**
- * Generates a chrome.manifest from a jar.mn
- *
- * @returns {promise}
- */
-function generateChromeManifest() {
-  return new Promise((resolve, reject) => {
-    let jarFilename = path.join(BUILD_DIR, "jar.mn");
-    try {
-      fs.statSync(jarFilename).isFile();
-    } catch (ex) {
-      reject("Building chrome.manifest failed: no such file: jar.mn");
-    }
-
-    let jarContents = fs.readFileSync(jarFilename).toString();
-    let manifestContents = jarContents.split("\n")
-      .filter((line) => line[0] === "%")
-      .map((line) => line.replace(/%/g, "").trim())
-      .join("\n");
-
-    fs.writeFileSync(path.join(BUILD_DIR, "chrome.manifest"), manifestContents);
-    resolve();
-  });
 }
 
 /**
@@ -217,16 +118,11 @@ task("export-mc-android", ["build"], () => {
 
 desc("Exports the sources into an .xpi for update shipping");
 task("export-xpi", ["build"], {async: true}, () => {
-  Promise.all(PREPROCESS_FILES.map((ppFile) => preprocessFile(ppFile)))
-    .then(() => generateChromeManifest())
-    .then(() => {
-      XPI_IGNORE_PATHS.concat(PREPROCESS_FILES).forEach((ignorePath) => {
-        jake.rmRf(path.join(BUILD_DIR, ignorePath));
-      });
+  XPI_IGNORE_PATHS.forEach((ignorePath) => {
+    jake.rmRf(path.join(BUILD_DIR, ignorePath));
+  });
 
-      return jake.exec(`cd ${BUILD_DIR}; zip -r webcompat.xpi *`, complete);
-    })
-    .catch(console.error);
+  return jake.exec(`cd ${BUILD_DIR}; zip -r webcompat.xpi *`, complete);
 });
 
 desc("Exports and runs the addon inside mozilla-central");
@@ -266,7 +162,7 @@ namespace("building", () => {
   desc("Generates a list of injection files required for 'moz.build'");
   task("injectionfilelist", () => {
     let getFilelist = (injectionType) => {
-      let files = path.join(BUILD_DIR, "webextension", "injections", injectionType, "*");
+      let files = path.join(BUILD_DIR, "injections", injectionType, "*");
       return (new jake.FileList()).include(files).toArray()
     };
 
