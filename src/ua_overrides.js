@@ -183,6 +183,21 @@ const UAOverrides = {
         return "Mozilla/5.0 (Linux; Android 6.0.1; SM-G920F Build/MMB29K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/55.0.2883.91 Mobile Safari/537.36";
       },
     },
+
+    /*
+     * Bug 1476436 - mobile.bet365.com - add UA override for fennec
+     * WebCompat issue #17010 - https://webcompat.com/issues/17010
+     *
+     * mobile.bet365.com serves fennec a alternative version with less interactive
+     * elements, although they work just fine. Spoofing as Chrome makes the
+     * interative elements appear.
+     */
+    {
+      matches: ["*://mobile.bet365.com/*"],
+      uaTransformer: (_) => {
+        return "Mozilla/5.0 (Linux; Android 6.0.1; SM-G920F Build/MMB29K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/55.0.2883.91 Mobile Safari/537.36";
+      },
+    },
   ],
 };
 
