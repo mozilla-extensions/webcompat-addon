@@ -67,6 +67,137 @@ const UAOverrides = {
         return originalUA + " AppleWebKit/537.36 (KHTML, like Gecko)";
       },
     },
+
+    /*
+     * Bug 1177298 - Write UA overrides for top Japanese Sites
+     * (Imported from ua-update.json.in)
+     *
+     * To receive the proper mobile version instead of the desktop version or
+     * a lower grade mobile experience, the UA is spoofed.
+     */
+    {
+      matches: ["*://weather.yahoo.co.jp/*"],
+      uaTransformer: (_) => {
+        return "Mozilla/5.0 (Linux; Android 5.0.2; Galaxy Nexus Build/IMM76B) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/43.0.2357.93 Mobile Safari/537.36";
+      },
+    },
+
+    /*
+     * Bug 1177298 - Write UA overrides for top Japanese Sites
+     * (Imported from ua-update.json.in)
+     *
+     * To receive the proper mobile version instead of the desktop version or
+     * a lower grade mobile experience, the UA is spoofed.
+     */
+    {
+      matches: ["*://*.lohaco.jp/*"],
+      uaTransformer: (_) => {
+        return "Mozilla/5.0 (Linux; Android 5.0.2; Galaxy Nexus Build/IMM76B) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/43.0.2357.93 Mobile Safari/537.36";
+      },
+    },
+
+    /*
+     * Bug 1177298 - Write UA overrides for top Japanese Sites
+     * (Imported from ua-update.json.in)
+     *
+     * To receive the proper mobile version instead of the desktop version or
+     * a lower grade mobile experience, the UA is spoofed.
+     */
+    {
+      matches: ["*://*.nhk.or.jp/*"],
+      uaTransformer: (originalUA) => {
+        return originalUA + " AppleWebKit";
+      },
+    },
+
+    /*
+     * Bug 1177298 - Write UA overrides for top Japanese Sites
+     * (Imported from ua-update.json.in)
+     *
+     * To receive the proper mobile version instead of the desktop version or
+     * a lower grade mobile experience, the UA is spoofed.
+     */
+    {
+      matches: ["*://*.uniqlo.com/*"],
+      uaTransformer: (originalUA) => {
+        return originalUA + " Mobile Safari";
+      },
+    },
+
+    /*
+     * Bug 1338260 - Add UA override for directTV
+     * (Imported from ua-update.json.in)
+     *
+     * DirectTV has issues with scrolling and cut-off images. Pretending to be
+     * Chrome for Android fixes those issues.
+     */
+    {
+      matches: ["*://*.directv.com/*"],
+      uaTransformer: (_) => {
+        return "Mozilla/5.0 (Linux; Android 6.0.1; SM-G920F Build/MMB29K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/55.0.2883.91 Mobile Safari/537.36";
+      },
+    },
+
+    /*
+     * Bug 1385206 - Create UA override for rakuten.co.jp on Firefox Android
+     * (Imported from ua-update.json.in)
+     *
+     * rakuten.co.jp serves a Desktop version if Firefox is included in the UA.
+     */
+    {
+      matches: ["*://*.rakuten.co.jp/*"],
+      uaTransformer: (originalUA) => {
+        return originalUA.replace(/Firefox.+$/, "");
+      },
+    },
+
+    /*
+     * Bug 1483233 - Add a mobile UA override for ebay
+     * (Imported from ua-update.json.in)
+     *
+     * eBays systems have an issue where Fenenc gets sent into an endless
+     * redirect, rendering it completely unusable.
+     */
+    {
+      matches: [
+        "*://*.ebay.at/*", "*://*.ebay.be/*", "*://*.ebay.ca/*", "*://*.ebay.ch/*",
+        "*://*.ebay.cn/*", "*://*.ebay.co.th/*", "*://*.ebay.co.uk/*", "*://*.ebay.com.au/*",
+        "*://*.ebay.com.hk/*", "*://*.ebay.com.my/*", "*://*.ebay.com.sg/*", "*://*.ebay.com.tw/*",
+        "*://*.ebay.com/*", "*://*.ebay.de/*", "*://*.ebay.es/*", "*://*.ebay.fr/*",
+        "*://*.ebay.ie/*", "*://*.ebay.in/*", "*://*.ebay.it/*", "*://*.ebay.nl/*",
+        "*://*.ebay.ph/*", "*://*.ebay.pl/*", "*://*.ebay.vn/*",
+      ],
+      uaTransformer: (_) => {
+        return "Mozilla/5.0 (Linux; Android 6.0.1; SM-G920F Build/MMB29K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/55.0.2883.91 Mobile Safari/537.36";
+      },
+    },
+
+    /*
+     * Bug 969844 - mobile.de sends desktop site to Firefox on Android
+     *
+     * mobile.de sends the desktop site to Fennec. Spooing as Chrome works fine.
+     */
+    {
+      matches: ["*://*.mobile.de/*"],
+      uaTransformer: (_) => {
+        return "Mozilla/5.0 (Linux; Android 6.0.1; SM-G920F Build/MMB29K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/55.0.2883.91 Mobile Safari/537.36";
+      },
+    },
+
+    /*
+     * Bug 1476436 - mobile.bet365.com - add UA override for fennec
+     * WebCompat issue #17010 - https://webcompat.com/issues/17010
+     *
+     * mobile.bet365.com serves fennec a alternative version with less interactive
+     * elements, although they work just fine. Spoofing as Chrome makes the
+     * interative elements appear.
+     */
+    {
+      matches: ["*://mobile.bet365.com/*"],
+      uaTransformer: (_) => {
+        return "Mozilla/5.0 (Linux; Android 6.0.1; SM-G920F Build/MMB29K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/55.0.2883.91 Mobile Safari/537.36";
+      },
+    },
   ],
 };
 
