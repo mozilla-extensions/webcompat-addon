@@ -137,6 +137,19 @@ const UAOverrides = {
         return "Mozilla/5.0 (Linux; Android 6.0.1; SM-G920F Build/MMB29K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/55.0.2883.91 Mobile Safari/537.36";
       },
     },
+
+    /*
+     * Bug 1385206 - Create UA override for rakuten.co.jp on Firefox Android
+     * (Imported from ua-update.json.in)
+     *
+     * rakuten.co.jp serves a Desktop version if Firefox is included in the UA.
+     */
+    {
+      matches: ["*://*.rakuten.co.jp/*"],
+      uaTransformer: (originalUA) => {
+        return originalUA.replace(/Firefox.+$/, "");
+      },
+    },
   ],
 };
 
