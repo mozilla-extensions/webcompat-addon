@@ -171,6 +171,18 @@ const UAOverrides = {
         return "Mozilla/5.0 (Linux; Android 6.0.1; SM-G920F Build/MMB29K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/55.0.2883.91 Mobile Safari/537.36";
       },
     },
+
+    /*
+     * Bug 969844 - mobile.de sends desktop site to Firefox on Android
+     *
+     * mobile.de sends the desktop site to Fennec. Spooing as Chrome works fine.
+     */
+    {
+      matches: ["*://*.mobile.de/*"],
+      uaTransformer: (_) => {
+        return "Mozilla/5.0 (Linux; Android 6.0.1; SM-G920F Build/MMB29K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/55.0.2883.91 Mobile Safari/537.36";
+      },
+    },
   ],
 };
 
