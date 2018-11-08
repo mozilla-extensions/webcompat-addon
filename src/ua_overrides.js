@@ -109,6 +109,20 @@ const UAOverrides = {
         return originalUA + " AppleWebKit";
       },
     },
+
+    /*
+     * Bug 1177298 - Write UA overrides for top Japanese Sites
+     * (Imported from ua-update.json.in)
+     *
+     * To receive the proper mobile version instead of the desktop version or
+     * a lower grade mobile experience, the UA is spoofed.
+     */
+    {
+      matches: ["*://*.uniqlo.com/*"],
+      uaTransformer: (originalUA) => {
+        return originalUA + " Mobile Safari";
+      },
+    },
   ],
 };
 
