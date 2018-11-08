@@ -31,8 +31,25 @@ dependencies with `npm install`.
 
 ### Run the changed extension sources
 
-1. Run `npm run jake run-mc`
+#### Via `about:debugging`
+
+If you want to debug this extension on recent Desktop versions, you can use
+`about:debugging`:
+
+1. Open `about:debugging` in Firefox
+2. Click the `Load Temporary Add-on...` button
+3. Select `./src/manifest.json` and hit open.
+4. Test!
+
+#### Via `web-ext`
+
+For Fennec, `about:debugging` is not an option. To test Fennec:
+
+1. Run `npm start`
 2. Test!
+
+`npm start` calls (`web-ext`)[https://github.com/mozilla/web-ext], check their
+documentation for available parameters, including debugging options.
 
 ### Building `webcompat.xpi`
 
