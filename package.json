@@ -12,12 +12,12 @@
   },
   "devDependencies": {
     "eslint": "3.19.0",
-    "eslint-plugin-json": "^1.2.0",
-    "eslint-plugin-mocha": "^4.11.0",
-    "eslint-plugin-mozilla": "^0.4.2",
+    "eslint-plugin-json": "^1.2.1",
+    "eslint-plugin-mocha": "^4.12.1",
+    "eslint-plugin-mozilla": "^0.4.10",
     "eslint-plugin-no-unsanitized": "2.0.1",
-    "eslint-plugin-promise": "^3.5.0",
-    "jake": "^8.0.12",
+    "eslint-plugin-promise": "^3.8.0",
+    "jake": "^8.0.19",
     "web-ext": "^2.9.1"
   }
 }
