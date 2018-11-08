@@ -125,16 +125,6 @@ task("export-xpi", ["build"], {async: true}, () => {
   return jake.exec(`cd ${BUILD_DIR}; zip -r webcompat.xpi *`, complete);
 });
 
-desc("Exports and runs the addon inside mozilla-central");
-task("run-mc", ["export-mc"], {async: true}, () => {
-  let mcLocation = getMozillaCentralLocation();
-  jake.exec(
-    `cd ${mcLocation}; ./mach build; ./mach run`,
-    {printStdout: true},
-    complete
-  );
-});
-
 desc("Runs automated tests");
 task("test", ["export-mc"], {async: true}, () => {
   let mcLocation = getMozillaCentralLocation();
