@@ -67,6 +67,20 @@ const UAOverrides = {
         return originalUA + " AppleWebKit/537.36 (KHTML, like Gecko)";
       },
     },
+
+    /*
+     * Bug 1177298 - Write UA overrides for top Japanese Sites
+     * (Imported from ua-update.json.in)
+     *
+     * To receive the proper mobile version instead of the desktop version or
+     * a lower grade mobile experience, the UA is spoofed.
+     */
+    {
+      matches: ["*://weather.yahoo.co.jp/*"],
+      uaTransformer: (_) => {
+        return "Mozilla/5.0 (Linux; Android 5.0.2; Galaxy Nexus Build/IMM76B) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/43.0.2357.93 Mobile Safari/537.36";
+      },
+    },
   ],
 };
 
