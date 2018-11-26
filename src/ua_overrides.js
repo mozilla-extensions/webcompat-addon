@@ -199,7 +199,6 @@ const UAOverrides = {
       },
     },
 
-
     /*
      * Bug 1509831 - cc.com - Add UA override for CC.com
      * WebCompat issue #329 - https://webcompat.com/issues/329
@@ -210,6 +209,22 @@ const UAOverrides = {
      */
     {
       matches: ["*://*.cc.com/*"],
+      uaTransformer: (_) => {
+        return "Mozilla/5.0 (Linux; Android 6.0.1; SM-G920F Build/MMB29K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/55.0.2883.91 Mobile Safari/537.36";
+      },
+    },
+
+    /*
+     * Bug 1508564 - cnbc.com - Add UA override for videos on www.cnbc.com
+     * WebCompat issue #8410 - https://webcompat.com/issues/8410
+     *
+     * The video framework loaded in via pdk.theplatform.com fails to
+     * acknowledge that Firefox does support HLS, so it fails to find a
+     * supported video format and shows the loading bar forever. Spoofing as
+     * Chrome works.
+     */
+    {
+      matches: ["*://*.cnbc.com/*"],
       uaTransformer: (_) => {
         return "Mozilla/5.0 (Linux; Android 6.0.1; SM-G920F Build/MMB29K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/55.0.2883.91 Mobile Safari/537.36";
       },
