@@ -245,6 +245,22 @@ const UAOverrides = {
         return prefix + " AppleWebKit/537.36 (KHTML, like Gecko) Chrome/55.0.2883.91 Mobile Safari/537.36";
       },
     },
+
+    /*
+     * Bug 1509852 - redbull.com - Add UA override for redbull.com
+     * WebCompat issue #21439 - https://webcompat.com/issues/21439
+     *
+     * Redbull.com blocks some features, for example the live video player, for
+     * Fennec. Spoofing as Chrome results in us rendering the video just fine,
+     * and everything else works as well.
+     */
+    {
+      matches: ["*://*.redbull.com/*"],
+      uaTransformer: (originalUA) => {
+        let prefix = originalUA.substr(0, originalUA.indexOf(")") + 1);
+        return prefix + " AppleWebKit/537.36 (KHTML, like Gecko) Chrome/55.0.2883.91 Mobile Safari/537.36";
+      },
+    },
   ],
 };
 
