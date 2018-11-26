@@ -198,6 +198,22 @@ const UAOverrides = {
         return "Mozilla/5.0 (Linux; Android 6.0.1; SM-G920F Build/MMB29K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/55.0.2883.91 Mobile Safari/537.36";
       },
     },
+
+
+    /*
+     * Bug 1509831 - cc.com - Add UA override for CC.com
+     * WebCompat issue #329 - https://webcompat.com/issues/329
+     *
+     * ComedyCentral blocks Firefox for not being able to play HLS, which was
+     * true in previous versions, but no longer is. With a spoofed Chrome UA,
+     * the site works just fine.
+     */
+    {
+      matches: ["*://*.cc.com/*"],
+      uaTransformer: (_) => {
+        return "Mozilla/5.0 (Linux; Android 6.0.1; SM-G920F Build/MMB29K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/55.0.2883.91 Mobile Safari/537.36";
+      },
+    },
   ],
 };
 
