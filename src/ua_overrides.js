@@ -16,8 +16,7 @@ const UAOverrides = {
     {
       matches: ["*://webcompat-addon-testcases.schub.io/*"],
       uaTransformer: (originalUA) => {
-        let prefix = originalUA.substr(0, originalUA.indexOf(")") + 1);
-        return `${prefix} AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.98 Safari/537.36`;
+        return UAHelpers.getPrefix(originalUA) + " AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.98 Safari/537.36";
       },
     },
   ],
@@ -34,8 +33,7 @@ const UAOverrides = {
     {
       matches: ["*://m.imgur.com/*"],
       uaTransformer: (originalUA) => {
-        let prefix = originalUA.substr(0, originalUA.indexOf(")") + 1);
-        return prefix + " AppleWebKit/537.36 (KHTML, like Gecko) Chrome/68.0.3440.85 Mobile Safari/537.36";
+        return UAHelpers.getPrefix(originalUA) + " AppleWebKit/537.36 (KHTML, like Gecko) Chrome/68.0.3440.85 Mobile Safari/537.36";
       },
     },
 
@@ -241,8 +239,7 @@ const UAOverrides = {
     {
       matches: ["*://*.cineflix.com.br/m/*"],
       uaTransformer: (originalUA) => {
-        let prefix = originalUA.substr(0, originalUA.indexOf(")") + 1);
-        return prefix + " AppleWebKit/537.36 (KHTML, like Gecko) Chrome/55.0.2883.91 Mobile Safari/537.36";
+        return UAHelpers.getPrefix(originalUA) + " AppleWebKit/537.36 (KHTML, like Gecko) Chrome/55.0.2883.91 Mobile Safari/537.36";
       },
     },
 
@@ -257,8 +254,7 @@ const UAOverrides = {
     {
       matches: ["*://*.redbull.com/*"],
       uaTransformer: (originalUA) => {
-        let prefix = originalUA.substr(0, originalUA.indexOf(")") + 1);
-        return prefix + " AppleWebKit/537.36 (KHTML, like Gecko) Chrome/55.0.2883.91 Mobile Safari/537.36";
+        return UAHelpers.getPrefix(originalUA) + " AppleWebKit/537.36 (KHTML, like Gecko) Chrome/55.0.2883.91 Mobile Safari/537.36";
       },
     },
 
@@ -274,14 +270,19 @@ const UAOverrides = {
     {
       matches: ["*://*.viewer.zmags.com/*"],
       uaTransformer: (originalUA) => {
-        let prefix = originalUA.substr(0, originalUA.indexOf(")") + 1);
-        return prefix + " AppleWebKit/537.36 (KHTML, like Gecko) Chrome/55.0.2883.91 Mobile Safari/537.36";
+        return UAHelpers.getPrefix(originalUA) + " AppleWebKit/537.36 (KHTML, like Gecko) Chrome/55.0.2883.91 Mobile Safari/537.36";
       },
     },
   ],
 };
 
 /* globals browser */
+
+const UAHelpers = {
+  getPrefix(originalUA) {
+    return originalUA.substr(0, originalUA.indexOf(")") + 1);
+  },
+};
 
 let activeListeners = [];
 function buildAndRegisterListener(matches, transformer) {
