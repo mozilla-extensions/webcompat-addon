@@ -261,6 +261,23 @@ const UAOverrides = {
         return prefix + " AppleWebKit/537.36 (KHTML, like Gecko) Chrome/55.0.2883.91 Mobile Safari/537.36";
       },
     },
+
+    /*
+     * Bug 1509873 - zmags.com - Add UA override for secure.viewer.zmags.com
+     * WebCompat issue #21576 - https://webcompat.com/issues/21576
+     *
+     * The zmags viewer locks out Fennec with a "Browser unsupported" message,
+     * but tests showed that it works just fine with a Chrome UA. Outreach
+     * attempts were unsuccessful, and as the site has a relatively high rank,
+     * we alter the UA.
+     */
+    {
+      matches: ["*://*.viewer.zmags.com/*"],
+      uaTransformer: (originalUA) => {
+        let prefix = originalUA.substr(0, originalUA.indexOf(")") + 1);
+        return prefix + " AppleWebKit/537.36 (KHTML, like Gecko) Chrome/55.0.2883.91 Mobile Safari/537.36";
+      },
+    },
   ],
 };
 
