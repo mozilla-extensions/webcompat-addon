@@ -229,6 +229,22 @@ const UAOverrides = {
         return "Mozilla/5.0 (Linux; Android 6.0.1; SM-G920F Build/MMB29K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/55.0.2883.91 Mobile Safari/537.36";
       },
     },
+
+    /*
+     * Bug 1508516 - cineflix.com.br - Add UA override for cineflix.com.br/m/
+     * WebCompat issue #21553 - https://webcompat.com/issues/21553
+     *
+     * The site renders a blank page with any Firefox snipped in the UA as it
+     * is running into an exception. Spoofing as Chrome makes the site work
+     * fine.
+     */
+    {
+      matches: ["*://*.cineflix.com.br/m/*"],
+      uaTransformer: (originalUA) => {
+        let prefix = originalUA.substr(0, originalUA.indexOf(")") + 1);
+        return prefix + " AppleWebKit/537.36 (KHTML, like Gecko) Chrome/55.0.2883.91 Mobile Safari/537.36";
+      },
+    },
   ],
 };
 
