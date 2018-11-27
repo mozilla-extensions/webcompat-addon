@@ -20,7 +20,21 @@ const UAOverrides = {
       },
     },
   ],
-  desktop: [],
+  desktop: [
+    /*
+     * Bug 1464106 - directvnow.com - Create a UA override for Directvnow.com for playback on desktop
+     * WebCompat issue #3846 - https://webcompat.com/issues/3846
+     *
+     * directvnow.com is blocking Firefox via UA sniffing. Outreach is still going
+     * on, and playback works fine if we spoof as Chrome.
+     */
+    {
+      matches: ["*://*.directvnow.com/*"],
+      uaTransformer: (originalUA) => {
+        return UAHelpers.getPrefix(originalUA) + " AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.110 Safari/537.36";
+      },
+    },
+  ],
   android: [
     /*
      * Bug 1480710 - m.imgur.com - Build UA override
