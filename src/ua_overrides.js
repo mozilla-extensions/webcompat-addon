@@ -167,7 +167,7 @@ const UAOverrides = {
      * Bug 1483233 - Add a mobile UA override for ebay
      * (Imported from ua-update.json.in)
      *
-     * eBays systems have an issue where Fenenc gets sent into an endless
+     * eBay's systems have an issue where Fennec gets sent into an endless
      * redirect, rendering it completely unusable.
      */
     {
@@ -200,9 +200,9 @@ const UAOverrides = {
      * Bug 1476436 - mobile.bet365.com - add UA override for fennec
      * WebCompat issue #17010 - https://webcompat.com/issues/17010
      *
-     * mobile.bet365.com serves fennec a alternative version with less interactive
+     * mobile.bet365.com serves fennec an alternative version with less interactive
      * elements, although they work just fine. Spoofing as Chrome makes the
-     * interative elements appear.
+     * interactive elements appear.
      */
     {
       matches: ["*://mobile.bet365.com/*"],
