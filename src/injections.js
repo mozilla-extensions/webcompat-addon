@@ -45,6 +45,11 @@ const contentScripts = {
       matches: ["*://*.sreedharscce.in/authenticate"],
       css: [{file: "injections/css/bug1526977-sreedharscce.in-login-fix.css"}]
     },
+    {
+      matches: ["https://gitter.im/*"],
+      js: [{file: "injections/js/multiple-bugs-webkit.scrollbar-shim.js"}],
+      runAt: "document_end",
+    },
   ],
   android: [
     {
