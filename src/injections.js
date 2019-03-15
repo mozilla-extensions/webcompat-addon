@@ -84,6 +84,15 @@ for (const injection of [
       matches: ["*://*.sreedharscce.in/authenticate"],
       css: [{file: "injections/css/bug1526977-sreedharscce.in-login-fix.css"}],
     },
+  }, {
+    id: "bug1518781",
+    platform: "desktop",
+    domain: "twitch.tv",
+    bug: "1518781",
+    contentScripts: {
+      matches: ["*://*.twitch.tv/*"],
+      css: [{file: "injections/css/bug1518781-twitch.tv-webkit-scrollbar.css"}],
+    },
   },
 ]) {
   Injections.push(injection);
