@@ -1,7 +1,7 @@
 WebCompat Go Faster add-on
 ==========================
 
-This is the development repository for the Firefox WebCompat Go Faster add-on
+This is the development repository for the Firefox WebCompat Go Faster add-on.
 
 Writing site patches, overrides and injections
 ----------------------------------------------
@@ -48,7 +48,7 @@ For Fennec, `about:debugging` is not an option. To test Fennec:
 1. Run `npm start`
 2. Test!
 
-`npm start` calls (`web-ext`)[https://github.com/mozilla/web-ext], check their
+`npm start` calls [`web-ext`](https://github.com/mozilla/web-ext), check their
 documentation for available parameters, including debugging options.
 
 ### Building `webcompat.xpi`
