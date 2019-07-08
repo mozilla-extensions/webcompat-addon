@@ -4,20 +4,16 @@
   "description": "Urgent post-release fixes for web compatibility.",
   "license": "MPL-2.0",
   "repository": "https://github.com/mozilla/webcompat-addon",
-  "version": "4.3.1",
+  "version": "1.0.0",
+  "private": true,
   "scripts": {
     "jake": "./node_modules/.bin/jake",
-    "lint": "./node_modules/.bin/eslint src/",
-    "start": "./node_modules/.bin/web-ext run --source-dir src/"
+    "start": "./node_modules/.bin/web-ext run --source-dir src/",
+    "test": "./node_modules/.bin/jasmine"
   },
   "devDependencies": {
-    "eslint": "6.0.1",
-    "eslint-plugin-json": "^1.4.0",
-    "eslint-plugin-mocha": "^5.3.0",
-    "eslint-plugin-mozilla": "^1.3.0",
-    "eslint-plugin-no-unsanitized": "3.0.2",
-    "eslint-plugin-promise": "^4.2.1",
     "jake": "^8.1.1",
+    "jasmine": "^3.4.0",
     "web-ext": "^3.1.0"
   }
 }
