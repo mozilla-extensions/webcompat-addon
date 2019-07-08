@@ -14,17 +14,6 @@
  */
 const AVAILABLE_UA_OVERRIDES = [
   {
-    id: "testoverride",
-    platform: "all",
-    domain: "webcompat-addon-testcases.schub.io",
-    bug: "1287966",
-    config: {
-      matches: ["*://webcompat-addon-testcases.schub.io/*"],
-      uaTransformer: (originalUA) => {
-        return UAHelpers.getPrefix(originalUA) + " AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.98 Safari/537.36";
-      },
-    },
-  }, {
     /*
      * Bug 1480710 - m.imgur.com - Build UA override
      * WebCompat issue #13154 - https://webcompat.com/issues/13154

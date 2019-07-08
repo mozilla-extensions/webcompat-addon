@@ -14,17 +14,6 @@
  */
 const AVAILABLE_INJECTIONS = [
   {
-    id: "testinjection",
-    platform: "all",
-    domain: "webcompat-addon-testcases.schub.io",
-    bug: "1287966",
-    contentScripts: {
-      matches: ["*://webcompat-addon-testcases.schub.io/*"],
-      css: [{file: "injections/css/bug0000000-dummy-css-injection.css"}],
-      js: [{file: "injections/js/bug0000000-dummy-js-injection.js"}],
-      runAt: "document_start",
-    },
-  }, {
     id: "bug1452707",
     platform: "desktop",
     domain: "ib.absa.co.za",
