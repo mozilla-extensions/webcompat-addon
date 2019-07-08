@@ -7,10 +7,12 @@
   "version": "4.3.1",
   "scripts": {
     "jake": "./node_modules/.bin/jake",
-    "start": "./node_modules/.bin/web-ext run --source-dir src/"
+    "start": "./node_modules/.bin/web-ext run --source-dir src/",
+    "test": "./node_modules/.bin/jasmine"
   },
   "devDependencies": {
     "jake": "^8.1.1",
+    "jasmine": "^3.4.0",
     "web-ext": "^3.1.0"
   }
 }
