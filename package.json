@@ -4,7 +4,8 @@
   "description": "Urgent post-release fixes for web compatibility.",
   "license": "MPL-2.0",
   "repository": "https://github.com/mozilla/webcompat-addon",
-  "version": "4.3.1",
+  "version": "1.0.0",
+  "private": true,
   "scripts": {
     "jake": "./node_modules/.bin/jake",
     "start": "./node_modules/.bin/web-ext run --source-dir src/",
