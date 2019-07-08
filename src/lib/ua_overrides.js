@@ -1,87 +1,110 @@
-/**
- * For detailed information on our policies, and a documention on this format
- * and its possibilites, please check the Mozilla-Wiki at
- *
- * https://wiki.mozilla.org/Compatibility/Go_Faster_Addon/Override_Policies_and_Workflows#User_Agent_overrides
- */
+/* This Source Code Form is subject to the terms of the Mozilla Public
+ * License, v. 2.0. If a copy of the MPL was not distributed with this
+ * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 
 "use strict";
 
-/* globals AVAILABLE_UA_OVERRIDES, browser, filterOverrides, portsToAboutCompatTabs */
+/* globals browser */
 
-let UAOverridesEnabled = true;
+class UAOverrides {
+  constructor(availableOverrides) {
+    this.OVERRIDE_PREF = "perform_ua_overrides";
 
-const ActiveListeners = new Map();
+    this._overridesEnabled = true;
 
-function enableOverride(override) {
-  if (override.active) {
-    return;
+    this._availableOverrides = availableOverrides;
+    this._activeListeners = new Map();
   }
 
-  const {matches, uaTransformer} = override.config;
-  const listener = (details) => {
-    for (var header of details.requestHeaders) {
-      if (header.name.toLowerCase() === "user-agent") {
-        header.value = uaTransformer(header.value);
+  bindAboutCompatBroker(broker) {
+    this._aboutCompatBroker = broker;
+  }
+
+  bootup() {
+    browser.aboutConfigPrefs.onPrefChange.addListener(() => { this.checkOverridePref(); }, this.OVERRIDE_PREF);
+    this.checkOverridePref();
+  }
+
+  checkOverridePref() {
+    browser.aboutConfigPrefs.getPref(this.OVERRIDE_PREF).then(value => {
+      if (value === undefined) {
+        browser.aboutConfigPrefs.setPref(this.OVERRIDE_PREF, true);
+      } else if (value === false) {
+        this.unregisterUAOverrides();
+      } else {
+        this.registerUAOverrides();
+      }
+    });
+  }
+
+  getAvailableOverrides() {
+    return this._availableOverrides;
+  }
+
+
+  isEnabled() {
+    return this._overridesEnabled;
+  }
+
+  enableOverride(override) {
+    if (override.active) {
+      return;
+    }
+
+    const {matches, uaTransformer} = override.config;
+    const listener = (details) => {
+      for (const header of details.requestHeaders) {
+        if (header.name.toLowerCase() === "user-agent") {
+          header.value = uaTransformer(header.value);
+        }
+      }
+      return {requestHeaders: details.requestHeaders};
+    };
+
+    browser.webRequest.onBeforeSendHeaders.addListener(
+      listener,
+      {urls: matches},
+      ["blocking", "requestHeaders"]
+    );
+
+    this._activeListeners.set(override, listener);
+    override.active = true;
+  }
+
+  async registerUAOverrides() {
+    const platformMatches = ["all"];
+    let platformInfo = await browser.runtime.getPlatformInfo();
+    platformMatches.push(platformInfo.os == "android" ? "android" : "desktop");
+
+    for (const override of this._availableOverrides) {
+      if (platformMatches.includes(override.platform)) {
+        override.availableOnPlatform = true;
+        this.enableOverride(override);
       }
     }
-    return {requestHeaders: details.requestHeaders};
-  };
 
-  browser.webRequest.onBeforeSendHeaders.addListener(
-    listener,
-    {urls: matches},
-    ["blocking", "requestHeaders"]
-  );
+    this._overridesEnabled = true;
+    this._aboutCompatBroker.portsToAboutCompatTabs.broadcast({
+      overridesChanged: this._aboutCompatBroker.filterOverrides(this._availableOverrides),
+    });
+  }
 
-  ActiveListeners.set(override, listener);
-  override.active = true;
-}
-
-async function registerUAOverrides() {
-  const platformMatches = ["all"];
-  let platformInfo = await browser.runtime.getPlatformInfo();
-  platformMatches.push(platformInfo.os == "android" ? "android" : "desktop");
-
-  for (const override of AVAILABLE_UA_OVERRIDES) {
-    if (platformMatches.includes(override.platform)) {
-      override.availableOnPlatform = true;
-      enableOverride(override);
+  unregisterUAOverrides() {
+    for (const override of this._availableOverrides) {
+      this.disableOverride(override);
     }
-  }
-  UAOverridesEnabled = true;
-  portsToAboutCompatTabs.broadcast({overridesChanged: filterOverrides(AVAILABLE_UA_OVERRIDES)});
-}
 
-function unregisterUAOverrides() {
-  for (const override of AVAILABLE_UA_OVERRIDES) {
-    disableOverride(override);
-  }
-  UAOverridesEnabled = false;
-  portsToAboutCompatTabs.broadcast({overridesChanged: false});
-}
-
-function disableOverride(override) {
-  if (!override.active) {
-    return;
+    this._overridesEnabled = false;
+    this._aboutCompatBroker.portsToAboutCompatTabs.broadcast({overridesChanged: false});
   }
 
-  browser.webRequest.onBeforeSendHeaders.removeListener(ActiveListeners.get(override));
-  override.active = false;
-  ActiveListeners.delete(override);
-}
-
-const OVERRIDE_PREF = "perform_ua_overrides";
-function checkOverridePref() {
-  browser.aboutConfigPrefs.getPref(OVERRIDE_PREF).then(value => {
-    if (value === undefined) {
-      browser.aboutConfigPrefs.setPref(OVERRIDE_PREF, true);
-    } else if (value === false) {
-      unregisterUAOverrides();
-    } else {
-      registerUAOverrides();
+  disableOverride(override) {
+    if (!override.active) {
+      return;
     }
-  });
+
+    browser.webRequest.onBeforeSendHeaders.removeListener(this._activeListeners.get(override));
+    override.active = false;
+    this._activeListeners.delete(override);
+  }
 }
-browser.aboutConfigPrefs.onPrefChange.addListener(checkOverridePref, OVERRIDE_PREF);
-checkOverridePref();

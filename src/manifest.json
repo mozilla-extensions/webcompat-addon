@@ -42,7 +42,7 @@
     "scripts": [
       "data/injections.js",
       "data/ua_overrides.js",
-      "lib/background.js",
+      "lib/about_compat_broker.js",
       "lib/injections.js",
       "lib/ua_overrides.js",
       "run.js"
