@@ -14,8 +14,6 @@ class Injections {
 
     this._availableInjections = availableInjections;
     this._activeInjections = new Map();
-
-    this._port = browser.runtime.connect();
   }
 
   bindAboutCompatBroker(broker) {
@@ -23,18 +21,6 @@ class Injections {
   }
 
   bootup() {
-    this._port.onMessage.addListener((message) => {
-      switch (message.type) {
-        case "injection-pref-changed":
-          if (message.prefState) {
-            this.registerContentScripts();
-          } else {
-            this.unregisterContentScripts();
-          }
-          break;
-      }
-    });
-
     browser.aboutConfigPrefs.onPrefChange.addListener(() => { this.checkInjectionPref(); }, this.INJECTION_PREF);
     this.checkInjectionPref();
   }
