@@ -8,17 +8,23 @@ DEFINES['MOZ_APP_VERSION'] = CONFIG['MOZ_APP_VERSION']
 DEFINES['MOZ_APP_MAXVERSION'] = CONFIG['MOZ_APP_MAXVERSION']
 
 FINAL_TARGET_FILES.features['webcompat@mozilla.org'] += [
-  'aboutCompat.css',
-  'aboutCompat.html',
-  'aboutCompat.js',
-  'aboutConfigPrefs.js',
-  'aboutConfigPrefs.json',
-  'aboutPage.js',
-  'aboutPage.json',
   'background.js',
   'injections.js',
   'manifest.json',
   'ua_overrides.js'
+]
+
+FINAL_TARGET_FILES.features['webcompat@mozilla.org']['about-compat'] += [
+  'about-compat/aboutCompat.css',
+  'about-compat/aboutCompat.html',
+  'about-compat/aboutCompat.js',
+  'about-compat/aboutPage.js',
+  'about-compat/aboutPage.json'
+]
+
+FINAL_TARGET_FILES.features['webcompat@mozilla.org']['experiment-apis'] += [
+  'experiment-apis/aboutConfigPrefs.js',
+  'experiment-apis/aboutConfigPrefs.json'
 ]
 
 FINAL_TARGET_FILES.features['webcompat@mozilla.org']['injections']['css'] += [

@@ -13,18 +13,18 @@
 
   "experiment_apis": {
     "aboutConfigPrefs": {
-      "schema": "aboutConfigPrefs.json",
+      "schema": "experiment-apis/aboutConfigPrefs.json",
       "parent": {
         "scopes": ["addon_parent"],
-        "script": "aboutConfigPrefs.js",
+        "script": "experiment-apis/aboutConfigPrefs.js",
         "paths": [["aboutConfigPrefs"]]
       }
     },
     "aboutPage": {
-      "schema": "aboutPage.json",
+      "schema": "about-compat/aboutPage.json",
       "parent": {
         "scopes": ["addon_parent"],
-        "script": "aboutPage.js",
+        "script": "about-compat/aboutPage.js",
         "events": ["startup"]
       }
     }

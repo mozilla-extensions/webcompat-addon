@@ -9,7 +9,7 @@ var EXPORTED_SYMBOLS = ["AboutCompat"];
 const {Services} = ChromeUtils.import("resource://gre/modules/Services.jsm");
 
 const addonID = "webcompat@mozilla.org";
-const addonPageRelativeURL = "/aboutCompat.html";
+const addonPageRelativeURL = "/about-compat/aboutCompat.html";
 
 function AboutCompat() {
   this.chromeURL = WebExtensionPolicy.getByID(addonID).getURL(addonPageRelativeURL);
