@@ -4,16 +4,14 @@
 
 "use strict";
 
-/* global browser, disableInjection, disableOverride, enableInjection,
-          enableOverride, InjectionsEnabled, UAOverridesEnabled */
-
-const UAOverrides = [];
-const Injections = [];
+/* global AVAILABLE_INJECTIONS, AVAILABLE_UA_OVERRIDES, browser,
+          disableInjection, disableOverride, enableInjection, enableOverride,
+          InjectionsEnabled, UAOverridesEnabled */
 
 function getOverrideOrInterventionById(id) {
   for (const [type, things] of Object.entries({
-    overrides: UAOverrides,
-    interventions: Injections,
+    overrides: AVAILABLE_UA_OVERRIDES,
+    interventions: AVAILABLE_INJECTIONS,
   })) {
     for (const what of things) {
       if (what.id === id) {
@@ -83,8 +81,8 @@ browser.runtime.onMessage.addListener(msg => {
     }
     case "getOverridesAndInterventions": {
       return Promise.resolve({
-        overrides: UAOverridesEnabled && filterOverrides(UAOverrides) || false,
-        interventions: InjectionsEnabled && filterOverrides(Injections) || false,
+        overrides: UAOverridesEnabled && filterOverrides(AVAILABLE_UA_OVERRIDES) || false,
+        interventions: InjectionsEnabled && filterOverrides(AVAILABLE_INJECTIONS) || false,
       });
     }
   }

@@ -40,6 +40,8 @@
 
   "background": {
     "scripts": [
+      "data/injections.js",
+      "data/ua_overrides.js",
       "background.js",
       "injections.js",
       "ua_overrides.js"

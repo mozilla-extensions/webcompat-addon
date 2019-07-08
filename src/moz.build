@@ -22,6 +22,11 @@ FINAL_TARGET_FILES.features['webcompat@mozilla.org']['about-compat'] += [
   'about-compat/aboutPage.json'
 ]
 
+FINAL_TARGET_FILES.features['webcompat@mozilla.org']['data'] += [
+  'data/injections.js',
+  'data/ua_overrides.js'
+]
+
 FINAL_TARGET_FILES.features['webcompat@mozilla.org']['experiment-apis'] += [
   'experiment-apis/aboutConfigPrefs.js',
   'experiment-apis/aboutConfigPrefs.json'
