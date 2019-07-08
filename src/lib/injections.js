@@ -21,7 +21,9 @@ class Injections {
   }
 
   bootup() {
-    browser.aboutConfigPrefs.onPrefChange.addListener(() => { this.checkInjectionPref(); }, this.INJECTION_PREF);
+    browser.aboutConfigPrefs.onPrefChange.addListener(() => {
+      this.checkInjectionPref();
+    }, this.INJECTION_PREF);
     this.checkInjectionPref();
   }
 
@@ -59,7 +61,9 @@ class Injections {
 
     this._injectionsEnabled = true;
     this._aboutCompatBroker.portsToAboutCompatTabs.broadcast({
-      interventionsChanged: this._aboutCompatBroker.filterOverrides(this._availableInjections),
+      interventionsChanged: this._aboutCompatBroker.filterOverrides(
+        this._availableInjections
+      ),
     });
   }
 
@@ -72,7 +76,9 @@ class Injections {
     let carryover = "";
 
     filter.ondata = event => {
-      const replaced = (carryover + decoder.decode(event.data, {stream: true})).replace(RE, outString);
+      const replaced = (
+        carryover + decoder.decode(event.data, { stream: true })
+      ).replace(RE, outString);
       filter.write(encoder.encode(replaced.slice(0, -carryoverLength)));
       carryover = replaced.slice(-carryoverLength);
     };
@@ -91,22 +97,35 @@ class Injections {
     }
 
     if ("pdk5fix" in injection) {
-      const {urls, types} = injection.pdk5fix;
-      const listener = injection.pdk5fix.listener = ({requestId}) => {
-        this.replaceStringInRequest(requestId, "VideoContextChromeAndroid", "VideoContextAndroid");
+      const { urls, types } = injection.pdk5fix;
+      const listener = (injection.pdk5fix.listener = ({ requestId }) => {
+        this.replaceStringInRequest(
+          requestId,
+          "VideoContextChromeAndroid",
+          "VideoContextAndroid"
+        );
         return {};
-      };
-      browser.webRequest.onBeforeRequest.addListener(listener, {urls, types}, ["blocking"]);
+      });
+      browser.webRequest.onBeforeRequest.addListener(
+        listener,
+        { urls, types },
+        ["blocking"]
+      );
       injection.active = true;
       return;
     }
 
     try {
-      const handle = await browser.contentScripts.register(injection.contentScripts);
+      const handle = await browser.contentScripts.register(
+        injection.contentScripts
+      );
       this._activeInjections.set(injection, handle);
       injection.active = true;
     } catch (ex) {
-      console.error("Registering WebCompat GoFaster content scripts failed: ", ex);
+      console.error(
+        "Registering WebCompat GoFaster content scripts failed: ",
+        ex
+      );
     }
   }
 
@@ -116,7 +135,9 @@ class Injections {
     }
 
     this._injectionsEnabled = false;
-    this._aboutCompatBroker.portsToAboutCompatTabs.broadcast({interventionsChanged: false});
+    this._aboutCompatBroker.portsToAboutCompatTabs.broadcast({
+      interventionsChanged: false,
+    });
   }
 
   async disableInjection(injection) {
@@ -125,7 +146,7 @@ class Injections {
     }
 
     if (injection.pdk5fix) {
-      const {listener} = injection.pdk5fix;
+      const { listener } = injection.pdk5fix;
       browser.webRequest.onBeforeRequest.removeListener(listener);
       injection.active = false;
       delete injection.pdk5fix.listener;

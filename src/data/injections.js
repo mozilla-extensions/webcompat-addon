@@ -20,70 +20,108 @@ const AVAILABLE_INJECTIONS = [
     bug: "1452707",
     contentScripts: {
       matches: ["https://ib.absa.co.za/*"],
-      js: [{file: "injections/js/bug1452707-window.controllers-shim-ib.absa.co.za.js"}],
+      js: [
+        {
+          file:
+            "injections/js/bug1452707-window.controllers-shim-ib.absa.co.za.js",
+        },
+      ],
       runAt: "document_start",
     },
-  }, {
+  },
+  {
     id: "bug1457335",
     platform: "desktop",
     domain: "histography.io",
     bug: "1457335",
     contentScripts: {
       matches: ["*://histography.io/*"],
-      js: [{file: "injections/js/bug1457335-histography.io-ua-change.js"}],
+      js: [
+        {
+          file: "injections/js/bug1457335-histography.io-ua-change.js",
+        },
+      ],
       runAt: "document_start",
     },
-  }, {
+  },
+  {
     id: "bug1472075",
     platform: "desktop",
     domain: "bankofamerica.com",
     bug: "1472075",
     contentScripts: {
       matches: ["*://*.bankofamerica.com/*"],
-      js: [{file: "injections/js/bug1472075-bankofamerica.com-ua-change.js"}],
+      js: [
+        {
+          file: "injections/js/bug1472075-bankofamerica.com-ua-change.js",
+        },
+      ],
       runAt: "document_start",
     },
-  }, {
+  },
+  {
     id: "bug1472081",
     platform: "desktop",
     domain: "election.gov.np",
     bug: "1472081",
     contentScripts: {
       matches: ["http://202.166.205.141/bbvrs/*"],
-      js: [{file: "injections/js/bug1472081-election.gov.np-window.sidebar-shim.js"}],
+      js: [
+        {
+          file:
+            "injections/js/bug1472081-election.gov.np-window.sidebar-shim.js",
+        },
+      ],
       runAt: "document_start",
       allFrames: true,
     },
-  }, {
+  },
+  {
     id: "bug1482066",
     platform: "desktop",
     domain: "portalminasnet.com",
     bug: "1482066",
     contentScripts: {
       matches: ["*://portalminasnet.com/*"],
-      js: [{file: "injections/js/bug1482066-portalminasnet.com-window.sidebar-shim.js"}],
+      js: [
+        {
+          file:
+            "injections/js/bug1482066-portalminasnet.com-window.sidebar-shim.js",
+        },
+      ],
       runAt: "document_start",
       allFrames: true,
     },
-  }, {
+  },
+  {
     id: "bug1526977",
     platform: "desktop",
     domain: "sreedharscce.in",
     bug: "1526977",
     contentScripts: {
       matches: ["*://*.sreedharscce.in/authenticate"],
-      css: [{file: "injections/css/bug1526977-sreedharscce.in-login-fix.css"}],
+      css: [
+        {
+          file: "injections/css/bug1526977-sreedharscce.in-login-fix.css",
+        },
+      ],
     },
-  }, {
+  },
+  {
     id: "bug1518781",
     platform: "desktop",
     domain: "twitch.tv",
     bug: "1518781",
     contentScripts: {
       matches: ["*://*.twitch.tv/*"],
-      css: [{file: "injections/css/bug1518781-twitch.tv-webkit-scrollbar.css"}],
+      css: [
+        {
+          file: "injections/css/bug1518781-twitch.tv-webkit-scrollbar.css",
+        },
+      ],
     },
-  }, {
+  },
+  {
     id: "bug1551672",
     platform: "android",
     domain: "Sites using PDK 5 video",
@@ -92,41 +130,64 @@ const AVAILABLE_INJECTIONS = [
       urls: ["https://*/*/tpPdk.js", "https://*/*/pdk/js/*/*.js"],
       types: ["script"],
     },
-  }, {
+  },
+  {
     id: "bug1305028",
     platform: "desktop",
     domain: "gaming.youtube.com",
     bug: "1305028",
     contentScripts: {
       matches: ["*://gaming.youtube.com/*"],
-      css: [{file: "injections/css/bug1305028-gaming.youtube.com-webkit-scrollbar.css"}],
+      css: [
+        {
+          file:
+            "injections/css/bug1305028-gaming.youtube.com-webkit-scrollbar.css",
+        },
+      ],
     },
-  }, {
+  },
+  {
     id: "bug1432935-discord",
     platform: "desktop",
     domain: "discordapp.com",
     bug: "1432935",
     contentScripts: {
       matches: ["*://discordapp.com/*"],
-      css: [{file: "injections/css/bug1432935-discordapp.com-webkit-scorllbar-white-line.css"}],
+      css: [
+        {
+          file:
+            "injections/css/bug1432935-discordapp.com-webkit-scorllbar-white-line.css",
+        },
+      ],
     },
-  }, {
+  },
+  {
     id: "bug1432935-breitbart",
     platform: "desktop",
     domain: "breitbart.com",
     bug: "1432935",
     contentScripts: {
       matches: ["*://*.breitbart.com/*"],
-      css: [{file: "injections/css/bug1432935-breitbart.com-webkit-scrollbar.css"}],
+      css: [
+        {
+          file: "injections/css/bug1432935-breitbart.com-webkit-scrollbar.css",
+        },
+      ],
     },
-  }, {
+  },
+  {
     id: "bug1561371",
     platform: "android",
     domain: "mail.google.com",
     bug: "1561371",
     contentScripts: {
       matches: ["*://mail.google.com/*"],
-      css: [{file: "injections/css/bug1561371-mail.google.com-allow-horizontal-scrolling.css"}],
+      css: [
+        {
+          file:
+            "injections/css/bug1561371-mail.google.com-allow-horizontal-scrolling.css",
+        },
+      ],
     },
   },
 ];

@@ -21,7 +21,9 @@ class UAOverrides {
   }
 
   bootup() {
-    browser.aboutConfigPrefs.onPrefChange.addListener(() => { this.checkOverridePref(); }, this.OVERRIDE_PREF);
+    browser.aboutConfigPrefs.onPrefChange.addListener(() => {
+      this.checkOverridePref();
+    }, this.OVERRIDE_PREF);
     this.checkOverridePref();
   }
 
@@ -41,7 +43,6 @@ class UAOverrides {
     return this._availableOverrides;
   }
 
-
   isEnabled() {
     return this._overridesEnabled;
   }
@@ -51,19 +52,19 @@ class UAOverrides {
       return;
     }
 
-    const {matches, uaTransformer} = override.config;
-    const listener = (details) => {
+    const { matches, uaTransformer } = override.config;
+    const listener = details => {
       for (const header of details.requestHeaders) {
         if (header.name.toLowerCase() === "user-agent") {
           header.value = uaTransformer(header.value);
         }
       }
-      return {requestHeaders: details.requestHeaders};
+      return { requestHeaders: details.requestHeaders };
     };
 
     browser.webRequest.onBeforeSendHeaders.addListener(
       listener,
-      {urls: matches},
+      { urls: matches },
       ["blocking", "requestHeaders"]
     );
 
@@ -85,7 +86,9 @@ class UAOverrides {
 
     this._overridesEnabled = true;
     this._aboutCompatBroker.portsToAboutCompatTabs.broadcast({
-      overridesChanged: this._aboutCompatBroker.filterOverrides(this._availableOverrides),
+      overridesChanged: this._aboutCompatBroker.filterOverrides(
+        this._availableOverrides
+      ),
     });
   }
 
@@ -95,7 +98,9 @@ class UAOverrides {
     }
 
     this._overridesEnabled = false;
-    this._aboutCompatBroker.portsToAboutCompatTabs.broadcast({overridesChanged: false});
+    this._aboutCompatBroker.portsToAboutCompatTabs.broadcast({
+      overridesChanged: false,
+    });
   }
 
   disableOverride(override) {
@@ -103,7 +108,9 @@ class UAOverrides {
       return;
     }
 
-    browser.webRequest.onBeforeSendHeaders.removeListener(this._activeListeners.get(override));
+    browser.webRequest.onBeforeSendHeaders.removeListener(
+      this._activeListeners.get(override)
+    );
     override.active = false;
     this._activeListeners.delete(override);
   }
