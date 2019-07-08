@@ -4,7 +4,7 @@
 
 "use strict";
 
-/* globals browser */
+/* globals browser, module */
 
 class Injections {
   constructor(availableInjections) {
@@ -152,3 +152,5 @@ class Injections {
     injection.active = false;
   }
 }
+
+module.exports = Injections;

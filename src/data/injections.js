@@ -4,6 +4,8 @@
 
 "use strict";
 
+/* globals module */
+
 /**
  * For detailed information on our policies, and a documention on this format
  * and its possibilites, please check the Mozilla-Wiki at
@@ -139,3 +141,5 @@ const AVAILABLE_INJECTIONS = [
     },
   },
 ];
+
+module.exports = AVAILABLE_INJECTIONS;

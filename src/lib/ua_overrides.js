@@ -4,7 +4,7 @@
 
 "use strict";
 
-/* globals browser */
+/* globals browser, module */
 
 class UAOverrides {
   constructor(availableOverrides) {
@@ -108,3 +108,5 @@ class UAOverrides {
     this._activeListeners.delete(override);
   }
 }
+
+module.exports = UAOverrides;
