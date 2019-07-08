@@ -58,7 +58,7 @@ documentation for available parameters, including debugging options.
 
 ### Run the automated test suite
 
-1. Run `npm run jake test`
+1. Run `npm run test`
 2. Wait!
 
 License

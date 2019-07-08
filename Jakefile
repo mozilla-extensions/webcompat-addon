@@ -125,16 +125,6 @@ task("export-xpi", ["build"], {async: true}, () => {
   return jake.exec(`cd ${BUILD_DIR}; zip -r webcompat.xpi *`, complete);
 });
 
-desc("Runs automated tests");
-task("test", ["export-mc"], {async: true}, () => {
-  let mcLocation = getMozillaCentralLocation();
-  jake.exec(
-    `cd ${mcLocation}; ./mach build; ./mach mochitest browser/extensions/webcompat`,
-    {printStdout: true},
-    complete
-  );
-});
-
 namespace("building", () => {
   desc(`Removes the ${BUILD_DIR}/ directory`);
   task("cleanup", () => {
