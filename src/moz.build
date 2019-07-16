@@ -45,7 +45,5 @@ FINAL_TARGET_FILES.features['webcompat@mozilla.org']['lib'] += [
   'lib/ua_overrides.js'
 ]
 
-JAR_MANIFESTS += ['jar.mn']
-
 with Files('**'):
   BUG_COMPONENT = ('Web Compatibility Tools', 'Go Faster')
