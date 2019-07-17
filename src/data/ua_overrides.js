@@ -18,6 +18,7 @@ const AVAILABLE_UA_OVERRIDES = [
     platform: "all",
     domain: "webcompat-addon-testbed.herokuapp.com",
     bug: "0000000",
+    hidden: true,
     config: {
       matches: ["*://webcompat-addon-testbed.herokuapp.com/*"],
       uaTransformer: originalUA => {

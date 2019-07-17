@@ -18,6 +18,7 @@ const AVAILABLE_INJECTIONS = [
     platform: "all",
     domain: "webcompat-addon-testbed.herokuapp.com",
     bug: "0000000",
+    hidden: true,
     contentScripts: {
       matches: ["*://webcompat-addon-testbed.herokuapp.com/*"],
       css: [
