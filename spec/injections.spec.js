@@ -16,7 +16,7 @@ function buildInjection(platform) {
     bug: "0",
     contentScripts: {
       matches: ["https://example.com/*"],
-      js: [{file: "test.js"}],
+      js: [{ file: "test.js" }],
       runAt: "document_start",
     },
   };

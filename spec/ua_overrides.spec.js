@@ -16,7 +16,7 @@ function buildOverride(platform) {
     bug: "0",
     config: {
       matches: ["*://example.com/*"],
-      uaTransformer: (originalUA) => {
+      uaTransformer: originalUA => {
         return originalUA + " TestingFirefox";
       },
     },

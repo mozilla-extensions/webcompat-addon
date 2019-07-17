@@ -5,7 +5,8 @@
 "use strict";
 
 const AVAILABLE_UA_OVERRIDES = require("../src/data/ua_overrides");
-const TEST_UA = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.14; rv:69.0) Gecko/20100101 Firefox/69.0";
+const TEST_UA =
+  "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.14; rv:69.0) Gecko/20100101 Firefox/69.0";
 
 describe("AVAILABLE_UA_OVERRIDES", () => {
   it("contains at least one UA override definition", () => {
@@ -37,7 +38,9 @@ for (const override of AVAILABLE_UA_OVERRIDES) {
     });
 
     it("provides a valid platform", () => {
-      expect(["all", "desktop", "android"].includes(override.platform)).toBeTruthy();
+      expect(
+        ["all", "desktop", "android"].includes(override.platform)
+      ).toBeTruthy();
     });
 
     it("provides a domain", () => {
@@ -53,7 +56,9 @@ for (const override of AVAILABLE_UA_OVERRIDES) {
     });
 
     it("provides an uaTransformer that does return a string", () => {
-      expect(override.config.uaTransformer(TEST_UA)).toEqual(jasmine.any(String));
+      expect(override.config.uaTransformer(TEST_UA)).toEqual(
+        jasmine.any(String)
+      );
     });
   });
 }

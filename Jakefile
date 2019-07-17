@@ -23,17 +23,13 @@ const SRC_DIR = "./src";
  * List of files or directories that should not get exported into
  * mozilla-central.
  */
-const BUILD_IGNORE_PATHS = [
-  ".eslintrc.js"
-];
+const BUILD_IGNORE_PATHS = [".eslintrc.js"];
 
 /**
  * List of files or directories that should not get exported into
  * an .xpi.
  */
-const XPI_IGNORE_PATHS = [
-  "moz.build"
-];
+const XPI_IGNORE_PATHS = ["moz.build"];
 
 /**
  * You generally should not need to touch anything below this line for making
@@ -48,7 +44,9 @@ const XPI_IGNORE_PATHS = [
  * @returns {string} the location of mozilla-central
  */
 function getMozillaCentralLocation() {
-  let mcLocation = path.resolve(process.env.EXPORT_MC_LOCATION || "../gecko-dev");
+  let mcLocation = path.resolve(
+    process.env.EXPORT_MC_LOCATION || "../gecko-dev"
+  );
 
   try {
     fs.statSync(mcLocation).isDirectory();
@@ -68,9 +66,9 @@ function getMozillaCentralLocation() {
  */
 function replaceFilelistPlaceholders(cssInjections, jsInjections) {
   return new Promise((resolve, reject) => {
-    let formatList = (files) => {
-      files = files.map((filename) => filename.replace("build/", ""));
-      return "'" + files.join("',\n  '") + "'"
+    let formatList = files => {
+      files = files.map(filename => filename.replace("build/", ""));
+      return "'" + files.join("',\n  '") + "'";
     };
 
     let mozBuildFilename = path.join(BUILD_DIR, "moz.build");
@@ -83,7 +81,7 @@ function replaceFilelistPlaceholders(cssInjections, jsInjections) {
     let mozBuildContents = fs.readFileSync(mozBuildFilename).toString();
     mozBuildContents = mozBuildContents
       .replace("@CSS_INJECTIONS@", formatList(cssInjections))
-      .replace("@JS_INJECTIONS@", formatList(jsInjections))
+      .replace("@JS_INJECTIONS@", formatList(jsInjections));
 
     fs.writeFileSync(mozBuildFilename, mozBuildContents);
     resolve();
@@ -92,7 +90,6 @@ function replaceFilelistPlaceholders(cssInjections, jsInjections) {
 
 /**
  * Exports the files to a target, used to export into mozilla-central
- *
  */
 function exportFiles(target) {
   let mcLocation = getMozillaCentralLocation();
@@ -104,7 +101,11 @@ function exportFiles(target) {
 }
 
 desc(`Builds the extension into the ${BUILD_DIR}/ directory`);
-task("build", ["building:cleanup", "building:copy", "building:injectionfilelist"], () => {});
+task(
+  "build",
+  ["building:cleanup", "building:copy", "building:injectionfilelist"],
+  () => {}
+);
 
 desc("Exports the sources into mozilla-central");
 task("export-mc", ["build"], () => {
@@ -117,8 +118,8 @@ task("export-mc-android", ["build"], () => {
 });
 
 desc("Exports the sources into an .xpi for update shipping");
-task("export-xpi", ["build"], {async: true}, () => {
-  XPI_IGNORE_PATHS.forEach((ignorePath) => {
+task("export-xpi", ["build"], { async: true }, () => {
+  XPI_IGNORE_PATHS.forEach(ignorePath => {
     jake.rmRf(path.join(BUILD_DIR, ignorePath));
   });
 
@@ -134,21 +135,18 @@ namespace("building", () => {
   desc(`Copies files into ${BUILD_DIR}/`);
   task("copy", () => {
     jake.cpR(SRC_DIR, BUILD_DIR);
-    BUILD_IGNORE_PATHS.forEach((ignorePath) => {
+    BUILD_IGNORE_PATHS.forEach(ignorePath => {
       jake.rmRf(path.join(BUILD_DIR, ignorePath));
     });
   });
 
   desc("Generates a list of injection files required for 'moz.build'");
   task("injectionfilelist", () => {
-    let getFilelist = (injectionType) => {
+    let getFilelist = injectionType => {
       let files = path.join(BUILD_DIR, "injections", injectionType, "*");
-      return (new jake.FileList()).include(files).toArray()
+      return new jake.FileList().include(files).toArray();
     };
 
-    replaceFilelistPlaceholders(
-      getFilelist("css"),
-      getFilelist("js")
-    );
+    replaceFilelistPlaceholders(getFilelist("css"), getFilelist("js"));
   });
 });

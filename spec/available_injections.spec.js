@@ -39,7 +39,9 @@ for (const injection of AVAILABLE_INJECTIONS) {
     });
 
     it("provides a valid platform", () => {
-      expect(["all", "desktop", "android"].includes(injection.platform)).toBeTruthy();
+      expect(
+        ["all", "desktop", "android"].includes(injection.platform)
+      ).toBeTruthy();
     });
 
     it("provides a domain", () => {
@@ -61,7 +63,10 @@ for (const injection of AVAILABLE_INJECTIONS) {
             continue;
           }
 
-          let filename = path.join("src/", injection.contentScripts[type][0].file);
+          let filename = path.join(
+            "src/",
+            injection.contentScripts[type][0].file
+          );
           let exists = fs.existsSync(filename);
           expect(exists).toBe(true);
         }

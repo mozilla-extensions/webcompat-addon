@@ -1,28 +1,18 @@
-WebCompat Go Faster add-on
-==========================
+# WebCompat Go Faster add-on
 
 This is the development repository for the Firefox WebCompat Go Faster add-on.
 
-Writing site patches, overrides and injections
-----------------------------------------------
+## Writing site patches, overrides and injections
 
-Detailed information on our policies on writing overrides, as well as technical
-information, can be found in the [Mozilla Wiki](https://wiki.mozilla.org/Compatibility/Go_Faster_Addon/Override_Policies_and_Workflows).
+Detailed information on our policies on writing overrides, as well as technical information, can be found in the [Mozilla Wiki](https://wiki.mozilla.org/Compatibility/Go_Faster_Addon/Override_Policies_and_Workflows).
 
-Build instructions
-------------------
+## Build instructions
 
-This guide assumes you've got a copy of `mozilla-central` checked out on your
-machine and you already have set up Node.js 5 or newer. The build script
-assumes your `mozilla-central` is located at `../fx-team` relative to inside
-the root folder. If not, please set the `EXPORT_MC_LOCATION` environment
-accordingly.
+This guide assumes you've got a copy of `mozilla-central` checked out on your machine and you already have set up Node.js 5 or newer. The build script assumes your `mozilla-central` is located at `../fx-team` relative to inside the root folder. If not, please set the `EXPORT_MC_LOCATION` environment accordingly.
 
-Running the extension without a built and set up `mozilla-central` is not
-possible at the moment.
+Running the extension without a built and set up `mozilla-central` is not possible at the moment.
 
-If this is the first time you're working with this repository, install the
-dependencies with `npm install`.
+If this is the first time you're working with this repository, install the dependencies with `npm install`.
 
 ### Exporting the sources to `mozilla-central`
 
@@ -33,8 +23,7 @@ dependencies with `npm install`.
 
 #### Via `about:debugging`
 
-If you want to debug this extension on recent Desktop versions, you can use
-`about:debugging`:
+If you want to debug this extension on recent Desktop versions, you can use `about:debugging`:
 
 1. Open `about:debugging` in Firefox
 2. Click the `Load Temporary Add-on...` button
@@ -48,8 +37,7 @@ For Fennec, `about:debugging` is not an option. To test Fennec:
 1. Run `npm start`
 2. Test!
 
-`npm start` calls [`web-ext`](https://github.com/mozilla/web-ext), check their
-documentation for available parameters, including debugging options.
+`npm start` calls [`web-ext`](https://github.com/mozilla/web-ext), check their documentation for available parameters, including debugging options.
 
 ### Building `webcompat.xpi`
 
@@ -61,7 +49,6 @@ documentation for available parameters, including debugging options.
 1. Run `npm run test`
 2. Wait!
 
-License
--------
+## License
 
 MPL.

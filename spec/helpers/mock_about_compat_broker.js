@@ -7,6 +7,6 @@
 module.exports = {
   filterOverrides: () => {},
   portsToAboutCompatTabs: {
-    broadcast: () => {}
-  }
+    broadcast: () => {},
+  },
 };

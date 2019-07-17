@@ -16,25 +16,25 @@ jasmine.getGlobal().browser = {
       return true;
     },
     onPrefChange: {
-      addListener: () => {}
-    }
+      addListener: () => {},
+    },
   },
   contentScripts: {
-    register: () => {}
+    register: () => {},
   },
   runtime: {
     getPlatformInfo: async () => {
       return {
-        os: "test runner"
+        os: "test runner",
       };
-    }
+    },
   },
   webRequest: {
     onBeforeRequest: {
-      addListener: () => {}
+      addListener: () => {},
     },
     onBeforeSendHeaders: {
-      addListener: () => {}
-    }
-  }
+      addListener: () => {},
+    },
+  },
 };
