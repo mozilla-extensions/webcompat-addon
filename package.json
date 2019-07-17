@@ -8,12 +8,14 @@
   "private": true,
   "scripts": {
     "jake": "./node_modules/.bin/jake",
+    "prettier": "./node_modules/.bin/prettier --write '**/{*.js,*.jsm,Jakefile}'",
     "start": "./node_modules/.bin/web-ext run --source-dir src/",
     "test": "./node_modules/.bin/jasmine"
   },
   "devDependencies": {
     "jake": "^8.1.1",
     "jasmine": "^3.4.0",
+    "prettier": "^1.18.2",
     "web-ext": "^3.1.0"
   }
 }

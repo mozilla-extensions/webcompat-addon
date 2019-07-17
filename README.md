@@ -49,6 +49,13 @@ For Fennec, `about:debugging` is not an option. To test Fennec:
 1. Run `npm run test`
 2. Wait!
 
+### Automatically check and adjust the code style
+
+As `mozilla-central` is now mostly auto-formatted with prettier, and the config for that is really slim, this repo follows these guidelines. To automatically check and adjust the code style,
+
+1. Run `npm run prettier`
+2. Done.
+
 ## License
 
 MPL.
