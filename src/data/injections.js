@@ -14,6 +14,26 @@
  */
 const AVAILABLE_INJECTIONS = [
   {
+    id: "testbed-injection",
+    platform: "all",
+    domain: "webcompat-addon-testbed.herokuapp.com",
+    bug: "0000000",
+    contentScripts: {
+      matches: ["*://webcompat-addon-testbed.herokuapp.com/*"],
+      css: [
+        {
+          file: "injections/css/bug0000000-testbed-css-injection.css",
+        },
+      ],
+      js: [
+        {
+          file: "injections/js/bug0000000-testbed-js-injection.js",
+        },
+      ],
+      runAt: "document_start",
+    },
+  },
+  {
     id: "bug1452707",
     platform: "desktop",
     domain: "ib.absa.co.za",
