@@ -14,6 +14,22 @@
  */
 const AVAILABLE_UA_OVERRIDES = [
   {
+    id: "testbed-override",
+    platform: "all",
+    domain: "webcompat-addon-testbed.herokuapp.com",
+    bug: "0000000",
+    hidden: true,
+    config: {
+      matches: ["*://webcompat-addon-testbed.herokuapp.com/*"],
+      uaTransformer: originalUA => {
+        return (
+          UAHelpers.getPrefix(originalUA) +
+          " AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.98 Safari/537.36 for WebCompat"
+        );
+      },
+    },
+  },
+  {
     /*
      * Bug 1563839 - rolb.santanderbank.com - Build UA override
      * WebCompat issue #33462 - https://webcompat.com/issues/33462
