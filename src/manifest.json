@@ -41,6 +41,7 @@
   "background": {
     "scripts": [
       "lib/module_shim.js",
+      "lib/console_warning_helper.js",
       "data/injections.js",
       "data/ua_overrides.js",
       "lib/about_compat_broker.js",

@@ -42,6 +42,7 @@ FINAL_TARGET_FILES.features['webcompat@mozilla.org']['injections']['js'] += [
 
 FINAL_TARGET_FILES.features['webcompat@mozilla.org']['lib'] += [
   'lib/about_compat_broker.js',
+  'lib/console_warning_helper.js',
   'lib/injections.js',
   'lib/module_shim.js',
   'lib/ua_overrides.js'

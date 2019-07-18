@@ -67,18 +67,28 @@ class Injections {
     });
   }
 
-  replaceStringInRequest(requestId, inString, outString, inEncoding = "utf-8") {
+  replaceStringInRequest({
+    requestId,
+    inString,
+    outString,
+    inEncoding = "utf-8",
+    callback,
+  }) {
     const filter = browser.webRequest.filterResponseData(requestId);
     const decoder = new TextDecoder(inEncoding);
     const encoder = new TextEncoder();
     const RE = new RegExp(inString, "g");
     const carryoverLength = inString.length;
     let carryover = "";
+    let doCallback = false;
 
     filter.ondata = event => {
       const replaced = (
         carryover + decoder.decode(event.data, { stream: true })
       ).replace(RE, outString);
+      if (callback && replaced.includes(outString)) {
+        doCallback = true;
+      }
       filter.write(encoder.encode(replaced.slice(0, -carryoverLength)));
       carryover = replaced.slice(-carryoverLength);
     };
@@ -88,7 +98,19 @@ class Injections {
         filter.write(encoder.encode(carryover));
       }
       filter.close();
+      if (doCallback) {
+        callback();
+      }
     };
+  }
+
+  async getContentScriptsIncludingConsoleWarning(injection) {
+    const finalScripts = Object.assign({}, injection.contentScripts);
+    if (!finalScripts.js) {
+      finalScripts.js = [];
+    }
+    finalScripts.js.push(await promiseConsoleWarningScript(injection.domain));
+    return finalScripts;
   }
 
   async enableInjection(injection) {
@@ -98,12 +120,17 @@ class Injections {
 
     if ("pdk5fix" in injection) {
       const { urls, types } = injection.pdk5fix;
-      const listener = (injection.pdk5fix.listener = ({ requestId }) => {
-        this.replaceStringInRequest(
+      const listener = (injection.pdk5fix.listener = ({ requestId, tabId }) => {
+        this.replaceStringInRequest({
           requestId,
-          "VideoContextChromeAndroid",
-          "VideoContextAndroid"
-        );
+          inString: "VideoContextChromeAndroid",
+          outString: "VideoContextAndroid",
+          callback: () => {
+            promiseConsoleWarningScript(injection.domain).then(script => {
+              browser.tabs.executeScript(tabId, script).catch(() => {});
+            });
+          },
+        });
         return {};
       });
       browser.webRequest.onBeforeRequest.addListener(
@@ -117,7 +144,7 @@ class Injections {
 
     try {
       const handle = await browser.contentScripts.register(
-        injection.contentScripts
+        await this.getContentScriptsIncludingConsoleWarning(injection)
       );
       this._activeInjections.set(injection, handle);
       injection.active = true;

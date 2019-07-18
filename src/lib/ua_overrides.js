@@ -59,6 +59,9 @@ class UAOverrides {
           header.value = uaTransformer(header.value);
         }
       }
+      promiseConsoleWarningScript(override.domain).then(script => {
+        browser.tabs.executeScript(details.tabId, script).catch(() => {});
+      });
       return { requestHeaders: details.requestHeaders };
     };
 
