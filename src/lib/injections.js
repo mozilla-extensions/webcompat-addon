@@ -4,7 +4,11 @@
 
 "use strict";
 
-/* globals browser, module */
+/* globals browser, module, promiseConsoleWarningScript */
+
+if (typeof promiseConsoleWarningScript === "undefined") {
+  global.promiseConsoleWarningScript = require("./console_warning_helper");
+}
 
 class Injections {
   constructor(availableInjections) {
