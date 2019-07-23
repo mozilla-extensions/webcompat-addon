@@ -287,7 +287,7 @@ const AVAILABLE_UA_OVERRIDES = [
     domain: "posts.google.com",
     bug: "1566253",
     config: {
-      matches: ["*://posts.google.com/share/*"],
+      matches: ["*://posts.google.com/*"],
       uaTransformer: _ => {
         return "Mozilla/5.0 (Linux; Android 6.0.1; SM-G900M) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/75.0.3770.101 Mobile Safari/537.36";
       },

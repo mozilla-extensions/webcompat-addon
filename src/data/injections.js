@@ -213,7 +213,7 @@ const AVAILABLE_INJECTIONS = [
   },
   {
     id: "bug1567610",
-    platform: "desktop",
+    platform: "all",
     domain: "dns.google.com",
     bug: "1567610",
     contentScripts: {
