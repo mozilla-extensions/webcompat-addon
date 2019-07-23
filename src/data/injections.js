@@ -225,6 +225,20 @@ const AVAILABLE_INJECTIONS = [
       ],
     },
   },
+  {
+    id: "bug1568256",
+    platform: "android",
+    domain: "zertifikate.commerzbank.de",
+    bug: "1568256",
+    contentScripts: {
+      matches: ["*://*.zertifikate.commerzbank.de/webforms/mobile/*"],
+      css: [
+        {
+          file: "injections/css/bug1568256-zertifikate.commerzbank.de-flex.css",
+        },
+      ],
+    },
+  },
 ];
 
 module.exports = AVAILABLE_INJECTIONS;
