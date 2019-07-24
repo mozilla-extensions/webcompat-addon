@@ -8,7 +8,7 @@
   "private": true,
   "scripts": {
     "jake": "./node_modules/.bin/jake",
-    "prettier": "./node_modules/.bin/prettier --write '**/{*.js,*.jsm,Jakefile}'",
+    "prettier": "./node_modules/.bin/prettier --write '**/{*.css,*.js,*.jsm,Jakefile}'",
     "start": "./node_modules/.bin/web-ext run --source-dir src/",
     "test": "./node_modules/.bin/jasmine"
   },
