@@ -213,7 +213,7 @@ const AVAILABLE_INJECTIONS = [
   },
   {
     id: "bug1567610",
-    platform: "desktop",
+    platform: "all",
     domain: "dns.google.com",
     bug: "1567610",
     contentScripts: {
@@ -221,6 +221,20 @@ const AVAILABLE_INJECTIONS = [
       css: [
         {
           file: "injections/css/bug1567610-dns.google.com-moz-fit-content.css",
+        },
+      ],
+    },
+  },
+  {
+    id: "bug1568256",
+    platform: "android",
+    domain: "zertifikate.commerzbank.de",
+    bug: "1568256",
+    contentScripts: {
+      matches: ["*://*.zertifikate.commerzbank.de/webforms/mobile/*"],
+      css: [
+        {
+          file: "injections/css/bug1568256-zertifikate.commerzbank.de-flex.css",
         },
       ],
     },

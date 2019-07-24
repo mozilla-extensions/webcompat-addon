@@ -8,5 +8,5 @@
  * Adding -moz-fit-content fixes the issue
  */
 main > .ng-star-inserted > .centered {
-    width:-moz-fit-content;
+  width:-moz-fit-content;
 }

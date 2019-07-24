@@ -287,9 +287,28 @@ const AVAILABLE_UA_OVERRIDES = [
     domain: "posts.google.com",
     bug: "1566253",
     config: {
-      matches: ["*://posts.google.com/share/*"],
+      matches: ["*://posts.google.com/*"],
       uaTransformer: _ => {
         return "Mozilla/5.0 (Linux; Android 6.0.1; SM-G900M) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/75.0.3770.101 Mobile Safari/537.36";
+      },
+    },
+  },
+  {
+    /*
+     * Bug 1567945 - Create UA override for beeg.com on Firefox Android
+     * WebCompat issue #16648 - https://webcompat.com/issues/16648
+     *
+     * beeg.com is hiding content of a page with video if Firefox exists in UA,
+     * replacing "Firefox" with an empty string makes the page load
+     */
+    id: "bug1567945",
+    platform: "android",
+    domain: "beeg.com",
+    bug: "1567945",
+    config: {
+      matches: ["*://beeg.com/*"],
+      uaTransformer: originalUA => {
+        return originalUA.replace(/Firefox.+$/, "");
       },
     },
   },
