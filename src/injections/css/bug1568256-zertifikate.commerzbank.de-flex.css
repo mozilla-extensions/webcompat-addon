@@ -8,5 +8,5 @@
  * Adding display: flex for those elements fixes the issue
  */
 .x-layout-box {
-    display: flex!important;
+  display: flex !important;
 }
