@@ -7,7 +7,6 @@
 /* globals browser */
 
 let availablePatches;
-let showHidden = false;
 
 const portToAddon = (function() {
   let port;
