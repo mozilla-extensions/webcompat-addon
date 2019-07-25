@@ -43,7 +43,11 @@ const AVAILABLE_UA_OVERRIDES = [
     domain: "rolb.santanderbank.com",
     bug: "1563839",
     config: {
-      matches: ["*://*.santander.co.uk/*", "*://rolb.santanderbank.com/*"],
+      matches: [
+        "*://*.santander.co.uk/*",
+        "*://bob.santanderbank.com/*",
+        "*://rolb.santanderbank.com/*",
+      ],
       uaTransformer: originalUA => {
         return originalUA.replace("Gecko", "like Gecko");
       },
