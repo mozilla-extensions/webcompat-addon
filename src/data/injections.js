@@ -239,6 +239,21 @@ const AVAILABLE_INJECTIONS = [
       ],
     },
   },
+  {
+    id: "bug1568908",
+    platform: "desktop",
+    domain: "console.cloud.google.com",
+    bug: "1568908",
+    contentScripts: {
+      matches: ["*://*.console.cloud.google.com/*"],
+      css: [
+        {
+          file:
+            "injections/css/bug1568908-console.cloud.google.com-scrollbar-fix.css",
+        },
+      ],
+    },
+  },
 ];
 
 module.exports = AVAILABLE_INJECTIONS;
