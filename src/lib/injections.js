@@ -91,6 +91,16 @@ class Injections {
     };
   }
 
+  assignContentScriptDefaults(contentScripts) {
+    let finalConfig = Object.assign({}, contentScripts);
+
+    if (!finalConfig.runAt) {
+      finalConfig.runAt = "document_start";
+    }
+
+    return finalConfig;
+  }
+
   async enableInjection(injection) {
     if (injection.active) {
       return;
@@ -117,7 +127,7 @@ class Injections {
 
     try {
       const handle = await browser.contentScripts.register(
-        injection.contentScripts
+        this.assignContentScriptDefaults(injection.contentScripts)
       );
       this._activeInjections.set(injection, handle);
       injection.active = true;
