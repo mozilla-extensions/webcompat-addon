@@ -7,7 +7,7 @@
 /**
  * We cannot yet use proper JS modules within webextensions, as support for them
  * is highly experimental and highly instable. So we end up just including all
- * the JS files we need as seperate background scripts, and since they all are
+ * the JS files we need as separate background scripts, and since they all are
  * executed within the same context, this works for our in-browser deployment.
  *
  * However, this code is tracked outside of mozilla-central, and we work on
