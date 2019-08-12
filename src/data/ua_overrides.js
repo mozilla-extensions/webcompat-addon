@@ -90,7 +90,11 @@ const AVAILABLE_UA_OVERRIDES = [
     domain: "tieba.baidu.com",
     bug: "945963",
     config: {
-      matches: ["*://tieba.baidu.com/*", "*://tiebac.baidu.com/*"],
+      matches: [
+        "*://tieba.baidu.com/*",
+        "*://tiebac.baidu.com/*",
+        "*://zhidao.baidu.com/*",
+      ],
       uaTransformer: originalUA => {
         return originalUA + " AppleWebKit/537.36 (KHTML, like Gecko)";
       },

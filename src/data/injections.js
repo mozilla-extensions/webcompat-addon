@@ -254,6 +254,35 @@ const AVAILABLE_INJECTIONS = [
       ],
     },
   },
+  {
+    id: "bug1570119",
+    platform: "desktop",
+    domain: "teamcoco.com",
+    bug: "1570119",
+    contentScripts: {
+      matches: ["*://teamcoco.com/*"],
+      css: [
+        {
+          file: "injections/css/bug1570119-teamcoco.com-scrollbar-width.css",
+        },
+      ],
+    },
+  },
+  {
+    id: "bug1570328",
+    platform: "android",
+    domain: "developer.apple.com",
+    bug: "1570328",
+    contentScripts: {
+      matches: ["*://developer.apple.com/*"],
+      css: [
+        {
+          file:
+            "injections/css/bug1570328-developer-apple.com-transform-scale.css",
+        },
+      ],
+    },
+  },
 ];
 
 module.exports = AVAILABLE_INJECTIONS;
