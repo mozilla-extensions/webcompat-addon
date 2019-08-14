@@ -283,6 +283,20 @@ const AVAILABLE_INJECTIONS = [
       ],
     },
   },
+  {
+    id: "bug1571036",
+    platform: "all",
+    domain: "mobile.aireuropa.com",
+    bug: "1571036",
+    contentScripts: {
+      matches: ["*://mobile.aireuropa.com/*"],
+      css: [
+        {
+          file: "injections/css/bug1571036-mobile.aireuropa.com-menu-fix.css",
+        },
+      ],
+    },
+  },
 ];
 
 module.exports = AVAILABLE_INJECTIONS;

@@ -342,6 +342,28 @@ const AVAILABLE_UA_OVERRIDES = [
       },
     },
   },
+  {
+    /*
+     * Bug 1571036 - UA override for mobile.aireuropa.com on Firefox for Android
+     * WebCompat issue #34760 - https://webcompat.com/issues/34760
+     *
+     * mobile.aireuropa.com has a UA detection which prevents Firefox for Android
+     * from opening main menu. Spoofing as Chrome allows to open it.
+     */
+    id: "bug1571036",
+    platform: "android",
+    domain: "mobile.aireuropa.com",
+    bug: "1571036",
+    config: {
+      matches: ["*://mobile.aireuropa.com/*"],
+      uaTransformer: originalUA => {
+        return (
+          UAHelpers.getPrefix(originalUA) +
+          " AppleWebKit/537.36 (KHTML, like Gecko) Chrome/75.0.3770.142 Safari/537.36"
+        );
+      },
+    },
+  },
 ];
 
 const UAHelpers = {
