@@ -55,6 +55,28 @@ const AVAILABLE_UA_OVERRIDES = [
   },
   {
     /*
+     * Bug 1570108 - steamcommunity.com - UA override for steamcommunity.com
+     * WebCompat issue #34171 - https://webcompat.com/issues/34171
+     *
+     * steamcommunity.com blocks chat feature for Firefox users showing unsupported browser message.
+     * When spoofing as Chrome the chat works fine
+     */
+    id: "bug1570108",
+    platform: "desktop",
+    domain: "steamcommunity.com",
+    bug: "1570108",
+    config: {
+      matches: ["*://steamcommunity.com/chat*"],
+      uaTransformer: originalUA => {
+        return (
+          UAHelpers.getPrefix(originalUA) +
+          " AppleWebKit/537.36 (KHTML, like Gecko) Chrome/75.0.3770.142 Safari/537.36"
+        );
+      },
+    },
+  },
+  {
+    /*
      * Bug 1480710 - m.imgur.com - Build UA override
      * WebCompat issue #13154 - https://webcompat.com/issues/13154
      *
