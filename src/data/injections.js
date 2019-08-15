@@ -115,6 +115,22 @@ const AVAILABLE_INJECTIONS = [
     },
   },
   {
+    id: "bug1570856",
+    platform: "android",
+    domain: "medium.com",
+    bug: "1570856",
+    contentScripts: {
+      matches: ["*://medium.com/*"],
+      js: [
+        {
+          file: "injections/js/bug1570856-medium.com-menu-isTier1.js",
+        },
+      ],
+      runAt: "document_start",
+      allFrames: true,
+    },
+  },
+  {
     id: "bug1526977",
     platform: "desktop",
     domain: "sreedharscce.in",
