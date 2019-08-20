@@ -307,6 +307,20 @@ const AVAILABLE_INJECTIONS = [
       ],
     },
   },
+  {
+    id: "bug1574973",
+    platform: "android",
+    domain: "patch.com",
+    bug: "1574973",
+    contentScripts: {
+      matches: ["*://patch.com/*"],
+      css: [
+        {
+          file: "injections/css/bug1574973-patch.com-dropdown-menu-fix.css",
+        },
+      ],
+    },
+  },
 ];
 
 module.exports = AVAILABLE_INJECTIONS;
