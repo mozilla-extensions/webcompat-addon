@@ -115,6 +115,22 @@ const AVAILABLE_INJECTIONS = [
     },
   },
   {
+    id: "bug1570856",
+    platform: "android",
+    domain: "medium.com",
+    bug: "1570856",
+    contentScripts: {
+      matches: ["*://medium.com/*"],
+      js: [
+        {
+          file: "injections/js/bug1570856-medium.com-menu-isTier1.js",
+        },
+      ],
+      runAt: "document_start",
+      allFrames: true,
+    },
+  },
+  {
     id: "bug1526977",
     platform: "desktop",
     domain: "sreedharscce.in",
@@ -279,6 +295,20 @@ const AVAILABLE_INJECTIONS = [
         {
           file:
             "injections/css/bug1570328-developer-apple.com-transform-scale.css",
+        },
+      ],
+    },
+  },
+  {
+    id: "bug1571036",
+    platform: "all",
+    domain: "mobile.aireuropa.com",
+    bug: "1571036",
+    contentScripts: {
+      matches: ["*://mobile.aireuropa.com/*"],
+      css: [
+        {
+          file: "injections/css/bug1571036-mobile.aireuropa.com-menu-fix.css",
         },
       ],
     },
