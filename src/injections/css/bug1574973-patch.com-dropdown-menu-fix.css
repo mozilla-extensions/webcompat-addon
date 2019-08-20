@@ -8,7 +8,6 @@
  * style (resolving it to something nonzero), whereas Chrome just treats it as "auto"
  * see https://bugzilla.mozilla.org/show_bug.cgi?id=1092007
  */
-
 #patch-nav-secondary .dropdown-menu {
   top: auto;
 }

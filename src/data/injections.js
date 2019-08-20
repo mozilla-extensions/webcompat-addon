@@ -327,6 +327,21 @@ const AVAILABLE_INJECTIONS = [
       ],
     },
   },
+  {
+    id: "bug1575000",
+    platform: "all",
+    domain: "apply.lloydsbank.co.uk",
+    bug: "1575000",
+    contentScripts: {
+      matches: ["*://apply.lloydsbank.co.uk/*"],
+      css: [
+        {
+          file:
+            "injections/css/bug1575000-apply.lloydsbank.co.uk-radio-buttons-fix.css",
+        },
+      ],
+    },
+  },
 ];
 
 module.exports = AVAILABLE_INJECTIONS;
