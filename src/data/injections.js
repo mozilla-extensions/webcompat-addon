@@ -336,6 +336,21 @@ const AVAILABLE_INJECTIONS = [
       ],
     },
   },
+  {
+    id: "bug1575011",
+    platform: "android",
+    domain: "holiday-weather.com",
+    bug: "1575011",
+    contentScripts: {
+      matches: ["*://*.holiday-weather.com/*"],
+      css: [
+        {
+          file:
+            "injections/css/bug1575011-holiday-weather.com-scrolling-fix.css",
+        },
+      ],
+    },
+  },
 ];
 
 module.exports = AVAILABLE_INJECTIONS;
