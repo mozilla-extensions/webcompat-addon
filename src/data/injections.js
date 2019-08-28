@@ -327,6 +327,20 @@ const AVAILABLE_INJECTIONS = [
       ],
     },
   },
+  {
+    id: "bug1577297",
+    platform: "android",
+    domain: "kitkat.com.au",
+    bug: "1577297",
+    contentScripts: {
+      matches: ["*://*.kitkat.com.au/*"],
+      css: [
+        {
+          file: "injections/css/bug1577297-kitkat.com.au-slider-width-fix.css",
+        },
+      ],
+    },
+  },
 ];
 
 module.exports = AVAILABLE_INJECTIONS;
