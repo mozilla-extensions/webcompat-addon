@@ -313,6 +313,20 @@ const AVAILABLE_INJECTIONS = [
       ],
     },
   },
+  {
+    id: "bug1577270",
+    platform: "android",
+    domain: "binance.com",
+    bug: "1577270",
+    contentScripts: {
+      matches: ["*://*.binance.com/*"],
+      css: [
+        {
+          file: "injections/css/bug1577270-binance.com-calc-height-fix.css",
+        },
+      ],
+    },
+  },
 ];
 
 module.exports = AVAILABLE_INJECTIONS;
