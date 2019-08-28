@@ -55,6 +55,28 @@ const AVAILABLE_UA_OVERRIDES = [
   },
   {
     /*
+     * Bug 1577179 - UA override for supportforms.embarcadero.com
+     * WebCompat issue #34682 - https://webcompat.com/issues/34682
+     *
+     * supportforms.embarcadero.com has a constant onchange event on a product selector
+     * which makes it unusable. Spoofing as Chrome allows to stop event from firing
+     */
+    id: "bug1577179",
+    platform: "all",
+    domain: "supportforms.embarcadero.com",
+    bug: "1577179",
+    config: {
+      matches: ["*://supportforms.embarcadero.com/*"],
+      uaTransformer: originalUA => {
+        return (
+          UAHelpers.getPrefix(originalUA) +
+          " AppleWebKit/537.36 (KHTML, like Gecko) Chrome/76.0.3809.132 Safari/537.36"
+        );
+      },
+    },
+  },
+  {
+    /*
      * Bug 1570108 - steamcommunity.com - UA override for steamcommunity.com
      * WebCompat issue #34171 - https://webcompat.com/issues/34171
      *
