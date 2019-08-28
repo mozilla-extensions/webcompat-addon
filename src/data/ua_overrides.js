@@ -430,6 +430,28 @@ const AVAILABLE_UA_OVERRIDES = [
       },
     },
   },
+  {
+    /*
+     * Bug 1577240 - UA override for heb.com on Firefox for Android
+     * WebCompat issue #33613 - https://webcompat.com/issues/33613
+     *
+     * heb.com shows desktop site on Firefox for Android for some pages based on
+     * UA detection. Spoofing as Chrome allows to get mobile site.
+     */
+    id: "bug1577240",
+    platform: "android",
+    domain: "heb.com",
+    bug: "1577240",
+    config: {
+      matches: ["*://*.heb.com/*"],
+      uaTransformer: originalUA => {
+        return (
+          UAHelpers.getPrefix(originalUA) +
+          " AppleWebKit/537.36 (KHTML, like Gecko) Chrome/76.0.3809.111 Mobile Safari/537.36"
+        );
+      },
+    },
+  },
 ];
 
 const UAHelpers = {
