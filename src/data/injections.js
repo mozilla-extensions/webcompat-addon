@@ -233,7 +233,7 @@ const AVAILABLE_INJECTIONS = [
     domain: "dns.google.com",
     bug: "1567610",
     contentScripts: {
-      matches: ["*://dns.google.com/*"],
+      matches: ["*://dns.google.com/*", "*://dns.google/*"],
       css: [
         {
           file: "injections/css/bug1567610-dns.google.com-moz-fit-content.css",
