@@ -77,6 +77,28 @@ const AVAILABLE_UA_OVERRIDES = [
   },
   {
     /*
+     * Bug 1577519 - att.tv - Create a UA override for att.tv for playback on desktop
+     * WebCompat issue #3846 - https://webcompat.com/issues/3846
+     *
+     * att.tv (atttvnow.com) is blocking Firefox via UA sniffing. Spoofing as Chrome allows
+     * to access the site and playback works fine. This is former directvnow.com
+     */
+    id: "bug1577519",
+    platform: "desktop",
+    domain: "att.tv",
+    bug: "1577519",
+    config: {
+      matches: ["*://*.att.tv/*"],
+      uaTransformer: originalUA => {
+        return (
+          UAHelpers.getPrefix(originalUA) +
+          " AppleWebKit/537.36 (KHTML, like Gecko) Chrome/76.0.3809.132 Safari/537.36"
+        );
+      },
+    },
+  },
+  {
+    /*
      * Bug 1570108 - steamcommunity.com - UA override for steamcommunity.com
      * WebCompat issue #34171 - https://webcompat.com/issues/34171
      *
