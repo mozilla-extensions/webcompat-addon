@@ -36,5 +36,8 @@ jasmine.getGlobal().browser = {
     onBeforeSendHeaders: {
       addListener: () => {},
     },
+    onHeadersReceived: {
+      addListener: () => {},
+    },
   },
 };

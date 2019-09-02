@@ -163,6 +163,20 @@ const AVAILABLE_INJECTIONS = [
     },
   },
   {
+    id: "bug1577870",
+    platform: "desktop",
+    domain: "slideshare.net",
+    bug: "1577870",
+    data: {
+      urls: ["https://*.linkedin.com/tscp-serving/dtag*"],
+      contentType: {
+        name: "content-type",
+        value: "text/html; charset=utf-8",
+      },
+    },
+    customFunc: "dtagFix",
+  },
+  {
     id: "bug1305028",
     platform: "desktop",
     domain: "gaming.youtube.com",
