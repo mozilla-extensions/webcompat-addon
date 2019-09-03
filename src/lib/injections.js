@@ -68,51 +68,8 @@ class Injections {
     });
   }
 
-  replaceStringInRequest(requestId, inString, outString, inEncoding = "utf-8") {
-    const filter = browser.webRequest.filterResponseData(requestId);
-    const decoder = new TextDecoder(inEncoding);
-    const encoder = new TextEncoder();
-    const RE = new RegExp(inString, "g");
-    const carryoverLength = inString.length;
-    let carryover = "";
-
-    filter.ondata = event => {
-      const replaced = (
-        carryover + decoder.decode(event.data, { stream: true })
-      ).replace(RE, outString);
-      filter.write(encoder.encode(replaced.slice(0, -carryoverLength)));
-      carryover = replaced.slice(-carryoverLength);
-    };
-
-    filter.onstop = event => {
-      if (carryover.length) {
-        filter.write(encoder.encode(carryover));
-      }
-      filter.close();
-    };
-  }
-
   async enableInjection(injection) {
     if (injection.active) {
-      return;
-    }
-
-    if ("pdk5fix" in injection) {
-      const { urls, types } = injection.pdk5fix;
-      const listener = (injection.pdk5fix.listener = ({ requestId }) => {
-        this.replaceStringInRequest(
-          requestId,
-          "VideoContextChromeAndroid",
-          "VideoContextAndroid"
-        );
-        return {};
-      });
-      browser.webRequest.onBeforeRequest.addListener(
-        listener,
-        { urls, types },
-        ["blocking"]
-      );
-      injection.active = true;
       return;
     }
 
@@ -128,7 +85,9 @@ class Injections {
       this._customFunctions[injection.customFunc](injection);
       injection.active = true;
     } else {
-      console.error("Provided function name wasn't found in functions list");
+      console.error(
+        `Provided function ${injection.customFunc} wasn't found in functions list`
+      );
     }
   }
 
@@ -163,14 +122,6 @@ class Injections {
       return;
     }
 
-    if (injection.pdk5fix) {
-      const { listener } = injection.pdk5fix;
-      browser.webRequest.onBeforeRequest.removeListener(listener);
-      injection.active = false;
-      delete injection.pdk5fix.listener;
-      return;
-    }
-
     if (injection.customFunc) {
       return this.disableCustomInjections(injection);
     }
@@ -186,7 +137,7 @@ class Injections {
       injection.active = false;
     } else {
       console.error(
-        "Provided function name for disabling injection wasn't found in functions list"
+        `Provided function ${disableFunc} for disabling injection wasn't found in functions list`
       );
     }
   }

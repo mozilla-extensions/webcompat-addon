@@ -6,6 +6,35 @@
 
 /* globals module */
 
+const replaceStringInRequest = (
+  requestId,
+  inString,
+  outString,
+  inEncoding = "utf-8"
+) => {
+  const filter = browser.webRequest.filterResponseData(requestId);
+  const decoder = new TextDecoder(inEncoding);
+  const encoder = new TextEncoder();
+  const RE = new RegExp(inString, "g");
+  const carryoverLength = inString.length;
+  let carryover = "";
+
+  filter.ondata = event => {
+    const replaced = (
+      carryover + decoder.decode(event.data, { stream: true })
+    ).replace(RE, outString);
+    filter.write(encoder.encode(replaced.slice(0, -carryoverLength)));
+    carryover = replaced.slice(-carryoverLength);
+  };
+
+  filter.onstop = event => {
+    if (carryover.length) {
+      filter.write(encoder.encode(carryover));
+    }
+    filter.close();
+  };
+};
+
 const CUSTOM_FUNCTIONS = {
   dtagFix: injection => {
     const { urls, contentType } = injection.data;
@@ -22,6 +51,25 @@ const CUSTOM_FUNCTIONS = {
   dtagFixDisable: injection => {
     const { listener } = injection.data;
     browser.webRequest.onHeadersReceived.removeListener(listener);
+    delete injection.data.listener;
+  },
+  pdk5fix: injection => {
+    const { urls, types } = injection.data;
+    const listener = (injection.data.listener = ({ requestId }) => {
+      replaceStringInRequest(
+        requestId,
+        "VideoContextChromeAndroid",
+        "VideoContextAndroid"
+      );
+      return {};
+    });
+    browser.webRequest.onBeforeRequest.addListener(listener, { urls, types }, [
+      "blocking",
+    ]);
+  },
+  pdk5fixDisable: injection => {
+    const { listener } = injection.data;
+    browser.webRequest.onBeforeRequest.removeListener(listener);
     delete injection.data.listener;
   },
 };
