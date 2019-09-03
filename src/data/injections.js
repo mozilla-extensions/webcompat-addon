@@ -157,10 +157,11 @@ const AVAILABLE_INJECTIONS = [
     platform: "android",
     domain: "Sites using PDK 5 video",
     bug: "1551672",
-    pdk5fix: {
+    data: {
       urls: ["https://*/*/tpPdk.js", "https://*/*/pdk/js/*/*.js"],
       types: ["script"],
     },
+    customFunc: "pdk5fix",
   },
   {
     id: "bug1577870",
