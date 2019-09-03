@@ -364,6 +364,28 @@ const AVAILABLE_UA_OVERRIDES = [
       },
     },
   },
+  {
+    /*
+     * Bug 1577267 - UA override for metfone.com.kh on Firefox for Android
+     * WebCompat issue #16363 - https://webcompat.com/issues/16363
+     *
+     * metfone.com.kh has a server side UA detection which returns desktop site
+     * for Firefox for Android. Spoofing as Chrome allows to receive mobile version
+     */
+    id: "bug1577267",
+    platform: "android",
+    domain: "metfone.com.kh",
+    bug: "1577267",
+    config: {
+      matches: ["*://*.metfone.com.kh/*"],
+      uaTransformer: originalUA => {
+        return (
+          UAHelpers.getPrefix(originalUA) +
+          " AppleWebKit/537.36 (KHTML, like Gecko) Chrome/76.0.3809.111 Mobile Safari/537.36"
+        );
+      },
+    },
+  },
 ];
 
 const UAHelpers = {
