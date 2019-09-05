@@ -131,6 +131,22 @@ const AVAILABLE_INJECTIONS = [
     },
   },
   {
+    id: "bug1579159",
+    platform: "all",
+    domain: "m.tailieu.vn",
+    bug: "1579159",
+    contentScripts: {
+      matches: ["*://m.tailieu.vn/*", "*://m.elib.vn/*"],
+      js: [
+        {
+          file: "injections/js/bug1579159-m.tailieu.vn-pdfjs-worker-disable.js",
+        },
+      ],
+      runAt: "document_start",
+      allFrames: true,
+    },
+  },
+  {
     id: "bug1526977",
     platform: "desktop",
     domain: "sreedharscce.in",
