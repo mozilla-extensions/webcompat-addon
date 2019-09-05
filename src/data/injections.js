@@ -126,7 +126,7 @@ const AVAILABLE_INJECTIONS = [
   },
   {
     id: "bug1579159",
-    platform: "all",
+    platform: "android",
     domain: "m.tailieu.vn",
     bug: "1579159",
     contentScripts: {
