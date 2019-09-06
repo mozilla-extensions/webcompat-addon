@@ -147,6 +147,30 @@ const AVAILABLE_INJECTIONS = [
     },
   },
   {
+    id: "bug1577245",
+    platform: "android",
+    domain: "help.pandora.com",
+    bug: "1577245",
+    contentScripts: {
+      matches: [
+        "https://faq.usps.com/*",
+        "https://help.duo.com/*",
+        "https://help.hulu.com/*",
+        "https://help.pandora.com/*",
+        "https://my211.force.com/*",
+        "https://support.paypay.ne.jp/*",
+        "https://usps.force.com/*",
+      ],
+      js: [
+        {
+          file:
+            "injections/js/bug1577245-salesforce-communities-hide-unsupported.js",
+        },
+      ],
+      runAt: "document_start",
+    },
+  },
+  {
     id: "bug1526977",
     platform: "desktop",
     domain: "sreedharscce.in",
