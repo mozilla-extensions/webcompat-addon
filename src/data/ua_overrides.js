@@ -121,6 +121,29 @@ const AVAILABLE_UA_OVERRIDES = [
   },
   {
     /*
+     * Bug 1579453 - UA override for www.thule.com
+     * WebCompat issue #35022 - https://webcompat.com/issues/35022
+     *
+     * www.thule.com continuously requesting for location permission
+     * due to the UA detection making the site unusable. Spoofing as Chrome
+     * allows to interact with the page normally
+     */
+    id: "bug1579453",
+    platform: "all",
+    domain: "thule.com",
+    bug: "1579453",
+    config: {
+      matches: ["https://*.thule.com/*/*/dealer-locator*"],
+      uaTransformer: originalUA => {
+        return (
+          UAHelpers.getPrefix(originalUA) +
+          " AppleWebKit/537.36 (KHTML, like Gecko) Chrome/76.0.3809.111 Safari/537.36"
+        );
+      },
+    },
+  },
+  {
+    /*
      * Bug 1480710 - m.imgur.com - Build UA override
      * WebCompat issue #13154 - https://webcompat.com/issues/13154
      *
