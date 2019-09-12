@@ -125,6 +125,46 @@ const AVAILABLE_INJECTIONS = [
     },
   },
   {
+    id: "bug1579159",
+    platform: "android",
+    domain: "m.tailieu.vn",
+    bug: "1579159",
+    contentScripts: {
+      matches: ["*://m.tailieu.vn/*", "*://m.elib.vn/*"],
+      js: [
+        {
+          file: "injections/js/bug1579159-m.tailieu.vn-pdfjs-worker-disable.js",
+        },
+      ],
+      runAt: "document_start",
+      allFrames: true,
+    },
+  },
+  {
+    id: "bug1577245",
+    platform: "android",
+    domain: "help.pandora.com",
+    bug: "1577245",
+    contentScripts: {
+      matches: [
+        "https://faq.usps.com/*",
+        "https://help.duo.com/*",
+        "https://help.hulu.com/*",
+        "https://help.pandora.com/*",
+        "https://my211.force.com/*",
+        "https://support.paypay.ne.jp/*",
+        "https://usps.force.com/*",
+      ],
+      js: [
+        {
+          file:
+            "injections/js/bug1577245-salesforce-communities-hide-unsupported.js",
+        },
+      ],
+      runAt: "document_start",
+    },
+  },
+  {
     id: "bug1526977",
     platform: "desktop",
     domain: "sreedharscce.in",
@@ -157,10 +197,25 @@ const AVAILABLE_INJECTIONS = [
     platform: "android",
     domain: "Sites using PDK 5 video",
     bug: "1551672",
-    pdk5fix: {
+    data: {
       urls: ["https://*/*/tpPdk.js", "https://*/*/pdk/js/*/*.js"],
       types: ["script"],
     },
+    customFunc: "pdk5fix",
+  },
+  {
+    id: "bug1577870",
+    platform: "desktop",
+    domain: "slideshare.net",
+    bug: "1577870",
+    data: {
+      urls: ["https://*.linkedin.com/tscp-serving/dtag*"],
+      contentType: {
+        name: "content-type",
+        value: "text/html; charset=utf-8",
+      },
+    },
+    customFunc: "dtagFix",
   },
   {
     id: "bug1305028",

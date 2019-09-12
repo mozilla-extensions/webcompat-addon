@@ -7,13 +7,14 @@
 /* globals browser, module */
 
 class Injections {
-  constructor(availableInjections) {
+  constructor(availableInjections, customFunctions) {
     this.INJECTION_PREF = "perform_injections";
 
     this._injectionsEnabled = true;
 
     this._availableInjections = availableInjections;
     this._activeInjections = new Map();
+    this._customFunctions = customFunctions;
   }
 
   bindAboutCompatBroker(broker) {
@@ -67,30 +68,6 @@ class Injections {
     });
   }
 
-  replaceStringInRequest(requestId, inString, outString, inEncoding = "utf-8") {
-    const filter = browser.webRequest.filterResponseData(requestId);
-    const decoder = new TextDecoder(inEncoding);
-    const encoder = new TextEncoder();
-    const RE = new RegExp(inString, "g");
-    const carryoverLength = inString.length;
-    let carryover = "";
-
-    filter.ondata = event => {
-      const replaced = (
-        carryover + decoder.decode(event.data, { stream: true })
-      ).replace(RE, outString);
-      filter.write(encoder.encode(replaced.slice(0, -carryoverLength)));
-      carryover = replaced.slice(-carryoverLength);
-    };
-
-    filter.onstop = event => {
-      if (carryover.length) {
-        filter.write(encoder.encode(carryover));
-      }
-      filter.close();
-    };
-  }
-
   assignContentScriptDefaults(contentScripts) {
     let finalConfig = Object.assign({}, contentScripts);
 
@@ -106,25 +83,25 @@ class Injections {
       return;
     }
 
-    if ("pdk5fix" in injection) {
-      const { urls, types } = injection.pdk5fix;
-      const listener = (injection.pdk5fix.listener = ({ requestId }) => {
-        this.replaceStringInRequest(
-          requestId,
-          "VideoContextChromeAndroid",
-          "VideoContextAndroid"
-        );
-        return {};
-      });
-      browser.webRequest.onBeforeRequest.addListener(
-        listener,
-        { urls, types },
-        ["blocking"]
-      );
-      injection.active = true;
-      return;
+    if (injection.customFunc) {
+      return this.enableCustomInjection(injection);
     }
 
+    return this.enableContentScripts(injection);
+  }
+
+  enableCustomInjection(injection) {
+    if (injection.customFunc in this._customFunctions) {
+      this._customFunctions[injection.customFunc](injection);
+      injection.active = true;
+    } else {
+      console.error(
+        `Provided function ${injection.customFunc} wasn't found in functions list`
+      );
+    }
+  }
+
+  async enableContentScripts(injection) {
     try {
       const handle = await browser.contentScripts.register(
         this.assignContentScriptDefaults(injection.contentScripts)
@@ -155,14 +132,27 @@ class Injections {
       return;
     }
 
-    if (injection.pdk5fix) {
-      const { listener } = injection.pdk5fix;
-      browser.webRequest.onBeforeRequest.removeListener(listener);
-      injection.active = false;
-      delete injection.pdk5fix.listener;
-      return;
+    if (injection.customFunc) {
+      return this.disableCustomInjections(injection);
     }
 
+    return this.disableContentScripts(injection);
+  }
+
+  disableCustomInjections(injection) {
+    const disableFunc = injection.customFunc + "Disable";
+
+    if (disableFunc in this._customFunctions) {
+      this._customFunctions[disableFunc](injection);
+      injection.active = false;
+    } else {
+      console.error(
+        `Provided function ${disableFunc} for disabling injection wasn't found in functions list`
+      );
+    }
+  }
+
+  async disableContentScripts(injection) {
     const contentScript = this._activeInjections.get(injection);
     await contentScript.unregister();
     this._activeInjections.delete(injection);
