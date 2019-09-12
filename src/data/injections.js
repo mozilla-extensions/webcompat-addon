@@ -227,7 +227,7 @@ const AVAILABLE_INJECTIONS = [
     domain: "dns.google.com",
     bug: "1567610",
     contentScripts: {
-      matches: ["*://dns.google.com/*"],
+      matches: ["*://dns.google.com/*", "*://dns.google/*"],
       css: [
         {
           file: "injections/css/bug1567610-dns.google.com-moz-fit-content.css",
@@ -361,6 +361,34 @@ const AVAILABLE_INJECTIONS = [
       css: [
         {
           file: "injections/css/bug1575017-dunkindonuts.com-flex-basis.css",
+        },
+      ],
+    },
+  },
+  {
+    id: "bug1577270",
+    platform: "android",
+    domain: "binance.com",
+    bug: "1577270",
+    contentScripts: {
+      matches: ["*://*.binance.com/*"],
+      css: [
+        {
+          file: "injections/css/bug1577270-binance.com-calc-height-fix.css",
+        },
+      ],
+    },
+  },
+  {
+    id: "bug1577297",
+    platform: "android",
+    domain: "kitkat.com.au",
+    bug: "1577297",
+    contentScripts: {
+      matches: ["*://*.kitkat.com.au/*"],
+      css: [
+        {
+          file: "injections/css/bug1577297-kitkat.com.au-slider-width-fix.css",
         },
       ],
     },

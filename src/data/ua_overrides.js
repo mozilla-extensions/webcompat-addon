@@ -55,6 +55,50 @@ const AVAILABLE_UA_OVERRIDES = [
   },
   {
     /*
+     * Bug 1577179 - UA override for supportforms.embarcadero.com
+     * WebCompat issue #34682 - https://webcompat.com/issues/34682
+     *
+     * supportforms.embarcadero.com has a constant onchange event on a product selector
+     * which makes it unusable. Spoofing as Chrome allows to stop event from firing
+     */
+    id: "bug1577179",
+    platform: "all",
+    domain: "supportforms.embarcadero.com",
+    bug: "1577179",
+    config: {
+      matches: ["*://supportforms.embarcadero.com/*"],
+      uaTransformer: originalUA => {
+        return (
+          UAHelpers.getPrefix(originalUA) +
+          " AppleWebKit/537.36 (KHTML, like Gecko) Chrome/76.0.3809.132 Safari/537.36"
+        );
+      },
+    },
+  },
+  {
+    /*
+     * Bug 1577519 - att.tv - Create a UA override for att.tv for playback on desktop
+     * WebCompat issue #3846 - https://webcompat.com/issues/3846
+     *
+     * att.tv (atttvnow.com) is blocking Firefox via UA sniffing. Spoofing as Chrome allows
+     * to access the site and playback works fine. This is former directvnow.com
+     */
+    id: "bug1577519",
+    platform: "desktop",
+    domain: "att.tv",
+    bug: "1577519",
+    config: {
+      matches: ["*://*.att.tv/*"],
+      uaTransformer: originalUA => {
+        return (
+          UAHelpers.getPrefix(originalUA) +
+          " AppleWebKit/537.36 (KHTML, like Gecko) Chrome/76.0.3809.132 Safari/537.36"
+        );
+      },
+    },
+  },
+  {
+    /*
      * Bug 1570108 - steamcommunity.com - UA override for steamcommunity.com
      * WebCompat issue #34171 - https://webcompat.com/issues/34171
      *
@@ -400,6 +444,50 @@ const AVAILABLE_UA_OVERRIDES = [
     bug: "1574564",
     config: {
       matches: ["*://*.ceskatelevize.cz/*"],
+      uaTransformer: originalUA => {
+        return (
+          UAHelpers.getPrefix(originalUA) +
+          " AppleWebKit/537.36 (KHTML, like Gecko) Chrome/76.0.3809.111 Mobile Safari/537.36"
+        );
+      },
+    },
+  },
+  {
+    /*
+     * Bug 1577240 - UA override for heb.com on Firefox for Android
+     * WebCompat issue #33613 - https://webcompat.com/issues/33613
+     *
+     * heb.com shows desktop site on Firefox for Android for some pages based on
+     * UA detection. Spoofing as Chrome allows to get mobile site.
+     */
+    id: "bug1577240",
+    platform: "android",
+    domain: "heb.com",
+    bug: "1577240",
+    config: {
+      matches: ["*://*.heb.com/*"],
+      uaTransformer: originalUA => {
+        return (
+          UAHelpers.getPrefix(originalUA) +
+          " AppleWebKit/537.36 (KHTML, like Gecko) Chrome/76.0.3809.111 Mobile Safari/537.36"
+        );
+      },
+    },
+  },
+  {
+    /*
+     * Bug 1577250 - UA override for homebook.pl on Firefox for Android
+     * WebCompat issue #24044 - https://webcompat.com/issues/24044
+     *
+     * homebook.pl shows desktop site on Firefox for Android based on
+     * UA detection. Spoofing as Chrome allows to get mobile site.
+     */
+    id: "bug1577250",
+    platform: "android",
+    domain: "homebook.pl",
+    bug: "1577250",
+    config: {
+      matches: ["*://*.homebook.pl/*"],
       uaTransformer: originalUA => {
         return (
           UAHelpers.getPrefix(originalUA) +
