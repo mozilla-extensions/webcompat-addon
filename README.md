@@ -19,6 +19,12 @@ If this is the first time you're working with this repository, install the depen
 1. Run `npm run jake export-mc` for Desktop or `npm run jake export-mc-android` for Android.
 2. Find the exported files in your `mozilla-central` directory, ready to commit.
 
+### Exporting the sources into Android Components
+
+1. Make sure the `EXPORT_AC_LOCATION` environment variable is set to the root of your Android Components checkout.
+2. Run `npm run jake export-ac`.
+3. Find the exported files in your Android Components directory, ready to commit.
+
 ### Run the changed extension sources
 
 #### Via `about:debugging`

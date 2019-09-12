@@ -60,6 +60,26 @@ function getMozillaCentralLocation() {
 }
 
 /**
+ * @throws if Android-Components could not be found
+ * @returns {string} the location of AndroidComponents
+ */
+function getAndroidComponentsLocation() {
+  let acLocation = path.resolve(
+    process.env.EXPORT_AC_LOCATION || "../android-components"
+  );
+
+  try {
+    fs.statSync(acLocation).isDirectory();
+    fs.statSync(`${acLocation}/mach`).isFile();
+  } catch (ex) {
+    throw new Error(`android-components at ${acLocation} not found. Please set
+      the correct path into the EXPORT_AC_LOCATION environment variable!`);
+  }
+
+  return acLocation;
+}
+
+/**
  * Replaces file list placeholders in moz.build
  *
  * returns {promise}
@@ -91,9 +111,8 @@ function replaceFilelistPlaceholders(cssInjections, jsInjections) {
 /**
  * Exports the files to a target, used to export into mozilla-central
  */
-function exportFiles(target) {
-  let mcLocation = getMozillaCentralLocation();
-  let extTargetDir = path.join(mcLocation, target);
+function exportFiles(root, target) {
+  let extTargetDir = path.join(root, target);
   jake.rmRf(extTargetDir);
   jake.cpR(BUILD_DIR, extTargetDir);
 
@@ -109,12 +128,17 @@ task(
 
 desc("Exports the sources into mozilla-central");
 task("export-mc", ["build"], () => {
-  exportFiles("browser/extensions/webcompat");
+  exportFiles(getMozillaCentralLocation(), "browser/extensions/webcompat");
 });
 
 desc("Exports the sources into the mozilla-central for android");
 task("export-mc-android", ["build"], () => {
-  exportFiles("mobile/android/extensions/webcompat");
+  exportFiles(getMozillaCentralLocation(), "mobile/android/extensions/webcompat");
+});
+
+desc("Exports the sources into the android-components repo");
+task("export-ac", ["build"], () => {
+  exportFiles(getAndroidComponentsLocation(), "components/feature/webcompat/src/main/assets/extensions/webcompat");
 });
 
 desc("Exports the sources into an .xpi for update shipping");
