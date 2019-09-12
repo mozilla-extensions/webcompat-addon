@@ -31,7 +31,6 @@ const AVAILABLE_INJECTIONS = [
           file: "injections/js/bug0000000-testbed-js-injection.js",
         },
       ],
-      runAt: "document_start",
     },
   },
   {
@@ -47,7 +46,6 @@ const AVAILABLE_INJECTIONS = [
             "injections/js/bug1452707-window.controllers-shim-ib.absa.co.za.js",
         },
       ],
-      runAt: "document_start",
     },
   },
   {
@@ -62,7 +60,6 @@ const AVAILABLE_INJECTIONS = [
           file: "injections/js/bug1457335-histography.io-ua-change.js",
         },
       ],
-      runAt: "document_start",
     },
   },
   {
@@ -77,7 +74,6 @@ const AVAILABLE_INJECTIONS = [
           file: "injections/js/bug1472075-bankofamerica.com-ua-change.js",
         },
       ],
-      runAt: "document_start",
     },
   },
   {
@@ -87,14 +83,13 @@ const AVAILABLE_INJECTIONS = [
     bug: "1472081",
     contentScripts: {
       matches: ["http://202.166.205.141/bbvrs/*"],
+      allFrames: true,
       js: [
         {
           file:
             "injections/js/bug1472081-election.gov.np-window.sidebar-shim.js",
         },
       ],
-      runAt: "document_start",
-      allFrames: true,
     },
   },
   {
@@ -104,14 +99,13 @@ const AVAILABLE_INJECTIONS = [
     bug: "1482066",
     contentScripts: {
       matches: ["*://portalminasnet.com/*"],
+      allFrames: true,
       js: [
         {
           file:
             "injections/js/bug1482066-portalminasnet.com-window.sidebar-shim.js",
         },
       ],
-      runAt: "document_start",
-      allFrames: true,
     },
   },
   {

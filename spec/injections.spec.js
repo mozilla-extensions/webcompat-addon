@@ -17,7 +17,6 @@ function buildInjection(platform) {
     contentScripts: {
       matches: ["https://example.com/*"],
       js: [{ file: "test.js" }],
-      runAt: "document_start",
     },
   };
 }
@@ -92,6 +91,30 @@ describe("Injections", () => {
       injections.bindAboutCompatBroker(mockBroker);
       await injections.registerContentScripts();
       expect(spy).toHaveBeenCalled();
+    });
+  });
+
+  describe("assignContentScriptDefaults", () => {
+    it("assigns runAt=documenet_start if nothing else is specified", () => {
+      let injectionConfig = buildInjection("desktop");
+      let injections = new Injections([injectionConfig]);
+
+      let finalConfig = injections.assignContentScriptDefaults(
+        injectionConfig.contentScripts
+      );
+      expect(finalConfig.runAt).toBe("document_start");
+    });
+
+    it("does not override runAt if specified", () => {
+      let injectionConfig = buildInjection("desktop");
+      injectionConfig.contentScripts.runAt = "document_idle";
+
+      let injections = new Injections([injectionConfig]);
+
+      let finalConfig = injections.assignContentScriptDefaults(
+        injectionConfig.contentScripts
+      );
+      expect(finalConfig.runAt).toBe("document_idle");
     });
   });
 });
