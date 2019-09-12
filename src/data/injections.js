@@ -120,7 +120,6 @@ const AVAILABLE_INJECTIONS = [
           file: "injections/js/bug1570856-medium.com-menu-isTier1.js",
         },
       ],
-      runAt: "document_start",
       allFrames: true,
     },
   },
@@ -136,7 +135,6 @@ const AVAILABLE_INJECTIONS = [
           file: "injections/js/bug1579159-m.tailieu.vn-pdfjs-worker-disable.js",
         },
       ],
-      runAt: "document_start",
       allFrames: true,
     },
   },
@@ -161,7 +159,6 @@ const AVAILABLE_INJECTIONS = [
             "injections/js/bug1577245-salesforce-communities-hide-unsupported.js",
         },
       ],
-      runAt: "document_start",
     },
   },
   {
