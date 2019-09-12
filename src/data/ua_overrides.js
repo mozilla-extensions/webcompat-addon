@@ -364,6 +364,50 @@ const AVAILABLE_UA_OVERRIDES = [
       },
     },
   },
+  {
+    /*
+     * Bug 1574522 - UA override for enuri.com on Firefox for Android
+     * WebCompat issue #37139 - https://webcompat.com/issues/37139
+     *
+     * enuri.com returns a different template for Firefox on Android
+     * based on server side UA detection. This results in page content cut offs.
+     * Spoofing as Chrome fixes the issue
+     */
+    id: "bug1574522",
+    platform: "android",
+    domain: "enuri.com",
+    bug: "1574522",
+    config: {
+      matches: ["*://enuri.com/*"],
+      uaTransformer: _ => {
+        return "Mozilla/5.0 (Linux; Android 6.0.1; SM-G900M) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/76.0.3809.111 Mobile Safari/537.36";
+      },
+    },
+  },
+  {
+    /*
+     * Bug 1574564 - UA override for ceskatelevize.cz on Firefox for Android
+     * WebCompat issue #15467 - https://webcompat.com/issues/15467
+     *
+     * ceskatelevize sets streamingProtocol depending on the User-Agent it sees
+     * in the request headers, returning DASH for Chrome, HLS for iOS,
+     * and Flash for Fennec. Since Fennec has no Flash, the video doesn't work.
+     * Spoofing as Chrome makes the video play
+     */
+    id: "bug1574564",
+    platform: "android",
+    domain: "ceskatelevize.cz",
+    bug: "1574564",
+    config: {
+      matches: ["*://*.ceskatelevize.cz/*"],
+      uaTransformer: originalUA => {
+        return (
+          UAHelpers.getPrefix(originalUA) +
+          " AppleWebKit/537.36 (KHTML, like Gecko) Chrome/76.0.3809.111 Mobile Safari/537.36"
+        );
+      },
+    },
+  },
 ];
 
 const UAHelpers = {

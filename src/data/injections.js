@@ -307,6 +307,64 @@ const AVAILABLE_INJECTIONS = [
       ],
     },
   },
+  {
+    id: "bug1574973",
+    platform: "android",
+    domain: "patch.com",
+    bug: "1574973",
+    contentScripts: {
+      matches: ["*://patch.com/*"],
+      css: [
+        {
+          file: "injections/css/bug1574973-patch.com-dropdown-menu-fix.css",
+        },
+      ],
+    },
+  },
+  {
+    id: "bug1575000",
+    platform: "all",
+    domain: "apply.lloydsbank.co.uk",
+    bug: "1575000",
+    contentScripts: {
+      matches: ["*://apply.lloydsbank.co.uk/*"],
+      css: [
+        {
+          file:
+            "injections/css/bug1575000-apply.lloydsbank.co.uk-radio-buttons-fix.css",
+        },
+      ],
+    },
+  },
+  {
+    id: "bug1575011",
+    platform: "android",
+    domain: "holiday-weather.com",
+    bug: "1575011",
+    contentScripts: {
+      matches: ["*://*.holiday-weather.com/*"],
+      css: [
+        {
+          file:
+            "injections/css/bug1575011-holiday-weather.com-scrolling-fix.css",
+        },
+      ],
+    },
+  },
+  {
+    id: "bug1575017",
+    platform: "desktop",
+    domain: "dunkindonuts.com",
+    bug: "1575017",
+    contentScripts: {
+      matches: ["*://*.dunkindonuts.com/en/sign-in*"],
+      css: [
+        {
+          file: "injections/css/bug1575017-dunkindonuts.com-flex-basis.css",
+        },
+      ],
+    },
+  },
 ];
 
 module.exports = AVAILABLE_INJECTIONS;
