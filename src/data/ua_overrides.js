@@ -121,29 +121,6 @@ const AVAILABLE_UA_OVERRIDES = [
   },
   {
     /*
-     * Bug 1579453 - UA override for www.thule.com
-     * WebCompat issue #35022 - https://webcompat.com/issues/35022
-     *
-     * www.thule.com continuously requesting for location permission
-     * due to the UA detection making the site unusable. Spoofing as Chrome
-     * allows to interact with the page normally
-     */
-    id: "bug1579453",
-    platform: "all",
-    domain: "thule.com",
-    bug: "1579453",
-    config: {
-      matches: ["https://*.thule.com/*/*/dealer-locator*"],
-      uaTransformer: originalUA => {
-        return (
-          UAHelpers.getPrefix(originalUA) +
-          " AppleWebKit/537.36 (KHTML, like Gecko) Chrome/76.0.3809.111 Safari/537.36"
-        );
-      },
-    },
-  },
-  {
-    /*
      * Bug 1480710 - m.imgur.com - Build UA override
      * WebCompat issue #13154 - https://webcompat.com/issues/13154
      *
@@ -406,28 +383,6 @@ const AVAILABLE_UA_OVERRIDES = [
       matches: ["*://beeg.com/*"],
       uaTransformer: originalUA => {
         return originalUA.replace(/Firefox.+$/, "");
-      },
-    },
-  },
-  {
-    /*
-     * Bug 1571036 - UA override for mobile.aireuropa.com on Firefox for Android
-     * WebCompat issue #34760 - https://webcompat.com/issues/34760
-     *
-     * mobile.aireuropa.com has a UA detection which prevents Firefox for Android
-     * from opening main menu. Spoofing as Chrome allows to open it.
-     */
-    id: "bug1571036",
-    platform: "android",
-    domain: "mobile.aireuropa.com",
-    bug: "1571036",
-    config: {
-      matches: ["*://mobile.aireuropa.com/*"],
-      uaTransformer: originalUA => {
-        return (
-          UAHelpers.getPrefix(originalUA) +
-          " AppleWebKit/537.36 (KHTML, like Gecko) Chrome/75.0.3770.142 Safari/537.36"
-        );
       },
     },
   },
