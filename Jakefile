@@ -133,12 +133,18 @@ task("export-mc", ["build"], () => {
 
 desc("Exports the sources into the mozilla-central for android");
 task("export-mc-android", ["build"], () => {
-  exportFiles(getMozillaCentralLocation(), "mobile/android/extensions/webcompat");
+  exportFiles(
+    getMozillaCentralLocation(),
+    "mobile/android/extensions/webcompat"
+  );
 });
 
 desc("Exports the sources into the android-components repo");
 task("export-ac", ["build"], () => {
-  exportFiles(getAndroidComponentsLocation(), "components/feature/webcompat/src/main/assets/extensions/webcompat");
+  exportFiles(
+    getAndroidComponentsLocation(),
+    "components/feature/webcompat/src/main/assets/extensions/webcompat"
+  );
 });
 
 desc("Exports the sources into an .xpi for update shipping");
