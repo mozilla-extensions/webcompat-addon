@@ -4,7 +4,7 @@
 
 "use strict";
 
-/* globals module */
+/* globals getMatchPatternsForGoogleURL, module */
 
 /**
  * For detailed information on our policies, and a documention on this format
@@ -18,14 +18,40 @@ const AVAILABLE_UA_OVERRIDES = [
     platform: "all",
     domain: "webcompat-addon-testbed.herokuapp.com",
     bug: "0000000",
-    hidden: true,
     config: {
+      hidden: true,
       matches: ["*://webcompat-addon-testbed.herokuapp.com/*"],
       uaTransformer: originalUA => {
         return (
           UAHelpers.getPrefix(originalUA) +
           " AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.98 Safari/537.36 for WebCompat"
         );
+      },
+    },
+  },
+  {
+    /*
+     * Bug 1564594 - Create UA override for Enhanced Search on Firefox Android
+     *
+     * Enables the Chrome Google Search experience for Fennec users.
+     */
+    id: "bug1564594",
+    platform: "android",
+    domain: "Enhanced Search",
+    bug: "1567945",
+    config: {
+      matches: [
+        ...getMatchPatternsForGoogleURL("images.google"),
+        ...getMatchPatternsForGoogleURL("maps.google"),
+        ...getMatchPatternsForGoogleURL("news.google"),
+        ...getMatchPatternsForGoogleURL("www.google"),
+      ],
+      blocks: [...getMatchPatternsForGoogleURL("www.google", "serviceworker")],
+      permanentPref: "enable_enhanced_search",
+      telemetryKey: "enhancedSearch",
+      experiment: "enhanced-search",
+      uaTransformer: originalUA => {
+        return UAHelpers.getDeviceAppropriateChromeUA();
       },
     },
   },
@@ -499,6 +525,23 @@ const AVAILABLE_UA_OVERRIDES = [
 ];
 
 const UAHelpers = {
+  getDeviceAppropriateChromeUA() {
+    if (!UAHelpers._deviceAppropriateChromeUA) {
+      const RunningFirefoxVersion = (navigator.userAgent.match(
+        /Firefox\/([0-9.]+)/
+      ) || ["", "58.0"])[1];
+      const RunningAndroidVersion =
+        navigator.userAgent.match(/Android\/[0-9.]+/) || "Android 6.0";
+      const ChromeVersionToMimic = "76.0.3809.111";
+      const ChromePhoneUA = `Mozilla/5.0 (Linux; ${RunningAndroidVersion}; Nexus 5 Build/MRA58N) FxQuantum/${RunningFirefoxVersion} AppleWebKit/537.36 (KHTML, like Gecko) Chrome/${ChromeVersionToMimic} Mobile Safari/537.36`;
+      const ChromeTabletUA = `Mozilla/5.0 (Linux; ${RunningAndroidVersion}; Nexus 7 Build/JSS15Q) FxQuantum/${RunningFirefoxVersion} AppleWebKit/537.36 (KHTML, like Gecko) Chrome/${ChromeVersionToMimic} Safari/537.36`;
+      const IsPhone = navigator.userAgent.includes("Mobile");
+      UAHelpers._deviceAppropriateChromeUA = IsPhone
+        ? ChromePhoneUA
+        : ChromeTabletUA;
+    }
+    return UAHelpers._deviceAppropriateChromeUA;
+  },
   getPrefix(originalUA) {
     return originalUA.substr(0, originalUA.indexOf(")") + 1);
   },

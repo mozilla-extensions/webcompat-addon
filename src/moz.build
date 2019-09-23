@@ -9,7 +9,7 @@ DEFINES['MOZ_APP_MAXVERSION'] = CONFIG['MOZ_APP_MAXVERSION']
 
 FINAL_TARGET_FILES.features['webcompat@mozilla.org'] += [
   'manifest.json',
-  'run.js'
+  'run.js',
 ]
 
 FINAL_TARGET_FILES.features['webcompat@mozilla.org']['about-compat'] += [
@@ -19,17 +19,21 @@ FINAL_TARGET_FILES.features['webcompat@mozilla.org']['about-compat'] += [
   'about-compat/AboutCompat.jsm',
   'about-compat/aboutPage.js',
   'about-compat/aboutPage.json',
-  'about-compat/aboutPageProcessScript.js'
+  'about-compat/aboutPageProcessScript.js',
 ]
 
 FINAL_TARGET_FILES.features['webcompat@mozilla.org']['data'] += [
   'data/injections.js',
-  'data/ua_overrides.js'
+  'data/ua_overrides.js',
 ]
 
 FINAL_TARGET_FILES.features['webcompat@mozilla.org']['experiment-apis'] += [
   'experiment-apis/aboutConfigPrefs.js',
-  'experiment-apis/aboutConfigPrefs.json'
+  'experiment-apis/aboutConfigPrefs.json',
+  'experiment-apis/experiments.js',
+  'experiment-apis/experiments.json',
+  'experiment-apis/sharedPreferences.js',
+  'experiment-apis/sharedPreferences.json',
 ]
 
 FINAL_TARGET_FILES.features['webcompat@mozilla.org']['injections']['css'] += [
@@ -43,9 +47,10 @@ FINAL_TARGET_FILES.features['webcompat@mozilla.org']['injections']['js'] += [
 FINAL_TARGET_FILES.features['webcompat@mozilla.org']['lib'] += [
   'lib/about_compat_broker.js',
   'lib/custom_functions.js',
+  'lib/google.js',
   'lib/injections.js',
   'lib/module_shim.js',
-  'lib/ua_overrides.js'
+  'lib/ua_overrides.js',
 ]
 
 with Files('**'):
