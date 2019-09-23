@@ -31,9 +31,9 @@ const removeElementWhenReady = elementId => {
 
   let n = 0;
   createObserver(function(records, observer) {
-    const element = document.getElementById(elementId);
-    if (element) {
-      element.remove();
+    const _element = document.getElementById(elementId);
+    if (_element) {
+      _element.remove();
       observer.disconnect();
       return;
     }
