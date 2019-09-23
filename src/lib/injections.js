@@ -80,7 +80,7 @@ class Injections {
 
   async enableInjection(injection) {
     if (injection.active) {
-      return;
+      return undefined;
     }
 
     if (injection.customFunc) {
@@ -129,7 +129,7 @@ class Injections {
 
   async disableInjection(injection) {
     if (!injection.active) {
-      return;
+      return undefined;
     }
 
     if (injection.customFunc) {

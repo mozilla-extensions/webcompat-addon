@@ -4,7 +4,7 @@
 
 "use strict";
 
-/* globals module */
+/* globals browser, module */
 
 const replaceStringInRequest = (
   requestId,
