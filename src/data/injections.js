@@ -209,13 +209,14 @@ const AVAILABLE_INJECTIONS = [
       urls: [
         "https://*.linkedin.com/tscp-serving/dtag*",
         "https://ads-us.rd.linksynergy.com/as.php*",
+        "https://www.office.com/logout?sid*",
       ],
       contentType: {
         name: "content-type",
         value: "text/html; charset=utf-8",
       },
     },
-    customFunc: "dtagFix",
+    customFunc: "noSniffFix",
   },
   {
     id: "bug1305028",
