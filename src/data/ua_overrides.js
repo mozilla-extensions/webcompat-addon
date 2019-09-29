@@ -81,6 +81,26 @@ const AVAILABLE_UA_OVERRIDES = [
   },
   {
     /*
+     * Bug 1565920 - Overwrite user-agent for Skype for Web
+     * WebCompat issue #1348849 - https://bugzilla.mozilla.org/show_bug.cgi?id=1348849
+     * WebCompat issue #1531004 - https://bugzilla.mozilla.org/show_bug.cgi?id=1531004
+     *
+     * Skype for Web only allows Edge and Chrome. Spoofing user-agent with Chrome
+     * notice allows it to work in Firefox.
+     */
+    id: "bug1565920",
+    platform: "all",
+    domain: "web.skype.com",
+    bug: "1565920",
+    config: {
+      matches: ["*://web.skype.com/*"],
+      uaTransformer: originalUA => {
+        return originalUA + " Chrome for WebCompat";
+      },
+    },
+  },
+  {
+    /*
      * Bug 1577179 - UA override for supportforms.embarcadero.com
      * WebCompat issue #34682 - https://webcompat.com/issues/34682
      *
