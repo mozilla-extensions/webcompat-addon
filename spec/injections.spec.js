@@ -36,7 +36,7 @@ function buildPDK5injection() {
   };
 }
 
-function buildDtagFix() {
+function buildNoSniffFix() {
   return {
     id: "test",
     platform: "desktop",
@@ -49,7 +49,7 @@ function buildDtagFix() {
         value: "text/html; charset=utf-8",
       },
     },
-    customFunc: "dtagFix",
+    customFunc: "noSniffFix",
   };
 }
 
@@ -149,8 +149,8 @@ describe("Injections", () => {
       expect(injection.active).toBeFalsy();
     });
 
-    it("registers an onHeadersReceived listener for dtag fix", async () => {
-      let injections = new Injections([buildDtagFix()], CUSTOM_FUNCTIONS);
+    it("registers an onHeadersReceived listener for no sniff fix", async () => {
+      let injections = new Injections([buildNoSniffFix()], CUSTOM_FUNCTIONS);
       let spy = spyOn(browser.webRequest.onHeadersReceived, "addListener");
 
       injections.bindAboutCompatBroker(mockBroker);
@@ -158,11 +158,11 @@ describe("Injections", () => {
       expect(spy).toHaveBeenCalled();
     });
 
-    it("calls dtagFixDisable when disabling dtag fix", async () => {
-      const injection = buildDtagFix();
+    it("calls noSniffFixDisable when disabling the fix", async () => {
+      const injection = buildNoSniffFix();
       injection.active = true;
       let injections = new Injections([injection], CUSTOM_FUNCTIONS);
-      let spy = spyOn(CUSTOM_FUNCTIONS, "dtagFixDisable");
+      let spy = spyOn(CUSTOM_FUNCTIONS, "noSniffFixDisable");
 
       injections.bindAboutCompatBroker(mockBroker);
       await injections.unregisterContentScripts();
