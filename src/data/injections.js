@@ -4,7 +4,12 @@
 
 "use strict";
 
-/* globals module */
+/* globals module, require */
+
+// This is a hack for the tests.
+if (typeof getMatchPatternsForGoogleURL === "undefined") {
+  var getMatchPatternsForGoogleURL = require("../lib/google");
+}
 
 /**
  * For detailed information on our policies, and a documention on this format
@@ -419,6 +424,25 @@ const AVAILABLE_INJECTIONS = [
           file: "injections/css/bug1577297-kitkat.com.au-slider-width-fix.css",
         },
       ],
+    },
+  },
+  {
+    id: "bug1605611",
+    platform: "android",
+    domain: "maps.google.com",
+    bug: "1605611",
+    contentScripts: {
+      matches: getMatchPatternsForGoogleURL("www.google", "maps*"),
+      css: [
+        {
+          file: "injections/css/bug1605611-maps.google.com-directions-time.css",
+        },
+      ],
+      js: [
+        {
+          file: "injections/js/bug1605611-maps.google.com-directions-time.js",
+        }
+      ]
     },
   },
 ];
