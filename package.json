@@ -13,9 +13,9 @@
     "test": "./node_modules/.bin/jasmine"
   },
   "devDependencies": {
-    "jake": "^8.1.1",
-    "jasmine": "^3.4.0",
+    "jake": "^10.4.3",
+    "jasmine": "^3.5.0",
     "prettier": "1.17.0",
-    "web-ext": "^3.1.0"
+    "web-ext": "^4.0.0"
   }
 }
