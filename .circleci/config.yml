@@ -1,18 +1,46 @@
 version: 2
 jobs:
-  build:
+  specs:
     docker:
       - image: circleci/node:12.6.0
-    working_directory: ~/repo
     steps:
       - checkout
       - restore_cache:
           keys:
             - v1-dependencies-{{ checksum "package.json" }}
             - v1-dependencies-
-      - run: npm install
+      - run:
+          name: Unit tests (Jasmine)
+          command: |
+            npm install
+            npm run jasmine
       - save_cache:
+          key: v1-dependencies-{{ checksum "package.json" }}
           paths:
             - node_modules
+
+  codestyle:
+    docker:
+      - image: circleci/node:12.6.0
+    steps:
+      - checkout
+      - restore_cache:
+          keys:
+            - v1-dependencies-{{ checksum "package.json" }}
+            - v1-dependencies-
+      - run:
+          name: Codestyle verification (Prettier)
+          command: |
+            npm install
+            npm run prettier-check
+      - save_cache:
           key: v1-dependencies-{{ checksum "package.json" }}
-      - run: npm test
+          paths:
+            - node_modules
+
+workflows:
+  version: 2
+  run_tests:
+    jobs:
+      - specs
+      - codestyle

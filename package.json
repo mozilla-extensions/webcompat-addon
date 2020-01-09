@@ -7,15 +7,17 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "jake": "./node_modules/.bin/jake",
-    "prettier": "./node_modules/.bin/prettier --write '**/{*.css,*.js,*.jsm,Jakefile}'",
-    "start": "./node_modules/.bin/web-ext run --source-dir src/",
-    "test": "./node_modules/.bin/jasmine"
+    "jake": "npx jake",
+    "prettier-check": "npx prettier --check '**/{*.css,*.js,*.jsm,Jakefile}'",
+    "prettier": "npx prettier --write '**/{*.css,*.js,*.jsm,Jakefile}'",
+    "jasmine": "npx jasmine",
+    "start": "npx web-ext run --source-dir src/",
+    "test": "npm run jasmine && npm run prettier-check"
   },
   "devDependencies": {
-    "jake": "^8.1.1",
-    "jasmine": "^3.4.0",
-    "prettier": "^1.18.2",
-    "web-ext": "^3.1.0"
+    "jake": "^10.4.3",
+    "jasmine": "^3.5.0",
+    "prettier": "1.17.0",
+    "web-ext": "^4.0.0"
   }
 }

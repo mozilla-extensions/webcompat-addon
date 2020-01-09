@@ -1,0 +1,21 @@
+#!/bin/sh
+
+echo "Installing dependencies to run the pre-push check..."
+if ! npm install > /dev/null 2> /dev/null; then
+  echo "!! Installing dependencies failed! Please run 'npm install' to see what's wrong."
+  exit 1
+fi
+
+echo "Running unit tests..."
+if ! npm run --silent jasmine > /dev/null 2> /dev/null; then
+  echo "!! Running unit tests returned an error! Please run 'npm run jasmine' to see what's wrong."
+  exit 1
+fi
+
+echo "Running codestyle checks..."
+if ! npm run --silent prettier-check > /dev/null 2> /dev/null; then
+  echo "!! Running codestyle checks returned an error! Please run 'npm run prettier-check' to see what's wrong."
+  exit 1
+fi
+
+echo "All good, continuing the push!"
