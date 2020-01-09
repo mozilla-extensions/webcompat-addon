@@ -62,6 +62,22 @@ As `mozilla-central` is now mostly auto-formatted with prettier, and the config 
 1. Run `npm run prettier`
 2. Done.
 
+### Run tests and codestyle checks automatically before pushing
+
+If you want to make sure you don't push something that would fail on CI, use the `pre-push` hook supplied with this repository.
+
+If your Git version is newer than 2.9.x, you can enable the hooks with
+
+```
+git config core.hooksPath .githooks
+```
+
+and if Git is older, please symlink the hook into the right directory manually with
+
+```
+ln -s .githooks/pre-push .git/hooks/
+```
+
 ## License
 
 MPL.
