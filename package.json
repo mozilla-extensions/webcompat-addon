@@ -7,10 +7,10 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "jake": "./node_modules/.bin/jake",
-    "prettier": "./node_modules/.bin/prettier --write '**/{*.css,*.js,*.jsm,Jakefile}'",
-    "start": "./node_modules/.bin/web-ext run --source-dir src/",
-    "test": "./node_modules/.bin/jasmine"
+    "jake": "npx jake",
+    "prettier": "npx prettier --write '**/{*.css,*.js,*.jsm,Jakefile}'",
+    "start": "npx web-ext run --source-dir src/",
+    "test": "npx jasmine"
   },
   "devDependencies": {
     "jake": "^10.4.3",
