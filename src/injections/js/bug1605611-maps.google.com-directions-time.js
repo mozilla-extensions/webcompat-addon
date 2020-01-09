@@ -17,7 +17,9 @@
 // Step 1.
 document.addEventListener("DOMContentLoaded", () => {
   // In case the element appeared before the MutationObserver was activated.
-  for (const elem of document.querySelectorAll('.ml-directions-time[disabled]')) {
+  for (const elem of document.querySelectorAll(
+    ".ml-directions-time[disabled]"
+  )) {
     elem.disabled = false;
   }
   // Start watching for the insertion of the "Leave now" button.
@@ -44,7 +46,6 @@ document.addEventListener("DOMContentLoaded", () => {
   mo.observe(document.body, moOptions);
 });
 
-
 // Step 2.
 const originalValueAsNumberGetter = Object.getOwnPropertyDescriptor(
   HTMLInputElement.prototype.wrappedJSObject,
@@ -52,13 +53,13 @@ const originalValueAsNumberGetter = Object.getOwnPropertyDescriptor(
 ).get;
 Object.defineProperty(
   HTMLInputElement.prototype.wrappedJSObject,
-  'valueAsNumber',
+  "valueAsNumber",
   {
     configurable: true,
     enumerable: true,
     get: originalValueAsNumberGetter,
     set: exportFunction(function(v) {
-      if (this.type === 'datetime-local' && v) {
+      if (this.type === "datetime-local" && v) {
         const d = new Date(v);
         d.setSeconds(0);
         d.setMilliseconds(0);
@@ -68,7 +69,6 @@ Object.defineProperty(
     }, window),
   }
 );
-
 
 // Step 3.
 // injections/css/bug1605611-maps.google.com-directions-time.css fixes the bug,

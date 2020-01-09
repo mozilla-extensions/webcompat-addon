@@ -441,8 +441,8 @@ const AVAILABLE_INJECTIONS = [
       js: [
         {
           file: "injections/js/bug1605611-maps.google.com-directions-time.js",
-        }
-      ]
+        },
+      ],
     },
   },
 ];

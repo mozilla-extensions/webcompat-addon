@@ -11,7 +11,8 @@
  * the native date picker when they tap on the relevant UI in Google Maps.
  */
 
-.ml-route-options-picker-content-button > #ml-route-options-time-selector-time-input {
+.ml-route-options-picker-content-button
+  > #ml-route-options-time-selector-time-input {
   z-index: 1; /* overrides -5000, to show on top of the icon AND the rendered date */
   opacity: 0; /* let the input element be fully transparent */
   width: 100vw; /* render over the rendered date from Maps' dialog */
