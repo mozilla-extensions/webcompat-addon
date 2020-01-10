@@ -70,7 +70,7 @@ function getAndroidComponentsLocation() {
 
   try {
     fs.statSync(acLocation).isDirectory();
-    fs.statSync(`${acLocation}/mach`).isFile();
+    fs.statSync(`${acLocation}/gradlew`).isFile();
   } catch (ex) {
     throw new Error(`android-components at ${acLocation} not found. Please set
       the correct path into the EXPORT_AC_LOCATION environment variable!`);
