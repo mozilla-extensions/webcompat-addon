@@ -29,6 +29,9 @@ jasmine.getGlobal().browser = {
       };
     },
   },
+  systemManufacturer: {
+    getManufacturer: () => {},
+  },
   webRequest: {
     onBeforeRequest: {
       addListener: () => {},
