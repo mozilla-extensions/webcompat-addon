@@ -4,7 +4,7 @@
 
 "use strict";
 
-/* globals module, require */
+/* globals browser, module, require */
 
 // This is a hack for the tests.
 if (typeof getMatchPatternsForGoogleURL === "undefined") {
@@ -546,6 +546,42 @@ const AVAILABLE_UA_OVERRIDES = [
           UAHelpers.getPrefix(originalUA) +
           " AppleWebKit/537.36 (KHTML, like Gecko) Chrome/76.0.3809.111 Mobile Safari/537.36"
         );
+      },
+    },
+  },
+  {
+    /*
+     * Bug 1598198 - User Agent extension for Samsung's galaxy.store URLs
+     *
+     * Samsung's galaxy.store shortlinks are supposed to redirect to a Samsung
+     * intent:// URL on Samsung devices, but to an error page on other brands.
+     * As we do not provide device info in our user agent string, this check
+     * fails, and even Samsung users land on an error page if they use Firefox
+     * for Android.
+     * This intervention adds a simple "Samsung" identifier to the User Agent
+     * on only the Galaxy Store URLs if the device happens to be a Samsung.
+     */
+    id: "bug1598198",
+    platform: "android",
+    domain: "galaxy.store",
+    bug: "1598198",
+    config: {
+      matches: [
+        "*://galaxy.store/*",
+        "*://dev.galaxy.store/*",
+        "*://stg.galaxy.store/*",
+      ],
+      uaTransformer: originalUA => {
+        if (!browser.systemManufacturer) {
+          return originalUA;
+        }
+
+        const manufacturer = browser.systemManufacturer.getManufacturer();
+        if (manufacturer && manufacturer.toLowerCase() === "samsung") {
+          return originalUA.replace("Mobile;", "Mobile; Samsung;");
+        }
+
+        return originalUA;
       },
     },
   },
