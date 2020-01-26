@@ -174,6 +174,28 @@ const AVAILABLE_UA_OVERRIDES = [
   },
   {
     /*
+     * Bug 1610010 - criticalcareontario.ca - UA override for criticalcareontario.ca
+     * WebCompat issue #40267 - https://webcompat.com/issues/40267
+     *
+     * criticalcareontario.ca enters a reload loop based on UA detection
+     * Spoofing as Chrome prevents the site from doing a constant page refresh
+     */
+    id: "bug1610010",
+    platform: "desktop",
+    domain: "criticalcareontario.ca",
+    bug: "1610010",
+    config: {
+      matches: ["https://www.criticalcareontario.ca/*"],
+      uaTransformer: originalUA => {
+        return (
+          UAHelpers.getPrefix(originalUA) +
+          " AppleWebKit/537.36 (KHTML, like Gecko) Chrome/79.0.3945.88 Safari/537.36"
+        );
+      },
+    },
+  },
+  {
+    /*
      * Bug 1480710 - m.imgur.com - Build UA override
      * WebCompat issue #13154 - https://webcompat.com/issues/13154
      *
