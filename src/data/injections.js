@@ -146,17 +146,21 @@ const AVAILABLE_INJECTIONS = [
   {
     id: "bug1577245",
     platform: "android",
-    domain: "help.pandora.com",
+    domain: "Salesforce communities",
     bug: "1577245",
     contentScripts: {
       matches: [
         "https://faq.usps.com/*",
         "https://help.duo.com/*",
-        "https://help.hulu.com/*",
-        "https://help.pandora.com/*",
         "https://my211.force.com/*",
         "https://support.paypay.ne.jp/*",
         "https://usps.force.com/*",
+        "https://help.twitch.tv/*",
+        "https://support.sonos.com/*",
+        "https://us.community.sony.com/*",
+        "https://help.shopee.ph/*",
+        "https://exclusions.ustr.gov/*",
+        "https://help.doordash.com/*",
       ],
       js: [
         {
