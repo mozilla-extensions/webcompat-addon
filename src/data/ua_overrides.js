@@ -196,6 +196,28 @@ const AVAILABLE_UA_OVERRIDES = [
   },
   {
     /*
+     * Bug 1610026 - www.mobilesuica.com - UA override for www.mobilesuica.com
+     * WebCompat issue #4608 - https://webcompat.com/issues/4608
+     *
+     * mobilesuica.com showing unsupported message for Firefox users
+     * Spoofing as Chrome allows to access the page
+     */
+    id: "bug1610026",
+    platform: "all",
+    domain: "www.mobilesuica.com",
+    bug: "1610026",
+    config: {
+      matches: ["https://www.mobilesuica.com/*"],
+      uaTransformer: originalUA => {
+        return (
+          UAHelpers.getPrefix(originalUA) +
+          " AppleWebKit/537.36 (KHTML, like Gecko) Chrome/79.0.3945.88 Safari/537.36"
+        );
+      },
+    },
+  },
+  {
+    /*
      * Bug 1480710 - m.imgur.com - Build UA override
      * WebCompat issue #13154 - https://webcompat.com/issues/13154
      *
