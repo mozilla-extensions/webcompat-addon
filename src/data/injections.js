@@ -463,6 +463,20 @@ const AVAILABLE_INJECTIONS = [
       ],
     },
   },
+  {
+    id: "bug1610016",
+    platform: "android",
+    domain: "gaana.com",
+    bug: "1610016",
+    contentScripts: {
+      matches: ["https://gaana.com/*"],
+      css: [
+        {
+          file: "injections/css/bug1610016-gaana.com-input-position-fix.css",
+        },
+      ],
+    },
+  },
 ];
 
 module.exports = AVAILABLE_INJECTIONS;
