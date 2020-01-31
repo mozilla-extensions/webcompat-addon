@@ -82,38 +82,6 @@ const AVAILABLE_INJECTIONS = [
     },
   },
   {
-    id: "bug1472081",
-    platform: "desktop",
-    domain: "election.gov.np",
-    bug: "1472081",
-    contentScripts: {
-      matches: ["http://202.166.205.141/bbvrs/*"],
-      allFrames: true,
-      js: [
-        {
-          file:
-            "injections/js/bug1472081-election.gov.np-window.sidebar-shim.js",
-        },
-      ],
-    },
-  },
-  {
-    id: "bug1482066",
-    platform: "desktop",
-    domain: "portalminasnet.com",
-    bug: "1482066",
-    contentScripts: {
-      matches: ["*://portalminasnet.com/*"],
-      allFrames: true,
-      js: [
-        {
-          file:
-            "injections/js/bug1482066-portalminasnet.com-window.sidebar-shim.js",
-        },
-      ],
-    },
-  },
-  {
     id: "bug1570856",
     platform: "android",
     domain: "medium.com",
@@ -226,21 +194,6 @@ const AVAILABLE_INJECTIONS = [
       },
     },
     customFunc: "noSniffFix",
-  },
-  {
-    id: "bug1305028",
-    platform: "desktop",
-    domain: "gaming.youtube.com",
-    bug: "1305028",
-    contentScripts: {
-      matches: ["*://gaming.youtube.com/*"],
-      css: [
-        {
-          file:
-            "injections/css/bug1305028-gaming.youtube.com-webkit-scrollbar.css",
-        },
-      ],
-    },
   },
   {
     id: "bug1432935-discord",
