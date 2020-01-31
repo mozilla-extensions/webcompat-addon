@@ -477,6 +477,20 @@ const AVAILABLE_INJECTIONS = [
       ],
     },
   },
+  {
+    id: "bug1610358",
+    platform: "android",
+    domain: "pcloud.com",
+    bug: "1610358",
+    contentScripts: {
+      matches: ["https://www.pcloud.com/*"],
+      js: [
+        {
+          file: "injections/js/bug1610358-pcloud.com-appVersion-change.js",
+        },
+      ],
+    },
+  },
 ];
 
 module.exports = AVAILABLE_INJECTIONS;
