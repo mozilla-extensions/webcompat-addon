@@ -174,6 +174,50 @@ const AVAILABLE_UA_OVERRIDES = [
   },
   {
     /*
+     * Bug 1610010 - criticalcareontario.ca - UA override for criticalcareontario.ca
+     * WebCompat issue #40267 - https://webcompat.com/issues/40267
+     *
+     * criticalcareontario.ca enters a reload loop based on UA detection
+     * Spoofing as Chrome prevents the site from doing a constant page refresh
+     */
+    id: "bug1610010",
+    platform: "desktop",
+    domain: "criticalcareontario.ca",
+    bug: "1610010",
+    config: {
+      matches: ["https://www.criticalcareontario.ca/*"],
+      uaTransformer: originalUA => {
+        return (
+          UAHelpers.getPrefix(originalUA) +
+          " AppleWebKit/537.36 (KHTML, like Gecko) Chrome/79.0.3945.88 Safari/537.36"
+        );
+      },
+    },
+  },
+  {
+    /*
+     * Bug 1610026 - www.mobilesuica.com - UA override for www.mobilesuica.com
+     * WebCompat issue #4608 - https://webcompat.com/issues/4608
+     *
+     * mobilesuica.com showing unsupported message for Firefox users
+     * Spoofing as Chrome allows to access the page
+     */
+    id: "bug1610026",
+    platform: "all",
+    domain: "www.mobilesuica.com",
+    bug: "1610026",
+    config: {
+      matches: ["https://www.mobilesuica.com/*"],
+      uaTransformer: originalUA => {
+        return (
+          UAHelpers.getPrefix(originalUA) +
+          " AppleWebKit/537.36 (KHTML, like Gecko) Chrome/79.0.3945.88 Safari/537.36"
+        );
+      },
+    },
+  },
+  {
+    /*
      * Bug 1480710 - m.imgur.com - Build UA override
      * WebCompat issue #13154 - https://webcompat.com/issues/13154
      *
@@ -346,29 +390,6 @@ const AVAILABLE_UA_OVERRIDES = [
     bug: "1508516",
     config: {
       matches: ["*://*.cineflix.com.br/m/*"],
-      uaTransformer: originalUA => {
-        return (
-          UAHelpers.getPrefix(originalUA) +
-          " AppleWebKit/537.36 (KHTML, like Gecko) Chrome/55.0.2883.91 Mobile Safari/537.36"
-        );
-      },
-    },
-  },
-  {
-    /*
-     * Bug 1509852 - redbull.com - Add UA override for redbull.com
-     * WebCompat issue #21439 - https://webcompat.com/issues/21439
-     *
-     * Redbull.com blocks some features, for example the live video player, for
-     * Fennec. Spoofing as Chrome results in us rendering the video just fine,
-     * and everything else works as well.
-     */
-    id: "bug1509852",
-    platform: "android",
-    domain: "redbull.com",
-    bug: "1509852",
-    config: {
-      matches: ["*://*.redbull.com/*"],
       uaTransformer: originalUA => {
         return (
           UAHelpers.getPrefix(originalUA) +
@@ -582,6 +603,47 @@ const AVAILABLE_UA_OVERRIDES = [
         }
 
         return originalUA;
+      },
+    },
+  },
+  {
+    /*
+     * Bug 1610370 - UA override for answers.yahoo.com on Firefox for Android
+     * WebCompat issue #5460 - https://webcompat.com/issues/5460
+     *
+     * answers.yahoo.com is not showing lazy loaded content based on UA detection
+     * When spoofing as Chrome it's possible to load the content
+     */
+    id: "bug1610370",
+    platform: "android",
+    domain: "answers.yahoo.com",
+    bug: "1610370",
+    config: {
+      matches: ["https://answers.yahoo.com/*"],
+      uaTransformer: originalUA => {
+        return (
+          UAHelpers.getPrefix(originalUA) +
+          " AppleWebKit/537.36 (KHTML, like Gecko) Chrome/79.0.3945.117 Mobile Safari/537.36"
+        );
+      },
+    },
+  },
+  {
+    /*
+     * Bug 1595215 - UA overrides for Uniqlo sites
+     * Webcompat issue #38825 - https://webcompat.com/issues/38825
+     *
+     * To receive the proper mobile version instead of the desktop version or
+     * avoid redirect loop, the UA is spoofed.
+     */
+    id: "bug1595215",
+    platform: "android",
+    domain: "uniqlo.com",
+    bug: "1595215",
+    config: {
+      matches: ["*://*.uniqlo.com/*"],
+      uaTransformer: originalUA => {
+        return originalUA + " Mobile Safari";
       },
     },
   },

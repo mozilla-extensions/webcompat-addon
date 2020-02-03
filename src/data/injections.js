@@ -82,38 +82,6 @@ const AVAILABLE_INJECTIONS = [
     },
   },
   {
-    id: "bug1472081",
-    platform: "desktop",
-    domain: "election.gov.np",
-    bug: "1472081",
-    contentScripts: {
-      matches: ["http://202.166.205.141/bbvrs/*"],
-      allFrames: true,
-      js: [
-        {
-          file:
-            "injections/js/bug1472081-election.gov.np-window.sidebar-shim.js",
-        },
-      ],
-    },
-  },
-  {
-    id: "bug1482066",
-    platform: "desktop",
-    domain: "portalminasnet.com",
-    bug: "1482066",
-    contentScripts: {
-      matches: ["*://portalminasnet.com/*"],
-      allFrames: true,
-      js: [
-        {
-          file:
-            "injections/js/bug1482066-portalminasnet.com-window.sidebar-shim.js",
-        },
-      ],
-    },
-  },
-  {
     id: "bug1570856",
     platform: "android",
     domain: "medium.com",
@@ -146,17 +114,21 @@ const AVAILABLE_INJECTIONS = [
   {
     id: "bug1577245",
     platform: "android",
-    domain: "help.pandora.com",
+    domain: "Salesforce communities",
     bug: "1577245",
     contentScripts: {
       matches: [
         "https://faq.usps.com/*",
         "https://help.duo.com/*",
-        "https://help.hulu.com/*",
-        "https://help.pandora.com/*",
         "https://my211.force.com/*",
         "https://support.paypay.ne.jp/*",
         "https://usps.force.com/*",
+        "https://help.twitch.tv/*",
+        "https://support.sonos.com/*",
+        "https://us.community.sony.com/*",
+        "https://help.shopee.ph/*",
+        "https://exclusions.ustr.gov/*",
+        "https://help.doordash.com/*",
       ],
       js: [
         {
@@ -222,21 +194,6 @@ const AVAILABLE_INJECTIONS = [
       },
     },
     customFunc: "noSniffFix",
-  },
-  {
-    id: "bug1305028",
-    platform: "desktop",
-    domain: "gaming.youtube.com",
-    bug: "1305028",
-    contentScripts: {
-      matches: ["*://gaming.youtube.com/*"],
-      css: [
-        {
-          file:
-            "injections/css/bug1305028-gaming.youtube.com-webkit-scrollbar.css",
-        },
-      ],
-    },
   },
   {
     id: "bug1432935-discord",
@@ -441,6 +398,48 @@ const AVAILABLE_INJECTIONS = [
       js: [
         {
           file: "injections/js/bug1605611-maps.google.com-directions-time.js",
+        },
+      ],
+    },
+  },
+  {
+    id: "bug1609991",
+    platform: "android",
+    domain: "www.cracked.com",
+    bug: "1609991",
+    contentScripts: {
+      matches: ["https://www.cracked.com/*"],
+      css: [
+        {
+          file: "injections/css/bug1609991-cracked.com-flex-basis-fix.css",
+        },
+      ],
+    },
+  },
+  {
+    id: "bug1610016",
+    platform: "android",
+    domain: "gaana.com",
+    bug: "1610016",
+    contentScripts: {
+      matches: ["https://gaana.com/*"],
+      css: [
+        {
+          file: "injections/css/bug1610016-gaana.com-input-position-fix.css",
+        },
+      ],
+    },
+  },
+  {
+    id: "bug1610358",
+    platform: "android",
+    domain: "pcloud.com",
+    bug: "1610358",
+    contentScripts: {
+      matches: ["https://www.pcloud.com/*"],
+      js: [
+        {
+          file: "injections/js/bug1610358-pcloud.com-appVersion-change.js",
         },
       ],
     },
