@@ -31,10 +31,12 @@ If this is the first time you're working with this repository, install the depen
 
 If you want to debug this extension on recent Desktop versions, you can use `about:debugging`:
 
-1. Open `about:debugging` in Firefox
-2. Click the `Load Temporary Add-on...` button
-3. Select `./src/manifest.json` and hit open.
-4. Test!
+1. Open `about:config` in Firefox
+2. Set `extensions.experiments.enabled` pref to `true`
+3. Open `about:debugging`
+4. Click the `Load Temporary Add-on...` button
+5. Select `./src/manifest.json` and hit open.
+6. Test!
 
 #### Via `web-ext`
 
