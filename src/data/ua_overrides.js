@@ -218,29 +218,6 @@ const AVAILABLE_UA_OVERRIDES = [
   },
   {
     /*
-     * Bug 1480710 - m.imgur.com - Build UA override
-     * WebCompat issue #13154 - https://webcompat.com/issues/13154
-     *
-     * imgur returns a 404 for requests to CSS and JS file if requested with a Fennec
-     * User Agent. By removing the Fennec identifies and adding Chrome Mobile's, we
-     * receive the correct CSS and JS files.
-     */
-    id: "bug1480710",
-    platform: "android",
-    domain: "m.imgur.com",
-    bug: "1480710",
-    config: {
-      matches: ["*://m.imgur.com/*"],
-      uaTransformer: originalUA => {
-        return (
-          UAHelpers.getPrefix(originalUA) +
-          " AppleWebKit/537.36 (KHTML, like Gecko) Chrome/68.0.3440.85 Mobile Safari/537.36"
-        );
-      },
-    },
-  },
-  {
-    /*
      * Bug 945963 - tieba.baidu.com serves simplified mobile content to Firefox Android
      * WebCompat issue #18455 - https://webcompat.com/issues/18455
      *
