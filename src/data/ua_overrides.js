@@ -219,6 +219,7 @@ const AVAILABLE_UA_OVERRIDES = [
   {
     /*
      * Bug 945963 - tieba.baidu.com serves simplified mobile content to Firefox Android
+     * additionally, Bug 1525839 for more domains
      * WebCompat issue #18455 - https://webcompat.com/issues/18455
      *
      * tieba.baidu.com and tiebac.baidu.com serve a heavily simplified and less functional
@@ -231,8 +232,12 @@ const AVAILABLE_UA_OVERRIDES = [
     bug: "945963",
     config: {
       matches: [
+        "*://baike.baidu.com/*",
+        "*://image.baidu.com/*",
+        "*://news.baidu.com/*",
         "*://tieba.baidu.com/*",
         "*://tiebac.baidu.com/*",
+        "*://wenku.baidu.com/*",
         "*://zhidao.baidu.com/*",
       ],
       uaTransformer: originalUA => {
