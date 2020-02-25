@@ -280,25 +280,6 @@ const AVAILABLE_UA_OVERRIDES = [
   },
   {
     /*
-     * Bug 1338260 - Add UA override for directTV
-     * (Imported from ua-update.json.in)
-     *
-     * DirectTV has issues with scrolling and cut-off images. Pretending to be
-     * Chrome for Android fixes those issues.
-     */
-    id: "bug1338260",
-    platform: "android",
-    domain: "directv.com",
-    bug: "1338260",
-    config: {
-      matches: ["*://*.directv.com/*"],
-      uaTransformer: _ => {
-        return "Mozilla/5.0 (Linux; Android 6.0.1; SM-G920F Build/MMB29K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/55.0.2883.91 Mobile Safari/537.36";
-      },
-    },
-  },
-  {
-    /*
      * Bug 1385206 - Create UA override for rakuten.co.jp on Firefox Android
      * (Imported from ua-update.json.in)
      *
