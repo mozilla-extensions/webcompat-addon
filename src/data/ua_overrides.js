@@ -593,7 +593,7 @@ const AVAILABLE_UA_OVERRIDES = [
   },
   {
     /*
-     * Bug 1442050 - UA overrides for Uniqlo sites
+     * Bug 1442050 - UA overrides for my.nintendo.com
      * Webcompat issue #12887 - https://webcompat.com/issues/12887
      *
      * Nintendo ships a broken version of their mobile interface to mobile
