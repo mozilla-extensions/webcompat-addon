@@ -17,7 +17,7 @@
   "devDependencies": {
     "jake": "^10.4.3",
     "jasmine": "^3.5.0",
-    "prettier": "1.17.0",
+    "prettier": "1.18.2",
     "web-ext": "^4.0.0"
   }
 }
