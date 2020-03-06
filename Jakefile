@@ -27,6 +27,12 @@ const BUILD_IGNORE_PATHS = [".eslintrc.js"];
 
 /**
  * List of files or directories that should not get exported into
+ * android_components.
+ */
+const AC_IGNORE_PATHS = ["moz.build"];
+
+/**
+ * List of files or directories that should not get exported into
  * an .xpi.
  */
 const XPI_IGNORE_PATHS = ["moz.build"];
@@ -109,6 +115,15 @@ function replaceFilelistPlaceholders(cssInjections, jsInjections) {
 }
 
 /**
+ * Deletes a set of files from the build directory
+ */
+function deleteBuiltFiles(paths) {
+  paths.forEach(ignorePath => {
+    jake.rmRf(path.join(BUILD_DIR, ignorePath));
+  });
+}
+
+/**
  * Exports the files to a target, used to export into mozilla-central
  */
 function exportFiles(root, target) {
@@ -141,6 +156,7 @@ task("export-mc-android", ["build"], () => {
 
 desc("Exports the sources into the android-components repo");
 task("export-ac", ["build"], () => {
+  deleteBuiltFiles(AC_IGNORE_PATHS);
   exportFiles(
     getAndroidComponentsLocation(),
     "components/feature/webcompat/src/main/assets/extensions/webcompat"
@@ -149,10 +165,7 @@ task("export-ac", ["build"], () => {
 
 desc("Exports the sources into an .xpi for update shipping");
 task("export-xpi", ["build"], { async: true }, () => {
-  XPI_IGNORE_PATHS.forEach(ignorePath => {
-    jake.rmRf(path.join(BUILD_DIR, ignorePath));
-  });
-
+  deleteBuiltFiles(XPI_IGNORE_PATHS);
   return jake.exec(`cd ${BUILD_DIR}; zip -r webcompat.xpi *`, complete);
 });
 
@@ -165,9 +178,7 @@ namespace("building", () => {
   desc(`Copies files into ${BUILD_DIR}/`);
   task("copy", () => {
     jake.cpR(SRC_DIR, BUILD_DIR);
-    BUILD_IGNORE_PATHS.forEach(ignorePath => {
-      jake.rmRf(path.join(BUILD_DIR, ignorePath));
-    });
+    deleteBuiltFiles(BUILD_IGNORE_PATHS);
   });
 
   desc("Generates a list of injection files required for 'moz.build'");
