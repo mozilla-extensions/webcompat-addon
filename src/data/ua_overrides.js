@@ -36,32 +36,6 @@ const AVAILABLE_UA_OVERRIDES = [
   },
   {
     /*
-     * Bug 1564594 - Create UA override for Enhanced Search on Firefox Android
-     *
-     * Enables the Chrome Google Search experience for Fennec users.
-     */
-    id: "bug1564594",
-    platform: "android",
-    domain: "Enhanced Search",
-    bug: "1567945",
-    config: {
-      matches: [
-        ...getMatchPatternsForGoogleURL("images.google"),
-        ...getMatchPatternsForGoogleURL("maps.google"),
-        ...getMatchPatternsForGoogleURL("news.google"),
-        ...getMatchPatternsForGoogleURL("www.google"),
-      ],
-      blocks: [...getMatchPatternsForGoogleURL("www.google", "serviceworker")],
-      permanentPref: "enable_enhanced_search",
-      telemetryKey: "enhancedSearch",
-      experiment: ["enhanced-search", "enhanced-search-control"],
-      uaTransformer: originalUA => {
-        return UAHelpers.getDeviceAppropriateChromeUA();
-      },
-    },
-  },
-  {
-    /*
      * Bug 1563839 - rolb.santanderbank.com - Build UA override
      * WebCompat issue #33462 - https://webcompat.com/issues/33462
      *
