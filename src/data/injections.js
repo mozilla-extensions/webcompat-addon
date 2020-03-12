@@ -7,8 +7,8 @@
 /* globals module, require */
 
 // This is a hack for the tests.
-if (typeof getMatchPatternsForGoogleURL === "undefined") {
-  var getMatchPatternsForGoogleURL = require("../lib/google");
+if (typeof InterventionHelpers === "undefined") {
+  var InterventionHelpers = require("../lib/intervention_helpers");
 }
 
 /**
@@ -389,7 +389,10 @@ const AVAILABLE_INJECTIONS = [
     domain: "maps.google.com",
     bug: "1605611",
     contentScripts: {
-      matches: getMatchPatternsForGoogleURL("www.google", "maps*"),
+      matches: InterventionHelpers.matchPatternsForGoogle(
+        "*://www.google.",
+        "/maps*"
+      ),
       css: [
         {
           file: "injections/css/bug1605611-maps.google.com-directions-time.css",
