@@ -52,8 +52,8 @@ FINAL_TARGET_FILES.features['webcompat@mozilla.org']['injections']['js'] += [
 FINAL_TARGET_FILES.features['webcompat@mozilla.org']['lib'] += [
   'lib/about_compat_broker.js',
   'lib/custom_functions.js',
-  'lib/google.js',
   'lib/injections.js',
+  'lib/intervention_helpers.js',
   'lib/module_shim.js',
   'lib/picture_in_picture_overrides.js',
   'lib/ua_overrides.js',
