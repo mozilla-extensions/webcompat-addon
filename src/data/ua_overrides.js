@@ -607,6 +607,25 @@ const AVAILABLE_UA_OVERRIDES = [
       },
     },
   },
+  {
+    /*
+     * Bug 1622063 - UA override for wp1-ext.usps.gov
+     * Webcompat issue #29867 - https://webcompat.com/issues/29867
+     *
+     * The Job Search site for USPS does not work for Firefox Mobile
+     * browsers (a 500 is returned).
+     */
+    id: "bug1622063",
+    platform: "android",
+    domain: "wp1-ext.usps.gov",
+    bug: "1622063",
+    config: {
+      matches: ["*://wp1-ext.usps.gov/*"],
+      uaTransformer: originalUA => {
+        return UAHelpers.getDeviceAppropriateChromeUA();
+      },
+    },
+  },
 ];
 
 const UAHelpers = {
