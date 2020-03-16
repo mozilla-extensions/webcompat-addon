@@ -117,19 +117,28 @@ const AVAILABLE_INJECTIONS = [
     domain: "Salesforce communities",
     bug: "1577245",
     contentScripts: {
-      matches: [
-        "https://faq.usps.com/*",
-        "https://help.duo.com/*",
-        "https://my211.force.com/*",
-        "https://support.paypay.ne.jp/*",
-        "https://usps.force.com/*",
-        "https://help.twitch.tv/*",
-        "https://support.sonos.com/*",
-        "https://us.community.sony.com/*",
-        "https://help.shopee.ph/*",
-        "https://exclusions.ustr.gov/*",
-        "https://help.doordash.com/*",
-      ],
+      matches: [].concat(
+        [
+          "https://faq.usps.com/*",
+          "https://help.duo.com/*",
+          "https://my211.force.com/*",
+          "https://support.paypay.ne.jp/*",
+          "https://usps.force.com/*",
+          "https://help.twitch.tv/*",
+          "https://support.sonos.com/*",
+          "https://us.community.sony.com/*",
+          "https://help.shopee.ph/*",
+          "https://exclusions.ustr.gov/*",
+          "https://help.doordash.com/*",
+          "https://community.snowflake.com/*",
+          "https://tivoidp.tivo.com/*",
+        ],
+        InterventionHelpers.matchPatternsForTLDs(
+          "*://support.ancestry.",
+          "/*",
+          ["ca", "co.uk", "com", "com.au", "de", "fr", "it", "mx", "se"]
+        )
+      ),
       js: [
         {
           file:
