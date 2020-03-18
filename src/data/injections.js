@@ -112,10 +112,10 @@ const AVAILABLE_INJECTIONS = [
     },
   },
   {
-    id: "bug1577245",
+    id: "bug1623375",
     platform: "android",
     domain: "Salesforce communities",
-    bug: "1577245",
+    bug: "1623375",
     contentScripts: {
       matches: [].concat(
         [
@@ -142,7 +142,7 @@ const AVAILABLE_INJECTIONS = [
       js: [
         {
           file:
-            "injections/js/bug1577245-salesforce-communities-hide-unsupported.js",
+            "injections/js/bug1623375-salesforce-communities-hide-unsupported.js",
         },
       ],
     },
