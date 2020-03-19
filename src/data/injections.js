@@ -179,7 +179,6 @@ const AVAILABLE_INJECTIONS = [
     bug: "1577870",
     data: {
       urls: [
-        "https://*.linkedin.com/tscp-serving/dtag*",
         "https://ads-us.rd.linksynergy.com/as.php*",
         "https://www.office.com/logout?sid*",
       ],
