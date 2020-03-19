@@ -567,27 +567,6 @@ const AVAILABLE_UA_OVERRIDES = [
   },
   {
     /*
-     * Bug 1442050 - UA overrides for my.nintendo.com
-     * Webcompat issue #12887 - https://webcompat.com/issues/12887
-     *
-     * Nintendo ships a broken version of their mobile interface to mobile
-     * browsers that are not Chrome or Safari. In our tests, appending the
-     * "AppleWebKit" identifier to the UA string results in a version that
-     * works very well.
-     */
-    id: "bug1442050",
-    platform: "android",
-    domain: "nintendo.com",
-    bug: "1442050",
-    config: {
-      matches: ["*://my.nintendo.com/*"],
-      uaTransformer: originalUA => {
-        return originalUA + " AppleWebKit";
-      },
-    },
-  },
-  {
-    /*
      * Bug 1621065 - UA overrides for bracketchallenge.ncaa.com
      * Webcompat issue #49886 - https://webcompat.com/issues/49886
      *
