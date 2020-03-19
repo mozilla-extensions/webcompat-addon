@@ -162,20 +162,6 @@ const AVAILABLE_INJECTIONS = [
     },
   },
   {
-    id: "bug1518781",
-    platform: "desktop",
-    domain: "twitch.tv",
-    bug: "1518781",
-    contentScripts: {
-      matches: ["*://*.twitch.tv/*"],
-      css: [
-        {
-          file: "injections/css/bug1518781-twitch.tv-webkit-scrollbar.css",
-        },
-      ],
-    },
-  },
-  {
     id: "bug1551672",
     platform: "android",
     domain: "Sites using PDK 5 video",
