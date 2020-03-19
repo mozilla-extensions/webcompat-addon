@@ -626,6 +626,33 @@ const AVAILABLE_UA_OVERRIDES = [
       },
     },
   },
+  {
+    /*
+     * Bug 1622059 - UA overrides for img.weblogssl.com breakage
+     * Webcompat issue #49166 - https://webcompat.com/issues/49166
+     * Webcompat issue #48650 - https://webcompat.com/issues/48650
+     * Webcompat issue #48787 - https://webcompat.com/issues/48787
+     *
+     * These pages throw due to some poor UA sniffing assumptions, so
+     * we add a "Version/99.0" token so comments will be visible. They
+     * all share a common file hosted at:
+     * https://img.weblogssl.com/LPbackend/prod/v2/js
+     */
+    id: "bug1622059",
+    platform: "android",
+    domain: "img.weblogssl.com",
+    bug: "1622059",
+    config: {
+      matches: [
+        "*://www.genbeta.com/*",
+        "*://www.xataka.com/*",
+        "*://www.xatakandroid.com/*",
+      ],
+      uaTransformer: originalUA => {
+        return originalUA + " Version/99.0";
+      },
+    },
+  },
 ];
 
 const UAHelpers = {
