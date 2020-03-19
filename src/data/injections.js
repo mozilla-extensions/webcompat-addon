@@ -190,21 +190,6 @@ const AVAILABLE_INJECTIONS = [
     customFunc: "noSniffFix",
   },
   {
-    id: "bug1432935-discord",
-    platform: "desktop",
-    domain: "discordapp.com",
-    bug: "1432935",
-    contentScripts: {
-      matches: ["*://discordapp.com/*"],
-      css: [
-        {
-          file:
-            "injections/css/bug1432935-discordapp.com-webkit-scorllbar-white-line.css",
-        },
-      ],
-    },
-  },
-  {
     id: "bug1561371",
     platform: "android",
     domain: "mail.google.com",
