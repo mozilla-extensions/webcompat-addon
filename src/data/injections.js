@@ -321,20 +321,6 @@ const AVAILABLE_INJECTIONS = [
     },
   },
   {
-    id: "bug1575017",
-    platform: "desktop",
-    domain: "dunkindonuts.com",
-    bug: "1575017",
-    contentScripts: {
-      matches: ["*://*.dunkindonuts.com/en/sign-in*"],
-      css: [
-        {
-          file: "injections/css/bug1575017-dunkindonuts.com-flex-basis.css",
-        },
-      ],
-    },
-  },
-  {
     id: "bug1577270",
     platform: "android",
     domain: "binance.com",
