@@ -162,20 +162,6 @@ const AVAILABLE_INJECTIONS = [
     },
   },
   {
-    id: "bug1518781",
-    platform: "desktop",
-    domain: "twitch.tv",
-    bug: "1518781",
-    contentScripts: {
-      matches: ["*://*.twitch.tv/*"],
-      css: [
-        {
-          file: "injections/css/bug1518781-twitch.tv-webkit-scrollbar.css",
-        },
-      ],
-    },
-  },
-  {
     id: "bug1551672",
     platform: "android",
     domain: "Sites using PDK 5 video",
@@ -193,7 +179,6 @@ const AVAILABLE_INJECTIONS = [
     bug: "1577870",
     data: {
       urls: [
-        "https://*.linkedin.com/tscp-serving/dtag*",
         "https://ads-us.rd.linksynergy.com/as.php*",
         "https://www.office.com/logout?sid*",
       ],
@@ -203,21 +188,6 @@ const AVAILABLE_INJECTIONS = [
       },
     },
     customFunc: "noSniffFix",
-  },
-  {
-    id: "bug1432935-discord",
-    platform: "desktop",
-    domain: "discordapp.com",
-    bug: "1432935",
-    contentScripts: {
-      matches: ["*://discordapp.com/*"],
-      css: [
-        {
-          file:
-            "injections/css/bug1432935-discordapp.com-webkit-scorllbar-white-line.css",
-        },
-      ],
-    },
   },
   {
     id: "bug1561371",
@@ -346,20 +316,6 @@ const AVAILABLE_INJECTIONS = [
         {
           file:
             "injections/css/bug1575011-holiday-weather.com-scrolling-fix.css",
-        },
-      ],
-    },
-  },
-  {
-    id: "bug1575017",
-    platform: "desktop",
-    domain: "dunkindonuts.com",
-    bug: "1575017",
-    contentScripts: {
-      matches: ["*://*.dunkindonuts.com/en/sign-in*"],
-      css: [
-        {
-          file: "injections/css/bug1575017-dunkindonuts.com-flex-basis.css",
         },
       ],
     },

@@ -424,28 +424,6 @@ const AVAILABLE_UA_OVERRIDES = [
   },
   {
     /*
-     * Bug 1577240 - UA override for heb.com on Firefox for Android
-     * WebCompat issue #33613 - https://webcompat.com/issues/33613
-     *
-     * heb.com shows desktop site on Firefox for Android for some pages based on
-     * UA detection. Spoofing as Chrome allows to get mobile site.
-     */
-    id: "bug1577240",
-    platform: "android",
-    domain: "heb.com",
-    bug: "1577240",
-    config: {
-      matches: ["*://*.heb.com/*"],
-      uaTransformer: originalUA => {
-        return (
-          UAHelpers.getPrefix(originalUA) +
-          " AppleWebKit/537.36 (KHTML, like Gecko) Chrome/76.0.3809.111 Mobile Safari/537.36"
-        );
-      },
-    },
-  },
-  {
-    /*
      * Bug 1577250 - UA override for homebook.pl on Firefox for Android
      * WebCompat issue #24044 - https://webcompat.com/issues/24044
      *
@@ -562,27 +540,6 @@ const AVAILABLE_UA_OVERRIDES = [
       matches: ["*://*.uniqlo.com/*"],
       uaTransformer: originalUA => {
         return originalUA + " Mobile Safari";
-      },
-    },
-  },
-  {
-    /*
-     * Bug 1442050 - UA overrides for my.nintendo.com
-     * Webcompat issue #12887 - https://webcompat.com/issues/12887
-     *
-     * Nintendo ships a broken version of their mobile interface to mobile
-     * browsers that are not Chrome or Safari. In our tests, appending the
-     * "AppleWebKit" identifier to the UA string results in a version that
-     * works very well.
-     */
-    id: "bug1442050",
-    platform: "android",
-    domain: "nintendo.com",
-    bug: "1442050",
-    config: {
-      matches: ["*://my.nintendo.com/*"],
-      uaTransformer: originalUA => {
-        return originalUA + " AppleWebKit";
       },
     },
   },
