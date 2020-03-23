@@ -610,6 +610,25 @@ const AVAILABLE_UA_OVERRIDES = [
       },
     },
   },
+  {
+    /*
+     * Bug 1622081 - UA override for m2.bmo.com
+     * Webcompat issue #45019 - https://webcompat.com/issues/45019
+     *
+     * Unless the UA string contains "Chrome", m2.bmo.com will
+     * display a modal saying the browser is out-of-date.
+     */
+    id: "bug1622081",
+    platform: "android",
+    domain: "m2.bmo.com",
+    bug: "1622081",
+    config: {
+      matches: ["*://m2.bmo.com/*"],
+      uaTransformer: originalUA => {
+        return originalUA + " Chrome";
+      },
+    },
+  },
 ];
 
 const UAHelpers = {
