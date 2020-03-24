@@ -427,6 +427,17 @@ const AVAILABLE_INJECTIONS = [
       ],
     },
   },
+  {
+    id: "bug1622062",
+    platform: "android",
+    domain: "$.detectSwipe fix",
+    bug: "1622062",
+    data: {
+      urls: ["https://eu.stemwijzer.nl/public/js/votematch.vendors.js"],
+      types: ["script"],
+    },
+    customFunc: "detectSwipeFix",
+  },
 ];
 
 module.exports = AVAILABLE_INJECTIONS;
