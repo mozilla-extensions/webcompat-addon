@@ -16,14 +16,14 @@ If this is the first time you're working with this repository, install the depen
 
 ### Exporting the sources to `mozilla-central`
 
-1. Ensure the version number is bumped in `package.json` and `src/manifest.json`, appropriately (see [Versioning Scheme](https://github.com/mozilla/webcompat-addon/wiki/Versioning-Scheme) for more info).
+1. Ensure the version number is bumped in `src/manifest.json`, appropriately (see [Versioning Scheme](https://github.com/mozilla/webcompat-addon/wiki/Versioning-Scheme) for more info).
 2. Make sure the `EXPORT_MC_LOCATION` environment variable is set to the root of your `mozilla-central` checkout.
 3. Run `npm run jake export-mc` for Desktop or `npm run jake export-mc-android` for Android.
 4. Find the exported files in your `mozilla-central` directory, ready to commit.
 
 ### Exporting the sources into Android Components
 
-1. Ensure the version number is bumped in `package.json` and `src/manifest.json`, appropriately (see [Versioning Scheme](https://github.com/mozilla/webcompat-addon/wiki/Versioning-Scheme) for more info).
+1. Ensure the version number is bumped in and `src/manifest.json`, appropriately (see [Versioning Scheme](https://github.com/mozilla/webcompat-addon/wiki/Versioning-Scheme) for more info).
 2. Make sure the `EXPORT_AC_LOCATION` environment variable is set to the root of your Android Components checkout.
 3. Run `npm run jake export-ac`.
 4. Find the exported files in your Android Components directory, ready to commit.
