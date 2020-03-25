@@ -8,8 +8,8 @@
   "private": true,
   "scripts": {
     "jake": "npx jake",
-    "prettier-check": "npx prettier --check '**/{*.css,*.js,*.jsm,Jakefile}'",
-    "prettier": "npx prettier --write '**/{*.css,*.js,*.jsm,Jakefile}'",
+    "prettier-check": "npx prettier --check '**/{*.css,*.js,*.jsm,*.json,Jakefile}'",
+    "prettier": "npx prettier --write '**/{*.css,*.js,*.jsm,*.json,Jakefile}'",
     "jasmine": "npx jasmine",
     "start": "npx web-ext run --source-dir src/",
     "test": "npm run jasmine && npm run prettier-check"
