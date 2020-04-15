@@ -629,6 +629,25 @@ const AVAILABLE_UA_OVERRIDES = [
       },
     },
   },
+  {
+    /*
+     * Bug 1628462 - UA override for app.pixton.com
+     * Webcompat issue #43438 - https://webcompat.com/issues/43438
+     *
+     * app.pixton.com is showing unsupported message for both Firefox
+     * desktop and mobile. Spoofing as Chrome allows to access the site
+     */
+    id: "bug1628462",
+    platform: "all",
+    domain: "app.pixton.com",
+    bug: "1628462",
+    config: {
+      matches: ["https://*.pixton.com/*"],
+      uaTransformer: () => {
+        return UAHelpers.getDeviceAppropriateChromeUA();
+      },
+    },
+  },
 ];
 
 const UAHelpers = {
