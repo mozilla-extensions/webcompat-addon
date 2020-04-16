@@ -453,6 +453,20 @@ const AVAILABLE_INJECTIONS = [
       ],
     },
   },
+  {
+    id: "bug1630280",
+    platform: "android",
+    domain: "dominos.ch",
+    bug: "1630280",
+    contentScripts: {
+      matches: ["https://www.dominos.ch/*"],
+      css: [
+        {
+          file: "injections/css/bug1630280-dominos.ch-hide-overlay.css",
+        },
+      ],
+    },
+  },
 ];
 
 module.exports = AVAILABLE_INJECTIONS;
