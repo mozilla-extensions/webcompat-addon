@@ -60,28 +60,6 @@ const AVAILABLE_UA_OVERRIDES = [
   },
   {
     /*
-     * Bug 1577179 - UA override for supportforms.embarcadero.com
-     * WebCompat issue #34682 - https://webcompat.com/issues/34682
-     *
-     * supportforms.embarcadero.com has a constant onchange event on a product selector
-     * which makes it unusable. Spoofing as Chrome allows to stop event from firing
-     */
-    id: "bug1577179",
-    platform: "all",
-    domain: "supportforms.embarcadero.com",
-    bug: "1577179",
-    config: {
-      matches: ["*://supportforms.embarcadero.com/*"],
-      uaTransformer: originalUA => {
-        return (
-          UAHelpers.getPrefix(originalUA) +
-          " AppleWebKit/537.36 (KHTML, like Gecko) Chrome/76.0.3809.132 Safari/537.36"
-        );
-      },
-    },
-  },
-  {
-    /*
      * Bug 1577519 - att.tv - Create a UA override for att.tv for playback on desktop
      * WebCompat issue #3846 - https://webcompat.com/issues/3846
      *
@@ -580,33 +558,6 @@ const AVAILABLE_UA_OVERRIDES = [
       matches: ["*://wp1-ext.usps.gov/*"],
       uaTransformer: originalUA => {
         return UAHelpers.getDeviceAppropriateChromeUA();
-      },
-    },
-  },
-  {
-    /*
-     * Bug 1622059 - UA overrides for img.weblogssl.com breakage
-     * Webcompat issue #49166 - https://webcompat.com/issues/49166
-     * Webcompat issue #48650 - https://webcompat.com/issues/48650
-     * Webcompat issue #48787 - https://webcompat.com/issues/48787
-     *
-     * These pages throw due to some poor UA sniffing assumptions, so
-     * we add a "Version/99.0" token so comments will be visible. They
-     * all share a common file hosted at:
-     * https://img.weblogssl.com/LPbackend/prod/v2/js
-     */
-    id: "bug1622059",
-    platform: "android",
-    domain: "img.weblogssl.com",
-    bug: "1622059",
-    config: {
-      matches: [
-        "*://www.genbeta.com/*",
-        "*://www.xataka.com/*",
-        "*://www.xatakandroid.com/*",
-      ],
-      uaTransformer: originalUA => {
-        return originalUA + " Version/99.0";
       },
     },
   },
