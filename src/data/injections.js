@@ -467,6 +467,20 @@ const AVAILABLE_INJECTIONS = [
       ],
     },
   },
+  {
+    id: "bug1629926",
+    platform: "desktop",
+    domain: "hangouts mic",
+    bug: "1629926",
+    contentScripts: {
+      matches: ["https://mail.google.com/*"],
+      js: [
+        {
+          file: "injections/js/bug1629926-mail.google.com-hangouts-mic-fix.js",
+        },
+      ],
+    },
+  },
 ];
 
 module.exports = AVAILABLE_INJECTIONS;
