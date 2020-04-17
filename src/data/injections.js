@@ -427,7 +427,7 @@ const AVAILABLE_INJECTIONS = [
   {
     id: "bug1629926",
     platform: "desktop",
-    domain: "hangouts mic",
+    domain: "GMail Hangouts microphone fix",
     bug: "1629926",
     contentScripts: {
       matches: ["https://mail.google.com/*"],
