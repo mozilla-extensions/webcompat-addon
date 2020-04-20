@@ -11,49 +11,30 @@
  * Adding allow=microphone to the iframe in question makes the calls work
  */
 
+/* globals exportFunction */
+
 console.info(
   "hangouts iframe allow property was changed for compatibility reasons. See https://bugzilla.mozilla.org/show_bug.cgi?id=1503694 for details."
 );
 
-const NOTIFICATIONS_LIMIT = 150;
-
-const createObserver = callback => {
-  return new MutationObserver(callback).observe(document, {
-    childList: true,
-    subtree: true,
-  });
+const isHangoutsSrc = src => {
+  const url = new URL(src);
+  return url.host === "hangouts.google.com" && url.pathname.includes("blank");
 };
 
-const setAllow = element => {
-  element.allow = "microphone *; autoplay *; microphone";
-};
-
-const poll = (getElementFn, onFound, limit) => {
-  const element = getElementFn();
-  if (element) {
-    onFound(element);
-    return;
-  }
-
-  let n = 0;
-  createObserver((records, observer) => {
-    const _element = getElementFn();
-    if (_element) {
-      onFound(_element);
-      observer.disconnect();
-      return;
-    }
-
-    if (n > limit) {
-      observer.disconnect();
-    }
-
-    n++;
-  });
-};
-
-poll(
-  () => document.getElementById("gth-talk-plugin-frame-id"),
-  setAllow,
-  NOTIFICATIONS_LIMIT
+const orig = Object.getOwnPropertyDescriptor(
+  HTMLIFrameElement.prototype.wrappedJSObject,
+  "src"
 );
+
+Object.defineProperty(HTMLIFrameElement.prototype.wrappedJSObject, "src", {
+  get: orig.get,
+  set: exportFunction(function(val) {
+    if (isHangoutsSrc(val)) {
+      this.allow = "microphone *; autoplay *; microphone";
+    }
+    this.src = val;
+  }, window),
+  configurable: true,
+  enumerable: true,
+});
