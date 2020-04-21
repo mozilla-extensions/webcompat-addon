@@ -411,20 +411,6 @@ const AVAILABLE_INJECTIONS = [
     },
   },
   {
-    id: "bug1630280",
-    platform: "android",
-    domain: "dominos.ch",
-    bug: "1630280",
-    contentScripts: {
-      matches: ["https://www.dominos.ch/*"],
-      css: [
-        {
-          file: "injections/css/bug1630280-dominos.ch-hide-overlay.css",
-        },
-      ],
-    },
-  },
-  {
     id: "bug1629926",
     platform: "desktop",
     domain: "GMail Hangouts microphone fix",
@@ -434,6 +420,21 @@ const AVAILABLE_INJECTIONS = [
       js: [
         {
           file: "injections/js/bug1629926-mail.google.com-hangouts-mic-fix.js",
+        },
+      ],
+    },
+  },
+  {
+    id: "bug1631960",
+    platform: "all",
+    domain: "websube.ckbogazici.com.tr",
+    bug: "1631960",
+    contentScripts: {
+      matches: ["https://websube.ckbogazici.com.tr/*"],
+      css: [
+        {
+          file:
+            "injections/css/bug1631960-websube.ckbogazici.com.tr-table-row-fix.css",
         },
       ],
     },
