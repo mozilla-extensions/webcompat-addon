@@ -439,6 +439,20 @@ const AVAILABLE_INJECTIONS = [
       ],
     },
   },
+  {
+    id: "bug1632019",
+    platform: "all",
+    domain: "everyman.co",
+    bug: "1632019",
+    contentScripts: {
+      matches: ["https://everyman.co/*"],
+      css: [
+        {
+          file: "injections/css/bug1632019-everyman.co-gallery-width-fix.css",
+        },
+      ],
+    },
+  },
 ];
 
 module.exports = AVAILABLE_INJECTIONS;
