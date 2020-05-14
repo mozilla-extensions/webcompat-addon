@@ -425,6 +425,20 @@ const AVAILABLE_INJECTIONS = [
       ],
     },
   },
+  {
+    id: "bug1633796",
+    platform: "android",
+    domain: "www.laposte.fr",
+    bug: "1633796",
+    contentScripts: {
+      matches: ["https://www.laposte.fr/*"],
+      css: [
+        {
+          file: "injections/css/bug1633796-www-la-poste-fr-placeholder-fix.css",
+        },
+      ],
+    },
+  },
 ];
 
 module.exports = AVAILABLE_INJECTIONS;
