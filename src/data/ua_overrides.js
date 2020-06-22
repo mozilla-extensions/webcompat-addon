@@ -458,28 +458,6 @@ const AVAILABLE_UA_OVERRIDES = [
   },
   {
     /*
-     * Bug 1610370 - UA override for answers.yahoo.com on Firefox for Android
-     * WebCompat issue #5460 - https://webcompat.com/issues/5460
-     *
-     * answers.yahoo.com is not showing lazy loaded content based on UA detection
-     * When spoofing as Chrome it's possible to load the content
-     */
-    id: "bug1610370",
-    platform: "android",
-    domain: "answers.yahoo.com",
-    bug: "1610370",
-    config: {
-      matches: ["https://answers.yahoo.com/*"],
-      uaTransformer: originalUA => {
-        return (
-          UAHelpers.getPrefix(originalUA) +
-          " AppleWebKit/537.36 (KHTML, like Gecko) Chrome/79.0.3945.117 Mobile Safari/537.36"
-        );
-      },
-    },
-  },
-  {
-    /*
      * Bug 1595215 - UA overrides for Uniqlo sites
      * Webcompat issue #38825 - https://webcompat.com/issues/38825
      *
