@@ -411,6 +411,21 @@ const AVAILABLE_INJECTIONS = [
       ],
     },
   },
+  {
+    id: "bug1644830",
+    platform: "desktop",
+    domain: "usps.com",
+    bug: "1644830",
+    contentScripts: {
+      matches: ["https://*.usps.com/*"],
+      css: [
+        {
+          file:
+            "injections/css/bug1644830-missingmail.usps.com-checkboxes-not-visible.css",
+        },
+      ],
+    },
+  },
 ];
 
 module.exports = AVAILABLE_INJECTIONS;
