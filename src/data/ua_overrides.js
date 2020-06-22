@@ -593,6 +593,33 @@ const AVAILABLE_UA_OVERRIDES = [
       },
     },
   },
+  {
+    /*
+     * Bug 1563839 - rolb.santanderbank.com - Build UA override
+     * Bug 1646791 - bancosantander.es - Re-add UA override.
+     * WebCompat issue #33462 - https://webcompat.com/issues/33462
+     * SuMo request - https://support.mozilla.org/es/questions/1291085
+     *
+     * santanderbank expects UA to have 'like Gecko', otherwise it runs
+     * xmlDoc.onload whose support has been dropped. It results in missing labels in forms
+     * and some other issues.  Adding 'like Gecko' fixes those issues.
+     */
+    id: "bug1563839",
+    platform: "all",
+    domain: "santanderbank.com",
+    bug: "1563839",
+    config: {
+      matches: [
+        "*://*.bancosantander.es*",
+        "*://*.santander.co.uk/*",
+        "*://bob.santanderbank.com/*",
+        "*://rolb.santanderbank.com/*",
+      ],
+      uaTransformer: originalUA => {
+        return originalUA.replace("Gecko", "like Gecko");
+      },
+    },
+  },
 ];
 
 const UAHelpers = {
