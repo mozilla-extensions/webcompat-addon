@@ -264,20 +264,6 @@ const AVAILABLE_INJECTIONS = [
     },
   },
   {
-    id: "bug1577270",
-    platform: "android",
-    domain: "binance.com",
-    bug: "1577270",
-    contentScripts: {
-      matches: ["*://*.binance.com/*"],
-      css: [
-        {
-          file: "injections/css/bug1577270-binance.com-calc-height-fix.css",
-        },
-      ],
-    },
-  },
-  {
     id: "bug1577297",
     platform: "android",
     domain: "kitkat.com.au",
