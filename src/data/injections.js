@@ -440,6 +440,22 @@ const AVAILABLE_INJECTIONS = [
       ],
     },
   },
+  {
+    id: "bug1641998",
+    platform: "desktop",
+    domain: "twitter.com",
+    bug: "1641998",
+    contentScripts: {
+      matches: ["https://twitter.com/i/videos/tweet/*"],
+      allFrames: true,
+      js: [
+        {
+          file:
+            "injections/js/bug1641998-embedded-twitter-videos-etp-indexeddb.js",
+        },
+      ],
+    },
+  },
 ];
 
 module.exports = AVAILABLE_INJECTIONS;
