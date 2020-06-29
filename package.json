@@ -13,8 +13,7 @@
     "build": "npx jake export-xpi",
     "lint:prettier": "npx prettier --check '**/{*.css,*.js,*.jsm,*.json,Jakefile}'",
     "lint": "npx npm-run-all lint:*",
-    "test:jasmine": "npx jasmine",
-    "test": "npx npm-run-all test:*"
+    "test": "npx jasmine"
   },
   "devDependencies": {
     "jake": "^10.4.3",
