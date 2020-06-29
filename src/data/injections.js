@@ -26,16 +26,8 @@ const AVAILABLE_INJECTIONS = [
     hidden: true,
     contentScripts: {
       matches: ["*://webcompat-addon-testbed.herokuapp.com/*"],
-      css: [
-        {
-          file: "injections/css/bug0000000-testbed-css-injection.css",
-        },
-      ],
-      js: [
-        {
-          file: "injections/js/bug0000000-testbed-js-injection.js",
-        },
-      ],
+      css: [ { file: "injections/css/bug0000000-testbed-css-injection.css", }, ],
+      js: [ { file: "injections/js/bug0000000-testbed-js-injection.js", }, ],
     },
   },
   {
