@@ -26,8 +26,16 @@ const AVAILABLE_INJECTIONS = [
     hidden: true,
     contentScripts: {
       matches: ["*://webcompat-addon-testbed.herokuapp.com/*"],
-      css: [ { file: "injections/css/bug0000000-testbed-css-injection.css", }, ],
-      js: [ { file: "injections/js/bug0000000-testbed-js-injection.js", }, ],
+      css: [
+        {
+          file: "injections/css/bug0000000-testbed-css-injection.css",
+        },
+      ],
+      js: [
+        {
+          file: "injections/js/bug0000000-testbed-js-injection.js",
+        },
+      ],
     },
   },
   {
@@ -46,7 +54,7 @@ const AVAILABLE_INJECTIONS = [
     },
   },
   {
-    id: "bug1457335",
+    id: "testbed-injection",
     platform: "desktop",
     domain: "histography.io",
     bug: "1457335",
@@ -60,7 +68,7 @@ const AVAILABLE_INJECTIONS = [
     },
   },
   {
-    id: "bug1472075",
+    id: "testbed-injection",
     platform: "desktop",
     domain: "bankofamerica.com",
     bug: "1472075",
