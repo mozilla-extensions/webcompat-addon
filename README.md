@@ -52,7 +52,7 @@ Testing Fennec is relatively unsupported at this point, as most of the infrastru
 ### Building `webcompat.xpi`
 
 1. Run `npm run jake export-xpi`.
-2. Find the built `.xpi` inside the `build/` directory.
+2. Find the built `.xpi` inside the `web-ext-artifacts/` directory.
 
 ### Run the automated test suite
 

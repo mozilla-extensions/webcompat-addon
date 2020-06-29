@@ -15,6 +15,13 @@ const exec = require("child_process").exec;
 const BUILD_DIR = "./build";
 
 /**
+ * The directory the final .xpi will be exported to. Currently, this
+ * uses the web-ext default directory to make this repo work with
+ * the mozilla-extensions taskcluster template.
+ */
+const XPI_DIR = "./web-ext-artifacts";
+
+/**
  * The directory where the source files are in.
  */
 const SRC_DIR = "./src";
@@ -166,7 +173,11 @@ task("export-ac", ["build"], () => {
 desc("Exports the sources into an .xpi for update shipping");
 task("export-xpi", ["build"], { async: true }, () => {
   deleteBuiltFiles(XPI_IGNORE_PATHS);
-  return jake.exec(`cd ${BUILD_DIR}; zip -r webcompat.xpi *`, complete);
+  jake.mkdirP(XPI_DIR);
+  return jake.exec(
+    `cd ${BUILD_DIR}; zip -r webcompat.xpi *; mv webcompat.xpi ../${XPI_DIR}`,
+    complete
+  );
 });
 
 namespace("building", () => {
