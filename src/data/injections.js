@@ -132,6 +132,7 @@ const AVAILABLE_INJECTIONS = [
           "https://help.doordash.com/*",
           "https://community.snowflake.com/*",
           "https://tivoidp.tivo.com/*",
+          "https://cloudreadykb.neverware.com/*",
         ],
         InterventionHelpers.matchPatternsForTLDs(
           "*://support.ancestry.",
