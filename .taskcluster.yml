@@ -2,7 +2,7 @@
 version: 1
 reporting: checks-v1
 policy:
-    pullRequests: collaborators
+    pullRequests: public
 tasks:
     - $let:
           # XXX Set to `true` for private repos
