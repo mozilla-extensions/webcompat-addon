@@ -620,6 +620,26 @@ const AVAILABLE_UA_OVERRIDES = [
       },
     },
   },
+  {
+    /*
+     * Bug 1651292 - UA override for www.jp.square-enix.com
+     * Webcompat issue #53018 - https://webcompat.com/issues/53018
+     *
+     * Unless the UA string contains "Chrome 66+", a section of
+     * www.jp.square-enix.com will show a never ending LOADING
+     * page.
+     */
+    id: "bug1651292",
+    platform: "android",
+    domain: "www.jp.square-enix.com",
+    bug: "1651292",
+    config: {
+      matches: ["*://www.jp.square-enix.com/music/sem/page/FF7R/ost/*"],
+      uaTransformer: originalUA => {
+        return originalUA + " Chrome/83";
+      },
+    },
+  },
 ];
 
 const UAHelpers = {
