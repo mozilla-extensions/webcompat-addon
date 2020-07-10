@@ -457,6 +457,21 @@ const AVAILABLE_INJECTIONS = [
       ],
     },
   },
+  {
+    id: "bug1651917",
+    platform: "android",
+    domain: "teletrader.com",
+    bug: "1651917",
+    contentScripts: {
+      matches: ["*://*.teletrader.com/*"],
+      css: [
+        {
+          file:
+            "injections/css/bug1651917-teletrader.com.body-transform-origin.css",
+        },
+      ],
+    },
+  },
 ];
 
 module.exports = AVAILABLE_INJECTIONS;
