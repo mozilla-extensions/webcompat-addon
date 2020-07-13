@@ -369,21 +369,6 @@ const AVAILABLE_INJECTIONS = [
     customFunc: "detectSwipeFix",
   },
   {
-    id: "bug1625224",
-    platform: "all",
-    domain: "sixt-neuwagen.de",
-    bug: "1625224",
-    contentScripts: {
-      matches: ["*://*.sixt-neuwagen.de/*"],
-      js: [
-        {
-          file:
-            "injections/js/bug1625224-sixt-neuwagen.de-window-netscape-shim.js",
-        },
-      ],
-    },
-  },
-  {
     id: "bug1632019",
     platform: "all",
     domain: "everyman.co",
