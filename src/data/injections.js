@@ -160,23 +160,6 @@ const AVAILABLE_INJECTIONS = [
     customFunc: "pdk5fix",
   },
   {
-    id: "bug1577870",
-    platform: "desktop",
-    domain: "Download prompt for files with no content-type",
-    bug: "1577870",
-    data: {
-      urls: [
-        "https://ads-us.rd.linksynergy.com/as.php*",
-        "https://www.office.com/logout?sid*",
-      ],
-      contentType: {
-        name: "content-type",
-        value: "text/html; charset=utf-8",
-      },
-    },
-    customFunc: "noSniffFix",
-  },
-  {
     id: "bug1561371",
     platform: "android",
     domain: "mail.google.com",
