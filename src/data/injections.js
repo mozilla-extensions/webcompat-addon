@@ -369,21 +369,6 @@ const AVAILABLE_INJECTIONS = [
     customFunc: "detectSwipeFix",
   },
   {
-    id: "bug1631960",
-    platform: "all",
-    domain: "websube.ckbogazici.com.tr",
-    bug: "1631960",
-    contentScripts: {
-      matches: ["https://websube.ckbogazici.com.tr/*"],
-      css: [
-        {
-          file:
-            "injections/css/bug1631960-websube.ckbogazici.com.tr-table-row-fix.css",
-        },
-      ],
-    },
-  },
-  {
     id: "bug1632019",
     platform: "all",
     domain: "everyman.co",
