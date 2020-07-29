@@ -426,6 +426,20 @@ const AVAILABLE_INJECTIONS = [
       ],
     },
   },
+  {
+    id: "bug1653075",
+    platform: "desktop",
+    domain: "livescience.com",
+    bug: "1653075",
+    contentScripts: {
+      matches: ["*://*.livescience.com/*"],
+      css: [
+        {
+          file: "injections/css/bug1653075-livescience.com-scrollbar-width.css",
+        },
+      ],
+    },
+  },
 ];
 
 module.exports = AVAILABLE_INJECTIONS;
