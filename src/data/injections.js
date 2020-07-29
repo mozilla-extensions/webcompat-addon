@@ -440,6 +440,20 @@ const AVAILABLE_INJECTIONS = [
       ],
     },
   },
+  {
+    id: "bug1654865",
+    platform: "android",
+    domain: "sports.ndtv.com",
+    bug: "1654865",
+    contentScripts: {
+      matches: ["*://sports.ndtv.com/*"],
+      css: [
+        {
+          file: "injections/css/bug1654865-sports.ndtv.com-float-fix.css",
+        },
+      ],
+    },
+  },
 ];
 
 module.exports = AVAILABLE_INJECTIONS;
