@@ -454,6 +454,20 @@ const AVAILABLE_INJECTIONS = [
       ],
     },
   },
+  {
+    id: "bug1654877",
+    platform: "android",
+    domain: "preev.com",
+    bug: "1654877",
+    contentScripts: {
+      matches: ["*://preev.com/*"],
+      css: [
+        {
+          file: "injections/css/bug1654877-preev.com-moz-appearance-fix.css",
+        },
+      ],
+    },
+  },
 ];
 
 module.exports = AVAILABLE_INJECTIONS;
