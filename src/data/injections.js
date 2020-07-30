@@ -468,6 +468,20 @@ const AVAILABLE_INJECTIONS = [
       ],
     },
   },
+  {
+    id: "bug1655049",
+    platform: "android",
+    domain: "dev.to",
+    bug: "1655049",
+    contentScripts: {
+      matches: ["*://dev.to/*"],
+      css: [
+        {
+          file: "injections/css/bug1655049-dev.to-unclickable-button-fix.css",
+        },
+      ],
+    },
+  },
 ];
 
 module.exports = AVAILABLE_INJECTIONS;
