@@ -445,6 +445,20 @@ const AVAILABLE_INJECTIONS = [
       ],
     },
   },
+  {
+    id: "bug1654907",
+    platform: "android",
+    domain: "reactine.ca",
+    bug: "1654907",
+    contentScripts: {
+      matches: ["*://*.reactine.ca/*"],
+      css: [
+        {
+          file: "injections/css/bug1654907-reactine.ca-hide-unsupported.css",
+        },
+      ],
+    },
+  },
 ];
 
 module.exports = AVAILABLE_INJECTIONS;
