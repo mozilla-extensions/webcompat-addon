@@ -123,15 +123,12 @@ const AVAILABLE_INJECTIONS = [
     customFunc: "pdk5fix",
   },
   {
-    id: "bug1577870",
+    id: "bug1583366",
     platform: "desktop",
     domain: "Download prompt for files with no content-type",
-    bug: "1577870",
+    bug: "1583366",
     data: {
-      urls: [
-        "https://ads-us.rd.linksynergy.com/as.php*",
-        "https://www.office.com/logout?sid*",
-      ],
+      urls: ["https://ads-us.rd.linksynergy.com/as.php*"],
       contentType: {
         name: "content-type",
         value: "text/html; charset=utf-8",
