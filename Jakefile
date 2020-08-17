@@ -97,11 +97,16 @@ function getAndroidComponentsLocation() {
  *
  * returns {promise}
  */
-function replaceFilelistPlaceholders(cssInjections, jsInjections) {
+function replaceFilelistPlaceholders(cssInjections, jsInjections, shims) {
   return new Promise((resolve, reject) => {
     let formatList = files => {
       files = files.map(filename => filename.replace("build/", ""));
       return "'" + files.join("',\n  '") + "',";
+    };
+
+    let formatListDQ = files => {
+      files = files.map(filename => filename.replace("build/", ""));
+      return `[\n    "${files.join(`",\n    "`)}"\n  ]`;
     };
 
     let mozBuildFilename = path.join(BUILD_DIR, "moz.build");
@@ -111,12 +116,28 @@ function replaceFilelistPlaceholders(cssInjections, jsInjections) {
       reject("Cannot generate the injection file list: no moz.build");
     }
 
+    let manifestFilename = path.join(BUILD_DIR, "manifest.json");
+    try {
+      fs.statSync(manifestFilename).isFile();
+    } catch (ex) {
+      reject("Cannot generate the injection file list: no manifest.json");
+    }
+
     let mozBuildContents = fs.readFileSync(mozBuildFilename).toString();
     mozBuildContents = mozBuildContents
       .replace("@CSS_INJECTIONS@", formatList(cssInjections))
-      .replace("@JS_INJECTIONS@", formatList(jsInjections));
+      .replace("@JS_INJECTIONS@", formatList(jsInjections))
+      .replace("@SHIMS@", formatList(shims));
 
     fs.writeFileSync(mozBuildFilename, mozBuildContents);
+
+    let manifestContents = fs.readFileSync(manifestFilename).toString();
+    manifestContents = manifestContents.replace(
+      `["@WEB_ACCESSIBLE_RESOURCES@"]`,
+      formatListDQ(shims)
+    );
+
+    fs.writeFileSync(manifestFilename, manifestContents);
     resolve();
   });
 }
@@ -199,6 +220,15 @@ namespace("building", () => {
       return new jake.FileList().include(files).toArray();
     };
 
-    replaceFilelistPlaceholders(getFilelist("css"), getFilelist("js"));
+    let getShimFilelist = () => {
+      let files = path.join(BUILD_DIR, "shims/*");
+      return new jake.FileList().include(files).toArray();
+    };
+
+    replaceFilelistPlaceholders(
+      getFilelist("css"),
+      getFilelist("js"),
+      getShimFilelist()
+    );
   });
 });
