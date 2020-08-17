@@ -36,13 +36,13 @@ const BUILD_IGNORE_PATHS = [".eslintrc.js"];
  * List of files or directories that should not get exported into
  * android_components.
  */
-const AC_IGNORE_PATHS = ["moz.build"];
+const AC_IGNORE_PATHS = ["components.conf", "moz.build", "tests"];
 
 /**
  * List of files or directories that should not get exported into
  * an .xpi.
  */
-const XPI_IGNORE_PATHS = ["moz.build"];
+const XPI_IGNORE_PATHS = ["components.conf", "moz.build", "tests"];
 
 /**
  * You generally should not need to touch anything below this line for making
@@ -154,14 +154,10 @@ function deleteBuiltFiles(paths) {
 /**
  * Exports the files to a target, used to export into mozilla-central
  */
-function exportFiles(root, target, alsoExportTestsDir = false) {
+function exportFiles(root, target) {
   let extTargetDir = path.join(root, target);
   jake.rmRf(extTargetDir);
   jake.cpR(BUILD_DIR, extTargetDir);
-  if (!alsoExportTestsDir) {
-    const testsDir = path.join(extTargetDir, "tests");
-    jake.rmRf(testsDir);
-  }
 
   console.log(`Exported built sources into ${extTargetDir}`);
 }
@@ -175,11 +171,7 @@ task(
 
 desc("Exports the sources into mozilla-central");
 task("export-mc", ["build"], () => {
-  exportFiles(
-    getMozillaCentralLocation(),
-    "browser/extensions/webcompat",
-    true
-  );
+  exportFiles(getMozillaCentralLocation(), "browser/extensions/webcompat");
 });
 
 desc("Exports the sources into the mozilla-central for android");
