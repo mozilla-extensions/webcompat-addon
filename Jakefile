@@ -104,7 +104,7 @@ function replaceFilelistPlaceholders(cssInjections, jsInjections, shims) {
       return "'" + files.join("',\n  '") + "',";
     };
 
-    let formatListDQ = files => {
+    let formatListForManifest = files => {
       files = files.map(filename => filename.replace("build/", ""));
       return `[\n    "${files.join(`",\n    "`)}"\n  ]`;
     };
@@ -134,7 +134,7 @@ function replaceFilelistPlaceholders(cssInjections, jsInjections, shims) {
     let manifestContents = fs.readFileSync(manifestFilename).toString();
     manifestContents = manifestContents.replace(
       `["@WEB_ACCESSIBLE_RESOURCES@"]`,
-      formatListDQ(shims)
+      formatListForManifest(shims)
     );
 
     fs.writeFileSync(manifestFilename, manifestContents);
@@ -154,10 +154,14 @@ function deleteBuiltFiles(paths) {
 /**
  * Exports the files to a target, used to export into mozilla-central
  */
-function exportFiles(root, target) {
+function exportFiles(root, target, alsoExportTestsDir = false) {
   let extTargetDir = path.join(root, target);
   jake.rmRf(extTargetDir);
   jake.cpR(BUILD_DIR, extTargetDir);
+  if (!alsoExportTestsDir) {
+    const testsDir = path.join(extTargetDir, "tests");
+    jake.rmRf(testsDir);
+  }
 
   console.log(`Exported built sources into ${extTargetDir}`);
 }
@@ -171,7 +175,11 @@ task(
 
 desc("Exports the sources into mozilla-central");
 task("export-mc", ["build"], () => {
-  exportFiles(getMozillaCentralLocation(), "browser/extensions/webcompat");
+  exportFiles(
+    getMozillaCentralLocation(),
+    "browser/extensions/webcompat",
+    true
+  );
 });
 
 desc("Exports the sources into the mozilla-central for android");
