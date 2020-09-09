@@ -32,6 +32,7 @@ let AVAILABLE_PIP_OVERRIDES;
 
     netflix: {
       "https://*.netflix.com/browse": TOGGLE_POLICIES.HIDDEN,
+      "https://*.netflix.com/latest": TOGGLE_POLICIES.HIDDEN,
     },
 
     twitch: {
