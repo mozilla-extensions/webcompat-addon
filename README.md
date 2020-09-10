@@ -45,10 +45,6 @@ If you want to debug this extension on recent Desktop versions, you can use `abo
 
 Since the WebCompat feature inside Fenix is not shipped directly to the product but is included via a universal android component, you need both a local copy of Fenix and a local copy of Android-Components on your system. To build, make sure to follow the [Mozilla Android Components' instructions on how to test unreleased component code](https://mozac.org/contributing/testing-components-inside-app), and use the android-component exporter (see above) to get your sources into the repo.
 
-### Testing on the old Firefox for Android (Fennec)
-
-Testing Fennec is relatively unsupported at this point, as most of the infrastructure has been deprecated. The easiest way to test changes for general contributors is to run a local Fenenc build with the changed sources exported to the codebase. For Mozillians with access to the Mozilla infrastructure, pushing to try and have the tryserver do the build can be an alternative for a one-off build. Also, there is a possible workaround to use `web-ext`, and you are encouraged to ping this project's maintainers if you have to test changes frequently.
-
 ### Building `webcompat.xpi`
 
 1. Run `npm run build`.
