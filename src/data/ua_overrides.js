@@ -636,6 +636,25 @@ const AVAILABLE_UA_OVERRIDES = [
       },
     },
   },
+  {
+    /*
+     * Bug 1664174 - UA override for indiatimes.com
+     * Webcompat issue #57961 - https://webcompat.com/issues/57961
+     *
+     * This site returns desktop site based on server side UA detection.
+     * Spoofing as Chrome allows to get mobile experience
+     */
+    id: "bug1664174",
+    platform: "android",
+    domain: "indiatimes.com",
+    bug: "1664174",
+    config: {
+      matches: ["*://*.indiatimes.com/*"],
+      uaTransformer: () => {
+        return UAHelpers.getDeviceAppropriateChromeUA();
+      },
+    },
+  },
 ];
 
 const UAHelpers = {
