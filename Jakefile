@@ -93,7 +93,7 @@ function getAndroidComponentsLocation() {
 }
 
 /**
- * Replaces file list placeholders in moz.build
+ * Replaces file list placeholders in moz.build and manifest.json
  *
  * returns {promise}
  */
@@ -110,34 +110,21 @@ function replaceFilelistPlaceholders(cssInjections, jsInjections, shims) {
     };
 
     let mozBuildFilename = path.join(BUILD_DIR, "moz.build");
-    try {
-      fs.statSync(mozBuildFilename).isFile();
-    } catch (ex) {
-      reject("Cannot generate the injection file list: no moz.build");
-    }
-
-    let manifestFilename = path.join(BUILD_DIR, "manifest.json");
-    try {
-      fs.statSync(manifestFilename).isFile();
-    } catch (ex) {
-      reject("Cannot generate the injection file list: no manifest.json");
-    }
-
     let mozBuildContents = fs.readFileSync(mozBuildFilename).toString();
     mozBuildContents = mozBuildContents
       .replace("@CSS_INJECTIONS@", formatList(cssInjections))
       .replace("@JS_INJECTIONS@", formatList(jsInjections))
       .replace("@SHIMS@", formatList(shims));
-
     fs.writeFileSync(mozBuildFilename, mozBuildContents);
 
+    let manifestFilename = path.join(BUILD_DIR, "manifest.json");
     let manifestContents = fs.readFileSync(manifestFilename).toString();
     manifestContents = manifestContents.replace(
       `["@WEB_ACCESSIBLE_RESOURCES@"]`,
       formatListForManifest(shims)
     );
-
     fs.writeFileSync(manifestFilename, manifestContents);
+
     resolve();
   });
 }
