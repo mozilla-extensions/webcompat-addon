@@ -174,14 +174,6 @@ task("export-mc", ["build"], () => {
   exportFiles(getMozillaCentralLocation(), "browser/extensions/webcompat");
 });
 
-desc("Exports the sources into the mozilla-central for android");
-task("export-mc-android", ["build"], () => {
-  exportFiles(
-    getMozillaCentralLocation(),
-    "mobile/android/extensions/webcompat"
-  );
-});
-
 desc("Exports the sources into the android-components repo");
 task("export-ac", ["build"], () => {
   deleteBuiltFiles(AC_IGNORE_PATHS);
