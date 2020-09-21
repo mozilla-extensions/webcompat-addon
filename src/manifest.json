@@ -1,6 +1,6 @@
 {
   "manifest_version": 2,
-  "name": "Web Compat",
+  "name": "@EXTENSION_NAME@",
   "description": "Urgent post-release fixes for web compatibility.",
   "version": "15.1.0",
 
