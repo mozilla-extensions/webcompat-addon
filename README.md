@@ -55,6 +55,15 @@ Since the WebCompat feature inside Fenix is not shipped directly to the product 
 1. Run `npm run test`
 2. Wait!
 
+### Run tests inside `mozilla-central`
+
+Tests located in `src/tests/` are not automatically started by the CI in this repo, but are meant as in-tree tests that run together with other Firefox tests. These tests are triggered when trying to land things via Phabricator, but manually running them is also possible.
+
+1. Export the sources to `mozilla-central` as explained above.
+2. Switch into your `mozilla-central` directory.
+3. Build the changed sources into Firefox by running `./mach build`.
+4. Run the test suite with `./mach mochitest browser/extensions/webcompat/`.
+
 ### Automatically check and adjust the code style
 
 As `mozilla-central` is now mostly auto-formatted with prettier, and the config for that is really slim, this repo follows these guidelines. To automatically check and adjust the code style,
