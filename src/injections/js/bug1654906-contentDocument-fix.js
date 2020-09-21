@@ -13,10 +13,6 @@
 
 /* globals exportFunction */
 
-console.info(
-  "iframe.contentDocument has been shimmed for compatibility reasons. See https://webcompat.com/issues/55001 for details."
-);
-
 var elemProto = window.wrappedJSObject.Element.prototype;
 var innerHTML = Object.getOwnPropertyDescriptor(elemProto, "innerHTML");
 var iFrameProto = window.wrappedJSObject.HTMLIFrameElement.prototype;
