@@ -4,6 +4,8 @@
 
 "use strict";
 
+const WebExtManifestSchmea = require("./helpers/webext_manifest_schema");
+
 const AVAILABLE_UA_OVERRIDES = require("../src/data/ua_overrides");
 const TEST_UA =
   "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.14; rv:69.0) Gecko/20100101 Firefox/69.0";
@@ -51,8 +53,10 @@ for (const override of AVAILABLE_UA_OVERRIDES) {
       expect(override.bug).toBeTruthy();
     });
 
-    it("provides an URL scope", () => {
-      expect(override.config.matches).toBeTruthy();
+    it("provides valid URLs", () => {
+      expect(
+        WebExtManifestSchmea.matchPatternsValid(override.config.matches)
+      ).toBeTruthy();
     });
 
     it("provides an uaTransformer that does return a string", () => {
