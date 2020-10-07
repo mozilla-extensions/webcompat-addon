@@ -247,20 +247,6 @@ const AVAILABLE_INJECTIONS = [
     },
   },
   {
-    id: "bug1609991",
-    platform: "android",
-    domain: "www.cracked.com",
-    bug: "1609991",
-    contentScripts: {
-      matches: ["https://www.cracked.com/*"],
-      css: [
-        {
-          file: "injections/css/bug1609991-cracked.com-flex-basis-fix.css",
-        },
-      ],
-    },
-  },
-  {
     id: "bug1610016",
     platform: "android",
     domain: "gaana.com",
