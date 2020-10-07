@@ -152,20 +152,6 @@ const AVAILABLE_INJECTIONS = [
     },
   },
   {
-    id: "bug1567610",
-    platform: "all",
-    domain: "dns.google.com",
-    bug: "1567610",
-    contentScripts: {
-      matches: ["*://dns.google.com/*", "*://dns.google/*"],
-      css: [
-        {
-          file: "injections/css/bug1567610-dns.google.com-moz-fit-content.css",
-        },
-      ],
-    },
-  },
-  {
     id: "bug1568908",
     platform: "desktop",
     domain: "console.cloud.google.com",
