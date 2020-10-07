@@ -413,6 +413,21 @@ const AVAILABLE_INJECTIONS = [
       ],
     },
   },
+  {
+    id: "bug1666771",
+    platform: "desktop",
+    domain: "zillow.com",
+    bug: "1666771",
+    contentScripts: {
+      allFrames: true,
+      matches: ["*://*.zillow.com/*"],
+      css: [
+        {
+          file: "injections/css/bug1666771-zilow-map-overdraw.css",
+        },
+      ],
+    },
+  },
 ];
 
 module.exports = AVAILABLE_INJECTIONS;
