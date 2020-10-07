@@ -18,7 +18,7 @@ If this is the first time you're working with this repository, install the depen
 
 1. Ensure the version number is bumped in `src/manifest.json`, appropriately (see [Versioning Scheme](https://github.com/mozilla/webcompat-addon/wiki/Versioning-Scheme) for more info).
 2. Make sure the `EXPORT_MC_LOCATION` environment variable is set to the root of your `mozilla-central` checkout.
-3. Run `npm run jake export-mc` for Desktop or `npm run jake export-mc-android` for Android.
+3. Run `npm run jake export-mc`.
 4. Find the exported files in your `mozilla-central` directory, ready to commit.
 
 ### Exporting the sources into Android Components
@@ -54,6 +54,15 @@ Since the WebCompat feature inside Fenix is not shipped directly to the product 
 
 1. Run `npm run test`
 2. Wait!
+
+### Run tests inside `mozilla-central`
+
+Tests located in `src/tests/` are not automatically started by the CI in this repo, but are meant as in-tree tests that run together with other Firefox tests. These tests are triggered when trying to land things via Phabricator, but manually running them is also possible.
+
+1. Export the sources to `mozilla-central` as explained above.
+2. Switch into your `mozilla-central` directory.
+3. Build the changed sources into Firefox by running `./mach build`.
+4. Run the test suite with `./mach mochitest browser/extensions/webcompat/`.
 
 ### Automatically check and adjust the code style
 

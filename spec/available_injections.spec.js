@@ -7,6 +7,8 @@
 const fs = require("fs");
 const path = require("path");
 
+const WebExtManifestSchmea = require("./helpers/webext_manifest_schema");
+
 const AVAILABLE_INJECTIONS = require("../src/data/injections");
 
 describe("AVAILABLE_INJECTIONS", () => {
@@ -53,8 +55,12 @@ for (const injection of AVAILABLE_INJECTIONS) {
     });
 
     if (injection.contentScripts) {
-      it("provides a contentScript matches scope", () => {
-        expect(injection.contentScripts.matches).toBeTruthy();
+      it("provides valid URLs", () => {
+        expect(
+          WebExtManifestSchmea.matchPatternsValid(
+            injection.contentScripts.matches
+          )
+        ).toBeTruthy();
       });
 
       it("provides valid filenames for contentScripts", () => {

@@ -9,6 +9,16 @@ const path = require("path");
 const exec = require("child_process").exec;
 
 /**
+ * The name of the extension as written in the manifest.json
+ */
+
+const EXTENSION_NAME = {
+  default: "Web Compatibility Interventions",
+  androidComponents:
+    "Mozilla Android Components - Web Compatibility Interventions",
+};
+
+/**
  * The directory the extension files are copied into for exporting, linking,
  * etc.
  */
@@ -93,7 +103,7 @@ function getAndroidComponentsLocation() {
 }
 
 /**
- * Replaces file list placeholders in moz.build
+ * Replaces file list placeholders in moz.build and manifest.json
  *
  * returns {promise}
  */
@@ -110,34 +120,37 @@ function replaceFilelistPlaceholders(cssInjections, jsInjections, shims) {
     };
 
     let mozBuildFilename = path.join(BUILD_DIR, "moz.build");
-    try {
-      fs.statSync(mozBuildFilename).isFile();
-    } catch (ex) {
-      reject("Cannot generate the injection file list: no moz.build");
-    }
-
-    let manifestFilename = path.join(BUILD_DIR, "manifest.json");
-    try {
-      fs.statSync(manifestFilename).isFile();
-    } catch (ex) {
-      reject("Cannot generate the injection file list: no manifest.json");
-    }
-
     let mozBuildContents = fs.readFileSync(mozBuildFilename).toString();
     mozBuildContents = mozBuildContents
       .replace("@CSS_INJECTIONS@", formatList(cssInjections))
       .replace("@JS_INJECTIONS@", formatList(jsInjections))
       .replace("@SHIMS@", formatList(shims));
-
     fs.writeFileSync(mozBuildFilename, mozBuildContents);
 
+    let manifestFilename = path.join(BUILD_DIR, "manifest.json");
     let manifestContents = fs.readFileSync(manifestFilename).toString();
     manifestContents = manifestContents.replace(
       `["@WEB_ACCESSIBLE_RESOURCES@"]`,
       formatListForManifest(shims)
     );
-
     fs.writeFileSync(manifestFilename, manifestContents);
+
+    resolve();
+  });
+}
+
+/**
+ * Sets the extension name in manifest.json
+ *
+ * returns {promise}
+ */
+function setExtensionName(name) {
+  return new Promise((resolve, reject) => {
+    let manifestFilename = path.join(BUILD_DIR, "manifest.json");
+    let manifestContents = fs.readFileSync(manifestFilename).toString();
+    manifestContents = manifestContents.replace(`@EXTENSION_NAME@`, name);
+    fs.writeFileSync(manifestFilename, manifestContents);
+
     resolve();
   });
 }
@@ -170,20 +183,14 @@ task(
 );
 
 desc("Exports the sources into mozilla-central");
-task("export-mc", ["build"], () => {
+task("export-mc", ["build"], { async: true }, async () => {
+  await setExtensionName(EXTENSION_NAME.default);
   exportFiles(getMozillaCentralLocation(), "browser/extensions/webcompat");
 });
 
-desc("Exports the sources into the mozilla-central for android");
-task("export-mc-android", ["build"], () => {
-  exportFiles(
-    getMozillaCentralLocation(),
-    "mobile/android/extensions/webcompat"
-  );
-});
-
 desc("Exports the sources into the android-components repo");
-task("export-ac", ["build"], () => {
+task("export-ac", ["build"], { async: true }, async () => {
+  await setExtensionName(EXTENSION_NAME.androidComponents);
   deleteBuiltFiles(AC_IGNORE_PATHS);
   exportFiles(
     getAndroidComponentsLocation(),
@@ -192,7 +199,8 @@ task("export-ac", ["build"], () => {
 });
 
 desc("Exports the sources into an .xpi for update shipping");
-task("export-xpi", ["build"], { async: true }, () => {
+task("export-xpi", ["build"], { async: true }, async () => {
+  await setExtensionName(EXTENSION_NAME.default);
   deleteBuiltFiles(XPI_IGNORE_PATHS);
   jake.mkdirP(XPI_DIR);
   return jake.exec(
