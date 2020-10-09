@@ -114,6 +114,7 @@
       "data/shims.js",
       "data/ua_overrides.js",
       "lib/about_compat_broker.js",
+      "lib/console_warning_helper.js",
       "lib/custom_functions.js",
       "lib/injections.js",
       "lib/picture_in_picture_overrides.js",
