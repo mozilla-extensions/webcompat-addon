@@ -4,7 +4,7 @@
 
 "use strict";
 
-/* globals browser, module, promiseConsoleWarningScript */
+/* globals browser, module */
 
 class UAOverrides {
   constructor(availableOverrides) {
@@ -86,9 +86,6 @@ class UAOverrides {
           }
         }
       }
-      promiseConsoleWarningScript(override.domain).then(script => {
-        browser.tabs.executeScript(details.tabId, script).catch(() => {});
-      });
       return { requestHeaders: details.requestHeaders };
     };
 
