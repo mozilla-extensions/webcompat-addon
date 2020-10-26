@@ -4,80 +4,80 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
-DEFINES['MOZ_APP_VERSION'] = CONFIG['MOZ_APP_VERSION']
-DEFINES['MOZ_APP_MAXVERSION'] = CONFIG['MOZ_APP_MAXVERSION']
+DEFINES["MOZ_APP_VERSION"] = CONFIG["MOZ_APP_VERSION"]
+DEFINES["MOZ_APP_MAXVERSION"] = CONFIG["MOZ_APP_MAXVERSION"]
 
-FINAL_TARGET_FILES.features['webcompat@mozilla.org'] += [
-  'manifest.json',
-  'run.js',
+FINAL_TARGET_FILES.features["webcompat@mozilla.org"] += [
+    "manifest.json",
+    "run.js",
 ]
 
-FINAL_TARGET_FILES.features['webcompat@mozilla.org']['about-compat'] += [
-  'about-compat/aboutCompat.css',
-  'about-compat/aboutCompat.html',
-  'about-compat/aboutCompat.js',
-  'about-compat/AboutCompat.jsm',
-  'about-compat/aboutPage.js',
-  'about-compat/aboutPage.json',
-  'about-compat/aboutPageProcessScript.js',
+FINAL_TARGET_FILES.features["webcompat@mozilla.org"]["about-compat"] += [
+    "about-compat/aboutCompat.css",
+    "about-compat/aboutCompat.html",
+    "about-compat/aboutCompat.js",
+    "about-compat/AboutCompat.jsm",
+    "about-compat/aboutPage.js",
+    "about-compat/aboutPage.json",
+    "about-compat/aboutPageProcessScript.js",
 ]
 
-FINAL_TARGET_FILES.features['webcompat@mozilla.org']['data'] += [
-  'data/injections.js',
-  'data/picture_in_picture_overrides.js',
-  'data/shims.js',
-  'data/ua_overrides.js',
+FINAL_TARGET_FILES.features["webcompat@mozilla.org"]["data"] += [
+    "data/injections.js",
+    "data/picture_in_picture_overrides.js",
+    "data/shims.js",
+    "data/ua_overrides.js",
 ]
 
-FINAL_TARGET_FILES.features['webcompat@mozilla.org']['experiment-apis'] += [
-  'experiment-apis/aboutConfigPrefs.js',
-  'experiment-apis/aboutConfigPrefs.json',
-  'experiment-apis/appConstants.js',
-  'experiment-apis/appConstants.json',
-  'experiment-apis/experiments.js',
-  'experiment-apis/experiments.json',
-  'experiment-apis/matchPatterns.js',
-  'experiment-apis/matchPatterns.json',
-  'experiment-apis/pictureInPicture.js',
-  'experiment-apis/pictureInPicture.json',
-  'experiment-apis/sharedPreferences.js',
-  'experiment-apis/sharedPreferences.json',
-  'experiment-apis/systemManufacturer.js',
-  'experiment-apis/systemManufacturer.json',
-  'experiment-apis/trackingProtection.js',
-  'experiment-apis/trackingProtection.json',
+FINAL_TARGET_FILES.features["webcompat@mozilla.org"]["experiment-apis"] += [
+    "experiment-apis/aboutConfigPrefs.js",
+    "experiment-apis/aboutConfigPrefs.json",
+    "experiment-apis/appConstants.js",
+    "experiment-apis/appConstants.json",
+    "experiment-apis/experiments.js",
+    "experiment-apis/experiments.json",
+    "experiment-apis/matchPatterns.js",
+    "experiment-apis/matchPatterns.json",
+    "experiment-apis/pictureInPicture.js",
+    "experiment-apis/pictureInPicture.json",
+    "experiment-apis/sharedPreferences.js",
+    "experiment-apis/sharedPreferences.json",
+    "experiment-apis/systemManufacturer.js",
+    "experiment-apis/systemManufacturer.json",
+    "experiment-apis/trackingProtection.js",
+    "experiment-apis/trackingProtection.json",
 ]
 
-FINAL_TARGET_FILES.features['webcompat@mozilla.org']['injections']['css'] += [
-  @CSS_INJECTIONS@
+FINAL_TARGET_FILES.features["webcompat@mozilla.org"]["injections"]["css"] += [
+    @CSS_INJECTIONS@
 ]
 
-FINAL_TARGET_FILES.features['webcompat@mozilla.org']['injections']['js'] += [
-  @JS_INJECTIONS@
+FINAL_TARGET_FILES.features["webcompat@mozilla.org"]["injections"]["js"] += [
+    @JS_INJECTIONS@
 ]
 
-FINAL_TARGET_FILES.features['webcompat@mozilla.org']['shims'] += [
-  @SHIMS@
+FINAL_TARGET_FILES.features["webcompat@mozilla.org"]["shims"] += [
+    @SHIMS@
 ]
 
-FINAL_TARGET_FILES.features['webcompat@mozilla.org']['lib'] += [
-  'lib/about_compat_broker.js',
-  'lib/custom_functions.js',
-  'lib/injections.js',
-  'lib/intervention_helpers.js',
-  'lib/messaging_helper.js',
-  'lib/module_shim.js',
-  'lib/picture_in_picture_overrides.js',
-  'lib/shim_messaging_helper.js',
-  'lib/shims.js',
-  'lib/ua_overrides.js',
+FINAL_TARGET_FILES.features["webcompat@mozilla.org"]["lib"] += [
+    "lib/about_compat_broker.js",
+    "lib/custom_functions.js",
+    "lib/injections.js",
+    "lib/intervention_helpers.js",
+    "lib/messaging_helper.js",
+    "lib/module_shim.js",
+    "lib/picture_in_picture_overrides.js",
+    "lib/shim_messaging_helper.js",
+    "lib/shims.js",
+    "lib/ua_overrides.js",
 ]
 
 XPCOM_MANIFESTS += [
-    'components.conf',
+    "components.conf",
 ]
 
-BROWSER_CHROME_MANIFESTS += ['tests/browser/browser.ini']
+BROWSER_CHROME_MANIFESTS += ["tests/browser/browser.ini"]
 
-with Files('**'):
-  BUG_COMPONENT = ('Web Compatibility', 'Tooling & Investigations')
+with Files("**"):
+    BUG_COMPONENT = ("Web Compatibility", "Tooling & Investigations")
