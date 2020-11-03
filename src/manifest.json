@@ -3,6 +3,7 @@
   "name": "@EXTENSION_NAME@",
   "description": "Urgent post-release fixes for web compatibility.",
   "version": "17.0.0",
+
   "applications": {
     "gecko": {
       "id": "webcompat@mozilla.org",
