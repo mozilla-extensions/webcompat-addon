@@ -111,7 +111,7 @@ function replaceFilelistPlaceholders(cssInjections, jsInjections, shims) {
   return new Promise((resolve, reject) => {
     let formatList = files => {
       files = files.map(filename => filename.replace("build/", ""));
-      return "'" + files.join("',\n  '") + "',";
+      return `"${files.join(`",\n    "`)}",`;
     };
 
     let formatListForManifest = files => {
