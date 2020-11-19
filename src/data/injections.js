@@ -414,6 +414,21 @@ const AVAILABLE_INJECTIONS = [
       ],
     },
   },
+  {
+    id: "bug1631811",
+    platform: "all",
+    domain: "datastudio.google.com",
+    bug: "1631811",
+    contentScripts: {
+      matches: ["https://datastudio.google.com/embed/reporting/*"],
+      js: [
+        {
+          file: "injections/js/bug1631811-datastudio.google.com-indexedDB.js",
+        },
+      ],
+      allFrames: true,
+    },
+  },
 ];
 
 module.exports = AVAILABLE_INJECTIONS;
