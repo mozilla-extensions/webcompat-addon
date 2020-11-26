@@ -109,7 +109,7 @@ const AVAILABLE_UA_OVERRIDES = [
      * Spoofing as Chrome prevents the site from doing a constant page refresh
      */
     id: "bug1610010",
-    platform: "desktop",
+    platform: "all",
     domain: "criticalcareontario.ca",
     bug: "1610010",
     config: {
