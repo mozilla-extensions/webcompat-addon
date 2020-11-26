@@ -272,20 +272,6 @@ const AVAILABLE_INJECTIONS = [
     customFunc: "detectSwipeFix",
   },
   {
-    id: "bug1632019",
-    platform: "all",
-    domain: "everyman.co",
-    bug: "1632019",
-    contentScripts: {
-      matches: ["https://everyman.co/*"],
-      css: [
-        {
-          file: "injections/css/bug1632019-everyman.co-gallery-width-fix.css",
-        },
-      ],
-    },
-  },
-  {
     id: "bug1644830",
     platform: "desktop",
     domain: "usps.com",
