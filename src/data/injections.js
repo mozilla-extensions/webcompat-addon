@@ -415,6 +415,24 @@ const AVAILABLE_INJECTIONS = [
       allFrames: true,
     },
   },
+  {
+    id: "bug1665035",
+    platform: "desktop",
+    domain: "dckids.com",
+    bug: "1665035",
+    contentScripts: {
+      matches: [
+        "https://d3qlaywcwingl6.cloudfront.net/content/*/Html5Game/*",
+        "https://d3qlaywcwingl6.cloudfront.net/*/game/content/*",
+      ],
+      js: [
+        {
+          file: "injections/js/bug1665035-dckids.com-cookieEnabled.js",
+        },
+      ],
+      allFrames: true,
+    },
+  },
 ];
 
 module.exports = AVAILABLE_INJECTIONS;
