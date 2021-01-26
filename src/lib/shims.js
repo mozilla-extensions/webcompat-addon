@@ -297,9 +297,18 @@ class Shims {
     } else if (message === "optIn") {
       try {
         await shim.onUserOptIn(new URL(url).hostname);
-        const {name, bug} = shim;
+        const { name, bug } = shim;
         const origin = new URL(tab.url).origin;
-        warn("** User opted in for", name, "shim on", origin, "on tab", id, "frame", frameId);
+        warn(
+          "** User opted in for",
+          name,
+          "shim on",
+          origin,
+          "on tab",
+          id,
+          "frame",
+          frameId
+        );
         const warning = `${name} is now being allowed on ${origin} for this browsing session. See https://bugzilla.mozilla.org/show_bug.cgi?id=${bug} for details.`;
         await browser.tabs.executeScript(id, {
           code: `console.warn(${JSON.stringify(warning)})`,
