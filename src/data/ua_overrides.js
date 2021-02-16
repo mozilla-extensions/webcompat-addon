@@ -492,26 +492,6 @@ const AVAILABLE_UA_OVERRIDES = [
   },
   {
     /*
-     * Bug 1630280 - UA override for dominos.ch
-     * Webcompat issue #48273 - https://webcompat.com/issues/48273
-     *
-     * dominos.ch is suggesting downloading their native app and showing
-     * an overlay that can't be removed in Firefox for Android. Spoofing
-     * as Chrome allows to continue to the site
-     */
-    id: "bug1630280",
-    platform: "android",
-    domain: "dominos.ch",
-    bug: "1630280",
-    config: {
-      matches: ["https://*.dominos.ch/*"],
-      uaTransformer: () => {
-        return UAHelpers.getDeviceAppropriateChromeUA();
-      },
-    },
-  },
-  {
-    /*
      * Bug 1563839 - rolb.santanderbank.com - Build UA override
      * Bug 1646791 - bancosantander.es - Re-add UA override.
      * Bug 1665129 - *.gruposantander.es - Add wildcard domains.
