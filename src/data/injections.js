@@ -82,21 +82,6 @@ const AVAILABLE_INJECTIONS = [
     },
   },
   {
-    id: "bug1570856",
-    platform: "android",
-    domain: "medium.com",
-    bug: "1570856",
-    contentScripts: {
-      matches: ["*://medium.com/*"],
-      js: [
-        {
-          file: "injections/js/bug1570856-medium.com-menu-isTier1.js",
-        },
-      ],
-      allFrames: true,
-    },
-  },
-  {
     id: "bug1579159",
     platform: "android",
     domain: "m.tailieu.vn",
