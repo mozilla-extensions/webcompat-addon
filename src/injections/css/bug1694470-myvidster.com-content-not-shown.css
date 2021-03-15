@@ -6,6 +6,6 @@
  * The site depends on Sencha Touch and should receive some specific
  * -moz-box-flex to be working.
  */
- #home_refresh_var {
-    -moz-box-flex: 1;
+#home_refresh_var {
+  -moz-box-flex: 1;
 }

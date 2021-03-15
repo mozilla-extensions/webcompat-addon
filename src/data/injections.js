@@ -418,6 +418,20 @@ const AVAILABLE_INJECTIONS = [
       ],
     },
   },
+  {
+    id: "bug1694470",
+    platform: "android",
+    domain: "m.myvidster.com",
+    bug: "1694470",
+    contentScripts: {
+      matches: ["https://m.myvidster.com/*"],
+      css: [
+        {
+          file: "injections/css/bug1694470-myvidster.com-content-not-shown.css",
+        },
+      ],
+    },
+  },
 ];
 
 module.exports = AVAILABLE_INJECTIONS;
