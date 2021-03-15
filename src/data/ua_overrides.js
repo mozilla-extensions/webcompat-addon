@@ -616,6 +616,28 @@ const AVAILABLE_UA_OVERRIDES = [
       },
     },
   },
+  {
+    /*
+     * Bug 1693827 - Add UA override for www.spectrum.net/voice/
+     * Webcompat issue https://bugzilla.mozilla.org/show_bug.cgi?id=1546167
+     *
+     * The site is not allowing Firefox users to download
+     * voice messages based on UA detection. Chrome UA is required.
+     */
+    id: "bug1693827",
+    platform: "desktop",
+    domain: "spectrum.net",
+    bug: "1693827",
+    config: {
+      matches: ["*://*.spectrum.net/voice/*"],
+      uaTransformer: originalUA => {
+        return (
+          UAHelpers.getPrefix(originalUA) +
+          " AppleWebKit/537.36 (KHTML, like Gecko) Chrome/89.0.4389.90 Safari/537.36"
+        );
+      },
+    },
+  },
 ];
 
 const UAHelpers = {
