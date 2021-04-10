@@ -19,6 +19,7 @@ const AVAILABLE_SHIMS = [
   {
     id: "MochitestShim",
     platform: "all",
+    branch: ["all:ignoredOtherPlatform"],
     name: "Test shim for Mochitests",
     bug: "mochitest",
     file: "mochitest-shim-1.js",
