@@ -100,7 +100,7 @@ const AVAILABLE_SHIMS = [
   {
     id: "AdSafeProtectedGoogleIMAAdapter",
     platform: "all",
-    branches: ["nightly"],
+    branches: ["nightly:android"],
     name: "Ad Safe Protected Google IMA Adapter",
     bug: "1508639",
     file: "adsafeprotected-ima.js",
@@ -139,7 +139,7 @@ const AVAILABLE_SHIMS = [
   {
     id: "FacebookSDK",
     platform: "all",
-    branches: ["nightly"],
+    branches: ["nightly:android"],
     name: "Facebook SDK",
     bug: "1226498",
     file: "facebook-sdk.js",
