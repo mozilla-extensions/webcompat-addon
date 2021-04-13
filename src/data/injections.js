@@ -405,20 +405,6 @@ const AVAILABLE_INJECTIONS = [
     },
   },
   {
-    id: "bug1690091",
-    platform: "desktop",
-    domain: "binance.com",
-    bug: "1690091",
-    contentScripts: {
-      matches: ["*://*.binance.com/*"],
-      css: [
-        {
-          file: "injections/css/bug1690091-binance.com-page-overflow.css",
-        },
-      ],
-    },
-  },
-  {
     id: "bug1694470",
     platform: "android",
     domain: "m.myvidster.com",
