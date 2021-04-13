@@ -657,6 +657,25 @@ const AVAILABLE_UA_OVERRIDES = [
       },
     },
   },
+  {
+    /*
+     * Bug 1704673 - Add UA override for app.xiaomi.com
+     * Webcompat issue #66163 - https://webcompat.com/issues/66163
+     *
+     * The page isn’t redirecting properly error message received.
+     * Spoofing as Chrome makes the page load
+     */
+    id: "bug1704673",
+    platform: "android",
+    domain: "app.xiaomi.com",
+    bug: "1704673",
+    config: {
+      matches: ["*://app.xiaomi.com/*"],
+      uaTransformer: () => {
+        return UAHelpers.getDeviceAppropriateChromeUA();
+      },
+    },
+  },
 ];
 
 const UAHelpers = {
