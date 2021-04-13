@@ -418,6 +418,20 @@ const AVAILABLE_INJECTIONS = [
       ],
     },
   },
+  {
+    id: "bug1704653",
+    platform: "all",
+    domain: "tsky.in",
+    bug: "1704653",
+    contentScripts: {
+      matches: ["*://tsky.in/*"],
+      css: [
+        {
+          file: "injections/css/bug1704653-tsky.in-clear-float.css",
+        },
+      ],
+    },
+  },
 ];
 
 module.exports = AVAILABLE_INJECTIONS;
