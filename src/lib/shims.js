@@ -45,7 +45,6 @@ class Shim {
     this.needsShimHelpers = opts.needsShimHelpers;
     this.platform = opts.platform || "all";
     this.unblocksOnOptIn = unblocksOnOptIn;
-    this.userHasOptedIn = false;
 
     this._hostOptIns = new Set();
 
@@ -85,6 +84,7 @@ class Shim {
           this._disabledByReleaseBranch = true;
         }
       }
+
       this._preprocessOptions(platform, branch);
       this._onEnabledStateChanged();
     });
@@ -145,7 +145,7 @@ class Shim {
     return browser.trackingProtection.allow(this.id, this.matches, {
       hosts: this.hosts,
       notHosts: this.notHosts,
-      willBeShimming: !this.userHasOptedIn,
+      hostOptIns: Array.from(this._hostOptIns),
     });
   }
 
@@ -184,8 +184,8 @@ class Shim {
       this.userHasOptedIn = true;
       const toUnblock = matches.concat(unblocksOnOptIn);
       await browser.trackingProtection.allow(this.id, toUnblock, {
-        hosts: [host],
-        willBeShimming: false,
+        hosts: this.hosts,
+        hostOptIns: [host],
       });
     }
 
@@ -240,7 +240,7 @@ class Shims {
       return;
     }
 
-    const urls = [...allShimPatterns];
+    const urls = Array.from(allShimPatterns);
     debug("Shimming these match patterns", urls);
 
     browser.webRequest.onBeforeRequest.addListener(
