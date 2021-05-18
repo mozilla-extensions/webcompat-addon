@@ -1,0 +1,8 @@
+/**
+ * www.tiktok.com - Ensure that the comment section for videos has a vertical
+ *                  scrollbar when needed.
+ */
+
+.video-card-big .comment-container {
+  overflow-y: auto;
+}
