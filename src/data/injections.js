@@ -452,6 +452,20 @@ const AVAILABLE_INJECTIONS = [
       allFrames: true,
     },
   },
+  {
+    id: "bug1711082",
+    platform: "all",
+    domain: "m.aliexpress.com",
+    bug: "1711082",
+    contentScripts: {
+      matches: ["*://m.aliexpress.com/*"],
+      js: [
+        {
+          file: "injections/js/bug1711082-m.aliexpress.com-undisable-search.js",
+        },
+      ],
+    },
+  },
 ];
 
 module.exports = AVAILABLE_INJECTIONS;
