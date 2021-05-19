@@ -472,13 +472,10 @@ const AVAILABLE_INJECTIONS = [
     domain: "www.tiktok.com",
     bug: "1710701",
     contentScripts: {
-      matches: [
-        "*://www.tiktok.com/*",
-      ],
+      matches: ["*://www.tiktok.com/*"],
       css: [
         {
-          file:
-            "injections/css/bug1710701-tiktok.com-comments-scrollbar.css",
+          file: "injections/css/bug1710701-tiktok.com-comments-scrollbar.css",
         },
       ],
     },
