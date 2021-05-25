@@ -432,7 +432,8 @@ const AVAILABLE_INJECTIONS = [
       matches: ["*://buskocchi.desuca.co.jp/*"],
       css: [
         {
-          file: "injections/css/bug1712833-buskocchi.desuca.co.jp-fix-map-height.css",
+          file:
+            "injections/css/bug1712833-buskocchi.desuca.co.jp-fix-map-height.css",
         },
       ],
     },
