@@ -377,20 +377,6 @@ const AVAILABLE_INJECTIONS = [
     },
   },
   {
-    id: "bug1690158",
-    platform: "desktop",
-    domain: "slack.com",
-    bug: "1690158",
-    contentScripts: {
-      matches: ["*://app.slack.com/*"],
-      css: [
-        {
-          file: "injections/css/bug1690158-slack.com-webkit-scrollbar.css",
-        },
-      ],
-    },
-  },
-  {
     id: "bug1694470",
     platform: "android",
     domain: "m.myvidster.com",
