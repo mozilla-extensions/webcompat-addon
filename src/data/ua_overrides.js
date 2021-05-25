@@ -679,7 +679,7 @@ const AVAILABLE_UA_OVERRIDES = [
   {
     /*
      * Bug 1712807 - Add UA override for www.dealnews.com
-     * Webcompat issue https://bugzilla.mozilla.org/show_bug.cgi?id=1546167
+     * Webcompat issue #39341 - https://webcompat.com/issues/39341
      *
      * The sites shows Firefox a different layout compared to Chrome.
      * Spoofing as Chrome fixes this.
