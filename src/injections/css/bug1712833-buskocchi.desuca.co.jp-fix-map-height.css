@@ -1,0 +1,7 @@
+/**
+ * buskocchi.desuca.co.jp - Ensure that the map has a height so it is visible.
+ */
+
+form[name="main"] {
+  height: 100%;
+}
