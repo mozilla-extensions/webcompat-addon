@@ -438,6 +438,21 @@ const AVAILABLE_INJECTIONS = [
       ],
     },
   },
+  {
+    id: "bug1712843",
+    platform: "all",
+    domain: "snaptik.app",
+    bug: "1712843",
+    contentScripts: {
+      matches: ["*://snaptik.app/*"],
+      css: [
+        {
+          file:
+            "injections/css/bug1712843-snaptik.app-fix-text-input-alignment.css",
+        },
+      ],
+    },
+  },
 ];
 
 module.exports = AVAILABLE_INJECTIONS;
