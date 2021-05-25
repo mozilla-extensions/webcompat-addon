@@ -362,21 +362,6 @@ const AVAILABLE_INJECTIONS = [
     },
   },
   {
-    id: "bug1677442",
-    platform: "desktop",
-    domain: "store.hp.com",
-    bug: "1677442",
-    contentScripts: {
-      matches: ["*://d3nkfb7815bs43.cloudfront.net/*forstore.hp.com*"],
-      js: [
-        {
-          file: "injections/js/bug1677442-store.hp.com-disable-indexeddb.js",
-        },
-      ],
-      allFrames: true,
-    },
-  },
-  {
     id: "bug1694470",
     platform: "android",
     domain: "m.myvidster.com",
