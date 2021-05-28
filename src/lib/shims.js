@@ -19,17 +19,17 @@ const platformPromise = browser.runtime.getPlatformInfo().then(info => {
 });
 
 let debug = async function() {
-  if ((await releaseBranchPromise) !== "beta_or_release") {
+  if ((await releaseBranchPromise) !== "release_or_beta") {
     console.debug.apply(this, arguments);
   }
 };
 let error = async function() {
-  if ((await releaseBranchPromise) !== "beta_or_release") {
+  if ((await releaseBranchPromise) !== "release_or_beta") {
     console.error.apply(this, arguments);
   }
 };
 let warn = async function() {
-  if ((await releaseBranchPromise) !== "beta_or_release") {
+  if ((await releaseBranchPromise) !== "release_or_beta") {
     console.warn.apply(this, arguments);
   }
 };
