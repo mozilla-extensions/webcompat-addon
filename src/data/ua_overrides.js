@@ -673,6 +673,25 @@ const AVAILABLE_UA_OVERRIDES = [
       },
     },
   },
+  {
+    /*
+     * Bug 1719842 - Add UA override for www.gouletpens.com
+     * Webcompat issue #77723 - https://webcompat.com/issues/77723
+     *
+     * The slider is not working in Firefox for Android due to some UA sniffing
+     * code path. It works if we spoof as Chrome for Android.
+     */
+    id: "bug1719842",
+    platform: "android",
+    domain: "gouletpens.com",
+    bug: "1719842",
+    config: {
+      matches: ["*://*.gouletpens.com/*"],
+      uaTransformer: () => {
+        return UAHelpers.getDeviceAppropriateChromeUA();
+      },
+    },
+  },
 ];
 
 const UAHelpers = {
