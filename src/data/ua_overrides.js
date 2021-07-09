@@ -314,28 +314,6 @@ const AVAILABLE_UA_OVERRIDES = [
   },
   {
     /*
-     * Bug 1577250 - UA override for homebook.pl on Firefox for Android
-     * WebCompat issue #24044 - https://webcompat.com/issues/24044
-     *
-     * homebook.pl shows desktop site on Firefox for Android based on
-     * UA detection. Spoofing as Chrome allows to get mobile site.
-     */
-    id: "bug1577250",
-    platform: "android",
-    domain: "homebook.pl",
-    bug: "1577250",
-    config: {
-      matches: ["*://*.homebook.pl/*"],
-      uaTransformer: originalUA => {
-        return (
-          UAHelpers.getPrefix(originalUA) +
-          " AppleWebKit/537.36 (KHTML, like Gecko) Chrome/76.0.3809.111 Mobile Safari/537.36"
-        );
-      },
-    },
-  },
-  {
-    /*
      * Bug 1577267 - UA override for metfone.com.kh on Firefox for Android
      * WebCompat issue #16363 - https://webcompat.com/issues/16363
      *
