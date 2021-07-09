@@ -654,6 +654,25 @@ const AVAILABLE_UA_OVERRIDES = [
       },
     },
   },
+  {
+    /*
+     * Bug 1719841 - Add UA override for appmedia.jp
+     * Webcompat issue #78939 - https://webcompat.com/issues/78939
+     *
+     * The sites shows Firefox a desktop version. With Chrome's UA string,
+     * we see a working mobile layout.
+     */
+    id: "bug1719841",
+    platform: "android",
+    domain: "appmedia.jp",
+    bug: "1719841",
+    config: {
+      matches: ["*://appmedia.jp/*"],
+      uaTransformer: () => {
+        return UAHelpers.getDeviceAppropriateChromeUA();
+      },
+    },
+  },
 ];
 
 const UAHelpers = {
