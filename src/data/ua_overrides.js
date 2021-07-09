@@ -599,25 +599,6 @@ const AVAILABLE_UA_OVERRIDES = [
   },
   {
     /*
-     * Bug 1679869 - Add UA override for vh1.com
-     * Webcompat issue #52755 - https://webcompat.com/issues/52755
-     *
-     * The site is not showing videos on Firefox on mobile stating
-     * that android 4.4.4 and chrome browser required
-     */
-    id: "bug1679869",
-    platform: "android",
-    domain: "vh1.com",
-    bug: "1679869",
-    config: {
-      matches: ["*://*.vh1.com/*"],
-      uaTransformer: () => {
-        return UAHelpers.getDeviceAppropriateChromeUA();
-      },
-    },
-  },
-  {
-    /*
      * Bug 1693827 - Add UA override for www.spectrum.net/voice/
      * Webcompat issue https://bugzilla.mozilla.org/show_bug.cgi?id=1546167
      *
