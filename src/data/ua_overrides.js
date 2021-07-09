@@ -712,6 +712,25 @@ const AVAILABLE_UA_OVERRIDES = [
       },
     },
   },
+  {
+    /*
+     * Bug 1719859 - Add UA override for saxoinvestor.fr
+     * Webcompat issue #74678 - https://webcompat.com/issues/74678
+     *
+     * The site blocks Firefox with a server-side UA sniffer. Appending a
+     * Chrome version segment to the UA makes it work.
+     */
+    id: "bug1719859",
+    platform: "all",
+    domain: "saxoinvestor.fr",
+    bug: "1719859",
+    config: {
+      matches: ["*://*.saxoinvestor.fr/*"],
+      uaTransformer: originalUA => {
+        return originalUA + " Chrome/91.0.4472.114";
+      },
+    },
+  },
 ];
 
 const UAHelpers = {
