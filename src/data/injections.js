@@ -468,6 +468,20 @@ const AVAILABLE_INJECTIONS = [
       allFrames: true,
     },
   },
+  {
+    id: "bug1719870",
+    platform: "desktop",
+    domain: "lcbo.com",
+    bug: "1719870",
+    contentScripts: {
+      matches: ["*://*.lcbo.com/*"],
+      css: [
+        {
+          file: "injections/css/bug1719870-lcbo.com-table-clearfix.css",
+        },
+      ],
+    },
+  },
 ];
 
 module.exports = AVAILABLE_INJECTIONS;
