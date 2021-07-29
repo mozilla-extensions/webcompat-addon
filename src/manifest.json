@@ -2,7 +2,7 @@
   "manifest_version": 2,
   "name": "@EXTENSION_NAME@",
   "description": "Urgent post-release fixes for web compatibility.",
-  "version": "24.12.0",
+  "version": "24.13.0",
 
   "applications": {
     "gecko": {
