@@ -712,6 +712,25 @@ const AVAILABLE_UA_OVERRIDES = [
       },
     },
   },
+  {
+    /*
+     * Bug 1722955 - Add UA override for frontgate.com
+     * Webcompat issue #36277 - https://github.com/webcompat/web-bugs/issues/36277
+     *
+     * The website is sending the desktop version to Firefox on mobile devices
+     * based on UA sniffing. Spoofing as Chrome fixes this.
+     */
+    id: "bug1722955",
+    platform: "android",
+    domain: "frontgate.com",
+    bug: "1722955",
+    config: {
+      matches: ["*://frontgate.com/*"],
+      uaTransformer: () => {
+        return UAHelpers.getDeviceAppropriateChromeUA();
+      },
+    },
+  },
 ];
 
 const UAHelpers = {
