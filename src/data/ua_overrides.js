@@ -731,6 +731,25 @@ const AVAILABLE_UA_OVERRIDES = [
       },
     },
   },
+  {
+    /*
+     * Bug 1722954 - Add UA override for game.granbluefantasy.jp
+     * Webcompat issue #34310 - https://github.com/webcompat/web-bugs/issues/34310
+     *
+     * The website is sending a version of the site which is too small. Adding a partial
+     * safari iOS version of the UA sends us the right layout.
+     */
+    id: "bug1722954",
+    platform: "android",
+    domain: "granbluefantasy.jp",
+    bug: "1722954",
+    config: {
+      matches: ["*://*.granbluefantasy.jp/*"],
+      uaTransformer: originalUA => {
+        return originalUA + " iPhone OS 12_0 like Mac OS X";
+      },
+    },
+  },
 ];
 
 const UAHelpers = {
