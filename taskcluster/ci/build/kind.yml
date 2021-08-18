@@ -19,6 +19,9 @@ job-defaults:
         docker-image:
             indexed: xpi.cache.level-3.docker-images.v2.node-14.latest
         chain-of-trust: true
+        volumes:
+            - /builds/worker/checkouts
+            - /builds/worker/.cache
     run:
         checkout:
             xpi: {}
