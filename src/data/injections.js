@@ -203,20 +203,6 @@ const AVAILABLE_INJECTIONS = [
     },
   },
   {
-    id: "bug1610016",
-    platform: "android",
-    domain: "gaana.com",
-    bug: "1610016",
-    contentScripts: {
-      matches: ["https://gaana.com/*"],
-      css: [
-        {
-          file: "injections/css/bug1610016-gaana.com-input-position-fix.css",
-        },
-      ],
-    },
-  },
-  {
     id: "bug1610358",
     platform: "android",
     domain: "pcloud.com",
@@ -434,21 +420,6 @@ const AVAILABLE_INJECTIONS = [
         {
           file:
             "injections/css/bug1712833-buskocchi.desuca.co.jp-fix-map-height.css",
-        },
-      ],
-    },
-  },
-  {
-    id: "bug1712843",
-    platform: "all",
-    domain: "snaptik.app",
-    bug: "1712843",
-    contentScripts: {
-      matches: ["*://snaptik.app/*"],
-      css: [
-        {
-          file:
-            "injections/css/bug1712843-snaptik.app-fix-text-input-alignment.css",
         },
       ],
     },
