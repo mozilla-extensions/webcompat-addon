@@ -511,6 +511,20 @@ const AVAILABLE_INJECTIONS = [
       allFrames: true,
     },
   },
+  {
+    id: "bug1727080",
+    platform: "android",
+    domain: "nexity.fr",
+    bug: "1727080",
+    contentScripts: {
+      matches: ["*://*.nexity.fr/*"],
+      css: [
+        {
+          file: "injections/css/bug1727080-nexity.fr-svg-size-fix.css",
+        },
+      ],
+    },
+  },
 ];
 
 module.exports = AVAILABLE_INJECTIONS;
