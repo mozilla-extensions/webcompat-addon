@@ -496,6 +496,21 @@ const AVAILABLE_INJECTIONS = [
       ],
     },
   },
+  {
+    id: "bug1724868",
+    platform: "android",
+    domain: "news.yahoo.co.jp",
+    bug: "1724868",
+    contentScripts: {
+      matches: ["*://news.yahoo.co.jp/articles/*", "*://s.yimg.jp/*"],
+      js: [
+        {
+          file: "injections/js/bug1724868-news.yahoo.co.jp-ua-override.js",
+        },
+      ],
+      allFrames: true,
+    },
+  },
 ];
 
 module.exports = AVAILABLE_INJECTIONS;
