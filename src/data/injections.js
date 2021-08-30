@@ -496,6 +496,20 @@ const AVAILABLE_INJECTIONS = [
       ],
     },
   },
+  {
+    id: "bug1728140",
+    platform: "android",
+    domain: "air-quality.com",
+    bug: "1728140",
+    contentScripts: {
+      matches: ["*://air-quality.com/*"],
+      css: [
+        {
+          file: "injections/css/bug1728140-map-size-fix.css",
+        },
+      ],
+    },
+  },
 ];
 
 module.exports = AVAILABLE_INJECTIONS;
