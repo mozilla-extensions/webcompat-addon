@@ -2,8 +2,7 @@
   "manifest_version": 2,
   "name": "@EXTENSION_NAME@",
   "description": "Urgent post-release fixes for web compatibility.",
-  "version": "25.8.0",
-
+  "version": "26.0.0",
   "applications": {
     "gecko": {
       "id": "webcompat@mozilla.org",
