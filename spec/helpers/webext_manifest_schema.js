@@ -9,10 +9,16 @@ const WEBEXT_MATCH_PATTERN = new RegExp(
   "i"
 );
 
-module.exports = {
-  matchPatternsValid: patterns => {
-    return patterns.every(
-      pattern => pattern.match(WEBEXT_MATCH_PATTERN) !== null
-    );
-  },
-};
+class WebextManifestSchema {
+  static matchPatternsValid(patterns) {
+    return patterns.every(pattern => {
+      if (typeof pattern == "string") {
+        return pattern.match(WEBEXT_MATCH_PATTERN) !== null;
+      } else {
+        return this.matchPatternsValid(pattern.patterns);
+      }
+    });
+  }
+}
+
+module.exports = WebextManifestSchema;
