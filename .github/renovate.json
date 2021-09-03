@@ -1,5 +1,5 @@
 {
   "extends": ["config:base"],
-  "assignees": ["denschub"],
-  "ignoreDeps": ["prettier"]
+  "ignoreDeps": ["prettier"],
+  "reviewers": ["denschub"]
 }
