@@ -510,25 +510,6 @@ const AVAILABLE_UA_OVERRIDES = [
   },
   {
     /*
-     * Bug 1679847 - Add UA override for avto.pro
-     * Webcompat issue #60043 - https://webcompat.com/issues/60043
-     *
-     * Unless Chrome is in the UA, the site serves a desktop version
-     * on catalog pages
-     */
-    id: "bug1679847",
-    platform: "android",
-    domain: "avto.pro",
-    bug: "1679847",
-    config: {
-      matches: ["https://avto.pro/catalog/*"],
-      uaTransformer: () => {
-        return UAHelpers.getDeviceAppropriateChromeUA();
-      },
-    },
-  },
-  {
-    /*
      * Bug 1693827 - Add UA override for www.spectrum.net/voice/
      * Webcompat issue https://bugzilla.mozilla.org/show_bug.cgi?id=1546167
      *
