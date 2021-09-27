@@ -47,7 +47,7 @@ const AVAILABLE_UA_OVERRIDES = [
     domain: "att.tv",
     bug: "1577519",
     config: {
-      matches: ["*://*.att.tv/*"],
+      matches: ["*://*.directv.com/*", "*://*.attwatchtv.com/*"],
       uaTransformer: originalUA => {
         return (
           UAHelpers.getPrefix(originalUA) +
