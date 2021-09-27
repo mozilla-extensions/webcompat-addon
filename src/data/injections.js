@@ -247,20 +247,6 @@ const AVAILABLE_INJECTIONS = [
     },
   },
   {
-    id: "bug1645064",
-    platform: "desktop",
-    domain: "s-kanava.fi",
-    bug: "1645064",
-    contentScripts: {
-      matches: ["https://www.s-kanava.fi/*"],
-      css: [
-        {
-          file: "injections/css/bug1645064-s-kanava.fi-invisible-charts.css",
-        },
-      ],
-    },
-  },
-  {
     id: "bug1651917",
     platform: "android",
     domain: "teletrader.com",
