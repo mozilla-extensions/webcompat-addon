@@ -11,6 +11,9 @@ const WEBEXT_MATCH_PATTERN = new RegExp(
 
 class WebextManifestSchema {
   static matchPatternsValid(patterns) {
+    if (patterns === undefined) {
+      return true;
+    }
     return patterns.every(pattern => {
       if (typeof pattern == "string") {
         return pattern.match(WEBEXT_MATCH_PATTERN) !== null;
