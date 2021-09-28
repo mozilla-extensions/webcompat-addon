@@ -10,6 +10,9 @@
 if (typeof InterventionHelpers === "undefined") {
   var InterventionHelpers = require("../lib/intervention_helpers");
 }
+if (typeof UAHelpers === "undefined") {
+  var UAHelpers = require("../lib/ua_helpers");
+}
 
 /**
  * For detailed information on our policies, and a documention on this format
@@ -606,25 +609,6 @@ const AVAILABLE_UA_OVERRIDES = [
   },
   {
     /*
-     * Bug 1722955 - Add UA override for frontgate.com
-     * Webcompat issue #36277 - https://github.com/webcompat/web-bugs/issues/36277
-     *
-     * The website is sending the desktop version to Firefox on mobile devices
-     * based on UA sniffing. Spoofing as Chrome fixes this.
-     */
-    id: "bug1722955",
-    platform: "android",
-    domain: "frontgate.com",
-    bug: "1722955",
-    config: {
-      matches: ["*://frontgate.com/*"],
-      uaTransformer: () => {
-        return UAHelpers.getDeviceAppropriateChromeUA();
-      },
-    },
-  },
-  {
-    /*
      * Bug 1722954 - Add UA override for game.granbluefantasy.jp
      * Webcompat issue #34310 - https://github.com/webcompat/web-bugs/issues/34310
      *
@@ -643,31 +627,5 @@ const AVAILABLE_UA_OVERRIDES = [
     },
   },
 ];
-
-const UAHelpers = {
-  getDeviceAppropriateChromeUA() {
-    if (!UAHelpers._deviceAppropriateChromeUA) {
-      const userAgent =
-        typeof navigator !== "undefined" ? navigator.userAgent : "";
-      const RunningFirefoxVersion = (userAgent.match(/Firefox\/([0-9.]+)/) || [
-        "",
-        "58.0",
-      ])[1];
-      const RunningAndroidVersion =
-        userAgent.match(/Android\/[0-9.]+/) || "Android 6.0";
-      const ChromeVersionToMimic = "76.0.3809.111";
-      const ChromePhoneUA = `Mozilla/5.0 (Linux; ${RunningAndroidVersion}; Nexus 5 Build/MRA58N) FxQuantum/${RunningFirefoxVersion} AppleWebKit/537.36 (KHTML, like Gecko) Chrome/${ChromeVersionToMimic} Mobile Safari/537.36`;
-      const ChromeTabletUA = `Mozilla/5.0 (Linux; ${RunningAndroidVersion}; Nexus 7 Build/JSS15Q) FxQuantum/${RunningFirefoxVersion} AppleWebKit/537.36 (KHTML, like Gecko) Chrome/${ChromeVersionToMimic} Safari/537.36`;
-      const IsPhone = userAgent.includes("Mobile");
-      UAHelpers._deviceAppropriateChromeUA = IsPhone
-        ? ChromePhoneUA
-        : ChromeTabletUA;
-    }
-    return UAHelpers._deviceAppropriateChromeUA;
-  },
-  getPrefix(originalUA) {
-    return originalUA.substr(0, originalUA.indexOf(")") + 1);
-  },
-};
 
 module.exports = AVAILABLE_UA_OVERRIDES;

@@ -460,6 +460,24 @@ const AVAILABLE_INJECTIONS = [
     },
   },
   {
+    id: "bug1722955",
+    platform: "android",
+    domain: "frontgate.com",
+    bug: "1722955",
+    contentScripts: {
+      matches: ["*://*.frontgate.com/*"],
+      js: [
+        {
+          file: "lib/ua_helpers.js",
+        },
+        {
+          file: "injections/js/bug1722955-frontgate.com-ua-override.js",
+        },
+      ],
+      allFrames: true,
+    },
+  },
+  {
     id: "bug1724764",
     platform: "android",
     domain: "amextravel.com",

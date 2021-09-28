@@ -76,6 +76,7 @@
       "lib/module_shim.js",
       "lib/messaging_helper.js",
       "lib/intervention_helpers.js",
+      "lib/ua_helpers.js",
       "data/injections.js",
       "data/shims.js",
       "data/ua_overrides.js",
