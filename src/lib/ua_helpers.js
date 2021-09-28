@@ -4,7 +4,7 @@
 
 "use strict";
 
-/* globals module */
+/* globals exportFunction, module */
 
 const UAHelpers = {
   getDeviceAppropriateChromeUA() {
