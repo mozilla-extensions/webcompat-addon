@@ -552,6 +552,21 @@ const AVAILABLE_INJECTIONS = [
       allFrames: true,
     },
   },
+  {
+    id: "bug1738313",
+    platform: "desktop",
+    domain: "curriculum.gov.bc.ca",
+    bug: "1738313",
+    contentScripts: {
+      matches: ["*://curriculum.gov.bc.ca/*"],
+      css: [
+        {
+          file:
+            "injections/css/bug1738313-curriculum.gov.bc.ca-bootstrap-fix.css",
+        },
+      ],
+    },
+  },
 ];
 
 module.exports = AVAILABLE_INJECTIONS;
