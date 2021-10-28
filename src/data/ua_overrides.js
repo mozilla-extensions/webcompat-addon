@@ -645,6 +645,24 @@ const AVAILABLE_UA_OVERRIDES = [
       },
     },
   },
+  {
+    /*
+     * Bug 1738317 - Add UA override for vmos.cn
+     *
+     * Firefox for Android receives a desktop-only layout based on server-side
+     * UA sniffing. Spoofing as Chrome works fine.
+     */
+    id: "bug1738317",
+    platform: "android",
+    domain: "vmos.cn",
+    bug: "1738317",
+    config: {
+      matches: ["*://*.vmos.cn/*"],
+      uaTransformer: () => {
+        return UAHelpers.getDeviceAppropriateChromeUA();
+      },
+    },
+  },
 ];
 
 module.exports = AVAILABLE_UA_OVERRIDES;
