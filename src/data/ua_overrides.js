@@ -648,6 +648,7 @@ const AVAILABLE_UA_OVERRIDES = [
   {
     /*
      * Bug 1738317 - Add UA override for vmos.cn
+     * Webcompat issue #90432 - https://github.com/webcompat/web-bugs/issues/90432
      *
      * Firefox for Android receives a desktop-only layout based on server-side
      * UA sniffing. Spoofing as Chrome works fine.
@@ -658,6 +659,25 @@ const AVAILABLE_UA_OVERRIDES = [
     bug: "1738317",
     config: {
       matches: ["*://*.vmos.cn/*"],
+      uaTransformer: () => {
+        return UAHelpers.getDeviceAppropriateChromeUA();
+      },
+    },
+  },
+  {
+    /*
+     * Bug 1738319 - Add UA override for yebocasino.co.za
+     * Webcompat issue #88409 - https://github.com/webcompat/web-bugs/issues/88409
+     *
+     * Firefox for Android is locked out with a "Browser Unsupported" message.
+     * Spoofing as Chrome gets rid of that.
+     */
+    id: "bug1738319",
+    platform: "android",
+    domain: "yebocasino.co.za",
+    bug: "1738319",
+    config: {
+      matches: ["*://*.yebocasino.co.za/*"],
       uaTransformer: () => {
         return UAHelpers.getDeviceAppropriateChromeUA();
       },
