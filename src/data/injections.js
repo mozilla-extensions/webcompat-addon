@@ -567,6 +567,20 @@ const AVAILABLE_INJECTIONS = [
       ],
     },
   },
+  {
+    id: "bug1738316",
+    platform: "android",
+    domain: "vuoriclothing.com",
+    bug: "1738316",
+    contentScripts: {
+      matches: ["*://vuoriclothing.com/*"],
+      css: [
+        {
+          file: "injections/css/bug1738316-vuoriclothing.com-flexbox-fix.css",
+        },
+      ],
+    },
+  },
 ];
 
 module.exports = AVAILABLE_INJECTIONS;
