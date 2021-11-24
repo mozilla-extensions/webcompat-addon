@@ -60,6 +60,7 @@ FINAL_TARGET_FILES.features["webcompat@mozilla.org"]["lib"] += [
     "lib/intervention_helpers.js",
     "lib/messaging_helper.js",
     "lib/module_shim.js",
+    "lib/requestStorageAccess_helper.js",
     "lib/shim_messaging_helper.js",
     "lib/shims.js",
     "lib/ua_helpers.js",

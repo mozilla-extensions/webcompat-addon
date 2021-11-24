@@ -2,7 +2,7 @@
   "manifest_version": 2,
   "name": "@EXTENSION_NAME@",
   "description": "Urgent post-release fixes for web compatibility.",
-  "version": "28.5.0",
+  "version": "28.6.0",
   "applications": {
     "gecko": {
       "id": "webcompat@mozilla.org",
@@ -76,6 +76,7 @@
       "lib/module_shim.js",
       "lib/messaging_helper.js",
       "lib/intervention_helpers.js",
+      "lib/requestStorageAccess_helper.js",
       "lib/ua_helpers.js",
       "data/injections.js",
       "data/shims.js",
