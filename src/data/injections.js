@@ -609,6 +609,20 @@ const AVAILABLE_INJECTIONS = [
       ],
     },
   },
+  {
+    id: "bug1740542",
+    platform: "desktop",
+    domain: "tesla.com",
+    bug: "1740542",
+    contentScripts: {
+      matches: ["*://*.tesla.com/*"],
+      css: [
+        {
+          file: "injections/css/bug1740542-tesla.com-footer-links.css",
+        },
+      ],
+    },
+  },
 ];
 
 module.exports = AVAILABLE_INJECTIONS;
