@@ -720,6 +720,25 @@ const AVAILABLE_UA_OVERRIDES = [
       },
     },
   },
+  {
+    /*
+     * Bug 1743745 - Add UA override for www.automesseweb.jp
+     * Webcompat issue #70386 - https://github.com/webcompat/web-bugs/issues/70386
+     *
+     * On Firefox Android, the browser is receiving the desktop layout.
+     *
+     */
+    id: "bug1743745",
+    platform: "android",
+    domain: "automesseweb.jp",
+    bug: "1743745",
+    config: {
+      matches: ["*://*.automesseweb.jp/*"],
+      uaTransformer: () => {
+        return UAHelpers.getDeviceAppropriateChromeUA();
+      },
+    },
+  },
 ];
 
 module.exports = AVAILABLE_UA_OVERRIDES;
