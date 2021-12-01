@@ -595,6 +595,20 @@ const AVAILABLE_INJECTIONS = [
       ],
     },
   },
+  {
+    id: "bug1743041",
+    platform: "all",
+    domain: "lu.ma",
+    bug: "1743041",
+    contentScripts: {
+      matches: ["*://lu.ma/*"],
+      css: [
+        {
+          file: "injections/css/bug1743041-lu.ma-display-fix.css",
+        },
+      ],
+    },
+  },
 ];
 
 module.exports = AVAILABLE_INJECTIONS;
