@@ -683,6 +683,25 @@ const AVAILABLE_UA_OVERRIDES = [
       },
     },
   },
+  {
+    /*
+     * Bug 1743627 - Add UA override for renaud-bray.com
+     * Webcompat issue #55276 - https://github.com/webcompat/web-bugs/issues/55276
+     *
+     * Firefox for Android depends on "Version/" being there in the UA string,
+     * or it'll throw a runtime error.
+     */
+    id: "bug1743627",
+    platform: "android",
+    domain: "renaud-bray.com",
+    bug: "1743627",
+    config: {
+      matches: ["*://*.renaud-bray.com/*"],
+      uaTransformer: originalUA => {
+        return originalUA + " Version/0";
+      },
+    },
+  },
 ];
 
 module.exports = AVAILABLE_UA_OVERRIDES;
