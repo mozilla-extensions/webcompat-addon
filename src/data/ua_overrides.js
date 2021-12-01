@@ -739,6 +739,25 @@ const AVAILABLE_UA_OVERRIDES = [
       },
     },
   },
+  {
+    /*
+     * Bug 1743751 - Add UA override for slrclub.com
+     * Webcompat issue #91373 - https://github.com/webcompat/web-bugs/issues/91373
+     *
+     * On Firefox Android, the browser is receiving the desktop layout.
+     * Spoofing as Chrome works fine.
+     */
+    id: "bug1743751",
+    platform: "android",
+    domain: "slrclub.com",
+    bug: "1743751",
+    config: {
+      matches: ["*://*.slrclub.com/*"],
+      uaTransformer: () => {
+        return UAHelpers.getDeviceAppropriateChromeUA();
+      },
+    },
+  },
 ];
 
 module.exports = AVAILABLE_UA_OVERRIDES;
