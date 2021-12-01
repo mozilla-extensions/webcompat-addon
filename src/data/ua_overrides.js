@@ -758,6 +758,24 @@ const AVAILABLE_UA_OVERRIDES = [
       },
     },
   },
+  {
+    /*
+     * Bug 1743754 - Add UA override for slrclub.com
+     * Webcompat issue #86839 - https://github.com/webcompat/web-bugs/issues/86839
+     *
+     * On Firefox Android, the browser is failing a UA parsing on Firefox UA.
+     */
+    id: "bug1743754",
+    platform: "android",
+    domain: "workflow.base.vn",
+    bug: "1743754",
+    config: {
+      matches: ["*://workflow.base.vn/*"],
+      uaTransformer: () => {
+        return UAHelpers.getDeviceAppropriateChromeUA();
+      },
+    },
+  },
 ];
 
 module.exports = AVAILABLE_UA_OVERRIDES;
