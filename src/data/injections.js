@@ -581,6 +581,20 @@ const AVAILABLE_INJECTIONS = [
       ],
     },
   },
+  {
+    id: "bug1741234",
+    platform: "all",
+    domain: "patient.alphalabs.ca",
+    bug: "1741234",
+    contentScripts: {
+      matches: ["*://patient.alphalabs.ca/*"],
+      css: [
+        {
+          file: "injections/css/bug1741234-patient.alphalabs.ca-height-fix.css",
+        },
+      ],
+    },
+  },
 ];
 
 module.exports = AVAILABLE_INJECTIONS;
