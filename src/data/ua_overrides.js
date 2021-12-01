@@ -683,6 +683,99 @@ const AVAILABLE_UA_OVERRIDES = [
       },
     },
   },
+  {
+    /*
+     * Bug 1743627 - Add UA override for renaud-bray.com
+     * Webcompat issue #55276 - https://github.com/webcompat/web-bugs/issues/55276
+     *
+     * Firefox for Android depends on "Version/" being there in the UA string,
+     * or it'll throw a runtime error.
+     */
+    id: "bug1743627",
+    platform: "android",
+    domain: "renaud-bray.com",
+    bug: "1743627",
+    config: {
+      matches: ["*://*.renaud-bray.com/*"],
+      uaTransformer: originalUA => {
+        return originalUA + " Version/0";
+      },
+    },
+  },
+  {
+    /*
+     * Bug 1741892 - Add UA override for goal.com
+     *
+     * This site needs to have Chrome into its UA string to be able
+     * to serve the right experience on both desktop and mobile.
+     */
+    id: "bug1741892",
+    platform: "all",
+    domain: "goal.com",
+    bug: "1741892",
+    config: {
+      matches: ["*://goal.com/*"],
+      uaTransformer: originalUA => {
+        return originalUA + " Chrome/98.0.1086.0";
+      },
+    },
+  },
+  {
+    /*
+     * Bug 1743745 - Add UA override for www.automesseweb.jp
+     * Webcompat issue #70386 - https://github.com/webcompat/web-bugs/issues/70386
+     *
+     * On Firefox Android, the browser is receiving the desktop layout.
+     *
+     */
+    id: "bug1743745",
+    platform: "android",
+    domain: "automesseweb.jp",
+    bug: "1743745",
+    config: {
+      matches: ["*://*.automesseweb.jp/*"],
+      uaTransformer: () => {
+        return UAHelpers.getDeviceAppropriateChromeUA();
+      },
+    },
+  },
+  {
+    /*
+     * Bug 1743751 - Add UA override for slrclub.com
+     * Webcompat issue #91373 - https://github.com/webcompat/web-bugs/issues/91373
+     *
+     * On Firefox Android, the browser is receiving the desktop layout.
+     * Spoofing as Chrome works fine.
+     */
+    id: "bug1743751",
+    platform: "android",
+    domain: "slrclub.com",
+    bug: "1743751",
+    config: {
+      matches: ["*://*.slrclub.com/*"],
+      uaTransformer: () => {
+        return UAHelpers.getDeviceAppropriateChromeUA();
+      },
+    },
+  },
+  {
+    /*
+     * Bug 1743754 - Add UA override for slrclub.com
+     * Webcompat issue #86839 - https://github.com/webcompat/web-bugs/issues/86839
+     *
+     * On Firefox Android, the browser is failing a UA parsing on Firefox UA.
+     */
+    id: "bug1743754",
+    platform: "android",
+    domain: "workflow.base.vn",
+    bug: "1743754",
+    config: {
+      matches: ["*://workflow.base.vn/*"],
+      uaTransformer: () => {
+        return UAHelpers.getDeviceAppropriateChromeUA();
+      },
+    },
+  },
 ];
 
 module.exports = AVAILABLE_UA_OVERRIDES;

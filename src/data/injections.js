@@ -581,6 +581,34 @@ const AVAILABLE_INJECTIONS = [
       ],
     },
   },
+  {
+    id: "bug1741234",
+    platform: "all",
+    domain: "patient.alphalabs.ca",
+    bug: "1741234",
+    contentScripts: {
+      matches: ["*://patient.alphalabs.ca/*"],
+      css: [
+        {
+          file: "injections/css/bug1741234-patient.alphalabs.ca-height-fix.css",
+        },
+      ],
+    },
+  },
+  {
+    id: "bug1743041",
+    platform: "all",
+    domain: "lu.ma",
+    bug: "1743041",
+    contentScripts: {
+      matches: ["*://lu.ma/*"],
+      css: [
+        {
+          file: "injections/css/bug1743041-lu.ma-display-fix.css",
+        },
+      ],
+    },
+  },
 ];
 
 module.exports = AVAILABLE_INJECTIONS;
