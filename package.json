@@ -9,7 +9,6 @@
   "private": true,
   "scripts": {
     "jake": "npx jake",
-    "start": "npx web-ext run --source-dir src/",
     "prettier": "npx prettier --write '**/{*.css,*.js,*.jsm,*.json,Jakefile}'",
     "build": "npx jake export-xpi",
     "lint:prettier": "npx prettier --check '**/{*.css,*.js,*.jsm,*.json,Jakefile}'",
@@ -20,7 +19,6 @@
     "jake": "10.8.2",
     "jasmine": "3.10.0",
     "npm-run-all": "4.1.5",
-    "prettier": "1.19.1",
-    "web-ext": "6.6.0"
+    "prettier": "1.19.1"
   }
 }

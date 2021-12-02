@@ -449,7 +449,12 @@ const AVAILABLE_UA_OVERRIDES = [
         "*://rolb.santanderbank.com/*",
       ],
       uaTransformer: originalUA => {
-        return originalUA.replace("Gecko", "like Gecko");
+        // The two lines related to Firefox 100 are for Bug 1743445.
+        // [TODO]: Remove when bug 1743429 gets backed out.
+        return originalUA
+          .replace("Gecko", "like Gecko")
+          .replace("Firefox/100.0", "Firefox/96.0")
+          .replace("rv:100.0", "rv:96.0");
       },
     },
   },
@@ -773,6 +778,36 @@ const AVAILABLE_UA_OVERRIDES = [
       matches: ["*://workflow.base.vn/*"],
       uaTransformer: () => {
         return UAHelpers.getDeviceAppropriateChromeUA();
+      },
+    },
+  },
+  {
+    /*
+     * Bug 1743429 - Add UA override for sites broken with the Version 100 User Agent
+     *
+     * We're running an experiment on Desktop with Beta and Nightly, to investigate
+     * how much the web breaks with a Version 100 User Agent. Some sites do not
+     * like this, so let's override for now
+     */
+    id: "bug1743429",
+    platform: "desktop",
+    domain: "Sites with known Version 100 User Agent breakage",
+    bug: "1743429",
+    config: {
+      matches: [
+        "*://*.wordpress.org/*", // Bug 1743431,
+      ],
+      uaTransformer: originalUA => {
+        if (!originalUA.includes("Firefox/100.0")) {
+          return originalUA;
+        }
+
+        // We do not have a good way to determine the original version number.
+        // since the experiment is short-lived, however, we can just set 96 here
+        // and be done with it.
+        return originalUA
+          .replace("Firefox/100.0", "Firefox/96.0")
+          .replace("rv:100.0", "rv:96.0");
       },
     },
   },
