@@ -155,10 +155,11 @@
 
   td:not([colspan]):nth-child(1) {
     font-weight: bold;
+    padding-bottom: 0.25em;
   }
 
-  td:not([colspan]):nth-child(1) {
-    padding-bottom: 0.25em;
+  td:nth-child(2) {
+    padding-bottom: 1em;
   }
 
   td:nth-child(3) {
