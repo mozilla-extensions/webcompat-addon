@@ -5,6 +5,7 @@
   "license": "MPL-2.0",
   "repository": "https://github.com/mozilla/webcompat-addon",
   "version": "1.0.0",
+  "docker-image": "node-lts-latest",
   "private": true,
   "scripts": {
     "jake": "npx jake",
@@ -12,14 +13,14 @@
     "prettier": "npx prettier --write '**/{*.css,*.js,*.jsm,*.json,Jakefile}'",
     "build": "npx jake export-xpi",
     "lint:prettier": "npx prettier --check '**/{*.css,*.js,*.jsm,*.json,Jakefile}'",
-    "lint": "npx npm-run-all lint:*",
+    "lint": "./node_modules/.bin/npm-run-all 'lint:*'",
     "test": "npx jasmine"
   },
   "devDependencies": {
-    "jake": "^10.4.3",
-    "jasmine": "^3.6.1",
-    "npm-run-all": "^4.1.5",
+    "jake": "10.8.2",
+    "jasmine": "3.10.0",
+    "npm-run-all": "4.1.5",
     "prettier": "1.19.1",
-    "web-ext": "^5.2.0"
+    "web-ext": "6.5.0"
   }
 }

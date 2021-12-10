@@ -65,6 +65,13 @@ def get_manifest():
                 subdir_list.remove(dir_)
                 continue
         if "package.json" in file_list:
+            # The presence of a "package.json" file in the repository
+            # does not necessarily mean there's an addon to sign. We
+            # need to give the ability to repository owners to turn off
+            # signing for non-addon "package.json" (e.g. libraries).
+            if "dontbuild" in file_list:
+                continue
+
             manifest = {"tests": []}
             if "yarn.lock" in file_list:
                 manifest["install-type"] = "yarn"
@@ -82,6 +89,14 @@ def get_manifest():
                 if target.startswith("test") or target == "lint":
                     manifest["tests"].append(target)
             manifest["name"] = package_json["name"].lower()
+            manifest[
+                "docker-image"
+            ] = "xpi.cache.level-3.docker-images.v2.node-14.latest"
+            if "docker-image" in package_json:
+                manifest["docker-image"] = (
+                    "xpi.cache.level-3.docker-images.v2.%s.latest"
+                    % package_json["docker-image"]
+                )
             manifest_list.append(ReadOnlyDict(manifest))
     check_manifest(manifest_list[:])
     return tuple(manifest_list)
