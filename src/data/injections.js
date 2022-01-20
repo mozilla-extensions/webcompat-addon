@@ -137,20 +137,6 @@ const AVAILABLE_INJECTIONS = [
     },
   },
   {
-    id: "bug1570119",
-    platform: "desktop",
-    domain: "teamcoco.com",
-    bug: "1570119",
-    contentScripts: {
-      matches: ["*://teamcoco.com/*"],
-      css: [
-        {
-          file: "injections/css/bug1570119-teamcoco.com-scrollbar-width.css",
-        },
-      ],
-    },
-  },
-  {
     id: "bug1570328",
     platform: "android",
     domain: "developer.apple.com",
@@ -506,20 +492,6 @@ const AVAILABLE_INJECTIONS = [
     },
   },
   {
-    id: "bug1728140",
-    platform: "android",
-    domain: "air-quality.com",
-    bug: "1728140",
-    contentScripts: {
-      matches: ["*://air-quality.com/*"],
-      css: [
-        {
-          file: "injections/css/bug1728140-map-size-fix.css",
-        },
-      ],
-    },
-  },
-  {
     id: "bug1738313",
     platform: "desktop",
     domain: "curriculum.gov.bc.ca",
@@ -558,20 +530,6 @@ const AVAILABLE_INJECTIONS = [
       css: [
         {
           file: "injections/css/bug1741234-patient.alphalabs.ca-height-fix.css",
-        },
-      ],
-    },
-  },
-  {
-    id: "bug1743041",
-    platform: "all",
-    domain: "lu.ma",
-    bug: "1743041",
-    contentScripts: {
-      matches: ["*://lu.ma/*"],
-      css: [
-        {
-          file: "injections/css/bug1743041-lu.ma-display-fix.css",
         },
       ],
     },
