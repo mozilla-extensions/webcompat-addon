@@ -418,7 +418,7 @@ const AVAILABLE_INJECTIONS = [
   },
   {
     id: "bug1719870",
-    platform: "desktop",
+    platform: "all",
     domain: "lcbo.com",
     bug: "1719870",
     contentScripts: {
