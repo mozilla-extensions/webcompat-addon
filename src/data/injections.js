@@ -591,6 +591,20 @@ const AVAILABLE_INJECTIONS = [
       ],
     },
   },
+  {
+    id: "bug1751022",
+    platform: "all",
+    domain: "chotot.com",
+    bug: "1751022",
+    contentScripts: {
+      matches: ["*://*.chotot.com/*"],
+      css: [
+        {
+          file: "injections/css/bug1751022-chotot.com-image-width-fix.css",
+        },
+      ],
+    },
+  },
 ];
 
 module.exports = AVAILABLE_INJECTIONS;
