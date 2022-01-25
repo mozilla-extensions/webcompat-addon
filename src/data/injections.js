@@ -605,6 +605,20 @@ const AVAILABLE_INJECTIONS = [
       ],
     },
   },
+  {
+    id: "bug1751065",
+    platform: "android",
+    domain: "chanel.com",
+    bug: "1751065",
+    contentScripts: {
+      matches: ["*://*.chanel.com/*"],
+      js: [
+        {
+          file: "injections/js/bug1751065-chanel.com-effectiveType-shim.js",
+        },
+      ],
+    },
+  },
 ];
 
 module.exports = AVAILABLE_INJECTIONS;
