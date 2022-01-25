@@ -562,6 +562,20 @@ const AVAILABLE_INJECTIONS = [
       ],
     },
   },
+  {
+    id: "bug1749565",
+    platform: "android",
+    domain: "bonappetit.com",
+    bug: "1749565",
+    contentScripts: {
+      matches: ["*://*.bonappetit.com/recipe/*"],
+      css: [
+        {
+          file: "injections/css/bug1749565-bonappetit.com-grid-width-fix.css",
+        },
+      ],
+    },
+  },
 ];
 
 module.exports = AVAILABLE_INJECTIONS;
