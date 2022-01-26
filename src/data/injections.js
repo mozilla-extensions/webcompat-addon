@@ -605,6 +605,21 @@ const AVAILABLE_INJECTIONS = [
       ],
     },
   },
+  {
+    id: "bug1748455",
+    platform: "android",
+    domain: "reddit.com",
+    bug: "1748455",
+    contentScripts: {
+      matches: ["*://*.reddit.com/*"],
+      css: [
+        {
+          file:
+            "injections/css/bug1748455-reddit.com-gallery-image-width-fix.css",
+        },
+      ],
+    },
+  },
 ];
 
 module.exports = AVAILABLE_INJECTIONS;
