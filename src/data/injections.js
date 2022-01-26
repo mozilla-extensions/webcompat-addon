@@ -357,6 +357,7 @@ const AVAILABLE_INJECTIONS = [
         "*://*.live.com/*",
         "*://*.office.com/*",
         "*://*.sharepoint.com/*",
+        "*://*.office365.com/*",
       ],
       js: [
         {
