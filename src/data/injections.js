@@ -594,7 +594,7 @@ const AVAILABLE_INJECTIONS = [
   },
   {
     id: "bug1751022",
-    platform: "all",
+    platform: "android",
     domain: "chotot.com",
     bug: "1751022",
     contentScripts: {
@@ -616,6 +616,21 @@ const AVAILABLE_INJECTIONS = [
       js: [
         {
           file: "injections/js/bug1751065-chanel.com-effectiveType-shim.js",
+        },
+      ],
+    },
+  },
+  {
+    id: "bug1748455",
+    platform: "android",
+    domain: "reddit.com",
+    bug: "1748455",
+    contentScripts: {
+      matches: ["*://*.reddit.com/*"],
+      css: [
+        {
+          file:
+            "injections/css/bug1748455-reddit.com-gallery-image-width-fix.css",
         },
       ],
     },
