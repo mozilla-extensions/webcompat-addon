@@ -68,7 +68,7 @@ Tests located in `src/tests/` are not automatically started by the CI in this re
 
 As `mozilla-central` is now mostly auto-formatted with prettier, and the config for that is really slim, this repo follows these guidelines. To automatically check and adjust the code style,
 
-1. Run `npm run prettier`
+1. Run `npm run autoformat`
 2. Done.
 
 ### Run tests and codestyle checks automatically before pushing

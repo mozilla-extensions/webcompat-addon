@@ -8,11 +8,13 @@
   "docker-image": "node-lts-latest",
   "private": true,
   "scripts": {
-    "jake": "npx jake",
-    "prettier": "npx prettier --write '**/{*.css,*.js,*.jsm,*.json,Jakefile}'",
+    "autoformat:prettier": "npx prettier --write '**/{*.css,*.js,*.jsm,*.json,Jakefile}'",
+    "autoformat:version-number": "npx jake lint:set-package-version",
+    "autoformat": "./node_modules/.bin/npm-run-all 'autoformat:*'",
     "build": "npx jake export-xpi",
-    "lint:prettier": "npx prettier --check '**/{*.css,*.js,*.jsm,*.json,Jakefile}'",
+    "jake": "npx jake",
     "lint:package-version-match": "npx jake lint:verify-version-match",
+    "lint:prettier": "npx prettier --check '**/{*.css,*.js,*.jsm,*.json,Jakefile}'",
     "lint": "./node_modules/.bin/npm-run-all 'lint:*'",
     "test": "npx jasmine"
   },
