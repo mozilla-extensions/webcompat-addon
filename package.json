@@ -12,6 +12,7 @@
     "prettier": "npx prettier --write '**/{*.css,*.js,*.jsm,*.json,Jakefile}'",
     "build": "npx jake export-xpi",
     "lint:prettier": "npx prettier --check '**/{*.css,*.js,*.jsm,*.json,Jakefile}'",
+    "lint:package-version-match": "npx jake lint:verify-version-match",
     "lint": "./node_modules/.bin/npm-run-all 'lint:*'",
     "test": "npx jasmine"
   },

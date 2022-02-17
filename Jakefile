@@ -240,3 +240,23 @@ namespace("building", () => {
     );
   });
 });
+
+namespace("lint", () => {
+  desc("Checks that version numbers in package.json and manifest.json match");
+  task("verify-version-match", () => {
+    const manifest = JSON.parse(
+      fs.readFileSync(path.join(SRC_DIR, "manifest.json")).toString()
+    );
+
+    const packageJson = JSON.parse(
+      fs.readFileSync(path.join(".", "package.json")).toString()
+    );
+
+    if (manifest["version"] !== packageJson["version"]) {
+      console.error("Version number mismatch detected!");
+      console.error(`  manifest.json: ${manifest["version"]}`);
+      console.error(`  package.json:  ${packageJson["version"]}`);
+      fail("Version numbers in package.json and manifest.json do not match!");
+    }
+  });
+});
