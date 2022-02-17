@@ -240,3 +240,59 @@ namespace("building", () => {
     );
   });
 });
+
+namespace("lint", () => {
+  desc("Checks that version numbers in package.json and manifest.json match");
+  task("verify-version-match", () => {
+    const manifest = JSON.parse(
+      fs.readFileSync(path.join(SRC_DIR, "manifest.json")).toString()
+    );
+
+    const packageJson = JSON.parse(
+      fs.readFileSync(path.join(".", "package.json")).toString()
+    );
+
+    if (manifest["version"] !== packageJson["version"]) {
+      console.error("Version number mismatch detected!");
+      console.error(`  manifest.json: ${manifest["version"]}`);
+      console.error(`  package.json:  ${packageJson["version"]}`);
+      fail("Version numbers in package.json and manifest.json do not match!");
+    }
+  });
+
+  desc("Overwrites version number in package.json with manifest data");
+  task("set-package-version", { async: true }, async () => {
+    const manifest = JSON.parse(
+      fs.readFileSync(path.join(SRC_DIR, "manifest.json")).toString()
+    );
+
+    const packageJson = JSON.parse(
+      fs.readFileSync(path.join(".", "package.json")).toString()
+    );
+
+    if (manifest["version"] !== packageJson["version"]) {
+      // This generates a JSON object with the current data, but the version
+      // property replaces with the manifest.json's value. It indents by two
+      // spaces, and then adds a final newline to match what prettier would
+      // give us.
+      // An alternative approach would to just write unformatted JSON, and then
+      // run prettier to make it match the codestyle. But for now, this appears
+      // to be working fine.
+      const newContents =
+        JSON.stringify(
+          Object.assign({}, packageJson, { version: manifest["version"] }),
+          null,
+          2
+        ) + "\n";
+
+      fs.writeFileSync(path.join(".", "package.json"), newContents);
+
+      // package-lock.json also contains the version number. Instead of trying
+      // to manually edit that file, let's run `npm install`, which will adjust
+      // the lockfile's version number as well.
+      // As all dependencies are hard-locked, this should not cause any
+      // unexpected version changes.
+      return jake.exec("npm install", complete);
+    }
+  });
+});
