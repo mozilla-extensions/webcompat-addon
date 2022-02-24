@@ -579,6 +579,20 @@ const AVAILABLE_INJECTIONS = [
       ],
     },
   },
+  {
+    id: "bug1756692",
+    platform: "android",
+    domain: "zee5.com",
+    bug: "1756692",
+    contentScripts: {
+      matches: ["*://www.zee5.com/*"],
+      js: [
+        {
+          file: "injections/js/bug1756692-effectiveType-shim.js",
+        },
+      ],
+    },
+  },
 ];
 
 module.exports = AVAILABLE_INJECTIONS;
