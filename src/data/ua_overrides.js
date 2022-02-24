@@ -822,6 +822,25 @@ const AVAILABLE_UA_OVERRIDES = [
       },
     },
   },
+  {
+    /*
+     * Bug 1756872 - UA override for www.dolcegabbana.com
+     * Webcompat issue #99993 - https://webcompat.com/issues/99993
+     *
+     * The site's layout is broken on Firefox for Android
+     * without a full Chrome user-agent string.
+     */
+    id: "bug1756872",
+    platform: "android",
+    domain: "www.dolcegabbana.com",
+    bug: "1756872",
+    config: {
+      matches: ["*://www.dolcegabbana.com/*"],
+      uaTransformer: originalUA => {
+        return UAHelpers.getDeviceAppropriateChromeUA();
+      },
+    },
+  },
 ];
 
 module.exports = AVAILABLE_UA_OVERRIDES;
