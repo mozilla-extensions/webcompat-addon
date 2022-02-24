@@ -771,6 +771,9 @@ const AVAILABLE_UA_OVERRIDES = [
         "*://*.wnep.com/*",
         "*://*.dn.se/*",
         "*://*.dailymail.co.uk/*",
+        "*://*.kohls.com/*",
+        "*://*.expressen.se/*",
+        "*://*.walmart.com/*",
       ],
       uaTransformer: originalUA => {
         if (!originalUA.includes("Android 12;")) {
