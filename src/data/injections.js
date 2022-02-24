@@ -550,6 +550,21 @@ const AVAILABLE_INJECTIONS = [
     },
   },
   {
+    id: "bug1754473",
+    platform: "android",
+    domain: "m.intl.taobao.com",
+    bug: "1754473",
+    contentScripts: {
+      matches: ["*://m.intl.taobao.com/*"],
+      css: [
+        {
+          file:
+            "injections/css/bug1754473-m.intl.taobao.com-number-arrow-buttons-overlapping-fix.css",
+        },
+      ],
+    },
+  },
+  {
     id: "bug1748455",
     platform: "android",
     domain: "reddit.com",
