@@ -860,6 +860,23 @@ const AVAILABLE_UA_OVERRIDES = [
       },
     },
   },
+  {
+    /*
+     * Bug 1751604 - UA override for /www.otsuka.co.jp/fib/
+     *
+     * The site's content is not loaded unless a Chrome UA is used.
+     */
+    id: "bug1751604",
+    platform: "desktop",
+    domain: "www.otsuka.co.jp",
+    bug: "1751604",
+    config: {
+      matches: ["*://www.otsuka.co.jp/fib/*"],
+      uaTransformer: originalUA => {
+        return UAHelpers.getDeviceAppropriateChromeUA("97.0.4692.9");
+      },
+    },
+  },
 ];
 
 module.exports = AVAILABLE_UA_OVERRIDES;
