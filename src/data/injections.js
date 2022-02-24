@@ -334,15 +334,16 @@ const AVAILABLE_INJECTIONS = [
     },
   },
   {
-    id: "bug1704653",
+    id: "bug1756054",
     platform: "all",
-    domain: "tsky.in",
-    bug: "1704653",
+    domain: "tataplayrecharge.com",
+    bug: "1756054",
     contentScripts: {
-      matches: ["*://tsky.in/*"],
+      matches: ["*://www.tataplayrecharge.com/*"],
       css: [
         {
-          file: "injections/css/bug1704653-tsky.in-clear-float.css",
+          file:
+            "injections/css/bug1756054-tataplayrecharge.com-clear-float.css",
         },
       ],
     },
