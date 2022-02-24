@@ -690,24 +690,6 @@ const AVAILABLE_UA_OVERRIDES = [
   },
   {
     /*
-     * Bug 1741892 - Add UA override for goal.com
-     *
-     * This site needs to have Chrome into its UA string to be able
-     * to serve the right experience on both desktop and mobile.
-     */
-    id: "bug1741892",
-    platform: "all",
-    domain: "goal.com",
-    bug: "1741892",
-    config: {
-      matches: ["*://goal.com/*"],
-      uaTransformer: originalUA => {
-        return originalUA + " Chrome/98.0.1086.0";
-      },
-    },
-  },
-  {
-    /*
      * Bug 1743745 - Add UA override for www.automesseweb.jp
      * Webcompat issue #70386 - https://github.com/webcompat/web-bugs/issues/70386
      *
