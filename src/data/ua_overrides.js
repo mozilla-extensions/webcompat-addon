@@ -784,6 +784,25 @@ const AVAILABLE_UA_OVERRIDES = [
       },
     },
   },
+  {
+    /*
+     * Bug 1754180 - UA override for nordjyske.dk
+     * Webcompat issue #94661 - https://webcompat.com/issues/94661
+     *
+     * The site doesn't provide a mobile layout to Firefox for Android
+     * without a Chrome UA string for a high-end device.
+     */
+    id: "bug1754180",
+    platform: "android",
+    domain: "nordjyske.dk",
+    bug: "1754180",
+    config: {
+      matches: ["*://nordjyske.dk/*"],
+      uaTransformer: originalUA => {
+        return UAHelpers.getDeviceAppropriateChromeUA("97.0.4692.9", "Pixel 4");
+      },
+    },
+  },
 ];
 
 module.exports = AVAILABLE_UA_OVERRIDES;
