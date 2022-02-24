@@ -824,6 +824,25 @@ const AVAILABLE_UA_OVERRIDES = [
   },
   {
     /*
+     * Bug 1753461 - UA override for serieson.naver.com
+     * Webcompat issue #99993 - https://webcompat.com/issues/97298
+     *
+     * The site locks out Firefox users unless a Chrome UA is given,
+     * and locks out Linux users as well (so we use Windows+Chrome).
+     */
+    id: "bug1753461",
+    platform: "desktop",
+    domain: "serieson.naver.com",
+    bug: "1753461",
+    config: {
+      matches: ["*://serieson.naver.com/*"],
+      uaTransformer: originalUA => {
+        return "Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/97.0.4692.99 Safari/537.36";
+      },
+    },
+  },
+  {
+    /*
      * Bug 1756872 - UA override for www.dolcegabbana.com
      * Webcompat issue #99993 - https://webcompat.com/issues/99993
      *
