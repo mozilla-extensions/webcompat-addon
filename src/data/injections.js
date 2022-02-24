@@ -593,6 +593,21 @@ const AVAILABLE_INJECTIONS = [
       ],
     },
   },
+  {
+    id: "bug1756915",
+    platform: "desktop",
+    domain: "efectococuyo.com",
+    bug: "1756915",
+    contentScripts: {
+      matches: ["*://efectococuyo.com/*"],
+      css: [
+        {
+          file:
+            "injections/css/bug1756915-efectococuyo.com-shifted-content-fix.css",
+        },
+      ],
+    },
+  },
 ];
 
 module.exports = AVAILABLE_INJECTIONS;
