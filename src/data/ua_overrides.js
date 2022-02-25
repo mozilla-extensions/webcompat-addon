@@ -446,12 +446,12 @@ const AVAILABLE_UA_OVERRIDES = [
         "*://*.santander.co.uk/*",
       ],
       uaTransformer: originalUA => {
-        // The two lines related to Firefox 100 are for Bug 1743445.
+        // The first line related to Firefox 100 is for Bug 1743445.
         // [TODO]: Remove when bug 1743429 gets backed out.
-        return originalUA
-          .replace("Gecko", "like Gecko")
-          .replace("Firefox/100.0", "Firefox/96.0")
-          .replace("rv:100.0", "rv:96.0");
+        return UAHelpers.capVersionTo99(originalUA).replace(
+          "Gecko",
+          "like Gecko"
+        );
       },
     },
   },
@@ -726,29 +726,31 @@ const AVAILABLE_UA_OVERRIDES = [
     /*
      * Bug 1743429 - Add UA override for sites broken with the Version 100 User Agent
      *
-     * We're running an experiment on Desktop with Beta and Nightly, to investigate
-     * how much the web breaks with a Version 100 User Agent. Some sites do not
-     * like this, so let's override for now
+     * Some sites have issues with a UA string with Firefox version 100 or higher,
+     * so present as version 99 for now.
      */
     id: "bug1743429",
-    platform: "desktop",
+    platform: "all",
     domain: "Sites with known Version 100 User Agent breakage",
     bug: "1743429",
     config: {
       matches: [
-        "*://*.wordpress.org/*", // Bug 1743431,
+        "*://*.wordpress.org/*", // Bug 1743431
+        "*://bethesda.net/*", // #94607
+        "*://genehmigung.ahs-vwa.at/*", // #100063
+        "*://moje.pzu.pl/*", // #99772
+        "*://simperium.com/*", // #98934
+        "*://wifi.sncf/*", // #100194
+        "*://www.brownells.com/*", // #90806
+        "*://www.eurosportplayer.com/*", // #91087
+        "*://www.hannaandersson.com/*", // #95003
+        "*://www.petalmail.com/*", // #99339
+        "*://www.sc.com/in/*", // #99700
+        "*://www.screwfix.com/*", // #96959
+        "*://www.smsv.com.ar/*", // #90666
       ],
       uaTransformer: originalUA => {
-        if (!originalUA.includes("Firefox/100.0")) {
-          return originalUA;
-        }
-
-        // We do not have a good way to determine the original version number.
-        // since the experiment is short-lived, however, we can just set 96 here
-        // and be done with it.
-        return originalUA
-          .replace("Firefox/100.0", "Firefox/96.0")
-          .replace("rv:100.0", "rv:96.0");
+        return UAHelpers.capVersionTo99(originalUA);
       },
     },
   },

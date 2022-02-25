@@ -61,6 +61,15 @@ var UAHelpers = {
       set: exportFunction(function() {}, window),
     });
   },
+  capVersionTo99(originalUA) {
+    const ver = originalUA.match(/Firefox\/(\d+\.\d+)/);
+    if (!ver || parseFloat(ver[1]) < 100) {
+      return originalUA;
+    }
+    return originalUA
+      .replace(`Firefox/${ver[1]}`, "Firefox/99.0")
+      .replace(`rv:${ver[1]}`, "rv:99.0");
+  },
 };
 
 if (typeof module !== "undefined") {
