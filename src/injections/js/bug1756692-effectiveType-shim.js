@@ -13,8 +13,8 @@ console.info(
 );
 
 var connection = {
-  addEventListener: function() {},
-  removeEventListener: function() {},
+  addEventListener: () => {},
+  removeEventListener: () => {},
   effectiveType: "4g",
 };
 
