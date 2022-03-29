@@ -346,27 +346,6 @@ const AVAILABLE_UA_OVERRIDES = [
   },
   {
     /*
-     * Bug 1621065 - UA overrides for bracketchallenge.ncaa.com
-     * Webcompat issue #49886 - https://webcompat.com/issues/49886
-     *
-     * The NCAA bracket challenge website mistakenly classifies
-     * any non-Chrome browser on Android as "is_old_android". As a result,
-     * a modal is shown telling them they have security flaws. We have
-     * attempted to reach out for a fix (and clarification).
-     */
-    id: "bug1621065",
-    platform: "android",
-    domain: "bracketchallenge.ncaa.com",
-    bug: "1621065",
-    config: {
-      matches: ["*://bracketchallenge.ncaa.com/*"],
-      uaTransformer: originalUA => {
-        return originalUA + " Chrome";
-      },
-    },
-  },
-  {
-    /*
      * Bug 1622063 - UA override for wp1-ext.usps.gov
      * Webcompat issue #29867 - https://webcompat.com/issues/29867
      *
