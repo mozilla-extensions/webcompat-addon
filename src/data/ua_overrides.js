@@ -737,16 +737,23 @@ const AVAILABLE_UA_OVERRIDES = [
       matches: [
         "*://*.wordpress.org/*", // Bug 1743431
         "*://bethesda.net/*", // #94607
+        "*://citoyens.telerecours.fr/*", // #101066
         "*://genehmigung.ahs-vwa.at/*", // #100063
         "*://moje.pzu.pl/*", // #99772
+        "*://mon.allianzbanque.fr/*", // #101074
+        "*://online.citi.com/*", // #101268
         "*://simperium.com/*", // #98934
         "*://wifi.sncf/*", // #100194
         "*://www.brownells.com/*", // #90806
+        "*://www.discoveryplus.in/*", // #100389
         "*://www.eurosportplayer.com/*", // #91087
+        "*://www.gismeteo.ru/*", // #101326
         "*://www.hannaandersson.com/*", // #95003
+        "*://www.manchestereveningnews.co.uk/*", // #100923
+        "*://www.mirror.co.uk/*", // #100053
         "*://www.petalmail.com/*", // #99339
-        "*://www.sc.com/in/*", // #99700
         "*://www.screwfix.com/*", // #96959
+        "*://www.services.gov.on.ca/*", // #100926
         "*://www.smsv.com.ar/*", // #90666
       ],
       uaTransformer: originalUA => {
