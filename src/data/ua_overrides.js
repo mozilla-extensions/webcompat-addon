@@ -728,6 +728,7 @@ const AVAILABLE_UA_OVERRIDES = [
         "*://www.eurosportplayer.com/*", // #91087
         "*://www.gismeteo.ru/*", // #101326
         "*://www.hannaandersson.com/*", // #95003
+        "*://www.imb.com.au/*", // Bug 1762209
         "*://www.manchestereveningnews.co.uk/*", // #100923
         "*://www.mirror.co.uk/*", // #100053
         "*://www.petalmail.com/*", // #99339
