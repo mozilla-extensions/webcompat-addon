@@ -732,7 +732,6 @@ const AVAILABLE_UA_OVERRIDES = [
         "*://www.birminghampost.co.uk/*", // Bug 1762928 (Reach Plc)
         "*://www.bristol.live/*", // Bug 1762928 (Reach Plc)
         "*://www.bristolpost.co.uk/*", // Bug 1762928 (Reach Plc)
-        "*://www.brownells.com/*", // #90806
         "*://www.buckinghamshirelive.com/*", // Bug 1762928 (Reach Plc)
         "*://www.burtonmail.co.uk/*", // Bug 1762928 (Reach Plc)
         "*://www.business-live.co.uk/*", // Bug 1762928 (Reach Plc)
