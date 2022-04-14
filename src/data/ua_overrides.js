@@ -714,6 +714,7 @@ const AVAILABLE_UA_OVERRIDES = [
     bug: "1743429",
     config: {
       matches: [
+        "*://*.edf.com/*", // Bug 1764786
         "*://*.wordpress.org/*", // Bug 1743431
         "*://bethesda.net/*", // #94607
         "*://citoyens.telerecours.fr/*", // #101066
