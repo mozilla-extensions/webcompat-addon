@@ -717,6 +717,7 @@ const AVAILABLE_UA_OVERRIDES = [
         "*://*.edf.com/*", // Bug 1764786
         "*://*.wordpress.org/*", // Bug 1743431
         "*://bethesda.net/*", // #94607
+        "*://cdn-vzn.yottaa.net/*", // Bug 1764795
         "*://citoyens.telerecours.fr/*", // #101066
         "*://genehmigung.ahs-vwa.at/*", // #100063
         "*://moje.pzu.pl/*", // #99772
