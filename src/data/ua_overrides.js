@@ -873,25 +873,6 @@ const AVAILABLE_UA_OVERRIDES = [
   },
   {
     /*
-     * Bug 1177298 - UA overrides for expertflyer.com
-     * Webcompat issue #96685 - https://webcompat.com/issues/96685
-     *
-     * The site does not offer a stylesheet unless AppleWebKit
-     * is part of the user-agent string.
-     */
-    id: "bug1753631",
-    platform: "android",
-    domain: "expertflyer.com",
-    bug: "1753631",
-    config: {
-      matches: ["*://*.expertflyer.com/*"],
-      uaTransformer: originalUA => {
-        return originalUA + " AppleWebKit";
-      },
-    },
-  },
-  {
-    /*
      * Bug 1753461 - UA override for serieson.naver.com
      * Webcompat issue #99993 - https://webcompat.com/issues/97298
      *
