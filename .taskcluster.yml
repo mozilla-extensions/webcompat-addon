@@ -15,9 +15,6 @@ tasks:
           # to enable siging on push/PR.
           xpiSigningType: "system"
           # The below doesn't need changing on initial repo setup
-          taskgraph:
-              branch: taskgraph
-              revision: b6890b6736403f053b731cbd4aabe43819a14acf
           template:
               repo: https://github.com/mozilla-extensions/xpi-template
               branch: main
@@ -227,11 +224,8 @@ tasks:
                                     TEMPLATE_HEAD_REV: '${template.branch}'
                                     TEMPLATE_HEAD_REF: '${template.branch}'
                                     TEMPLATE_REPOSITORY_TYPE: git
-                                    TASKGRAPH_BASE_REPOSITORY: https://hg.mozilla.org/ci/taskgraph
-                                    TASKGRAPH_HEAD_REPOSITORY: https://hg.mozilla.org/ci/${taskgraph.branch}
-                                    TASKGRAPH_HEAD_REV: '${taskgraph.revision}'
-                                    TASKGRAPH_REPOSITORY_TYPE: hg
-                                    REPOSITORIES: {$json: {xpi: "XPI Manifest", taskgraph: "Taskgraph", template: "XPI Template"}}
+                                    TEMPLATE_PIP_REQUIREMENTS: taskcluster/requirements.txt
+                                    REPOSITORIES: {$json: {xpi: "XPI Manifest", template: "XPI Template"}}
                                     HG_STORE_PATH: /builds/worker/checkouts/hg-store
                                   - $if: 'privateRepo'
                                     then:
@@ -250,8 +244,7 @@ tasks:
                               chainOfTrust: true
                           # Note: This task is built server side without the context or tooling that
                           # exist in tree so we must hard code the hash
-                          image: mozillareleases/taskgraph:decision-e035c4bb24e3a05bcd666518756aa69fac302ed1e73fd39d39cd182fc4470818@sha256:7cfb913bee636f1ab1477a09f8ad746e1f8c68fab0e2a3e1408c985d2ddc27f7
-
+                          image: mozillareleases/taskgraph:decision-cf4b4b4baff57d84c1f9ec8fcd70c9839b70a7d66e6430a6c41ffe67252faa19@sha256:425e07f6813804483bc5a7258288a7684d182617ceeaa0176901ccc7702dfe28
 
                           maxRunTime: 1800
 
@@ -259,7 +252,6 @@ tasks:
                               - /usr/local/bin/run-task
                               - '--xpi-checkout=/builds/worker/checkouts/src'
                               - '--template-checkout=/builds/worker/checkouts/template'
-                              - '--taskgraph-checkout=/builds/worker/checkouts/taskgraph'
                               - '--task-cwd=/builds/worker/checkouts/src'
                               - '--'
                               - bash
@@ -269,14 +261,12 @@ tasks:
                                 in:
                                     $if: 'tasks_for == "action"'
                                     then: >
-                                        PIP_IGNORE_INSTALLED=0 pip3 install --user /builds/worker/checkouts/taskgraph &&
                                         cd /builds/worker/checkouts/src &&
                                         rm -rf taskcluster &&
                                         ln -s /builds/worker/checkouts/template/taskcluster taskcluster &&
                                         ln -s /builds/worker/artifacts artifacts &&
                                         ~/.local/bin/taskgraph action-callback
                                     else: >
-                                        PIP_IGNORE_INSTALLED=0 pip3 install --user /builds/worker/checkouts/taskgraph &&
                                         rm -rf taskcluster &&
                                         ln -s /builds/worker/checkouts/template/taskcluster taskcluster &&
                                         ln -s /builds/worker/artifacts artifacts &&
