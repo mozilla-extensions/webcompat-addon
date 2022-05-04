@@ -812,7 +812,6 @@ const AVAILABLE_UA_OVERRIDES = [
         "*://www.stokesentinel.co.uk/*", // Bug 1762928 (Reach Plc)
         "*://www.sussexlive.co.uk/*", // Bug 1762928 (Reach Plc)
         "*://www.tm-awx.com/*", // Bug 1762928 (Reach Plc)
-        "*://www.twitch.tv/*", // Bug 1764591
         "*://www.walesonline.co.uk/*", // Bug 1762928 (Reach Plc)
         "*://www.wharf.co.uk/*", // Bug 1762928 (Reach Plc)
       ],
