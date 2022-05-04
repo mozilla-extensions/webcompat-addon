@@ -714,6 +714,7 @@ const AVAILABLE_UA_OVERRIDES = [
     bug: "1743429",
     config: {
       matches: [
+        "*://*.commerzbank.de/*", // Bug 1767630
         "*://*.edf.com/*", // Bug 1764786
         "*://*.wordpress.org/*", // Bug 1743431
         "*://bethesda.net/*", // #94607
