@@ -436,20 +436,6 @@ const AVAILABLE_INJECTIONS = [
     },
   },
   {
-    id: "bug1727080",
-    platform: "android",
-    domain: "nexity.fr",
-    bug: "1727080",
-    contentScripts: {
-      matches: ["*://*.nexity.fr/*"],
-      css: [
-        {
-          file: "injections/css/bug1727080-nexity.fr-svg-size-fix.css",
-        },
-      ],
-    },
-  },
-  {
     id: "bug1741234",
     platform: "all",
     domain: "patient.alphalabs.ca",
