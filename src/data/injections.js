@@ -319,21 +319,6 @@ const AVAILABLE_INJECTIONS = [
     },
   },
   {
-    id: "bug1756054",
-    platform: "all",
-    domain: "tataplayrecharge.com",
-    bug: "1756054",
-    contentScripts: {
-      matches: ["*://www.tataplayrecharge.com/*"],
-      css: [
-        {
-          file:
-            "injections/css/bug1756054-tataplayrecharge.com-clear-float.css",
-        },
-      ],
-    },
-  },
-  {
     id: "bug1731825",
     platform: "desktop",
     domain: "Office 365 email handling prompt",
@@ -404,20 +389,6 @@ const AVAILABLE_INJECTIONS = [
     },
   },
   {
-    id: "bug1719870",
-    platform: "all",
-    domain: "lcbo.com",
-    bug: "1719870",
-    contentScripts: {
-      matches: ["*://*.lcbo.com/*"],
-      css: [
-        {
-          file: "injections/css/bug1719870-lcbo.com-table-clearfix.css",
-        },
-      ],
-    },
-  },
-  {
     id: "bug1722955",
     platform: "android",
     domain: "frontgate.com",
@@ -474,21 +445,6 @@ const AVAILABLE_INJECTIONS = [
       css: [
         {
           file: "injections/css/bug1727080-nexity.fr-svg-size-fix.css",
-        },
-      ],
-    },
-  },
-  {
-    id: "bug1738313",
-    platform: "desktop",
-    domain: "curriculum.gov.bc.ca",
-    bug: "1738313",
-    contentScripts: {
-      matches: ["*://curriculum.gov.bc.ca/*"],
-      css: [
-        {
-          file:
-            "injections/css/bug1738313-curriculum.gov.bc.ca-bootstrap-fix.css",
         },
       ],
     },
@@ -575,21 +531,6 @@ const AVAILABLE_INJECTIONS = [
       js: [
         {
           file: "injections/js/bug1756692-effectiveType-shim.js",
-        },
-      ],
-    },
-  },
-  {
-    id: "bug1756915",
-    platform: "desktop",
-    domain: "efectococuyo.com",
-    bug: "1756915",
-    contentScripts: {
-      matches: ["*://efectococuyo.com/*"],
-      css: [
-        {
-          file:
-            "injections/css/bug1756915-efectococuyo.com-shifted-content-fix.css",
         },
       ],
     },
