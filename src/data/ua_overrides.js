@@ -717,16 +717,16 @@ const AVAILABLE_UA_OVERRIDES = [
         "*://*.commerzbank.de/*", // Bug 1767630
         "*://*.edf.com/*", // Bug 1764786
         "*://*.wordpress.org/*", // Bug 1743431
-        "*://bethesda.net/*", // #94607
+        "*://as.eservice.asus.com/*", // #104113
+        "*://bethesda.net/*", // #94607,
         "*://cdn-vzn.yottaa.net/*", // Bug 1764795
-        "*://citoyens.telerecours.fr/*", // #101066
-        "*://www.connexus.com/*", // Bug 1765925
         "*://dsae.co.za/*", // Bug 1765925
-        "*://genehmigung.ahs-vwa.at/*", // #100063
+        "*://fpt.dfp.microsoft.com/*", // #104237
         "*://moje.pzu.pl/*", // #99772
         "*://mon.allianzbanque.fr/*", // #101074
         "*://online.citi.com/*", // #101268
         "*://simperium.com/*", // #98934
+        "*://ubank.com.au/*", // #104099
         "*://wifi.sncf/*", // #100194
         "*://www.accringtonobserver.co.uk/*", // Bug 1762928 (Reach Plc)
         "*://www.bathchronicle.co.uk/*", // Bug 1762928 (Reach Plc)
@@ -785,6 +785,7 @@ const AVAILABLE_UA_OVERRIDES = [
         "*://www.irishmirror.ie/*", // Bug 1762928 (Reach Plc)
         "*://www.kentlive.news/*", // Bug 1762928 (Reach Plc)
         "*://www.lancs.live/*", // Bug 1762928 (Reach Plc)
+        "*://www.learningants.com/*", // #104080
         "*://www.leeds-live.co.uk/*", // Bug 1762928 (Reach Plc)
         "*://www.leicestermercury.co.uk/*", // Bug 1762928 (Reach Plc)
         "*://www.lincolnshirelive.co.uk/*", // Bug 1762928 (Reach Plc)
@@ -794,12 +795,10 @@ const AVAILABLE_UA_OVERRIDES = [
         "*://www.macclesfield-express.co.uk/*", // Bug 1762928 (Reach Plc)
         "*://www.macclesfield-live.co.uk/*", // Bug 1762928 (Reach Plc)
         "*://www.manchestereveningnews.co.uk/*", // #100923
-        "*://www.mirror.co.uk/*", // #100053
         "*://www.mylondon.news/*", // Bug 1762928 (Reach Plc)
         "*://www.northantslive.news/*", // Bug 1762928 (Reach Plc)
         "*://www.nottinghampost.com/*", // Bug 1762928 (Reach Plc)
         "*://www.ok.co.uk/*", // Bug 1762928 (Reach Plc)
-        "*://www.petalmail.com/*", // #99339
         "*://www.plymouthherald.co.uk/*", // Bug 1762928 (Reach Plc)
         "*://www.rossendalefreepress.co.uk/*", // Bug 1762928 (Reach Plc)
         "*://www.rsvplive.ie/*", // Bug 1762928 (Reach Plc)
