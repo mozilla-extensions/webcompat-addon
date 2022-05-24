@@ -615,7 +615,7 @@ const AVAILABLE_INJECTIONS = [
     bug: "1765947",
     contentScripts: {
       matches: ["*://veniceincoming.com/*"],
-      js: [
+      css: [
         {
           file: "injections/css/bug1765947-veniceincoming.com-left-fix.css",
         },
