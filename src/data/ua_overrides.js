@@ -896,6 +896,25 @@ const AVAILABLE_UA_OVERRIDES = [
       },
     },
   },
+  {
+    /*
+     * Bug 1771200 - UA override for animalplanet.com
+     * Webcompat issue #99993 - https://webcompat.com/issues/103727
+     *
+     * The videos are not playing and an error message is displayed
+     * in Firefox for Android, but work with Chrome UA
+     */
+    id: "bug1771200",
+    platform: "android",
+    domain: "animalplanet.com",
+    bug: "1771200",
+    config: {
+      matches: ["*://*.animalplanet.com/video/*"],
+      uaTransformer: originalUA => {
+        return UAHelpers.getDeviceAppropriateChromeUA();
+      },
+    },
+  },
 ];
 
 module.exports = AVAILABLE_UA_OVERRIDES;
