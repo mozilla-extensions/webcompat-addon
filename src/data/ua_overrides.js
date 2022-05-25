@@ -824,38 +824,6 @@ const AVAILABLE_UA_OVERRIDES = [
   },
   {
     /*
-     * Bug 1751232 - Add override for sites returning desktop layout for Android 12
-     * Webcompat issue #92978 - https://github.com/webcompat/web-bugs/issues/92978
-     *
-     * A number of news sites returns desktop layout for Android 12 only. Changing it
-     * to Android 12.0 fixes the issue
-     */
-    id: "bug1751232",
-    platform: "android",
-    domain: "Sites with desktop layout for Android 12",
-    bug: "1751232",
-    config: {
-      matches: [
-        "*://*.dw.com/*",
-        "*://*.abc10.com/*",
-        "*://*.wnep.com/*",
-        "*://*.dn.se/*",
-        "*://*.dailymail.co.uk/*",
-        "*://*.kohls.com/*",
-        "*://*.expressen.se/*",
-        "*://*.walmart.com/*",
-      ],
-      uaTransformer: originalUA => {
-        if (!originalUA.includes("Android 12;")) {
-          return originalUA;
-        }
-
-        return originalUA.replace("Android 12;", "Android 12.0;");
-      },
-    },
-  },
-  {
-    /*
      * Bug 1754180 - UA override for nordjyske.dk
      * Webcompat issue #94661 - https://webcompat.com/issues/94661
      *
