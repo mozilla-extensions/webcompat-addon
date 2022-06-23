@@ -564,6 +564,22 @@ const AVAILABLE_INJECTIONS = [
       ],
     },
   },
+  {
+    id: "bug1774005",
+    platform: "all",
+    domain: "Sites relying on window.InstallTrigger",
+    bug: "1774005",
+    contentScripts: {
+      matches: [
+        "*://*.pixiv.net/*", // Bug 1774006
+      ],
+      js: [
+        {
+          file: "injections/js/bug1774005-installtrigger-shim.js",
+        },
+      ],
+    },
+  },
 ];
 
 module.exports = AVAILABLE_INJECTIONS;
