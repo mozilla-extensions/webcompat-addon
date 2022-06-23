@@ -550,6 +550,20 @@ const AVAILABLE_INJECTIONS = [
       ],
     },
   },
+  {
+    id: "bug1774490",
+    platform: "all",
+    domain: "rainews.it",
+    bug: "1774490",
+    contentScripts: {
+      matches: ["*://www.rainews.it/*"],
+      css: [
+        {
+          file: "injections/css/bug1774490-rainews.it-gallery-fix.css",
+        },
+      ],
+    },
+  },
 ];
 
 module.exports = AVAILABLE_INJECTIONS;
