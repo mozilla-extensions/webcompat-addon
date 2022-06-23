@@ -496,10 +496,15 @@ const AVAILABLE_INJECTIONS = [
   {
     id: "bug1739489",
     platform: "desktop",
-    domain: "draft.js",
+    domain: "Sites using draft.js",
     bug: "1739489",
     contentScripts: {
-      matches: ["*://draftjs.org/*", "*://www.facebook.com/*"],
+      matches: [
+        "*://draftjs.org/*", // Bug 1739489
+        "*://www.facebook.com/*", // Bug 1739489
+        "*://twitter.com/*", // Bug 1776229
+        "*://mobile.twitter.com/*", // Bug 1776229
+      ],
       js: [
         {
           file: "injections/js/bug1739489-draftjs-beforeinput.js",
