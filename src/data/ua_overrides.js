@@ -719,7 +719,6 @@ const AVAILABLE_UA_OVERRIDES = [
         "*://*.ibmserviceengage.com/*", // #105438
         "*://*.wordpress.org/*", // Bug 1743431
         "*://as.eservice.asus.com/*", // #104113
-        "*://bethesda.net/*", // #94607,
         "*://cdn-vzn.yottaa.net/*", // Bug 1764795
         "*://dsae.co.za/*", // Bug 1765925
         "*://fpt.dfp.microsoft.com/*", // #104237
