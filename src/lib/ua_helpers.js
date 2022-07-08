@@ -9,7 +9,7 @@
 var UAHelpers = {
   _deviceAppropriateChromeUAs: {},
   getDeviceAppropriateChromeUA(
-    chromeVersion = "76.0.3809.111",
+    chromeVersion = "103.0.5060.71",
     specificAndroidDevice = ""
   ) {
     const key = `${chromeVersion}:${specificAndroidDevice}`;

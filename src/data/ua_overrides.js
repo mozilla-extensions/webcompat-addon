@@ -838,7 +838,10 @@ const AVAILABLE_UA_OVERRIDES = [
     config: {
       matches: ["*://nordjyske.dk/*"],
       uaTransformer: originalUA => {
-        return UAHelpers.getDeviceAppropriateChromeUA("97.0.4692.9", "Pixel 4");
+        return UAHelpers.getDeviceAppropriateChromeUA(
+          "103.0.5060.71",
+          "Pixel 4"
+        );
       },
     },
   },
@@ -893,7 +896,7 @@ const AVAILABLE_UA_OVERRIDES = [
     config: {
       matches: ["*://www.otsuka.co.jp/fib/*"],
       uaTransformer: originalUA => {
-        return UAHelpers.getDeviceAppropriateChromeUA("97.0.4692.9");
+        return UAHelpers.getDeviceAppropriateChromeUA();
       },
     },
   },
