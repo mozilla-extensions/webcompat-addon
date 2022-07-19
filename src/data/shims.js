@@ -149,6 +149,15 @@ const AVAILABLE_SHIMS = [
     onlyIfBlockedByETP: true,
   },
   {
+    id: "AdobeEverestJS",
+    platform: "all",
+    name: "Adobe EverestJS",
+    bug: "1728114",
+    file: "everest.js",
+    matches: ["*://www.everestjs.net/static/st.v3.js*"],
+    onlyIfBlockedByETP: true,
+  },
+  {
     id: "AdSafeProtectedFavIcon",
     platform: "all",
     name: "Ad Safe Protected favicon",
