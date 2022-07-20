@@ -838,10 +838,9 @@ const AVAILABLE_UA_OVERRIDES = [
     config: {
       matches: ["*://nordjyske.dk/*"],
       uaTransformer: originalUA => {
-        return UAHelpers.getDeviceAppropriateChromeUA(
-          "103.0.5060.71",
-          "Pixel 4"
-        );
+        return UAHelpers.getDeviceAppropriateChromeUA({
+          androidDevice: "Pixel 4",
+        });
       },
     },
   },
@@ -935,6 +934,27 @@ const AVAILABLE_UA_OVERRIDES = [
       matches: ["*://member-m.lazada.co.id/address/*"],
       uaTransformer: originalUA => {
         return UAHelpers.getDeviceAppropriateChromeUA();
+      },
+    },
+  },
+  {
+    /*
+     * Bug 1778168 - UA override for watch.antennaplus.gr
+     * Webcompat issue #106529 - https://webcompat.com/issues/106529
+     *
+     * The site's content is not loaded unless a Chrome UA is used,
+     * and breaks on Linux (so we claim Windows instead in that case).
+     */
+    id: "bug1778168",
+    platform: "desktop",
+    domain: "watch.antennaplus.gr",
+    bug: "1778168",
+    config: {
+      matches: ["*://watch.antennaplus.gr/*"],
+      uaTransformer: originalUA => {
+        return UAHelpers.getDeviceAppropriateChromeUA({
+          desktopOS: "nonLinux",
+        });
       },
     },
   },
