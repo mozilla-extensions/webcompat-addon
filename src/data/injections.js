@@ -588,6 +588,7 @@ const AVAILABLE_INJECTIONS = [
       matches: [
         "*://*.pixiv.net/*", // Bug 1774006
         "*://*.crunchyroll.com/*", // Bug 1777597
+        "*://www.northcountrypublicradio.org/contact/subscribe.html*", // Bug 1778382
       ],
       js: [
         {
