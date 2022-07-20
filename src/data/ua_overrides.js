@@ -919,6 +919,25 @@ const AVAILABLE_UA_OVERRIDES = [
       },
     },
   },
+  {
+    /*
+     * Bug 1771200 - UA override for lazada.co.id
+     * Webcompat issue #106229 - https://webcompat.com/issues/106229
+     *
+     * The map is not playing and an error message is displayed
+     * in Firefox for Android, but work with Chrome UA
+     */
+    id: "bug1779059",
+    platform: "android",
+    domain: "lazada.co.id",
+    bug: "1779059",
+    config: {
+      matches: ["*://member-m.lazada.co.id/address/*"],
+      uaTransformer: originalUA => {
+        return UAHelpers.getDeviceAppropriateChromeUA();
+      },
+    },
+  },
 ];
 
 module.exports = AVAILABLE_UA_OVERRIDES;
