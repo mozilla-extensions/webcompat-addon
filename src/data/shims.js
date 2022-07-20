@@ -160,28 +160,9 @@ const AVAILABLE_SHIMS = [
     onlyIfBlockedByETP: true,
   },
   {
-    id: "AdSafeProtectedFavIcon",
-    platform: "all",
-    name: "Ad Safe Protected favicon",
-    bug: "1717806",
-    matches: [
-      {
-        patterns: ["*://static.adsafeprotected.com/favicon.ico"],
-        target: "https://redirect.firefox.etp/adsafeprotected_favicon",
-        types: ["image", "imageset", "xmlhttprequest"],
-        onlyIfBlockedByETP: true,
-      },
-      {
-        patterns: ["https://redirect.firefox.etp/adsafeprotected_favicon"],
-        target: "tracking-pixel.png",
-        types: ["image", "imageset", "xmlhttprequest"],
-      },
-    ],
-  },
-  {
+    // keep this above AdSafeProtectedTrackingPixels
     id: "AdSafeProtectedGoogleIMAAdapter",
     platform: "all",
-    branches: ["nightly:android"],
     name: "Ad Safe Protected Google IMA Adapter",
     bug: "1508639",
     file: "adsafeprotected-ima.js",
@@ -206,6 +187,42 @@ const AVAILABLE_SHIMS = [
       },
     ],
     onlyIfBlockedByETP: true,
+  },
+  {
+    id: "AdvertisingDotCom",
+    platform: "all",
+    name: "advertising.com",
+    bug: "1701685",
+    matches: [
+      {
+        patterns: ["*://*.advertising.com/*.js*"],
+        target: "https://redirect.firefox.etp/advertisingdotcom_js",
+        types: ["image", "imageset", "xmlhttprequest"],
+        onlyIfBlockedByETP: true,
+      },
+      {
+        patterns: ["*://*.advertising.com/*"],
+        target: "https://redirect.firefox.etp/advertisingdotcom_pixel",
+        types: ["image", "imageset", "xmlhttprequest"],
+        onlyIfBlockedByETP: true,
+      },
+      {
+        patterns: ["*://*.adsafeprotected.com/*"],
+        target: "https://redirect.firefox.etp/advertisingdotcom_pixel",
+        types: ["image", "imageset", "xmlhttprequest"],
+        onlyIfBlockedByETP: true,
+      },
+      {
+        patterns: ["https://redirect.firefox.etp/adsafeprotected_pixel"],
+        target: "tracking-pixel.png",
+        types: ["image", "imageset", "xmlhttprequest"],
+      },
+      {
+        patterns: ["https://redirect.firefox.etp/advertisingdotcom_js"],
+        target: "empty-script.js",
+        types: ["xmlhttprequest"],
+      },
+    ],
   },
   {
     id: "Branch",
@@ -265,6 +282,7 @@ const AVAILABLE_SHIMS = [
     onlyIfBlockedByETP: true,
   },
   {
+    // keep this above AdSafeProtectedTrackingPixels
     id: "Doubleclick",
     platform: "all",
     name: "Doubleclick",
@@ -288,6 +306,7 @@ const AVAILABLE_SHIMS = [
       },
       {
         patterns: [
+          "*://vast.adsafeprotected.com/vast*",
           "*://securepubads.g.doubleclick.net/gampad/*xml_vmap2*",
           "*://pubads.g.doubleclick.net/gampad/*xml_vmap2*",
         ],
@@ -485,6 +504,7 @@ const AVAILABLE_SHIMS = [
     onlyIfBlockedByETP: true,
   },
   {
+    // keep this above AdSafeProtectedTrackingPixels
     id: "IASPET",
     platform: "all",
     name: "Integral Ad Science PET",
@@ -797,6 +817,61 @@ const AVAILABLE_SHIMS = [
       },
     ],
     onlyIfDFPIActive: true,
+  },
+  {
+    // keep this below any other shims checking adsafeprotected URLs
+    id: "AdSafeProtectedTrackingPixels",
+    platform: "all",
+    name: "Ad Safe Protected tracking pixels",
+    bug: "1717806",
+    matches: [
+      {
+        patterns: [
+          "*://*.adsafeprotected.com/*.gif*",
+          "*://*.adsafeprotected.com/*.png*",
+        ],
+        target: "https://redirect.firefox.etp/adsafeprotected_pixel",
+        types: ["image", "imageset", "xmlhttprequest"],
+        onlyIfBlockedByETP: true,
+      },
+      {
+        patterns: [
+          "*://*.adsafeprotected.com/*.js*",
+          "*://*.adsafeprotected.com/*/adj*",
+          "*://*.adsafeprotected.com/*/imp/*",
+          "*://*.adsafeprotected.com/*/Serving/*",
+          "*://*.adsafeprotected.com/*/unit/*",
+          "*://*.adsafeprotected.com/jload",
+          "*://*.adsafeprotected.com/jload?*",
+          "*://*.adsafeprotected.com/jsvid",
+          "*://*.adsafeprotected.com/jsvid?*",
+          "*://*.adsafeprotected.com/mon*",
+          "*://*.adsafeprotected.com/tpl",
+          "*://*.adsafeprotected.com/tpl?*",
+          "*://*.adsafeprotected.com/services/pub*",
+        ],
+        target: "https://redirect.firefox.etp/adsafeprotected_js",
+        types: ["image", "imageset", "xmlhttprequest"],
+        onlyIfBlockedByETP: true,
+      },
+      {
+        // note, fallback case seems to be an image
+        patterns: ["*://*.adsafeprotected.com/*"],
+        target: "https://redirect.firefox.etp/adsafeprotected_pixel",
+        types: ["image", "imageset", "xmlhttprequest"],
+        onlyIfBlockedByETP: true,
+      },
+      {
+        patterns: ["https://redirect.firefox.etp/adsafeprotected_pixel"],
+        target: "tracking-pixel.png",
+        types: ["image", "imageset", "xmlhttprequest"],
+      },
+      {
+        patterns: ["https://redirect.firefox.etp/adsafeprotected_js"],
+        target: "empty-script.js",
+        types: ["xmlhttprequest"],
+      },
+    ],
   },
 ];
 
