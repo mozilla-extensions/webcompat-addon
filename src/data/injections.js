@@ -570,6 +570,16 @@ const AVAILABLE_INJECTIONS = [
     },
   },
   {
+    id: "bug1772949",
+    platform: "all",
+    domain: "YouTube embeds",
+    bug: "1772949",
+    customFunc: "runScriptBeforeRequest",
+    script: "injections/js/bug1772949-youtube-webshare-shim.js",
+    request: ["*://www.youtube.com/*/www-embed-player.js*"],
+    message: "The WebShare API is being disabled on a YouTube frame.",
+  },
+  {
     id: "bug1774005",
     platform: "all",
     domain: "Sites relying on window.InstallTrigger",
