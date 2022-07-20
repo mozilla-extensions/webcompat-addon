@@ -587,12 +587,14 @@ const AVAILABLE_INJECTIONS = [
     contentScripts: {
       matches: [
         "*://*.pixiv.net/*", // Bug 1774006
+        "*://*.crunchyroll.com/*", // Bug 1777597
       ],
       js: [
         {
           file: "injections/js/bug1774005-installtrigger-shim.js",
         },
       ],
+      allFrames: true,
     },
   },
 ];
