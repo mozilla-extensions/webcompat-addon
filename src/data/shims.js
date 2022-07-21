@@ -133,19 +133,21 @@ const AVAILABLE_SHIMS = [
     onlyIfBlockedByETP: true,
   },
   {
-    id: "AdNexus",
+    id: "AdNexusAST",
     platform: "all",
-    name: "AdNexus",
+    name: "AdNexus AST",
+    bug: "1734130",
+    file: "adnexus-ast.js",
+    matches: ["*://*.adnxs.com/*/ast.js*"],
+    onlyIfBlockedByETP: true,
+  },
+  {
+    id: "AdNexusPrebid",
+    platform: "all",
+    name: "AdNexus Prebid",
     bug: "1713696",
-    file: "empty-script.js",
-    matches: [
-      "*://acdn.adnxs.com/ast/ast.js",
-      {
-        patterns: ["*://*.adnxs.com/*/pb.js", "*://*.adnxs.com/*/prebid"],
-        target: "adnexus-prebid.js",
-        types: ["script"],
-      },
-    ],
+    file: "adnexus-prebid.js",
+    matches: ["*://*.adnxs.com/*/pb.js*", "*://*.adnxs.com/*/prebid*"],
     onlyIfBlockedByETP: true,
   },
   {
