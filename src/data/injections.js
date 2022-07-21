@@ -580,6 +580,20 @@ const AVAILABLE_INJECTIONS = [
     message: "The WebShare API is being disabled on a YouTube frame.",
   },
   {
+    id: "bug1778239",
+    platform: "all",
+    domain: "m.pji.co.kr",
+    bug: "1778239",
+    contentScripts: {
+      matches: ["*://m.pji.co.kr/*"],
+      js: [
+        {
+          file: "injections/js/bug1778239-m.pji.co.kr-banner-hide.js",
+        },
+      ],
+    },
+  },
+  {
     id: "bug1774005",
     platform: "all",
     domain: "Sites relying on window.InstallTrigger",
