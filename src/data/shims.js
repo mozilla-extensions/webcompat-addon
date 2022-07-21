@@ -367,6 +367,17 @@ const AVAILABLE_SHIMS = [
     ],
   },
   {
+    id: "Fastclick",
+    platform: "all",
+    name: "Fastclick",
+    bug: "1738220",
+    file: "fastclick.js",
+    matches: [
+      "*://secure.cdn.fastclick.net/js/cnvr-launcher/*/launcher-stub.min.js*",
+    ],
+    onlyIfBlockedByETP: true,
+  },
+  {
     id: "GoogleAnalyticsAndTagManager",
     platform: "all",
     name: "Google Analytics and Tag Manager",
