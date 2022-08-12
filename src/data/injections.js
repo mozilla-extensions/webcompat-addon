@@ -650,6 +650,27 @@ const AVAILABLE_INJECTIONS = [
       ],
     },
   },
+  {
+    id: "bug1784141",
+    platform: "android",
+    domain: "aveeno.com",
+    bug: "1784141",
+    contentScripts: {
+      matches: [
+        "*://*.aveeno.com/*",
+        "*://*.aveeno.ca/*",
+        "*://*.aveeno.com.au/*",
+        "*://*.aveeno.co.kr/*",
+        "*://*.aveeno.co.uk/*",
+        "*://*.aveeno.ie/*",
+      ],
+      css: [
+        {
+          file: "injections/css/bug1784141-aveeno.com-unsupported.css",
+        },
+      ],
+    },
+  },
 ];
 
 module.exports = AVAILABLE_INJECTIONS;
