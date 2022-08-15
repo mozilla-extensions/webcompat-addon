@@ -699,6 +699,21 @@ const AVAILABLE_INJECTIONS = [
       ],
     },
   },
+  {
+    id: "bug1784351",
+    platform: "desktop",
+    domain: "movistar.com.ar",
+    bug: "1784351",
+    contentScripts: {
+      matches: ["*://*.movistar.com.ar/*"],
+      css: [
+        {
+          file:
+            "injections/css/bug1784351-movistar.com.ar-overflow-overlay-fix.css",
+        },
+      ],
+    },
+  },
 ];
 
 module.exports = AVAILABLE_INJECTIONS;
