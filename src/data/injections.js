@@ -714,6 +714,25 @@ const AVAILABLE_INJECTIONS = [
       ],
     },
   },
+  {
+    id: "bug1784199",
+    platform: "all",
+    domain: "Sites based on Entrata Platform",
+    bug: "1784199",
+    contentScripts: {
+      matches: [
+        "*://*.aptsovation.com/*",
+        "*://*.nhcalaska.com/*",
+        "*://*.securityproperties.com/*",
+        "*://*.theloftsorlando.com/*",
+      ],
+      css: [
+        {
+          file: "injections/css/bug1784199-entrata-platform-unsupported.css",
+        },
+      ],
+    },
+  },
 ];
 
 module.exports = AVAILABLE_INJECTIONS;
