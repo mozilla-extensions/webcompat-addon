@@ -940,7 +940,7 @@ const AVAILABLE_UA_OVERRIDES = [
   },
   {
     /*
-     * Bug 1776897 - UA override for watch.antennaplus.gr
+     * Bug 1776897 - UA override for www.edencast.fr
      * Webcompat issue #106545 - https://webcompat.com/issues/106545
      *
      * The site's podcast audio player does not load unless a Chrome UA is used.
