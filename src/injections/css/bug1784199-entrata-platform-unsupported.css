@@ -4,6 +4,10 @@
  * WebCompat issue #100131 - https://webcompat.com/issues/100131
  */
 
+* {
+  color: unset;
+}
+
 #propertyProduct,
 .banner_overlay {
   display: none;
