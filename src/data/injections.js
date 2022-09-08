@@ -780,6 +780,21 @@ const AVAILABLE_INJECTIONS = [
       ],
     },
   },
+  {
+    id: "bug1788685",
+    platform: "all",
+    domain: "microsoftedgetips.microsoft.com",
+    bug: "1788685",
+    contentScripts: {
+      matches: ["*://microsoftedgetips.microsoft.com/*"],
+      css: [
+        {
+          file:
+            "injections/css/bug1788685-microsoftedgetips.microsoft.com-gallery-fix.css",
+        },
+      ],
+    },
+  },
 ];
 
 module.exports = AVAILABLE_INJECTIONS;
