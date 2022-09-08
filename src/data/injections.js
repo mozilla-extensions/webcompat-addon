@@ -602,6 +602,7 @@ const AVAILABLE_INJECTIONS = [
       matches: [
         "*://*.crunchyroll.com/*", // Bug 1777597
         "*://*.pixiv.net/*", // Bug 1774006
+        "*://*.webex.com/*", // Bug 1788934
         "*://business.help.royalmail.com/app/webforms/*", // Bug 1786404
         "*://www.northcountrypublicradio.org/contact/subscribe.html*", // Bug 1778382
       ],
