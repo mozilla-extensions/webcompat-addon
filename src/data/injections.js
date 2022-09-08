@@ -600,8 +600,9 @@ const AVAILABLE_INJECTIONS = [
     bug: "1774005",
     contentScripts: {
       matches: [
-        "*://*.pixiv.net/*", // Bug 1774006
         "*://*.crunchyroll.com/*", // Bug 1777597
+        "*://*.pixiv.net/*", // Bug 1774006
+        "*://business.help.royalmail.com/app/webforms/*", // Bug 1786404
         "*://www.northcountrypublicradio.org/contact/subscribe.html*", // Bug 1778382
       ],
       js: [

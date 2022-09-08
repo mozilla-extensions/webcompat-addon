@@ -897,6 +897,24 @@ const AVAILABLE_UA_OVERRIDES = [
       },
     },
   },
+  {
+    /*
+     * Bug 1786404 - UA override for business.help.royalmail.com
+     * Webcompat issue #109070 - https://webcompat.com/issues/109070
+     *
+     * Replacing `Firefox` with `FireFox` to evade one of their UA tests...
+     */
+    id: "bug1786404",
+    platform: "all",
+    domain: "business.help.royalmail.com",
+    bug: "1786404",
+    config: {
+      matches: ["*://business.help.royalmail.com/app/webforms/*"],
+      uaTransformer: originalUA => {
+        return originalUA.replace("Firefox", "FireFox");
+      },
+    },
+  },
 ];
 
 module.exports = AVAILABLE_UA_OVERRIDES;
