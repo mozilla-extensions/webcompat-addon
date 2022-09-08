@@ -796,6 +796,20 @@ const AVAILABLE_INJECTIONS = [
       ],
     },
   },
+  {
+    id: "bug1789164",
+    platform: "all",
+    domain: "zdnet.com",
+    bug: "1789164",
+    contentScripts: {
+      matches: ["*://www.zdnet.com/*"],
+      css: [
+        {
+          file: "injections/css/bug1789164-zdnet.com-cropped-section.css",
+        },
+      ],
+    },
+  },
 ];
 
 module.exports = AVAILABLE_INJECTIONS;
