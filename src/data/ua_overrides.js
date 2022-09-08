@@ -734,6 +734,7 @@ const AVAILABLE_UA_OVERRIDES = [
         "*://www.learningants.com/*", // #104080
         "*://www.liveobserverpark.com/*", // #105244
         "*://www.manchestereveningnews.co.uk/*", // #100923
+        "*://www.metrobyt-mobile.com/*", // #105106
         "*://www.screwfix.com/*", // #96959
         "*://www.services.gov.on.ca/*", // #100926
         "*://www.smsv.com.ar/*", // #90666
