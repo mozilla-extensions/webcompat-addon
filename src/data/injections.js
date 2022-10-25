@@ -97,17 +97,6 @@ const AVAILABLE_INJECTIONS = [
     },
   },
   {
-    id: "bug1551672",
-    platform: "android",
-    domain: "Sites using PDK 5 video",
-    bug: "1551672",
-    data: {
-      urls: ["https://*/*/tpPdk.js", "https://*/*/pdk/js/*/*.js"],
-      types: ["script"],
-    },
-    customFunc: "pdk5fix",
-  },
-  {
     id: "bug1583366",
     platform: "desktop",
     domain: "Download prompt for files with no content-type",
