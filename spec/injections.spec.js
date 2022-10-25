@@ -22,20 +22,6 @@ function buildInjection(platform) {
   };
 }
 
-function buildPDK5injection() {
-  return {
-    id: "test",
-    platform: "all",
-    domain: "Sites using PDK 5 video",
-    bug: "0",
-    data: {
-      urls: ["https://*/*/tpPdk.js", "https://*/*/pdk/js/*/*.js"],
-      types: ["script"],
-    },
-    customFunc: "pdk5fix",
-  };
-}
-
 function buildNoSniffFix() {
   return {
     id: "test",
@@ -128,27 +114,6 @@ describe("Injections", () => {
   });
 
   describe("Custom functions register and unregister", () => {
-    it("registers an onBeforeRequest listener for pdk5 injections", async () => {
-      let injections = new Injections([buildPDK5injection()], CUSTOM_FUNCTIONS);
-      let spy = spyOn(browser.webRequest.onBeforeRequest, "addListener");
-
-      injections.bindAboutCompatBroker(mockBroker);
-      await injections.registerContentScripts();
-      expect(spy).toHaveBeenCalled();
-    });
-
-    it("calls pdk5fixDisable when disabling pdk5 fix", async () => {
-      const injection = buildPDK5injection();
-      injection.active = true;
-      let injections = new Injections([injection], CUSTOM_FUNCTIONS);
-      let spy = spyOn(CUSTOM_FUNCTIONS, "pdk5fixDisable");
-
-      injections.bindAboutCompatBroker(mockBroker);
-      await injections.unregisterContentScripts();
-      expect(spy).toHaveBeenCalled();
-      expect(injection.active).toBeFalsy();
-    });
-
     it("registers an onHeadersReceived listener for no sniff fix", async () => {
       let injections = new Injections([buildNoSniffFix()], CUSTOM_FUNCTIONS);
       let spy = spyOn(browser.webRequest.onHeadersReceived, "addListener");
