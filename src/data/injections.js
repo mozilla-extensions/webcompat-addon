@@ -663,20 +663,6 @@ const AVAILABLE_INJECTIONS = [
     },
   },
   {
-    id: "bug1784546",
-    platform: "android",
-    domain: "seznam.cz",
-    bug: "1784546",
-    contentScripts: {
-      matches: ["*://*.seznam.cz/*"],
-      css: [
-        {
-          file: "injections/css/bug1784546-seznam.cz-popup-height.css",
-        },
-      ],
-    },
-  },
-  {
     id: "bug1784351",
     platform: "desktop",
     domain: "movistar.com.ar",
