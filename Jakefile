@@ -87,16 +87,18 @@ function getMozillaCentralLocation() {
  * @returns {string} the location of AndroidComponents
  */
 function getAndroidComponentsLocation() {
-  let acLocation = path.resolve(
-    process.env.EXPORT_AC_LOCATION || "../android-components"
+  let monorepoLocation = path.resolve(
+    process.env.EXPORT_ANDROID_MONOREPO_LOCATION || "../firefox-android"
   );
+
+  let acLocation = path.join(monorepoLocation, "android-components");
 
   try {
     fs.statSync(acLocation).isDirectory();
     fs.statSync(`${acLocation}/gradlew`).isFile();
   } catch (ex) {
-    throw new Error(`android-components at ${acLocation} not found. Please set
-      the correct path into the EXPORT_AC_LOCATION environment variable!`);
+    throw new Error(`android monorepo at ${monorepoLocation} not found. Please set
+      the correct path into the EXPORT_ANDROID_MONOREPO_LOCATION environment variable!`);
   }
 
   return acLocation;
@@ -188,7 +190,7 @@ task("export-mc", ["build"], { async: true }, async () => {
   exportFiles(getMozillaCentralLocation(), "browser/extensions/webcompat");
 });
 
-desc("Exports the sources into the android-components repo");
+desc("Exports the sources into android-components");
 task("export-ac", ["build"], { async: true }, async () => {
   await setExtensionName(EXTENSION_NAME.androidComponents);
   deleteBuiltFiles(AC_IGNORE_PATHS);
