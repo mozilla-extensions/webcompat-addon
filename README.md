@@ -24,7 +24,7 @@ If this is the first time you're working with this repository, install the depen
 ### Exporting the sources into Android Components
 
 1. Ensure the version number is bumped in and `src/manifest.json`, appropriately (see [Versioning Scheme](https://github.com/mozilla/webcompat-addon/wiki/Versioning-Scheme) for more info).
-2. Make sure the `EXPORT_AC_LOCATION` environment variable is set to the root of your Android Components checkout.
+2. Make sure the `EXPORT_ANDROID_MONOREPO_LOCATION` environment variable is set to the root of your [firefox-android monorepo](https://github.com/mozilla-mobile/firefox-android) checkout.
 3. Run `npm run jake export-ac`.
 4. Find the exported files in your Android Components directory, ready to commit.
 
