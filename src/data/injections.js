@@ -581,6 +581,7 @@ const AVAILABLE_INJECTIONS = [
         "*://business.help.royalmail.com/app/webforms/*", // Bug 1786404
         "*://www.northcountrypublicradio.org/contact/subscribe.html*", // Bug 1778382,
         "*://www.schoolnutritionandfitness.com/*", // Bug 1793761
+        "*://mobilevikings.be/*/registration/*", // Bug 1797400
       ],
       js: [
         {
