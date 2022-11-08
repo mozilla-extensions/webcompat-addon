@@ -715,7 +715,6 @@ const AVAILABLE_UA_OVERRIDES = [
         "*://fpt.dfp.microsoft.com/*", // #104237
         "*://ubank.com.au/*", // #104099
         "*://wifi.sncf/*", // #100194
-        "*://www.liveobserverpark.com/*", // #105244
         "*://www.metrobyt-mobile.com/*", // #105106
         "*://www.screwfix.com/*", // #96959
       ],
