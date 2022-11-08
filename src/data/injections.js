@@ -749,6 +749,21 @@ const AVAILABLE_INJECTIONS = [
       ],
     },
   },
+  {
+    id: "bug1795490",
+    platform: "android",
+    domain: "www.china-airlines.com",
+    bug: "1795490",
+    contentScripts: {
+      matches: ["*://www.china-airlines.com/*"],
+      js: [
+        {
+          file:
+            "injections/js/bug1795490-www.china-airlines.com-undisable-date-fields-on-mobile.js",
+        },
+      ],
+    },
+  },
 ];
 
 module.exports = AVAILABLE_INJECTIONS;
