@@ -605,30 +605,6 @@ const AVAILABLE_INJECTIONS = [
     },
   },
   {
-    id: "bug1784309",
-    platform: "all",
-    domain: "bet365.com",
-    bug: "1784309",
-    contentScripts: {
-      matches: [
-        "*://*.bet365.com/*",
-        "*://*.bet365.gr/*",
-        "*://*.bet365.com.au/*",
-        "*://*.bet365.de/*",
-        "*://*.bet365.es/*",
-        "*://*.bet365.ca/*",
-        "*://*.bet365.dk/*",
-        "*://*.bet365.mx/*",
-        "*://*.bet365.bet.ar/*",
-      ],
-      js: [
-        {
-          file: "injections/js/bug1784309-bet365.com-math-pow.js",
-        },
-      ],
-    },
-  },
-  {
     id: "bug1784141",
     platform: "android",
     domain: "aveeno.com",
