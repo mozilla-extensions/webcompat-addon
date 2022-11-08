@@ -895,6 +895,24 @@ const AVAILABLE_UA_OVERRIDES = [
       },
     },
   },
+  {
+    /*
+     * Bug 1790698 - UA override for wolf777.com
+     * Webcompat issue #103981 - https://webcompat.com/issues/103981
+     *
+     * Add 'Linux; ' next to the Android version or the site breaks
+     */
+    id: "bug1790698",
+    platform: "android",
+    domain: "wolf777.com",
+    bug: "1790698",
+    config: {
+      matches: ["*://wolf777.com/*"],
+      uaTransformer: originalUA => {
+        return originalUA.replace("Android", "Linux; Android");
+      },
+    },
+  },
 ];
 
 module.exports = AVAILABLE_UA_OVERRIDES;
