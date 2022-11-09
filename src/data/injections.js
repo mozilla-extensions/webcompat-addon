@@ -795,6 +795,21 @@ const AVAILABLE_INJECTIONS = [
       ],
     },
   },
+  {
+    id: "bug1799994",
+    platform: "all",
+    domain: "www.vivobarefoot.com",
+    bug: "1799994",
+    contentScripts: {
+      matches: ["*://www.vivobarefoot.com/*"],
+      css: [
+        {
+          file:
+            "injections/css/bug1799994-www.vivobarefoot.com-product-filters-fix.css",
+        },
+      ],
+    },
+  },
 ];
 
 module.exports = AVAILABLE_INJECTIONS;
