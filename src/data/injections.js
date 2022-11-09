@@ -781,6 +781,20 @@ const AVAILABLE_INJECTIONS = [
       ],
     },
   },
+  {
+    id: "bug1799980",
+    platform: "all",
+    domain: "healow.com",
+    bug: "1799980",
+    contentScripts: {
+      matches: ["*://healow.com/*"],
+      js: [
+        {
+          file: "injections/js/bug1799980-healow.com-infinite-loop-fix.js",
+        },
+      ],
+    },
+  },
 ];
 
 module.exports = AVAILABLE_INJECTIONS;
