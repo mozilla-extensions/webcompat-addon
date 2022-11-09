@@ -42,7 +42,9 @@ for (const injection of AVAILABLE_INJECTIONS) {
 
     it("provides a valid platform", () => {
       expect(
-        ["all", "desktop", "android"].includes(injection.platform)
+        ["all", "desktop", "android", "mac", "win", "linux"].includes(
+          injection.platform
+        )
       ).toBeTruthy();
     });
 

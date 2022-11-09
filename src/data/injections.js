@@ -766,6 +766,21 @@ const AVAILABLE_INJECTIONS = [
       ],
     },
   },
+  {
+    id: "bug1799968",
+    platform: "linux",
+    domain: "www.samsung.com",
+    bug: "1799968",
+    contentScripts: {
+      matches: ["*://www.samsung.com/*/watches/*/*"],
+      js: [
+        {
+          file:
+            "injections/js/bug1799968-www.samsung.com-appVersion-linux-fix.js",
+        },
+      ],
+    },
+  },
 ];
 
 module.exports = AVAILABLE_INJECTIONS;
