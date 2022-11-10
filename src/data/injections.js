@@ -840,6 +840,21 @@ const AVAILABLE_INJECTIONS = [
       ],
     },
   },
+  {
+    id: "bug1800127",
+    platform: "all",
+    domain: "www.burgerking.es",
+    bug: "1800127",
+    contentScripts: {
+      matches: ["*://www.burgerking.es/*"],
+      css: [
+        {
+          file:
+            "injections/css/bug1800127-www.burgerking.es-webkit-fill-available-fix.css",
+        },
+      ],
+    },
+  },
 ];
 
 module.exports = AVAILABLE_INJECTIONS;
