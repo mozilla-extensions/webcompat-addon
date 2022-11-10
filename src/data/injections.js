@@ -855,6 +855,21 @@ const AVAILABLE_INJECTIONS = [
       ],
     },
   },
+  {
+    id: "bug1800131",
+    platform: "all",
+    domain: "www.almosafer.com",
+    bug: "1800131",
+    contentScripts: {
+      matches: ["*://www.almosafer.com/mweb/flights-home*"],
+      js: [
+        {
+          file:
+            "injections/js/bug1800131-www.almosafer.com-undisable-date-fields.js",
+        },
+      ],
+    },
+  },
 ];
 
 module.exports = AVAILABLE_INJECTIONS;
