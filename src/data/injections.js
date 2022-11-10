@@ -870,6 +870,21 @@ const AVAILABLE_INJECTIONS = [
       ],
     },
   },
+  {
+    id: "bug1800143",
+    platform: "all",
+    domain: "www.nintendo.co.jp",
+    bug: "1800143",
+    contentScripts: {
+      matches: ["*://www.nintendo.co.jp/software/feature/*"],
+      css: [
+        {
+          file:
+            "injections/css/bug1800143-www.nintendo.co.jp-zoomed-in-image-scrolling-fix.css",
+        },
+      ],
+    },
+  },
 ];
 
 module.exports = AVAILABLE_INJECTIONS;
