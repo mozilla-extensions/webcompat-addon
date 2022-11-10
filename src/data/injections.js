@@ -825,6 +825,21 @@ const AVAILABLE_INJECTIONS = [
       ],
     },
   },
+  {
+    id: "bug1800118",
+    platform: "android",
+    domain: "taszi.edupage.org",
+    bug: "1800118",
+    contentScripts: {
+      matches: ["*://taszi.edupage.org/timetable/*"],
+      js: [
+        {
+          file:
+            "injections/js/bug1800118-taszi.edupage.org-timetable-window.print-fix.js",
+        },
+      ],
+    },
+  },
 ];
 
 module.exports = AVAILABLE_INJECTIONS;
