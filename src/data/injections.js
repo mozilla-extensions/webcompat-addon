@@ -40,7 +40,7 @@ const AVAILABLE_INJECTIONS = [
   },
   {
     id: "bug1452707",
-    platform: "desktop",
+    platform: "all",
     domain: "ib.absa.co.za",
     bug: "1452707",
     contentScripts: {
