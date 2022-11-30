@@ -913,6 +913,24 @@ const AVAILABLE_UA_OVERRIDES = [
       },
     },
   },
+  {
+    /*
+     * Bug 1800936 - UA override for cov19ent.kdca.go.kr
+     * Webcompat issue #110655 - https://webcompat.com/issues/110655
+     *
+     * Add 'Chrome;' to the UA for the site to load styles
+     */
+    id: "bug1800936",
+    platform: "all",
+    domain: "cov19ent.kdca.go.kr",
+    bug: "1800936",
+    config: {
+      matches: ["*://cov19ent.kdca.go.kr/*"],
+      uaTransformer: originalUA => {
+        return originalUA + " Chrome";
+      },
+    },
+  },
 ];
 
 module.exports = AVAILABLE_UA_OVERRIDES;
