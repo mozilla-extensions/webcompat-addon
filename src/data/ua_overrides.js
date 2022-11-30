@@ -712,11 +712,10 @@ const AVAILABLE_UA_OVERRIDES = [
     config: {
       matches: [
         "*://*.commerzbank.de/*", // Bug 1767630
-        "*://fpt.dfp.microsoft.com/*", // #104237
         "*://ubank.com.au/*", // #104099
         "*://wifi.sncf/*", // #100194
         "*://www.metrobyt-mobile.com/*", // #105106
-        "*://www.screwfix.com/*", // #96959
+        "*://*.mms.telekom.de/*", // #1800241
       ],
       uaTransformer: originalUA => {
         return UAHelpers.capVersionTo99(originalUA);
