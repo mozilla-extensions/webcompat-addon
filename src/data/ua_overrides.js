@@ -930,6 +930,25 @@ const AVAILABLE_UA_OVERRIDES = [
       },
     },
   },
+  {
+    /*
+     * Bug 1803131 - UA override for argaam.com
+     * Webcompat issue #113638 - https://webcompat.com/issues/113638
+     *
+     * To receive the proper mobile version instead of the desktop version
+     * the UA is spoofed.
+     */
+    id: "bug1803131",
+    platform: "android",
+    domain: "argaam.com",
+    bug: "1803131",
+    config: {
+      matches: ["*://*.argaam.com/*"],
+      uaTransformer: originalUA => {
+        return UAHelpers.getDeviceAppropriateChromeUA();
+      },
+    },
+  },
 ];
 
 module.exports = AVAILABLE_UA_OVERRIDES;
