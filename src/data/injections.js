@@ -370,13 +370,16 @@ const AVAILABLE_INJECTIONS = [
   {
     id: "bug1724764",
     platform: "android",
-    domain: "amextravel.com",
+    domain: "Issues related to missing window.print",
     bug: "1724764",
     contentScripts: {
-      matches: ["*://*.amextravel.com/*"],
+      matches: [
+        "*://*.amextravel.com/*", // 1724764
+        "*://*.edupage.org/*", // 1804477 and 1800118
+      ],
       js: [
         {
-          file: "injections/js/bug1724764-amextravel.com-window-print.js",
+          file: "injections/js/bug1724764-window-print.js",
         },
       ],
     },
@@ -821,21 +824,6 @@ const AVAILABLE_INJECTIONS = [
         {
           file:
             "injections/css/bug1800000-www.honda.co.uk-choose-dealer-button-fix.css",
-        },
-      ],
-    },
-  },
-  {
-    id: "bug1800118",
-    platform: "android",
-    domain: "taszi.edupage.org",
-    bug: "1800118",
-    contentScripts: {
-      matches: ["*://taszi.edupage.org/timetable/*"],
-      js: [
-        {
-          file:
-            "injections/js/bug1800118-taszi.edupage.org-timetable-window.print-fix.js",
         },
       ],
     },
