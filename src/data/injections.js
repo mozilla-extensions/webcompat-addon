@@ -428,20 +428,6 @@ const AVAILABLE_INJECTIONS = [
     },
   },
   {
-    id: "bug1751022",
-    platform: "android",
-    domain: "chotot.com",
-    bug: "1751022",
-    contentScripts: {
-      matches: ["*://*.chotot.com/*"],
-      css: [
-        {
-          file: "injections/css/bug1751022-chotot.com-image-width-fix.css",
-        },
-      ],
-    },
-  },
-  {
     id: "bug1754473",
     platform: "android",
     domain: "m.intl.taobao.com",
@@ -546,16 +532,6 @@ const AVAILABLE_INJECTIONS = [
         },
       ],
     },
-  },
-  {
-    id: "bug1772949",
-    platform: "all",
-    domain: "YouTube embeds",
-    bug: "1772949",
-    customFunc: "runScriptBeforeRequest",
-    script: "injections/js/bug1772949-youtube-webshare-shim.js",
-    request: ["*://www.youtube.com/*/www-embed-player.js*"],
-    message: "The WebShare API is being disabled on a YouTube frame.",
   },
   {
     id: "bug1778239",
@@ -675,67 +651,6 @@ const AVAILABLE_INJECTIONS = [
       css: [
         {
           file: "injections/css/bug1784199-entrata-platform-unsupported.css",
-        },
-      ],
-    },
-  },
-  {
-    id: "bug1787267",
-    platform: "all",
-    domain: "All international Nintendo domains",
-    bug: "1787267",
-    contentScripts: {
-      matches: [
-        "*://*.mojenintendo.cz/*",
-        "*://*.nintendo-europe.com/*",
-        "*://*.nintendo.at/*",
-        "*://*.nintendo.be/*",
-        "*://*.nintendo.ch/*",
-        "*://*.nintendo.co.il/*",
-        "*://*.nintendo.co.jp/*",
-        "*://*.nintendo.co.kr/*",
-        "*://*.nintendo.co.nz/*",
-        "*://*.nintendo.co.uk/*",
-        "*://*.nintendo.co.za/*",
-        "*://*.nintendo.com.au/*",
-        "*://*.nintendo.com.hk/*",
-        "*://*.nintendo.com/*",
-        "*://*.nintendo.de/*",
-        "*://*.nintendo.dk/*",
-        "*://*.nintendo.es/*",
-        "*://*.nintendo.fi/*",
-        "*://*.nintendo.fr/*",
-        "*://*.nintendo.gr/*",
-        "*://*.nintendo.hu/*",
-        "*://*.nintendo.it/*",
-        "*://*.nintendo.nl/*",
-        "*://*.nintendo.no/*",
-        "*://*.nintendo.pt/*",
-        "*://*.nintendo.ru/*",
-        "*://*.nintendo.se/*",
-        "*://*.nintendo.sk/*",
-        "*://*.nintendo.tw/*",
-        "*://*.nintendoswitch.com.cn/*",
-      ],
-      js: [
-        {
-          file:
-            "injections/js/bug1787267-nintendo-window-OnetrustActiveGroups.js",
-        },
-      ],
-    },
-  },
-  {
-    id: "bug1788685",
-    platform: "all",
-    domain: "microsoftedgetips.microsoft.com",
-    bug: "1788685",
-    contentScripts: {
-      matches: ["*://microsoftedgetips.microsoft.com/*"],
-      css: [
-        {
-          file:
-            "injections/css/bug1788685-microsoftedgetips.microsoft.com-gallery-fix.css",
         },
       ],
     },
