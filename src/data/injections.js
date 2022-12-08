@@ -788,6 +788,21 @@ const AVAILABLE_INJECTIONS = [
       ],
     },
   },
+  {
+    id: "bug1803976",
+    platform: "desktop",
+    domain: "www.youtube.com",
+    bug: "1803976",
+    contentScripts: {
+      matches: ["*://www.youtube.com/*"],
+      js: [
+        {
+          file:
+            "injections/js/bug1803976-www.youtube.com-performance-now-precision.js",
+        },
+      ],
+    },
+  },
 ];
 
 module.exports = AVAILABLE_INJECTIONS;
