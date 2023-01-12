@@ -111,21 +111,6 @@ const AVAILABLE_INJECTIONS = [
     customFunc: "noSniffFix",
   },
   {
-    id: "bug1768243",
-    platform: "desktop",
-    domain: "cloud.google.com",
-    bug: "1768243",
-    contentScripts: {
-      matches: ["*://cloud.google.com/terms/*"],
-      css: [
-        {
-          file:
-            "injections/css/bug1768243-cloud.google.com-allow-table-scrolling.css",
-        },
-      ],
-    },
-  },
-  {
     id: "bug1570328",
     platform: "android",
     domain: "developer.apple.com",
