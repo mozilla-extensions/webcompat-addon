@@ -529,9 +529,10 @@ const AVAILABLE_INJECTIONS = [
         "*://*.pixiv.net/*", // Bug 1774006
         "*://*.webex.com/*", // Bug 1788934
         "*://business.help.royalmail.com/app/webforms/*", // Bug 1786404
+        "*://ifcinema.institutfrancais.com/*", // Bug 1806423
+        "*://mobilevikings.be/*/registration/*", // Bug 1797400
         "*://www.northcountrypublicradio.org/contact/subscribe.html*", // Bug 1778382,
         "*://www.schoolnutritionandfitness.com/*", // Bug 1793761
-        "*://mobilevikings.be/*/registration/*", // Bug 1797400
       ],
       js: [
         {
