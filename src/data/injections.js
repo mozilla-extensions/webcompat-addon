@@ -679,11 +679,12 @@ const AVAILABLE_INJECTIONS = [
     contentScripts: {
       matches: [
         "*://*.aptsovation.com/*",
+        "*://*.liveatlasathens.com/*", // #111189
+        "*://*.liveobserverpark.com/*", // #105244
         "*://*.nhcalaska.com/*",
+        "*://*.prospectportal.com/*", // #115206
         "*://*.securityproperties.com/*",
         "*://*.theloftsorlando.com/*",
-        "*://*.liveobserverpark.com/*", // #105244
-        "*://*.liveatlasathens.com/*", // #111189
       ],
       css: [
         {
