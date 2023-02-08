@@ -842,6 +842,16 @@ const AVAILABLE_INJECTIONS = [
       ],
     },
   },
+  {
+    id: "bug1811325",
+    platform: "all",
+    domain: "www.bdo.com.ph",
+    bug: "1811325",
+    customFunc: "acceptLanguageFix",
+    data: {
+      urls: ["*://www.bdo.com.ph/*", "*://www.inmac-wstore.com/*"],
+    },
+  },
 ];
 
 module.exports = AVAILABLE_INJECTIONS;
