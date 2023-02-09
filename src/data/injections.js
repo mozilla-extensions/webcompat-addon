@@ -630,20 +630,6 @@ const AVAILABLE_INJECTIONS = [
     },
   },
   {
-    id: "bug1784195",
-    platform: "android",
-    domain: "nutmeg.morrisons.com",
-    bug: "1784195",
-    contentScripts: {
-      matches: ["*://nutmeg.morrisons.com/*"],
-      css: [
-        {
-          file: "injections/css/bug1784195-nutmeg.morrisons.com-overflow.css",
-        },
-      ],
-    },
-  },
-  {
     id: "bug1784351",
     platform: "desktop",
     domain: "movistar.com.ar",
