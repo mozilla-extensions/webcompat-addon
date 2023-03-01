@@ -809,6 +809,55 @@ const AVAILABLE_INJECTIONS = [
       urls: ["*://www.bdo.com.ph/*", "*://www.inmac-wstore.com/*"],
     },
   },
+  {
+    id: "bug1448747",
+    platform: "android",
+    domain: "FastClick breakage",
+    bug: "1448747",
+    contentScripts: {
+      matches: [
+        "*://*.co2meter.com/*", // 10959
+        "*://*.franmar.com/*", // 27273
+        "*://*.themusiclab.org/*", // 49667
+        "*://*.oregonfoodbank.org/*", // 53203
+        "*://*.fourbarrelcoffee.com/*", // 59427
+        "*://bluetokaicoffee.com/*", // 99867
+        "*://bathpublishing.com/*", // 100145
+        "*://dylantalkstone.com/*", // 101356
+        "*://renewd.com.au/*", // 104998
+        "*://gofreeconcepts.de/*", // 105534
+        "*://*.lamudi.co.id/*", // 106767
+        "*://*.thehawksmoor.com/*", // 107549
+        "*://weaversofireland.com/*", // 116816
+        "*://*.iledefrance-mobilites.fr/*", // 117344
+        "*://*.lawnmowerpartsworld.com/*", // 117577
+        "*://*.discountcoffee.co.uk/*", // 118757
+      ],
+      js: [
+        {
+          file: "injections/js/bug1448747-fastclick-shim.js",
+        },
+      ],
+    },
+  },
+  {
+    id: "bug1818818",
+    platform: "android",
+    domain: "FastClick breakage - legacy",
+    bug: "1818818",
+    contentScripts: {
+      matches: [
+        "*://*.chatiw.com/*", // 5544
+        "*://*.marksandspencer.com/*", // 101811
+        "*://*.wellcare.com/*", // 116595
+      ],
+      js: [
+        {
+          file: "injections/js/bug1818818-fastclick-legacy-shim.js",
+        },
+      ],
+    },
+  },
 ];
 
 module.exports = AVAILABLE_INJECTIONS;
