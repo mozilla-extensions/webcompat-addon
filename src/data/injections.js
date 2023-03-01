@@ -859,6 +859,21 @@ const AVAILABLE_INJECTIONS = [
       ],
     },
   },
+  {
+    id: "bug1819476",
+    platform: "all",
+    domain: "axisbank.com",
+    bug: "1819476",
+    contentScripts: {
+      matches: ["*://*.axisbank.com/*"],
+      js: [
+        {
+          file:
+            "injections/js/bug1819476-axisbank.com-webkitSpeechRecognition-shim.js",
+        },
+      ],
+    },
+  },
 ];
 
 module.exports = AVAILABLE_INJECTIONS;
