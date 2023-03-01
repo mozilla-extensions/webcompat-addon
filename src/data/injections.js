@@ -761,7 +761,7 @@ const AVAILABLE_INJECTIONS = [
   },
   {
     id: "bug1811325",
-    platform: "all",
+    platform: "desktop",
     domain: "www.bdo.com.ph",
     bug: "1811325",
     customFunc: "acceptLanguageFix",
