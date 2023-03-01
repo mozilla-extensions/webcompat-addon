@@ -399,21 +399,6 @@ const AVAILABLE_INJECTIONS = [
     },
   },
   {
-    id: "bug1754473",
-    platform: "android",
-    domain: "m.intl.taobao.com",
-    bug: "1754473",
-    contentScripts: {
-      matches: ["*://m.intl.taobao.com/*"],
-      css: [
-        {
-          file:
-            "injections/css/bug1754473-m.intl.taobao.com-number-arrow-buttons-overlapping-fix.css",
-        },
-      ],
-    },
-  },
-  {
     id: "bug1748455",
     platform: "android",
     domain: "reddit.com",
@@ -486,20 +471,6 @@ const AVAILABLE_INJECTIONS = [
       css: [
         {
           file: "injections/css/bug1774490-rainews.it-gallery-fix.css",
-        },
-      ],
-    },
-  },
-  {
-    id: "bug1778239",
-    platform: "all",
-    domain: "m.pji.co.kr",
-    bug: "1778239",
-    contentScripts: {
-      matches: ["*://m.pji.co.kr/*"],
-      js: [
-        {
-          file: "injections/js/bug1778239-m.pji.co.kr-banner-hide.js",
         },
       ],
     },
@@ -739,21 +710,6 @@ const AVAILABLE_INJECTIONS = [
         {
           file:
             "injections/css/bug1800000-www.honda.co.uk-choose-dealer-button-fix.css",
-        },
-      ],
-    },
-  },
-  {
-    id: "bug1800127",
-    platform: "all",
-    domain: "www.burgerking.es",
-    bug: "1800127",
-    contentScripts: {
-      matches: ["*://www.burgerking.es/*"],
-      css: [
-        {
-          file:
-            "injections/css/bug1800127-www.burgerking.es-webkit-fill-available-fix.css",
         },
       ],
     },
