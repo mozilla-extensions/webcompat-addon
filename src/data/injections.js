@@ -880,13 +880,27 @@ const AVAILABLE_INJECTIONS = [
   {
     id: "bug1819450",
     platform: "android",
-    domain: "cmbchina.comm",
+    domain: "cmbchina.com",
     bug: "1819450",
     contentScripts: {
       matches: ["*://www.cmbchina.com/*", "*://cmbchina.com/*"],
       js: [
         {
           file: "injections/js/bug1819450-cmbchina.com-ua-change.js",
+        },
+      ],
+    },
+  },
+  {
+    id: "bug1819678",
+    platform: "android",
+    domain: "cnki.net",
+    bug: "1819678",
+    contentScripts: {
+      matches: ["*://*.cnki.net/*"],
+      js: [
+        {
+          file: "injections/js/bug1819678-cnki.net-undisable-search-field.js",
         },
       ],
     },
