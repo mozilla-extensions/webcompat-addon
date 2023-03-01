@@ -877,6 +877,20 @@ const AVAILABLE_INJECTIONS = [
       ],
     },
   },
+  {
+    id: "bug1819450",
+    platform: "android",
+    domain: "cmbchina.comm",
+    bug: "1819450",
+    contentScripts: {
+      matches: ["*://www.cmbchina.com/*", "*://cmbchina.com/*"],
+      js: [
+        {
+          file: "injections/js/bug1819450-cmbchina.com-ua-change.js",
+        },
+      ],
+    },
+  },
 ];
 
 module.exports = AVAILABLE_INJECTIONS;
