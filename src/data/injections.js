@@ -519,6 +519,7 @@ const AVAILABLE_INJECTIONS = [
         "*://mobilevikings.be/*/registration/*", // Bug 1797400
         "*://www.northcountrypublicradio.org/contact/subscribe.html*", // Bug 1778382,
         "*://www.schoolnutritionandfitness.com/*", // Bug 1793761
+        "*://*.ersthelfer.tv/*", // Bug 1817520
       ],
       js: [
         {
