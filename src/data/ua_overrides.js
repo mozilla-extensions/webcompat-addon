@@ -1008,6 +1008,22 @@ const AVAILABLE_UA_OVERRIDES = [
       },
     },
   },
+  {
+    /*
+     * Bug 1827678 - UA override for static.slots.lv
+     * Webcompat issue #68379 - https://webcompat.com/issues/68379
+     */
+    id: "bug1827678-webc68379",
+    platform: "android",
+    domain: "static.slots.lv",
+    bug: "1827678",
+    config: {
+      matches: ["*://static.slots.lv/*"],
+      uaTransformer: originalUA => {
+        return UAHelpers.getDeviceAppropriateChromeUA();
+      },
+    },
+  },
 ];
 
 module.exports = AVAILABLE_UA_OVERRIDES;
