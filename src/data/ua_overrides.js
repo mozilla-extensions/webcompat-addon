@@ -1104,6 +1104,22 @@ const AVAILABLE_UA_OVERRIDES = [
       },
     },
   },
+  {
+    /*
+     * Bug 1827678 - UA override for captainjackcasino.com
+     * Webcompat issue #79490 - https://webcompat.com/issues/79490
+     */
+    id: "bug1827678-webc79490",
+    platform: "android",
+    domain: "captainjackcasino.com",
+    bug: "1827678",
+    config: {
+      matches: ["*://*.captainjackcasino.com/*"],
+      uaTransformer: originalUA => {
+        return UAHelpers.getDeviceAppropriateChromeUA();
+      },
+    },
+  },
 ];
 
 module.exports = AVAILABLE_UA_OVERRIDES;
