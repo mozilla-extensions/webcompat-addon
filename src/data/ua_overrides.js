@@ -1204,6 +1204,22 @@ const AVAILABLE_UA_OVERRIDES = [
       },
     },
   },
+  {
+    /*
+     * Bug 1827678 - UA override for oirsa.org
+     * Webcompat issue #119402 - https://webcompat.com/issues/119402
+     */
+    id: "bug1827678-webc119402",
+    platform: "all",
+    domain: "oirsa.org",
+    bug: "1827678",
+    config: {
+      matches: ["*://*.oirsa.org/*"],
+      uaTransformer: originalUA => {
+        return UAHelpers.getDeviceAppropriateChromeUA();
+      },
+    },
+  },
 ];
 
 module.exports = AVAILABLE_UA_OVERRIDES;
