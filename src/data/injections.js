@@ -875,6 +875,20 @@ const AVAILABLE_INJECTIONS = [
       ],
     },
   },
+  {
+    id: "bug1827678-85474",
+    platform: "desktop",
+    domain: "elal.com",
+    bug: "1827678",
+    contentScripts: {
+      matches: ["*://*.elal.com/*"],
+      css: [
+        {
+          file: "injections/css/bug1819678-elal.com-unsupported-banner.css",
+        },
+      ],
+    },
+  },
 ];
 
 module.exports = AVAILABLE_INJECTIONS;
