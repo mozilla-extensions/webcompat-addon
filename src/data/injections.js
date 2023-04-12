@@ -497,14 +497,15 @@ const AVAILABLE_INJECTIONS = [
     contentScripts: {
       matches: [
         "*://*.crunchyroll.com/*", // Bug 1777597
+        "*://*.ersthelfer.tv/*", // Bug 1817520
         "*://*.pixiv.net/*", // Bug 1774006
         "*://*.webex.com/*", // Bug 1788934
         "*://business.help.royalmail.com/app/webforms/*", // Bug 1786404
         "*://ifcinema.institutfrancais.com/*", // Bug 1806423
+        "*://islamionline.islamicbank.ps/*", // Bug 1821439
         "*://mobilevikings.be/*/registration/*", // Bug 1797400
         "*://www.northcountrypublicradio.org/contact/subscribe.html*", // Bug 1778382,
         "*://www.schoolnutritionandfitness.com/*", // Bug 1793761
-        "*://*.ersthelfer.tv/*", // Bug 1817520
       ],
       js: [
         {
