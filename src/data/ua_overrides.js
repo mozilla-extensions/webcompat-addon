@@ -1040,6 +1040,22 @@ const AVAILABLE_UA_OVERRIDES = [
       },
     },
   },
+  {
+    /*
+     * Bug 1827678 - UA override for avizia.com
+     * Webcompat issue #68635 - https://webcompat.com/issues/68635
+     */
+    id: "bug1827678-webc68635",
+    platform: "all",
+    domain: "avizia.com",
+    bug: "1827678",
+    config: {
+      matches: ["*://*.avizia.com/*"],
+      uaTransformer: originalUA => {
+        return UAHelpers.getDeviceAppropriateChromeUA();
+      },
+    },
+  },
 ];
 
 module.exports = AVAILABLE_UA_OVERRIDES;
