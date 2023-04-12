@@ -715,21 +715,6 @@ const AVAILABLE_INJECTIONS = [
     },
   },
   {
-    id: "bug1800131",
-    platform: "all",
-    domain: "www.almosafer.com",
-    bug: "1800131",
-    contentScripts: {
-      matches: ["*://www.almosafer.com/mweb/flights-home*"],
-      js: [
-        {
-          file:
-            "injections/js/bug1800131-www.almosafer.com-undisable-date-fields.js",
-        },
-      ],
-    },
-  },
-  {
     id: "bug1800143",
     platform: "all",
     domain: "www.nintendo.co.jp",
