@@ -976,6 +976,22 @@ const AVAILABLE_UA_OVERRIDES = [
       },
     },
   },
+  {
+    /*
+     * Bug 1827678 - UA override for bankmandiri.co.id
+     * Webcompat issue #67924 - https://webcompat.com/issues/67924
+     */
+    id: "bug1827678-webc67924",
+    platform: "android",
+    domain: "bankmandiri.co.id",
+    bug: "1827678",
+    config: {
+      matches: ["*://*.bankmandiri.co.id/*"],
+      uaTransformer: originalUA => {
+        return UAHelpers.getDeviceAppropriateChromeUA();
+      },
+    },
+  },
 ];
 
 module.exports = AVAILABLE_UA_OVERRIDES;
