@@ -944,6 +944,22 @@ const AVAILABLE_UA_OVERRIDES = [
       },
     },
   },
+  {
+    /*
+     * Bug 1827678 - UA override for admissions.nid.edu
+     * Webcompat issue #65753 - https://webcompat.com/issues/65753
+     */
+    id: "bug1827678-webc65753",
+    platform: "all",
+    domain: "admissions.nid.edu",
+    bug: "1827678",
+    config: {
+      matches: ["*://*.admissions.nid.edu/*"],
+      uaTransformer: originalUA => {
+        return UAHelpers.getDeviceAppropriateChromeUA();
+      },
+    },
+  },
 ];
 
 module.exports = AVAILABLE_UA_OVERRIDES;
