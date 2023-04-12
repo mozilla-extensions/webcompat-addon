@@ -73,7 +73,10 @@ const AVAILABLE_INJECTIONS = [
     domain: "bankofamerica.com",
     bug: "1472075",
     contentScripts: {
-      matches: ["*://*.bankofamerica.com/*"],
+      matches: [
+        "*://*.bankofamerica.com/*",
+        "*://*.ml.com/*", // #120104
+      ],
       js: [
         {
           file: "injections/js/bug1472075-bankofamerica.com-ua-change.js",
