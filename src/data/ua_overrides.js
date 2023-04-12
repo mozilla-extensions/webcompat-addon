@@ -1152,6 +1152,22 @@ const AVAILABLE_UA_OVERRIDES = [
       },
     },
   },
+  {
+    /*
+     * Bug 1827678 - UA override for f2bbs.com
+     * Webcompat issue #84932 - https://webcompat.com/issues/84932
+     */
+    id: "bug1827678-webc84932",
+    platform: "android",
+    domain: "f2bbs.com",
+    bug: "1827678",
+    config: {
+      matches: ["*://f2bbs.com/*"],
+      uaTransformer: originalUA => {
+        return UAHelpers.getDeviceAppropriateChromeUA();
+      },
+    },
+  },
 ];
 
 module.exports = AVAILABLE_UA_OVERRIDES;
