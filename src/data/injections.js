@@ -636,6 +636,7 @@ const AVAILABLE_INJECTIONS = [
         "*://*.prospectportal.com/*", // #115206
         "*://*.securityproperties.com/*",
         "*://*.theloftsorlando.com/*",
+        "*://*.vanallenapartments.com/*", // #120056
       ],
       css: [
         {
