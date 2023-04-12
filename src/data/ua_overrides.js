@@ -50,7 +50,11 @@ const AVAILABLE_UA_OVERRIDES = [
     domain: "directv.com",
     bug: "1577519",
     config: {
-      matches: ["*://*.directv.com/*", "*://*.attwatchtv.com/*"],
+      matches: [
+        "*://*.attwatchtv.com/*",
+        "*://*.directv.com.ec/*", // bug 1827706
+        "*://*.directv.com/*",
+      ],
       uaTransformer: originalUA => {
         return (
           UAHelpers.getPrefix(originalUA) +

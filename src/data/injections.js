@@ -168,7 +168,10 @@ const AVAILABLE_INJECTIONS = [
     domain: "directv.com.co",
     bug: "1610344",
     contentScripts: {
-      matches: ["https://*.directv.com.co/*"],
+      matches: [
+        "https://*.directv.com.co/*",
+        "https://*.directv.com.ec/*", // bug 1827706
+      ],
       css: [
         {
           file:
