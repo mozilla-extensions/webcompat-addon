@@ -992,6 +992,22 @@ const AVAILABLE_UA_OVERRIDES = [
       },
     },
   },
+  {
+    /*
+     * Bug 1827678 - UA override for frankfred.com
+     * Webcompat issue #68007 - https://webcompat.com/issues/68007
+     */
+    id: "bug1827678-webc68007",
+    platform: "android",
+    domain: "frankfred.com",
+    bug: "1827678",
+    config: {
+      matches: ["*://*.frankfred.com/*"],
+      uaTransformer: originalUA => {
+        return UAHelpers.getDeviceAppropriateChromeUA();
+      },
+    },
+  },
 ];
 
 module.exports = AVAILABLE_UA_OVERRIDES;
