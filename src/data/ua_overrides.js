@@ -928,6 +928,22 @@ const AVAILABLE_UA_OVERRIDES = [
       },
     },
   },
+  {
+    /*
+     * Bug 1823966 - UA override for elearning.dmv.ca.gov
+     * Original report: https://bugzilla.mozilla.org/show_bug.cgi?id=1823785
+     */
+    id: "bug1823966",
+    platform: "all",
+    domain: "elearning.dmv.ca.gov",
+    bug: "1823966",
+    config: {
+      matches: ["*://*.elearning.dmv.ca.gov/*"],
+      uaTransformer: originalUA => {
+        return UAHelpers.getDeviceAppropriateChromeUA();
+      },
+    },
+  },
 ];
 
 module.exports = AVAILABLE_UA_OVERRIDES;
