@@ -1072,6 +1072,22 @@ const AVAILABLE_UA_OVERRIDES = [
       },
     },
   },
+  {
+    /*
+     * Bug 1827678 - UA override for www.free4talk.com
+     * Webcompat issue #77727 - https://webcompat.com/issues/77727
+     */
+    id: "bug1827678-webc77727",
+    platform: "android",
+    domain: "www.free4talk.com",
+    bug: "1827678",
+    config: {
+      matches: ["*://www.free4talk.com/*"],
+      uaTransformer: originalUA => {
+        return UAHelpers.getDeviceAppropriateChromeUA();
+      },
+    },
+  },
 ];
 
 module.exports = AVAILABLE_UA_OVERRIDES;

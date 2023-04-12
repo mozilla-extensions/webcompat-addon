@@ -861,6 +861,20 @@ const AVAILABLE_INJECTIONS = [
       ],
     },
   },
+  {
+    id: "bug1827678-webc77727",
+    platform: "android",
+    domain: "free4talk.com",
+    bug: "1827678",
+    contentScripts: {
+      matches: ["*://www.free4talk.com/*"],
+      js: [
+        {
+          file: "injections/js/bug1819678-free4talk.com-window-chrome-shim.js",
+        },
+      ],
+    },
+  },
 ];
 
 module.exports = AVAILABLE_INJECTIONS;
