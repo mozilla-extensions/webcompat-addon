@@ -1236,6 +1236,22 @@ const AVAILABLE_UA_OVERRIDES = [
       },
     },
   },
+  {
+    /*
+     * Bug 1827678 - UA override for onp.cloud.waterloo.ca
+     * Webcompat issue #120450 - https://webcompat.com/issues/120450
+     */
+    id: "bug1827678-webc120450",
+    platform: "all",
+    domain: "onp.cloud.waterloo.ca",
+    bug: "1827678",
+    config: {
+      matches: ["*://onp.cloud.waterloo.ca/*"],
+      uaTransformer: originalUA => {
+        return UAHelpers.getDeviceAppropriateChromeUA();
+      },
+    },
+  },
 ];
 
 module.exports = AVAILABLE_UA_OVERRIDES;
