@@ -1220,6 +1220,22 @@ const AVAILABLE_UA_OVERRIDES = [
       },
     },
   },
+  {
+    /*
+     * Bug 1827678 - UA override for sistema.ibglbrasil.com.br
+     * Webcompat issue #119785 - https://webcompat.com/issues/119785
+     */
+    id: "bug1827678-webc119785",
+    platform: "all",
+    domain: "sistema.ibglbrasil.com.br",
+    bug: "1827678",
+    config: {
+      matches: ["*://sistema.ibglbrasil.com.br/*"],
+      uaTransformer: originalUA => {
+        return UAHelpers.getDeviceAppropriateChromeUA();
+      },
+    },
+  },
 ];
 
 module.exports = AVAILABLE_UA_OVERRIDES;
