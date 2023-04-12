@@ -1188,6 +1188,22 @@ const AVAILABLE_UA_OVERRIDES = [
       },
     },
   },
+  {
+    /*
+     * Bug 1827678 - UA override for dns-shop.ru
+     * Webcompat issue #119307 - https://webcompat.com/issues/119307
+     */
+    id: "bug1827678-webc119307",
+    platform: "all",
+    domain: "dns-shop.ru",
+    bug: "1827678",
+    config: {
+      matches: ["*://www.dns-shop.ru/*"],
+      uaTransformer: originalUA => {
+        return UAHelpers.getDeviceAppropriateChromeUA();
+      },
+    },
+  },
 ];
 
 module.exports = AVAILABLE_UA_OVERRIDES;
