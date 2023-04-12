@@ -1024,6 +1024,22 @@ const AVAILABLE_UA_OVERRIDES = [
       },
     },
   },
+  {
+    /*
+     * Bug 1827678 - UA override for mobile.onvue.com
+     * Webcompat issue #68520 - https://webcompat.com/issues/68520
+     */
+    id: "bug1827678-webc68520",
+    platform: "android",
+    domain: "mobile.onvue.com",
+    bug: "1827678",
+    config: {
+      matches: ["*://mobile.onvue.com/*"],
+      uaTransformer: originalUA => {
+        return UAHelpers.getDeviceAppropriateChromeUA();
+      },
+    },
+  },
 ];
 
 module.exports = AVAILABLE_UA_OVERRIDES;
