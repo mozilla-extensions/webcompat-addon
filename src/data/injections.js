@@ -889,6 +889,21 @@ const AVAILABLE_INJECTIONS = [
       ],
     },
   },
+  {
+    id: "bug1827678-webc119017",
+    platform: "desktop",
+    domain: "nppes.cms.hhs.gov",
+    bug: "1827678",
+    contentScripts: {
+      matches: ["*://nppes.cms.hhs.gov/*"],
+      css: [
+        {
+          file:
+            "injections/css/bug1819678-nppes.cms.hhs.gov-unsupported-banner.css",
+        },
+      ],
+    },
+  },
 ];
 
 module.exports = AVAILABLE_INJECTIONS;
