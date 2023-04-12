@@ -1168,6 +1168,22 @@ const AVAILABLE_UA_OVERRIDES = [
       },
     },
   },
+  {
+    /*
+     * Bug 1827678 - UA override for kt.com
+     * Webcompat issue #119012 - https://webcompat.com/issues/119012
+     */
+    id: "bug1827678-webc119012",
+    platform: "all",
+    domain: "kt.com",
+    bug: "1827678",
+    config: {
+      matches: ["*://*.kt.com/*"],
+      uaTransformer: originalUA => {
+        return UAHelpers.getDeviceAppropriateChromeUA();
+      },
+    },
+  },
 ];
 
 module.exports = AVAILABLE_UA_OVERRIDES;
