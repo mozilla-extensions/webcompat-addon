@@ -1136,6 +1136,22 @@ const AVAILABLE_UA_OVERRIDES = [
       },
     },
   },
+  {
+    /*
+     * Bug 1827678 - UA override for jelly.jd.com
+     * Webcompat issue #83269 - https://webcompat.com/issues/83269
+     */
+    id: "bug1827678-webc83269",
+    platform: "android",
+    domain: "jelly.jd.com",
+    bug: "1827678",
+    config: {
+      matches: ["*://jelly.jd.com/*"],
+      uaTransformer: originalUA => {
+        return UAHelpers.getDeviceAppropriateChromeUA();
+      },
+    },
+  },
 ];
 
 module.exports = AVAILABLE_UA_OVERRIDES;
