@@ -1088,6 +1088,22 @@ const AVAILABLE_UA_OVERRIDES = [
       },
     },
   },
+  {
+    /*
+     * Bug 1827678 - UA override for watch.indee.tv
+     * Webcompat issue #77912 - https://webcompat.com/issues/77912
+     */
+    id: "bug1827678-webc77912",
+    platform: "all",
+    domain: "watch.indee.tv",
+    bug: "1827678",
+    config: {
+      matches: ["*://watch.indee.tv/*"],
+      uaTransformer: originalUA => {
+        return UAHelpers.getDeviceAppropriateChromeUA();
+      },
+    },
+  },
 ];
 
 module.exports = AVAILABLE_UA_OVERRIDES;
