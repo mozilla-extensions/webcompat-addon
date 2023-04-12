@@ -1120,6 +1120,22 @@ const AVAILABLE_UA_OVERRIDES = [
       },
     },
   },
+  {
+    /*
+     * Bug 1827678 - UA override for viewer-ebook.books.com.tw
+     * Webcompat issue #80180 - https://webcompat.com/issues/80180
+     */
+    id: "bug1827678-webc80180",
+    platform: "all",
+    domain: "viewer-ebook.books.com.tw",
+    bug: "1827678",
+    config: {
+      matches: ["*://viewer-ebook.books.com.tw/*"],
+      uaTransformer: originalUA => {
+        return UAHelpers.getDeviceAppropriateChromeUA();
+      },
+    },
+  },
 ];
 
 module.exports = AVAILABLE_UA_OVERRIDES;
