@@ -1252,6 +1252,54 @@ const AVAILABLE_UA_OVERRIDES = [
       },
     },
   },
+  {
+    /*
+     * Bug 1830739 - UA override for casinoextreme.eu
+     * Webcompat issue #118175 - https://webcompat.com/issues/118175
+     */
+    id: "bug1830739-webc118175",
+    platform: "android",
+    domain: "casinoextreme.eu",
+    bug: "1830739",
+    config: {
+      matches: ["*://*.casinoextreme.eu/*"],
+      uaTransformer: originalUA => {
+        return UAHelpers.getDeviceAppropriateChromeUA();
+      },
+    },
+  },
+  {
+    /*
+     * Bug 1830739 - UA override for m.tworld.co.kr
+     * Webcompat issue #118998 - https://webcompat.com/issues/118998
+     */
+    id: "bug1830739-webc118998",
+    platform: "android",
+    domain: "m.tworld.co.kr",
+    bug: "1830739",
+    config: {
+      matches: ["*://m.tworld.co.kr/*"],
+      uaTransformer: originalUA => {
+        return UAHelpers.getDeviceAppropriateChromeUA();
+      },
+    },
+  },
+  {
+    /*
+     * Bug 1830739 - UA override for m.tworld.co.kr
+     * Webcompat issue #113663 - https://webcompat.com/issues/113663
+     */
+    id: "bug1830739-webc113663",
+    platform: "android",
+    domain: "webcartop.jp",
+    bug: "1830739",
+    config: {
+      matches: ["*://*.webcartop.jp/*"],
+      uaTransformer: originalUA => {
+        return UAHelpers.getDeviceAppropriateChromeUA();
+      },
+    },
+  },
 ];
 
 module.exports = AVAILABLE_UA_OVERRIDES;
