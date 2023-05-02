@@ -1026,6 +1026,21 @@ const AVAILABLE_INJECTIONS = [
       ],
     },
   },
+  {
+    id: "bug1830813",
+    platform: "desktop",
+    domain: "onstove.com",
+    bug: "1830813",
+    contentScripts: {
+      matches: ["*://*.onstove.com/*"],
+      css: [
+        {
+          file:
+            "injections/css/bug1830813-page.onstove.com-hide-unsupported.css",
+        },
+      ],
+    },
+  },
 ];
 
 module.exports = AVAILABLE_INJECTIONS;
