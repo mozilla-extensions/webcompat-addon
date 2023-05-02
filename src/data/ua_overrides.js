@@ -677,11 +677,11 @@ const AVAILABLE_UA_OVERRIDES = [
     bug: "1743429",
     config: {
       matches: [
+        "*://411.ca/", // #121332
         "*://*.commerzbank.de/*", // Bug 1767630
+        "*://*.mms.telekom.de/*", // #1800241
         "*://ubank.com.au/*", // #104099
         "*://wifi.sncf/*", // #100194
-        "*://www.metrobyt-mobile.com/*", // #105106
-        "*://*.mms.telekom.de/*", // #1800241
       ],
       uaTransformer: originalUA => {
         return UAHelpers.capVersionTo99(originalUA);
