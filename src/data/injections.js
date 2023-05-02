@@ -925,6 +925,20 @@ const AVAILABLE_INJECTIONS = [
       ],
     },
   },
+  {
+    id: "bug1829949",
+    platform: "desktop",
+    domain: "tomshardware.com",
+    bug: "1829949",
+    contentScripts: {
+      matches: ["*://*.tomshardware.com/*"],
+      css: [
+        {
+          file: "injections/css/bug1829949-tomshardware.com-scrollbar-width.css",
+        },
+      ],
+    },
+  },
 ];
 
 module.exports = AVAILABLE_INJECTIONS;
