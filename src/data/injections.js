@@ -1011,6 +1011,21 @@ const AVAILABLE_INJECTIONS = [
       allFrames: true,
     },
   },
+  {
+    id: "bug1830810",
+    platform: "all",
+    domain: "interceramic.com",
+    bug: "1830810",
+    contentScripts: {
+      matches: ["*://interceramic.com/*"],
+      css: [
+        {
+          file:
+            "injections/css/bug1830810-interceramic.com-hide-unsupported.css",
+        },
+      ],
+    },
+  },
 ];
 
 module.exports = AVAILABLE_INJECTIONS;
