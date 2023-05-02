@@ -954,6 +954,20 @@ const AVAILABLE_INJECTIONS = [
       ],
     },
   },
+  {
+    id: "bug1830747",
+    platform: "android",
+    domain: "my.babbel.com",
+    bug: "1830747",
+    contentScripts: {
+      matches: ["*://my.babbel.com/*"],
+      css: [
+        {
+          file: "injections/css/bug1830747-babbel.com-page-height.css",
+        },
+      ],
+    },
+  },
 ];
 
 module.exports = AVAILABLE_INJECTIONS;
