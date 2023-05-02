@@ -996,6 +996,21 @@ const AVAILABLE_INJECTIONS = [
       ],
     },
   },
+  {
+    id: "bug1830796",
+    platform: "android",
+    domain: "copyleaks.com",
+    bug: "1830796",
+    contentScripts: {
+      matches: ["*://*.copyleaks.com/*"],
+      css: [
+        {
+          file: "injections/css/bug1830796-copyleaks.com-hide-unsupported.css",
+        },
+      ],
+      allFrames: true,
+    },
+  },
 ];
 
 module.exports = AVAILABLE_INJECTIONS;
