@@ -799,6 +799,8 @@ const AVAILABLE_INJECTIONS = [
         "*://*.iledefrance-mobilites.fr/*", // 117344
         "*://*.lawnmowerpartsworld.com/*", // 117577
         "*://*.discountcoffee.co.uk/*", // 118757
+        "*://torguard.net/*", // 120113
+        "*://*.arcsivr.com/*", // 120716
       ],
       js: [
         {
