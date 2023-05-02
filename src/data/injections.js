@@ -934,7 +934,22 @@ const AVAILABLE_INJECTIONS = [
       matches: ["*://*.tomshardware.com/*"],
       css: [
         {
-          file: "injections/css/bug1829949-tomshardware.com-scrollbar-width.css",
+          file:
+            "injections/css/bug1829949-tomshardware.com-scrollbar-width.css",
+        },
+      ],
+    },
+  },
+  {
+    id: "bug1829952",
+    platform: "android",
+    domain: "eventer.co.il",
+    bug: "1829952",
+    contentScripts: {
+      matches: ["*://*.eventer.co.il/*"],
+      css: [
+        {
+          file: "injections/css/bug1829952-eventer.co.il-button-height.css",
         },
       ],
     },
