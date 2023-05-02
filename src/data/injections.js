@@ -982,6 +982,20 @@ const AVAILABLE_INJECTIONS = [
       ],
     },
   },
+  {
+    id: "bug1830761",
+    platform: "all",
+    domain: "91mobiles.com",
+    bug: "1830761",
+    contentScripts: {
+      matches: ["*://*.91mobiles.com/*"],
+      css: [
+        {
+          file: "injections/css/bug1830761-91mobiles.com-content-height.css",
+        },
+      ],
+    },
+  },
 ];
 
 module.exports = AVAILABLE_INJECTIONS;
