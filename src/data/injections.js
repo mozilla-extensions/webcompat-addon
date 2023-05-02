@@ -911,6 +911,20 @@ const AVAILABLE_INJECTIONS = [
       ],
     },
   },
+  {
+    id: "bug1830776",
+    platform: "all",
+    domain: "blueshieldca.com",
+    bug: "1830776",
+    contentScripts: {
+      matches: ["*://*.blueshieldca.com/*"],
+      js: [
+        {
+          file: "injections/js/bug1830776-blueshieldca.com-unsupported.js",
+        },
+      ],
+    },
+  },
 ];
 
 module.exports = AVAILABLE_INJECTIONS;
