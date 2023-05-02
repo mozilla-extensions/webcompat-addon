@@ -987,6 +987,52 @@ const AVAILABLE_INJECTIONS = [
       ],
     },
   },
+  {
+    id: "bug1831007",
+    platform: "all",
+    domain: "All international Nintendo domains",
+    bug: "1831007",
+    contentScripts: {
+      matches: [
+        "*://*.mojenintendo.cz/*",
+        "*://*.nintendo-europe.com/*",
+        "*://*.nintendo.at/*",
+        "*://*.nintendo.be/*",
+        "*://*.nintendo.ch/*",
+        "*://*.nintendo.co.il/*",
+        "*://*.nintendo.co.jp/*",
+        "*://*.nintendo.co.kr/*",
+        "*://*.nintendo.co.nz/*",
+        "*://*.nintendo.co.uk/*",
+        "*://*.nintendo.co.za/*",
+        "*://*.nintendo.com.au/*",
+        "*://*.nintendo.com.hk/*",
+        "*://*.nintendo.com/*",
+        "*://*.nintendo.de/*",
+        "*://*.nintendo.dk/*",
+        "*://*.nintendo.es/*",
+        "*://*.nintendo.fi/*",
+        "*://*.nintendo.fr/*",
+        "*://*.nintendo.gr/*",
+        "*://*.nintendo.hu/*",
+        "*://*.nintendo.it/*",
+        "*://*.nintendo.nl/*",
+        "*://*.nintendo.no/*",
+        "*://*.nintendo.pt/*",
+        "*://*.nintendo.ru/*",
+        "*://*.nintendo.se/*",
+        "*://*.nintendo.sk/*",
+        "*://*.nintendo.tw/*",
+        "*://*.nintendoswitch.com.cn/*",
+      ],
+      js: [
+        {
+          file:
+            "injections/js/bug1831007-nintendo-window-OnetrustActiveGroups.js",
+        },
+      ],
+    },
+  },
 ];
 
 module.exports = AVAILABLE_INJECTIONS;
