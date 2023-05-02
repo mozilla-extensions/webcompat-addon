@@ -405,21 +405,6 @@ const AVAILABLE_INJECTIONS = [
     },
   },
   {
-    id: "bug1748455",
-    platform: "android",
-    domain: "reddit.com",
-    bug: "1748455",
-    contentScripts: {
-      matches: ["*://*.reddit.com/*"],
-      css: [
-        {
-          file:
-            "injections/css/bug1748455-reddit.com-gallery-image-width-fix.css",
-        },
-      ],
-    },
-  },
-  {
     id: "bug1739489",
     platform: "desktop",
     domain: "Sites using draft.js",
@@ -647,20 +632,6 @@ const AVAILABLE_INJECTIONS = [
     },
   },
   {
-    id: "bug1789164",
-    platform: "all",
-    domain: "zdnet.com",
-    bug: "1789164",
-    contentScripts: {
-      matches: ["*://www.zdnet.com/*"],
-      css: [
-        {
-          file: "injections/css/bug1789164-zdnet.com-cropped-section.css",
-        },
-      ],
-    },
-  },
-  {
     id: "bug1795490",
     platform: "android",
     domain: "www.china-airlines.com",
@@ -706,7 +677,7 @@ const AVAILABLE_INJECTIONS = [
   },
   {
     id: "bug1799994",
-    platform: "all",
+    platform: "desktop",
     domain: "www.vivobarefoot.com",
     bug: "1799994",
     contentScripts: {
@@ -721,7 +692,7 @@ const AVAILABLE_INJECTIONS = [
   },
   {
     id: "bug1800000",
-    platform: "all",
+    platform: "desktop",
     domain: "www.honda.co.uk",
     bug: "1800000",
     contentScripts: {
@@ -730,21 +701,6 @@ const AVAILABLE_INJECTIONS = [
         {
           file:
             "injections/css/bug1800000-www.honda.co.uk-choose-dealer-button-fix.css",
-        },
-      ],
-    },
-  },
-  {
-    id: "bug1800143",
-    platform: "all",
-    domain: "www.nintendo.co.jp",
-    bug: "1800143",
-    contentScripts: {
-      matches: ["*://www.nintendo.co.jp/software/feature/*"],
-      css: [
-        {
-          file:
-            "injections/css/bug1800143-www.nintendo.co.jp-zoomed-in-image-scrolling-fix.css",
         },
       ],
     },
@@ -762,16 +718,6 @@ const AVAILABLE_INJECTIONS = [
             "injections/js/bug1803976-www.youtube.com-performance-now-precision.js",
         },
       ],
-    },
-  },
-  {
-    id: "bug1811325",
-    platform: "desktop",
-    domain: "www.bdo.com.ph",
-    bug: "1811325",
-    customFunc: "acceptLanguageFix",
-    data: {
-      urls: ["*://www.bdo.com.ph/*", "*://www.inmac-wstore.com/*"],
     },
   },
   {

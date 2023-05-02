@@ -131,44 +131,6 @@ const AVAILABLE_UA_OVERRIDES = [
   },
   {
     /*
-     * Bug 1177298 - Write UA overrides for top Japanese Sites
-     * (Imported from ua-update.json.in)
-     *
-     * To receive the proper mobile version instead of the desktop version or
-     * a lower grade mobile experience, the UA is spoofed.
-     */
-    id: "bug1177298-2",
-    platform: "android",
-    domain: "lohaco.jp",
-    bug: "1177298",
-    config: {
-      matches: ["*://*.lohaco.jp/*"],
-      uaTransformer: _ => {
-        return "Mozilla/5.0 (Linux; Android 5.0.2; Galaxy Nexus Build/IMM76B) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/43.0.2357.93 Mobile Safari/537.36";
-      },
-    },
-  },
-  {
-    /*
-     * Bug 1177298 - Write UA overrides for top Japanese Sites
-     * (Imported from ua-update.json.in)
-     *
-     * To receive the proper mobile version instead of the desktop version or
-     * a lower grade mobile experience, the UA is spoofed.
-     */
-    id: "bug1177298-3",
-    platform: "android",
-    domain: "nhk.or.jp",
-    bug: "1177298",
-    config: {
-      matches: ["*://*.nhk.or.jp/*"],
-      uaTransformer: originalUA => {
-        return originalUA + " AppleWebKit";
-      },
-    },
-  },
-  {
-    /*
      * Bug 1385206 - Create UA override for rakuten.co.jp on Firefox Android
      * (Imported from ua-update.json.in)
      *
@@ -507,25 +469,6 @@ const AVAILABLE_UA_OVERRIDES = [
     bug: "1712807",
     config: {
       matches: ["*://www.dealnews.com/*"],
-      uaTransformer: () => {
-        return UAHelpers.getDeviceAppropriateChromeUA();
-      },
-    },
-  },
-  {
-    /*
-     * Bug 1719841 - Add UA override for appmedia.jp
-     * Webcompat issue #78939 - https://webcompat.com/issues/78939
-     *
-     * The sites shows Firefox a desktop version. With Chrome's UA string,
-     * we see a working mobile layout.
-     */
-    id: "bug1719841",
-    platform: "android",
-    domain: "appmedia.jp",
-    bug: "1719841",
-    config: {
-      matches: ["*://appmedia.jp/*"],
       uaTransformer: () => {
         return UAHelpers.getDeviceAppropriateChromeUA();
       },
@@ -1148,22 +1091,6 @@ const AVAILABLE_UA_OVERRIDES = [
     bug: "1827678",
     config: {
       matches: ["*://*.kt.com/*"],
-      uaTransformer: originalUA => {
-        return UAHelpers.getDeviceAppropriateChromeUA();
-      },
-    },
-  },
-  {
-    /*
-     * Bug 1827678 - UA override for dns-shop.ru
-     * Webcompat issue #119307 - https://webcompat.com/issues/119307
-     */
-    id: "bug1827678-webc119307",
-    platform: "all",
-    domain: "dns-shop.ru",
-    bug: "1827678",
-    config: {
-      matches: ["*://www.dns-shop.ru/*"],
       uaTransformer: originalUA => {
         return UAHelpers.getDeviceAppropriateChromeUA();
       },
