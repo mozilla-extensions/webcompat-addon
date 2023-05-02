@@ -968,6 +968,20 @@ const AVAILABLE_INJECTIONS = [
       ],
     },
   },
+  {
+    id: "bug1830752",
+    platform: "all",
+    domain: "afisha.ru",
+    bug: "1830752",
+    contentScripts: {
+      matches: ["*://*.afisha.ru/*"],
+      css: [
+        {
+          file: "injections/css/bug1830752-afisha.ru-slider-pointer-events.css",
+        },
+      ],
+    },
+  },
 ];
 
 module.exports = AVAILABLE_INJECTIONS;
