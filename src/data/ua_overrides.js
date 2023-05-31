@@ -1247,6 +1247,23 @@ const AVAILABLE_UA_OVERRIDES = [
       },
     },
   },
+  {
+    /*
+     * Bug 1836112 - UA override for www.capcut.cn
+     *
+     * The site's content is not loaded unless a Chrome UA is used.
+     */
+    id: "bug1836112",
+    platform: "all",
+    domain: "www.capcut.cn",
+    bug: "1836112",
+    config: {
+      matches: ["*://www.capcut.cn/editor*"],
+      uaTransformer: originalUA => {
+        return UAHelpers.getDeviceAppropriateChromeUA();
+      },
+    },
+  },
 ];
 
 module.exports = AVAILABLE_UA_OVERRIDES;
