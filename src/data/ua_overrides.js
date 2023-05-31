@@ -476,26 +476,6 @@ const AVAILABLE_UA_OVERRIDES = [
   },
   {
     /*
-     * Bug 1719846 - Add UA override for https://covid.cdc.gov/covid-data-tracker/
-     * Webcompat issue #76944 - https://webcompat.com/issues/76944
-     *
-     * The application locks out Firefox via User Agent sniffing, but in our
-     * tests, there appears to be no reason for this. Everything looks fine if
-     * we spoof as Chrome.
-     */
-    id: "bug1719846",
-    platform: "all",
-    domain: "covid.cdc.gov",
-    bug: "1719846",
-    config: {
-      matches: ["*://covid.cdc.gov/covid-data-tracker/*"],
-      uaTransformer: () => {
-        return UAHelpers.getDeviceAppropriateChromeUA();
-      },
-    },
-  },
-  {
-    /*
      * Bug 1719859 - Add UA override for saxoinvestor.fr
      * Webcompat issue #74678 - https://webcompat.com/issues/74678
      *
