@@ -1298,6 +1298,23 @@ const AVAILABLE_UA_OVERRIDES = [
       },
     },
   },
+  {
+    /*
+     * Bug 1836140 - UA override for indices.iriworldwide.com
+     *
+     * The site's content is not loaded without a UA spoof.
+     */
+    id: "bug1836140",
+    platform: "all",
+    domain: "indices.iriworldwide.com",
+    bug: "1836140",
+    config: {
+      matches: ["*://indices.iriworldwide.com/covid19/*"],
+      uaTransformer: originalUA => {
+        return originalUA.replace("Firefox/", "Fx/");
+      },
+    },
+  },
 ];
 
 module.exports = AVAILABLE_UA_OVERRIDES;
