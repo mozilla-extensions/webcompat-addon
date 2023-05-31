@@ -706,7 +706,6 @@ const AVAILABLE_INJECTIONS = [
         "*://bathpublishing.com/*", // 100145
         "*://dylantalkstone.com/*", // 101356
         "*://renewd.com.au/*", // 104998
-        "*://gofreeconcepts.de/*", // 105534
         "*://*.lamudi.co.id/*", // 106767
         "*://*.thehawksmoor.com/*", // 107549
         "*://weaversofireland.com/*", // 116816
@@ -731,7 +730,6 @@ const AVAILABLE_INJECTIONS = [
     contentScripts: {
       matches: [
         "*://*.chatiw.com/*", // 5544
-        "*://*.marksandspencer.com/*", // 101811
         "*://*.wellcare.com/*", // 116595
       ],
       js: [
