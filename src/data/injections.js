@@ -356,7 +356,6 @@ const AVAILABLE_INJECTIONS = [
     bug: "1724764",
     contentScripts: {
       matches: [
-        "*://*.amextravel.com/*", // 1724764
         "*://*.edupage.org/*", // 1804477 and 1800118
       ],
       js: [
