@@ -981,6 +981,20 @@ const AVAILABLE_INJECTIONS = [
       ],
     },
   },
+  {
+    id: "bug1836157",
+    platform: "android",
+    domain: "thai-masszazs.net",
+    bug: "1836157",
+    contentScripts: {
+      matches: ["*://www.thai-masszazs.net/en/*"],
+      js: [
+        {
+          file: "injections/js/bug1836157-thai-masszazs-niceScroll-disable.js",
+        },
+      ],
+    },
+  },
 ];
 
 module.exports = AVAILABLE_INJECTIONS;
