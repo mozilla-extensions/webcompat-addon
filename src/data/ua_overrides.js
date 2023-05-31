@@ -1281,6 +1281,23 @@ const AVAILABLE_UA_OVERRIDES = [
       },
     },
   },
+  {
+    /*
+     * Bug 1836135 - UA override for gts-pro.sdimedia.com
+     *
+     * The site's content is not loaded without a Chrome UA spoof.
+     */
+    id: "bug1836135",
+    platform: "all",
+    domain: "gts-pro.sdimedia.com",
+    bug: "1836135",
+    config: {
+      matches: ["*://gts-pro.sdimedia.com/*"],
+      uaTransformer: originalUA => {
+        return originalUA.replace("Firefox/", "Fx/") + " Chrome/113.0.0.0";
+      },
+    },
+  },
 ];
 
 module.exports = AVAILABLE_UA_OVERRIDES;
