@@ -1230,6 +1230,23 @@ const AVAILABLE_UA_OVERRIDES = [
       },
     },
   },
+  {
+    /*
+     * Bug 1836109 - UA override for watch.tonton.com.my
+     *
+     * The site's content is not loaded unless a Chrome UA is used.
+     */
+    id: "bug1836109",
+    platform: "all",
+    domain: "watch.tonton.com.my",
+    bug: "1836109",
+    config: {
+      matches: ["*://watch.tonton.com.my/*"],
+      uaTransformer: originalUA => {
+        return UAHelpers.getDeviceAppropriateChromeUA();
+      },
+    },
+  },
 ];
 
 module.exports = AVAILABLE_UA_OVERRIDES;
