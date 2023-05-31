@@ -1264,6 +1264,23 @@ const AVAILABLE_UA_OVERRIDES = [
       },
     },
   },
+  {
+    /*
+     * Bug 1836116 - UA override for www.slushy.com
+     *
+     * The site's content is not loaded without a Chrome UA spoof.
+     */
+    id: "bug1836116",
+    platform: "all",
+    domain: "www.slushy.com",
+    bug: "1836116",
+    config: {
+      matches: ["*://www.slushy.com/*"],
+      uaTransformer: originalUA => {
+        return originalUA + " Chrome/113.0.0.0";
+      },
+    },
+  },
 ];
 
 module.exports = AVAILABLE_UA_OVERRIDES;
