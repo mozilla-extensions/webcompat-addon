@@ -1233,6 +1233,23 @@ const AVAILABLE_UA_OVERRIDES = [
       },
     },
   },
+  {
+    /*
+     * Bug 1831441 - UA override for luna.amazon.com
+     *
+     * Games are unplayable unless a Chrome UA is used.
+     */
+    id: "bug1831441",
+    platform: "all",
+    domain: "luna.amazon.com",
+    bug: "1831441",
+    config: {
+      matches: ["*://luna.amazon.com/*"],
+      uaTransformer: originalUA => {
+        return UAHelpers.getDeviceAppropriateChromeUA();
+      },
+    },
+  },
 ];
 
 module.exports = AVAILABLE_UA_OVERRIDES;
