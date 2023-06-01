@@ -1332,6 +1332,23 @@ const AVAILABLE_UA_OVERRIDES = [
       },
     },
   },
+  {
+    /*
+     * Bug 1836181 - UA override for conference.amwell.com
+     *
+     * The site's content is not loaded unless a Chrome UA is used.
+     */
+    id: "bug1836181",
+    platform: "all",
+    domain: "conference.amwell.com",
+    bug: "1836181",
+    config: {
+      matches: ["*://conference.amwell.com/*"],
+      uaTransformer: originalUA => {
+        return UAHelpers.getDeviceAppropriateChromeUA();
+      },
+    },
+  },
 ];
 
 module.exports = AVAILABLE_UA_OVERRIDES;
