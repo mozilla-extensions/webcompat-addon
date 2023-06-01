@@ -1315,6 +1315,23 @@ const AVAILABLE_UA_OVERRIDES = [
       },
     },
   },
+  {
+    /*
+     * Bug 1836178 - UA override for atracker.pro
+     *
+     * The site's content is not loaded without a Chrome UA spoof.
+     */
+    id: "bug1836178",
+    platform: "all",
+    domain: "atracker.pro",
+    bug: "1836178",
+    config: {
+      matches: ["*://atracker.pro/*"],
+      uaTransformer: originalUA => {
+        return originalUA + " Chrome/113.0.0.0";
+      },
+    },
+  },
 ];
 
 module.exports = AVAILABLE_UA_OVERRIDES;
