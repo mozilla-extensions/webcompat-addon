@@ -1353,16 +1353,16 @@ const AVAILABLE_UA_OVERRIDES = [
     /*
      * Bug 1836182 - UA override for www.flatsatshadowglen.com
      *
-     * The site's content is not loaded without a Chrome UA spoof.
+     * The site's content is not loaded unless a Chrome UA is used.
      */
     id: "bug1836182",
     platform: "all",
     domain: "www.flatsatshadowglen.com",
     bug: "1836182",
     config: {
-      matches: ["*://www.flatsatshadowglen.com/*"],
+      matches: ["*://*.flatsatshadowglen.com/*"],
       uaTransformer: originalUA => {
-        return originalUA + " Chrome/113.0.0.0";
+        return UAHelpers.getDeviceAppropriateChromeUA();
       },
     },
   },
