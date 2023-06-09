@@ -1142,6 +1142,7 @@ const AVAILABLE_UA_OVERRIDES = [
         "*://*.heapsowins.com/*", // 120027
         "*://*.planet7casino.com/*", // 120609
         "*://*.yebocasino.co.za/*", // 88409
+        "*://*.yabbycasino.com/*", // 108025
       ],
       uaTransformer: originalUA => {
         return UAHelpers.getDeviceAppropriateChromeUA();
