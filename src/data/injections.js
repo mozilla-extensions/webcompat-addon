@@ -987,7 +987,7 @@ const AVAILABLE_INJECTIONS = [
     domain: "thai-masszazs.net",
     bug: "1836157",
     contentScripts: {
-      matches: ["*://www.thai-masszazs.net/en/*"],
+      matches: ["*://*.thai-masszazs.net/*"],
       js: [
         {
           file: "injections/js/bug1836157-thai-masszazs-niceScroll-disable.js",
