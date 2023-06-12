@@ -19,7 +19,7 @@
     "test": "npx jasmine"
   },
   "devDependencies": {
-    "jake": "10.8.6",
+    "jake": "10.8.7",
     "jasmine": "5.0.1",
     "npm-run-all": "4.1.5",
     "prettier": "2.8.8"
