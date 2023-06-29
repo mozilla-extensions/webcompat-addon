@@ -1151,22 +1151,6 @@ const AVAILABLE_UA_OVERRIDES = [
   },
   {
     /*
-     * Bug 1830821 - UA override for m.tworld.co.kr
-     * Webcompat issue #118998 - https://webcompat.com/issues/118998
-     */
-    id: "bug1830821-webc118998",
-    platform: "android",
-    domain: "m.tworld.co.kr",
-    bug: "1830821",
-    config: {
-      matches: ["*://m.tworld.co.kr/*"],
-      uaTransformer: originalUA => {
-        return UAHelpers.getDeviceAppropriateChromeUA();
-      },
-    },
-  },
-  {
-    /*
      * Bug 1830821 - UA override for webcartop.jp
      * Webcompat issue #113663 - https://webcompat.com/issues/113663
      */
