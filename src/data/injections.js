@@ -643,7 +643,7 @@ const AVAILABLE_INJECTIONS = [
     domain: "www.samsung.com",
     bug: "1799968",
     contentScripts: {
-      matches: ["*://www.samsung.com/*/watches/*/*"],
+      matches: ["*://www.samsung.com/*"],
       js: [
         {
           file: "injections/js/bug1799968-www.samsung.com-appVersion-linux-fix.js",
