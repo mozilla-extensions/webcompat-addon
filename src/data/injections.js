@@ -1009,23 +1009,6 @@ const AVAILABLE_INJECTIONS = [
       ],
     },
   },
-  {
-    id: "bug1836177",
-    platform: "desktop",
-    domain: "clalit.co.il",
-    bug: "1836177",
-    contentScripts: {
-      matches: [
-        "*://e-services.clalit.co.il/OnlineWeb/General/InfoFullLogin.aspx*",
-      ],
-      css: [
-        {
-          file: "injections/css/bug1836177-clalit.co.il-hide-number-input-spinners.css",
-        },
-      ],
-      allFrames: true,
-    },
-  },
 ];
 
 module.exports = AVAILABLE_INJECTIONS;
