@@ -287,8 +287,11 @@ const AVAILABLE_INJECTIONS = [
       matches: [
         "*://*.live.com/*",
         "*://*.office.com/*",
-        "*://*.sharepoint.com/*",
         "*://*.office365.com/*",
+        "*://*.office365.us/*",
+        "*://*.outlook.cn/*",
+        "*://*.outlook.com/*",
+        "*://*.sharepoint.com/*",
       ],
       js: [
         {
