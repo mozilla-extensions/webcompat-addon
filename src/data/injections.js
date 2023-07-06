@@ -1012,6 +1012,20 @@ const AVAILABLE_INJECTIONS = [
       ],
     },
   },
+  {
+    id: "bug1841991",
+    platform: "all",
+    domain: "wilton.com",
+    bug: "1841991",
+    contentScripts: {
+      matches: ["*://*.wilton.com/*"],
+      css: [
+        {
+          file: "injections/css/bug1841991-wilton.com-flexbox-painting-order.css",
+        },
+      ],
+    },
+  },
 ];
 
 module.exports = AVAILABLE_INJECTIONS;
