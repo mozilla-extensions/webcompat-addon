@@ -353,22 +353,6 @@ const AVAILABLE_INJECTIONS = [
     },
   },
   {
-    id: "bug1724764",
-    platform: "android",
-    domain: "Issues related to missing window.print",
-    bug: "1724764",
-    contentScripts: {
-      matches: [
-        "*://*.edupage.org/*", // 1804477 and 1800118
-      ],
-      js: [
-        {
-          file: "injections/js/bug1724764-window-print.js",
-        },
-      ],
-    },
-  },
-  {
     id: "bug1724868",
     platform: "android",
     domain: "news.yahoo.co.jp",
