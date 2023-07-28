@@ -348,26 +348,6 @@ const AVAILABLE_UA_OVERRIDES = [
   },
   {
     /*
-     * Bug 1628455 - UA override for autotrader.ca
-     * Webcompat issue #50961 - https://webcompat.com/issues/50961
-     *
-     * autotrader.ca is showing desktop site for Firefox on Android
-     * based on server side UA detection. Spoofing as Chrome allows to
-     * get mobile experience
-     */
-    id: "bug1628455",
-    platform: "android",
-    domain: "autotrader.ca",
-    bug: "1628455",
-    config: {
-      matches: ["https://*.autotrader.ca/*"],
-      uaTransformer: () => {
-        return UAHelpers.getDeviceAppropriateChromeUA();
-      },
-    },
-  },
-  {
-    /*
      * Bug 1646791 - bancosantander.es - Re-add UA override.
      * Bug 1665129 - *.gruposantander.es - Add wildcard domains.
      * WebCompat issue #33462 - https://webcompat.com/issues/33462
