@@ -1296,6 +1296,27 @@ const AVAILABLE_UA_OVERRIDES = [
       },
     },
   },
+  {
+    /*
+     * Bug 1843234 - UA override for fdj.fr
+     *
+     * The site blocks Linux users from playing games,
+     * so use a Windows user-agent on Linux.
+     */
+    id: "bug1843234",
+    platform: "desktop",
+    domain: "fdj.fr",
+    bug: "1843234",
+    config: {
+      matches: ["*://*.fdj.fr/*"],
+      uaTransformer: originalUA => {
+        if (originalUA.includes("Linux")) {
+          return UAHelpers.getWindowsUA(originalUA);
+        }
+        return originalUA;
+      },
+    },
+  },
 ];
 
 module.exports = AVAILABLE_UA_OVERRIDES;
