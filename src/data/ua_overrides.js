@@ -831,22 +831,6 @@ const AVAILABLE_UA_OVERRIDES = [
   },
   {
     /*
-     * Bug 1827678 - UA override for www.hepsiburada.com
-     * Webcompat issue #66888 - https://webcompat.com/issues/66888
-     */
-    id: "bug1827678-webc66888",
-    platform: "android",
-    domain: "www.hepsiburada.com",
-    bug: "1827678",
-    config: {
-      matches: ["*://www.hepsiburada.com/*"],
-      uaTransformer: originalUA => {
-        return UAHelpers.getDeviceAppropriateChromeUA();
-      },
-    },
-  },
-  {
-    /*
      * Bug 1827678 - UA override for bankmandiri.co.id
      * Webcompat issue #67924 - https://webcompat.com/issues/67924
      */
