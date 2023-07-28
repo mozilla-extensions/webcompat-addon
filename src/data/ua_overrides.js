@@ -1084,7 +1084,7 @@ const AVAILABLE_UA_OVERRIDES = [
         "*://*.captainjackcasino.com/*", // 79490
         "*://*.casinoextreme.eu/*", // 118175
         "*://*.cryptoloko.com/*", // 117911
-        "*://*.heapsowins.com/*", // 120027
+        "*://*.123lobbygames.com/*", // 120027
         "*://*.planet7casino.com/*", // 120609
         "*://*.yebocasino.co.za/*", // 88409
         "*://*.yabbycasino.com/*", // 108025
