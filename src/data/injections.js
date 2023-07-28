@@ -255,7 +255,10 @@ const AVAILABLE_INJECTIONS = [
     domain: "datastudio.google.com",
     bug: "1631811",
     contentScripts: {
-      matches: ["https://datastudio.google.com/embed/reporting/*"],
+      matches: [
+        "https://datastudio.google.com/embed/reporting/*",
+        "https://lookerstudio.google.com/embed/reporting/*",
+      ],
       js: [
         {
           file: "injections/js/bug1631811-datastudio.google.com-indexedDB.js",
