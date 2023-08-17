@@ -17,7 +17,11 @@ function buildInjection(platform) {
     bug: "0",
     contentScripts: {
       matches: ["https://example.com/*"],
-      js: [{ file: "test.js" }],
+      js: [
+        {
+          file: "test.js",
+        },
+      ],
     },
   };
 }
@@ -39,6 +43,39 @@ function buildNoSniffFix() {
   };
 }
 
+function assertRegisterContentScriptsSpyCalls(spy) {
+  expect(spy).toHaveBeenCalled();
+  for (const spyCall of spy.calls.all()) {
+    expect(spyCall.args).toHaveSize(1);
+    const arg = spyCall.args[0];
+    expect(arg).toBeInstanceOf(Array);
+    expect(arg).toHaveSize(1);
+    expect(arg[0]).toBeInstanceOf(Object);
+    expect(arg[0].id).toBeInstanceOf(String);
+    expect(arg[0].id).not.toHaveSize(0);
+    expect(arg[0].matches).toBeInstanceOf(Array);
+    expect(arg[0].matches).not.toHaveSize(0);
+    expect(arg[0].matches[0]).toBeInstanceOf(String);
+    // At least one of js or css is expected to be
+    // a non empty array.
+    expect(arg[0].js || arg[0].css).toBeInstanceOf(Array);
+    expect(arg[0].js?.length || arg[0].css?.length).not.toBe(0);
+    // Verify css and js array elements are all non empty strings.
+    if (Array.isArray(arg[0].js)) {
+      arg[0].js.forEach(js => {
+        expect(js).toBeInstanceOf(String);
+        expect(js).not.toHaveSize(0);
+      });
+    }
+    if (Array.isArray(arg[0].css)) {
+      arg[0].css.forEach(css => {
+        expect(css).toBeInstanceOf(String);
+        expect(css).not.toHaveSize(0);
+      });
+    }
+  }
+}
+
 describe("Injections", () => {
   describe("constructor", () => {
     it("enables injections per default", () => {
@@ -48,31 +85,31 @@ describe("Injections", () => {
   });
 
   describe("contentScript registration", () => {
-    it("enables interventions if the plattform matches", async () => {
+    it("enables interventions if the platform matches", async () => {
       let injections = new Injections([buildInjection("desktop")]);
       injections.bindAboutCompatBroker(mockBroker);
 
-      let spy = spyOn(browser.contentScripts, "register");
+      let spy = spyOn(browser.scripting, "registerContentScripts");
 
       await injections.registerContentScripts();
-      expect(spy).toHaveBeenCalled;
+      assertRegisterContentScriptsSpyCalls(spy);
     });
 
     it("does enable universal interventions", async () => {
       let injections = new Injections([buildInjection("all")]);
       injections.bindAboutCompatBroker(mockBroker);
 
-      let spy = spyOn(browser.contentScripts, "register");
+      let spy = spyOn(browser.scripting, "registerContentScripts");
 
       await injections.registerContentScripts();
-      expect(spy).toHaveBeenCalled();
+      assertRegisterContentScriptsSpyCalls(spy);
     });
 
-    it("does not enable interventions if the plattform differs", async () => {
+    it("does not enable interventions if the platform differs", async () => {
       let injections = new Injections([buildInjection("android")]);
       injections.bindAboutCompatBroker(mockBroker);
 
-      let spy = spyOn(browser.contentScripts, "register");
+      let spy = spyOn(browser.scripting, "registerContentScripts");
 
       await injections.registerContentScripts();
       expect(spy).not.toHaveBeenCalled();
@@ -89,12 +126,12 @@ describe("Injections", () => {
     });
   });
 
-  describe("assignContentScriptDefaults", () => {
-    it("assigns runAt=documenet_start if nothing else is specified", () => {
+  describe("buildContentScriptRegistrations", () => {
+    it("assigns runAt=document_start if nothing else is specified", () => {
       let injectionConfig = buildInjection("desktop");
       let injections = new Injections([injectionConfig]);
 
-      let finalConfig = injections.assignContentScriptDefaults(
+      let finalConfig = injections.buildContentScriptRegistrations(
         injectionConfig.contentScripts
       );
       expect(finalConfig.runAt).toBe("document_start");
@@ -106,7 +143,7 @@ describe("Injections", () => {
 
       let injections = new Injections([injectionConfig]);
 
-      let finalConfig = injections.assignContentScriptDefaults(
+      let finalConfig = injections.buildContentScriptRegistrations(
         injectionConfig.contentScripts
       );
       expect(finalConfig.runAt).toBe("document_idle");

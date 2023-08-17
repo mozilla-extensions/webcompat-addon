@@ -65,6 +65,7 @@
 
   "permissions": [
     "mozillaAddons",
+    "scripting",
     "tabs",
     "webNavigation",
     "webRequest",
