@@ -19,8 +19,12 @@ jasmine.getGlobal().browser = {
       addListener: () => {},
     },
   },
-  contentScripts: {
-    register: () => {},
+  scripting: {
+    registerContentScripts: async () => {},
+    unregisterContentScripts: async () => {},
+    getRegisteredContentScripts: async () => {
+      return [];
+    },
   },
   runtime: {
     getPlatformInfo: async () => {
