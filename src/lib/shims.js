@@ -62,6 +62,11 @@ class Shim {
     this.requestStorageAccessForRedirect = opts.requestStorageAccessForRedirect;
     this.shouldUseScriptingAPI =
       browser.runtimeFeatureDetection.shouldUseScriptingAPI();
+    debug(
+      `WebCompat Shim ${this.id} will be injected using ${
+        this.shouldUseScriptingAPI ? "scripting" : "contentScripts"
+      } API`
+    );
 
     this._hostOptIns = new Set();
 

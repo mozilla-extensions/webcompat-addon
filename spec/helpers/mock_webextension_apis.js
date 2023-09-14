@@ -19,6 +19,9 @@ jasmine.getGlobal().browser = {
       addListener: () => {},
     },
   },
+  appConstants: {
+    getReleaseBranch: async () => "release_or_beta",
+  },
   scripting: {
     registerContentScripts: async () => {},
     unregisterContentScripts: async () => {},

@@ -21,6 +21,17 @@ class Injections {
 
     this.shouldUseScriptingAPI =
       browser.runtimeFeatureDetection.shouldUseScriptingAPI();
+    // Debug log emit only on nightly (similarly to the debug
+    // helper used in shims.js for similar purpose).
+    browser.appConstants.getReleaseBranch().then(releaseBranch => {
+      if (releaseBranch !== "release_or_beta") {
+        console.debug(
+          `WebCompat Injections will be injected using ${
+            this.shouldUseScriptingAPI ? "scripting" : "contentScripts"
+          } API`
+        );
+      }
+    });
   }
 
   bindAboutCompatBroker(broker) {
