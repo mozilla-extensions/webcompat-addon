@@ -35,6 +35,8 @@ FINAL_TARGET_FILES.features["webcompat@mozilla.org"]["experiment-apis"] += [
     "experiment-apis/appConstants.json",
     "experiment-apis/matchPatterns.js",
     "experiment-apis/matchPatterns.json",
+    "experiment-apis/runtimeFeatureDetection.js",
+    "experiment-apis/runtimeFeatureDetection.json",
     "experiment-apis/systemManufacturer.js",
     "experiment-apis/systemManufacturer.json",
     "experiment-apis/trackingProtection.js",

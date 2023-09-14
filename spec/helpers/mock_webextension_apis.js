@@ -33,6 +33,9 @@ jasmine.getGlobal().browser = {
       };
     },
   },
+  runtimeFeatureDetection: {
+    shouldUseScriptingAPI: () => true,
+  },
   systemManufacturer: {
     getManufacturer: () => {},
   },

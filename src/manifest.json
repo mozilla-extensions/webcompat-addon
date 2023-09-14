@@ -43,6 +43,14 @@
         "paths": [["matchPatterns"]]
       }
     },
+    "runtimeFeatureDetection": {
+      "schema": "experiment-apis/runtimeFeatureDetection.json",
+      "child": {
+        "scopes": ["addon_child"],
+        "script": "experiment-apis/runtimeFeatureDetection.js",
+        "paths": [["runtimeFeatureDetection"]]
+      }
+    },
     "systemManufacturer": {
       "schema": "experiment-apis/systemManufacturer.json",
       "child": {
