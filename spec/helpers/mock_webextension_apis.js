@@ -23,18 +23,21 @@ jasmine.getGlobal().browser = {
   appConstants: {
     getReleaseBranch: async () => "release_or_beta",
   },
-  scripting: {
-    registerContentScripts: async () => {},
-    unregisterContentScripts: async () => {},
-    getRegisteredContentScripts: async () => {
-      return [];
-    },
+  contentScripts: {
+    register: async () => {},
   },
   runtime: {
     getPlatformInfo: async () => {
       return {
         os: "test runner",
       };
+    },
+  },
+  scripting: {
+    registerContentScripts: async () => {},
+    unregisterContentScripts: async () => {},
+    getRegisteredContentScripts: async () => {
+      return [];
     },
   },
   systemManufacturer: {

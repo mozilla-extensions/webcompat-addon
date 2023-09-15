@@ -43,7 +43,9 @@ function buildNoSniffFix() {
   };
 }
 
-function assertRegisterContentScriptsSpyCalls(spy) {
+// Asserts the expected parameters are passed to
+// scripting.registerContentScripts calls.
+function assertScriptingAPISpyCalls(spy) {
   expect(spy).toHaveBeenCalled();
   for (const spyCall of spy.calls.all()) {
     expect(spyCall.args).toHaveSize(1);
@@ -53,9 +55,12 @@ function assertRegisterContentScriptsSpyCalls(spy) {
     expect(arg[0]).toBeInstanceOf(Object);
     expect(arg[0].id).toBeInstanceOf(String);
     expect(arg[0].id).not.toHaveSize(0);
+    expect(arg[0].persistAcrossSessions).toBe(false);
     expect(arg[0].matches).toBeInstanceOf(Array);
     expect(arg[0].matches).not.toHaveSize(0);
-    expect(arg[0].matches[0]).toBeInstanceOf(String);
+    arg[0].matches.forEach(match => {
+      expect(match).toBeInstanceOf(String);
+    });
     // At least one of js or css is expected to be
     // a non empty array.
     expect(arg[0].js || arg[0].css).toBeInstanceOf(Array);
@@ -71,6 +76,42 @@ function assertRegisterContentScriptsSpyCalls(spy) {
       arg[0].css.forEach(css => {
         expect(css).toBeInstanceOf(String);
         expect(css).not.toHaveSize(0);
+      });
+    }
+  }
+}
+
+// Asserts the expected parameters are passed to
+// contentScripts.register calls.
+function assertContentScriptsAPISpyCalls(spy) {
+  expect(spy).toHaveBeenCalled();
+  for (const spyCall of spy.calls.all()) {
+    expect(spyCall.args).toHaveSize(1);
+    const arg = spyCall.args[0];
+    expect(arg).toBeInstanceOf(Object);
+    expect(arg.id).not.toBeDefined();
+    expect(arg.matches).not.toHaveSize(0);
+    arg.matches.forEach(match => {
+      expect(match).toBeInstanceOf(String);
+    });
+    // At least one of js or css is expected to be
+    // a non empty array.
+    expect(arg.js || arg.css).toBeInstanceOf(Array);
+    expect(arg.js?.length || arg.css?.length).not.toBe(0);
+    // Verify css and js array elements are all object with a
+    // file property set to a non-empty string.
+    if (Array.isArray(arg.js)) {
+      arg.js.forEach(js => {
+        expect(js).toBeInstanceOf(Object);
+        expect(js.file).toBeInstanceOf(String);
+        expect(js.file).not.toHaveSize(0);
+      });
+    }
+    if (Array.isArray(arg.css)) {
+      arg.css.forEach(css => {
+        expect(css).toBeInstanceOf(Object);
+        expect(css.file).toBeInstanceOf(String);
+        expect(css.file).not.toHaveSize(0);
       });
     }
   }
@@ -92,7 +133,7 @@ describe("Injections", () => {
       let spy = spyOn(browser.scripting, "registerContentScripts");
 
       await injections.registerContentScripts();
-      assertRegisterContentScriptsSpyCalls(spy);
+      assertScriptingAPISpyCalls(spy);
     });
 
     it("does enable universal interventions", async () => {
@@ -102,7 +143,7 @@ describe("Injections", () => {
       let spy = spyOn(browser.scripting, "registerContentScripts");
 
       await injections.registerContentScripts();
-      assertRegisterContentScriptsSpyCalls(spy);
+      assertScriptingAPISpyCalls(spy);
     });
 
     it("does not enable interventions if the platform differs", async () => {
@@ -123,6 +164,22 @@ describe("Injections", () => {
       injections.bindAboutCompatBroker(mockBroker);
       await injections.registerContentScripts();
       expect(spy).toHaveBeenCalled();
+    });
+
+    it("fallbacks to contentScripts API on useScriptingAPI set to false", async () => {
+      // Expect Injections to fallback to use contentScripts.register
+      // getBoolPrefSync("useScriptingAPI") returns false.
+      let spyGetBookPrefSync = spyOn(
+        browser.aboutConfigPrefs,
+        "getBoolPrefSync"
+      ).and.returnValue(false);
+
+      let injections = new Injections([buildInjection("desktop")]);
+      expect(spyGetBookPrefSync).toHaveBeenCalledOnceWith("useScriptingAPI");
+      injections.bindAboutCompatBroker(mockBroker);
+      let spyRegister = spyOn(browser.contentScripts, "register");
+      await injections.registerContentScripts();
+      assertContentScriptsAPISpyCalls(spyRegister);
     });
   });
 
