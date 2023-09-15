@@ -43,6 +43,13 @@ jasmine.getGlobal().browser = {
   systemManufacturer: {
     getManufacturer: () => {},
   },
+  trackingProtection: {
+    allow: async () => {},
+    isDFPIActive: async () => false,
+    revoke: async () => {},
+    shim: async () => {},
+    wasRequestUnblocked: async () => false,
+  },
   webRequest: {
     onBeforeRequest: {
       addListener: () => {},
