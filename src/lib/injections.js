@@ -20,7 +20,7 @@ class Injections {
     this._customFunctions = customFunctions;
 
     this.shouldUseScriptingAPI =
-      browser.runtimeFeatureDetection.shouldUseScriptingAPI();
+      browser.aboutConfigPrefs.getBoolPrefSync("useScriptingAPI");
     // Debug log emit only on nightly (similarly to the debug
     // helper used in shims.js for similar purpose).
     browser.appConstants.getReleaseBranch().then(releaseBranch => {

@@ -15,6 +15,7 @@ jasmine.getGlobal().browser = {
     getPref: async () => {
       return true;
     },
+    getBoolPrefSync: () => true,
     onPrefChange: {
       addListener: () => {},
     },
@@ -35,9 +36,6 @@ jasmine.getGlobal().browser = {
         os: "test runner",
       };
     },
-  },
-  runtimeFeatureDetection: {
-    shouldUseScriptingAPI: () => true,
   },
   systemManufacturer: {
     getManufacturer: () => {},

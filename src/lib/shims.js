@@ -61,7 +61,7 @@ class Shim {
     this.unblocksOnOptIn = unblocksOnOptIn;
     this.requestStorageAccessForRedirect = opts.requestStorageAccessForRedirect;
     this.shouldUseScriptingAPI =
-      browser.runtimeFeatureDetection.shouldUseScriptingAPI();
+      browser.aboutConfigPrefs.getBoolPrefSync("useScriptingAPI");
     debug(
       `WebCompat Shim ${this.id} will be injected using ${
         this.shouldUseScriptingAPI ? "scripting" : "contentScripts"

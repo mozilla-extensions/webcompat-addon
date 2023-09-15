@@ -17,6 +17,11 @@
         "scopes": ["addon_parent"],
         "script": "experiment-apis/aboutConfigPrefs.js",
         "paths": [["aboutConfigPrefs"]]
+      },
+      "child": {
+        "scopes": ["addon_child"],
+        "script": "experiment-apis/aboutConfigPrefsChild.js",
+        "paths": [["aboutConfigPrefs"]]
       }
     },
     "appConstants": {
@@ -41,14 +46,6 @@
         "scopes": ["addon_child"],
         "script": "experiment-apis/matchPatterns.js",
         "paths": [["matchPatterns"]]
-      }
-    },
-    "runtimeFeatureDetection": {
-      "schema": "experiment-apis/runtimeFeatureDetection.json",
-      "child": {
-        "scopes": ["addon_child"],
-        "script": "experiment-apis/runtimeFeatureDetection.js",
-        "paths": [["runtimeFeatureDetection"]]
       }
     },
     "systemManufacturer": {

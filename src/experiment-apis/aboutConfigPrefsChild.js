@@ -6,20 +6,21 @@
 
 /* global ExtensionAPI, Services, XPCOMUtils */
 
-this.runtimeFeatureDetection = class extends ExtensionAPI {
+this.aboutConfigPrefs = class extends ExtensionAPI {
   getAPI(context) {
+    const extensionIDBase = context.extension.id.split("@")[0];
+    const extensionPrefNameBase = `extensions.${extensionIDBase}.`;
+
     return {
-      runtimeFeatureDetection: {
-        shouldUseScriptingAPI() {
+      aboutConfigPrefs: {
+        getBoolPrefSync(prefName, defaultValue) {
           try {
             return Services.prefs.getBoolPref(
-              "extensions.webcompat.useScriptingAPI",
-              false
+              `${extensionPrefNameBase}${prefName}`,
+              defaultValue ?? false
             );
           } catch (_) {
-            // Keep using the contentScripts API in case
-            // on unexpected failures.
-            return false;
+            return defaultValue ?? false;
           }
         },
       },
