@@ -5,6 +5,10 @@
 "use strict";
 
 const mockBroker = require("./helpers/mock_about_compat_broker");
+const {
+  assertScriptingAPISpyCalls,
+  assertContentScriptsAPISpyCalls,
+} = require("./helpers/content_scripts_test_helpers.js");
 
 let Injections = require("../src/lib/injections");
 const CUSTOM_FUNCTIONS = require("../src/lib/custom_functions");
@@ -43,39 +47,6 @@ function buildNoSniffFix() {
   };
 }
 
-function assertRegisterContentScriptsSpyCalls(spy) {
-  expect(spy).toHaveBeenCalled();
-  for (const spyCall of spy.calls.all()) {
-    expect(spyCall.args).toHaveSize(1);
-    const arg = spyCall.args[0];
-    expect(arg).toBeInstanceOf(Array);
-    expect(arg).toHaveSize(1);
-    expect(arg[0]).toBeInstanceOf(Object);
-    expect(arg[0].id).toBeInstanceOf(String);
-    expect(arg[0].id).not.toHaveSize(0);
-    expect(arg[0].matches).toBeInstanceOf(Array);
-    expect(arg[0].matches).not.toHaveSize(0);
-    expect(arg[0].matches[0]).toBeInstanceOf(String);
-    // At least one of js or css is expected to be
-    // a non empty array.
-    expect(arg[0].js || arg[0].css).toBeInstanceOf(Array);
-    expect(arg[0].js?.length || arg[0].css?.length).not.toBe(0);
-    // Verify css and js array elements are all non empty strings.
-    if (Array.isArray(arg[0].js)) {
-      arg[0].js.forEach(js => {
-        expect(js).toBeInstanceOf(String);
-        expect(js).not.toHaveSize(0);
-      });
-    }
-    if (Array.isArray(arg[0].css)) {
-      arg[0].css.forEach(css => {
-        expect(css).toBeInstanceOf(String);
-        expect(css).not.toHaveSize(0);
-      });
-    }
-  }
-}
-
 describe("Injections", () => {
   describe("constructor", () => {
     it("enables injections per default", () => {
@@ -92,7 +63,7 @@ describe("Injections", () => {
       let spy = spyOn(browser.scripting, "registerContentScripts");
 
       await injections.registerContentScripts();
-      assertRegisterContentScriptsSpyCalls(spy);
+      assertScriptingAPISpyCalls(spy);
     });
 
     it("does enable universal interventions", async () => {
@@ -102,7 +73,7 @@ describe("Injections", () => {
       let spy = spyOn(browser.scripting, "registerContentScripts");
 
       await injections.registerContentScripts();
-      assertRegisterContentScriptsSpyCalls(spy);
+      assertScriptingAPISpyCalls(spy);
     });
 
     it("does not enable interventions if the platform differs", async () => {
@@ -123,6 +94,34 @@ describe("Injections", () => {
       injections.bindAboutCompatBroker(mockBroker);
       await injections.registerContentScripts();
       expect(spy).toHaveBeenCalled();
+    });
+
+    it("fallbacks to contentScripts API on useScriptingAPI set to false", async () => {
+      // Expect Injections to fallback to use contentScripts.register
+      // getBoolPrefSync("useScriptingAPI") returns false.
+      let spyGetBookPrefSync = spyOn(
+        browser.aboutConfigPrefs,
+        "getBoolPrefSync"
+      ).and.returnValue(false);
+
+      let injections = new Injections([buildInjection("desktop")]);
+      expect(spyGetBookPrefSync).toHaveBeenCalledOnceWith("useScriptingAPI");
+      injections.bindAboutCompatBroker(mockBroker);
+      let spyScriptingRegister = spyOn(
+        browser.scripting,
+        "registerContentScripts"
+      );
+      let spyScriptingGet = spyOn(
+        browser.scripting,
+        "getRegisteredContentScripts"
+      );
+      let spyRegister = spyOn(browser.contentScripts, "register");
+      await injections.registerContentScripts();
+      assertContentScriptsAPISpyCalls(spyRegister);
+      // We expect the scripting API calls to not be hit while
+      // contentScripts API has been selected.
+      expect(spyScriptingRegister).not.toHaveBeenCalled();
+      expect(spyScriptingGet).not.toHaveBeenCalled();
     });
   });
 

@@ -15,8 +15,22 @@ jasmine.getGlobal().browser = {
     getPref: async () => {
       return true;
     },
+    getBoolPrefSync: () => true,
     onPrefChange: {
       addListener: () => {},
+    },
+  },
+  appConstants: {
+    getReleaseBranch: async () => "release_or_beta",
+  },
+  contentScripts: {
+    register: async () => {},
+  },
+  runtime: {
+    getPlatformInfo: async () => {
+      return {
+        os: "test runner",
+      };
     },
   },
   scripting: {
@@ -26,15 +40,15 @@ jasmine.getGlobal().browser = {
       return [];
     },
   },
-  runtime: {
-    getPlatformInfo: async () => {
-      return {
-        os: "test runner",
-      };
-    },
-  },
   systemManufacturer: {
     getManufacturer: () => {},
+  },
+  trackingProtection: {
+    allow: async () => {},
+    isDFPIActive: async () => false,
+    revoke: async () => {},
+    shim: async () => {},
+    wasRequestUnblocked: async () => false,
   },
   webRequest: {
     onBeforeRequest: {
