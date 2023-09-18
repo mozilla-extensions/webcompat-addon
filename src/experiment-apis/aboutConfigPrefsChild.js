@@ -13,14 +13,14 @@ this.aboutConfigPrefs = class extends ExtensionAPI {
 
     return {
       aboutConfigPrefs: {
-        getBoolPrefSync(prefName, defaultValue) {
+        getBoolPrefSync(prefName, defaultValue = false) {
           try {
             return Services.prefs.getBoolPref(
               `${extensionPrefNameBase}${prefName}`,
-              defaultValue ?? false
+              defaultValue
             );
           } catch (_) {
-            return defaultValue ?? false;
+            return defaultValue;
           }
         },
       },
