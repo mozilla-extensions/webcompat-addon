@@ -107,9 +107,21 @@ describe("Injections", () => {
       let injections = new Injections([buildInjection("desktop")]);
       expect(spyGetBookPrefSync).toHaveBeenCalledOnceWith("useScriptingAPI");
       injections.bindAboutCompatBroker(mockBroker);
+      let spyScriptingRegister = spyOn(
+        browser.scripting,
+        "registerContentScripts"
+      );
+      let spyScriptingGet = spyOn(
+        browser.scripting,
+        "getRegisteredContentScripts"
+      );
       let spyRegister = spyOn(browser.contentScripts, "register");
       await injections.registerContentScripts();
       assertContentScriptsAPISpyCalls(spyRegister);
+      // We expect the scripting API calls to not be hit while
+      // contentScripts API has been selected.
+      expect(spyScriptingRegister).not.toHaveBeenCalled();
+      expect(spyScriptingGet).not.toHaveBeenCalled();
     });
   });
 

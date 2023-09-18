@@ -87,11 +87,23 @@ describe("Shims", () => {
         "getBoolPrefSync"
       ).and.returnValue(false);
 
+      let spyScriptingRegister = spyOn(
+        browser.scripting,
+        "registerContentScripts"
+      );
+      let spyScriptingGet = spyOn(
+        browser.scripting,
+        "getRegisteredContentScripts"
+      );
       let spyRegister = spyOn(browser.contentScripts, "register");
       await testShimsContentScriptsRegistering();
       expect(spyGetBookPrefSync).toHaveBeenCalledOnceWith("useScriptingAPI");
 
       assertContentScriptsAPISpyCalls(spyRegister);
+      // We expect the scripting API calls to not be hit while
+      // contentScripts API has been selected.
+      expect(spyScriptingRegister).not.toHaveBeenCalled();
+      expect(spyScriptingGet).not.toHaveBeenCalled();
     });
   });
 });
