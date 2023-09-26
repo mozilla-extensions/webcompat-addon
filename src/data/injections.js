@@ -1127,6 +1127,20 @@ const AVAILABLE_INJECTIONS = [
       ],
     },
   },
+  {
+    id: "bug1855071",
+    platform: "android",
+    domain: "www.meteoam.it",
+    bug: "1855071",
+    contentScripts: {
+      matches: ["*://www.meteoam.it/*"],
+      js: [
+        {
+          file: "injections/js/bug1855071-www.meteoam.it.js",
+        },
+      ],
+    },
+  },
 ];
 
 module.exports = AVAILABLE_INJECTIONS;
