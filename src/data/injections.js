@@ -1113,6 +1113,20 @@ const AVAILABLE_INJECTIONS = [
       ],
     },
   },
+  {
+    id: "bug1855014",
+    platform: "android",
+    domain: "eksiseyler.com",
+    bug: "1855014",
+    contentScripts: {
+      matches: ["*://eksiseyler.com/*"],
+      js: [
+        {
+          file: "injections/js/bug1855014-eksiseyler.com.js",
+        },
+      ],
+    },
+  },
 ];
 
 module.exports = AVAILABLE_INJECTIONS;
