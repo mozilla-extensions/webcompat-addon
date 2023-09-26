@@ -463,13 +463,13 @@ const AVAILABLE_UA_OVERRIDES = [
      * Chrome version segment to the UA makes it work.
      */
     id: "bug1719859",
-    platform: "all",
+    platform: "android",
     domain: "saxoinvestor.fr",
     bug: "1719859",
     config: {
       matches: ["*://*.saxoinvestor.fr/*"],
       uaTransformer: originalUA => {
-        return originalUA + " Chrome/91.0.4472.114";
+        return UAHelpers.getDeviceAppropriateChromeUA();
       },
     },
   },
