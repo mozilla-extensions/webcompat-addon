@@ -1392,6 +1392,24 @@ const AVAILABLE_UA_OVERRIDES = [
       },
     },
   },
+  {
+    /*
+     * Bug 1855102 - UA override for my.southerncross.co.nz
+     * Webcompat issue #121877 - https://webcompat.com/issues/121877
+     *
+     * Spoofing as Chrome for Android allows to access the page
+     */
+    id: "bug1855102",
+    platform: "android",
+    domain: "my.southerncross.co.nz",
+    bug: "1855102",
+    config: {
+      matches: ["*://my.southerncross.co.nz/*"],
+      uaTransformer: originalUA => {
+        return UAHelpers.getDeviceAppropriateChromeUA();
+      },
+    },
+  },
 ];
 
 module.exports = AVAILABLE_UA_OVERRIDES;
