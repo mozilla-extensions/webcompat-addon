@@ -1373,6 +1373,25 @@ const AVAILABLE_UA_OVERRIDES = [
       },
     },
   },
+  {
+    /*
+     * Bug 1855088 - UA override for hrmis2.eghrmis.gov.my
+     * Webcompat issue #125039 - https://webcompat.com/issues/125039
+     *
+     * hrmis2.eghrmis.gov.my showing unsupported message for Firefox users
+     * Spoofing as Chrome allows to access the page
+     */
+    id: "bug1855088",
+    platform: "all",
+    domain: "hrmis2.eghrmis.gov.my",
+    bug: "1855088",
+    config: {
+      matches: ["*://hrmis2.eghrmis.gov.my/*"],
+      uaTransformer: originalUA => {
+        return UAHelpers.getDeviceAppropriateChromeUA();
+      },
+    },
+  },
 ];
 
 module.exports = AVAILABLE_UA_OVERRIDES;
