@@ -691,6 +691,7 @@ const AVAILABLE_INJECTIONS = [
         "*://*.discountcoffee.co.uk/*", // 118757
         "*://torguard.net/*", // 120113
         "*://*.arcsivr.com/*", // 120716
+        "*://drafthouse.com/*", // 126385
       ],
       js: [
         {
