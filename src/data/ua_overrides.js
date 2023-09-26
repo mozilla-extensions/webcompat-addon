@@ -1355,6 +1355,24 @@ const AVAILABLE_UA_OVERRIDES = [
       },
     },
   },
+  {
+    /*
+     * Bug 1850455 - UA override for frontgate.com
+     * Webcompat issue #36277 - https://webcompat.com/issues/36277
+     *
+     * The site is showing a desktop view to Firefox mobile user-agents
+     */
+    id: "bug1850455",
+    platform: "android",
+    domain: "frontgate.com",
+    bug: "1850455",
+    config: {
+      matches: ["*://*.frontgate.com/*"],
+      uaTransformer: originalUA => {
+        return UAHelpers.getDeviceAppropriateChromeUA();
+      },
+    },
+  },
 ];
 
 module.exports = AVAILABLE_UA_OVERRIDES;
