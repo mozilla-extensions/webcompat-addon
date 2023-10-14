@@ -1410,6 +1410,26 @@ const AVAILABLE_UA_OVERRIDES = [
       },
     },
   },
+  {
+    /*
+     * Bug 1858664 - UA override to freeze rv segment to 109
+     *
+     * Some sites have issues with a UA string with "rv:" segment
+     * higher than 109, freezing it to 109 fixes the issues.
+     */
+    id: "bug1858664",
+    platform: "all",
+    domain: "Sites with known breakage with rv: segment higher than 109",
+    bug: "1858664",
+    config: {
+      matches: [
+        "*://*.tesco.com/*", // #1858664
+      ],
+      uaTransformer: originalUA => {
+        return UAHelpers.capRvTo109(originalUA);
+      },
+    },
+  },
 ];
 
 module.exports = AVAILABLE_UA_OVERRIDES;
