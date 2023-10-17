@@ -863,22 +863,6 @@ const AVAILABLE_UA_OVERRIDES = [
   },
   {
     /*
-     * Bug 1827678 - UA override for static.slots.lv
-     * Webcompat issue #68379 - https://webcompat.com/issues/68379
-     */
-    id: "bug1827678-webc68379",
-    platform: "android",
-    domain: "static.slots.lv",
-    bug: "1827678",
-    config: {
-      matches: ["*://static.slots.lv/*"],
-      uaTransformer: originalUA => {
-        return UAHelpers.getDeviceAppropriateChromeUA();
-      },
-    },
-  },
-  {
-    /*
      * Bug 1827678 - UA override for mobile.onvue.com
      * Webcompat issue #68520 - https://webcompat.com/issues/68520
      */
@@ -1259,23 +1243,6 @@ const AVAILABLE_UA_OVERRIDES = [
       matches: ["*://atracker.pro/*"],
       uaTransformer: originalUA => {
         return originalUA + " Chrome/113.0.0.0";
-      },
-    },
-  },
-  {
-    /*
-     * Bug 1836181 - UA override for conference.amwell.com
-     *
-     * The site's content is not loaded unless a Chrome UA is used.
-     */
-    id: "bug1836181",
-    platform: "all",
-    domain: "conference.amwell.com",
-    bug: "1836181",
-    config: {
-      matches: ["*://conference.amwell.com/*"],
-      uaTransformer: originalUA => {
-        return UAHelpers.getDeviceAppropriateChromeUA();
       },
     },
   },
