@@ -640,20 +640,6 @@ const AVAILABLE_INJECTIONS = [
     },
   },
   {
-    id: "bug1799994",
-    platform: "desktop",
-    domain: "www.vivobarefoot.com",
-    bug: "1799994",
-    contentScripts: {
-      matches: ["*://www.vivobarefoot.com/*"],
-      css: [
-        {
-          file: "injections/css/bug1799994-www.vivobarefoot.com-product-filters-fix.css",
-        },
-      ],
-    },
-  },
-  {
     id: "bug1800000",
     platform: "desktop",
     domain: "www.honda.co.uk",
