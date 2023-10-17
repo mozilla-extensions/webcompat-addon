@@ -141,28 +141,6 @@ const AVAILABLE_INJECTIONS = [
     },
   },
   {
-    id: "bug1605611",
-    platform: "android",
-    domain: "maps.google.com",
-    bug: "1605611",
-    contentScripts: {
-      matches: InterventionHelpers.matchPatternsForGoogle(
-        "*://www.google.",
-        "/maps*"
-      ),
-      css: [
-        {
-          file: "injections/css/bug1605611-maps.google.com-directions-time.css",
-        },
-      ],
-      js: [
-        {
-          file: "injections/js/bug1605611-maps.google.com-directions-time.js",
-        },
-      ],
-    },
-  },
-  {
     id: "bug1610344",
     platform: "all",
     domain: "directv.com.co",
