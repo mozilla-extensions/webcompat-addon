@@ -485,6 +485,23 @@ const AVAILABLE_INJECTIONS = [
     },
   },
   {
+    id: "bug1859617",
+    platform: "all",
+    domain: "Sites relying on there being no window.InstallTrigger",
+    bug: "1859617",
+    contentScripts: {
+      matches: [
+        "*://*.stallionexpress.ca/*", // Bug 1859617
+      ],
+      js: [
+        {
+          file: "injections/js/bug1859617-installtrigger-removal-shim.js",
+        },
+      ],
+      allFrames: true,
+    },
+  },
+  {
     id: "bug1784141",
     platform: "android",
     domain: "aveeno.com and acuvue.com",
