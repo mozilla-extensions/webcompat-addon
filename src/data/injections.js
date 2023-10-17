@@ -783,20 +783,6 @@ const AVAILABLE_INJECTIONS = [
     },
   },
   {
-    id: "bug1829952",
-    platform: "android",
-    domain: "eventer.co.il",
-    bug: "1829952",
-    contentScripts: {
-      matches: ["*://*.eventer.co.il/*"],
-      css: [
-        {
-          file: "injections/css/bug1829952-eventer.co.il-button-height.css",
-        },
-      ],
-    },
-  },
-  {
     id: "bug1830747",
     platform: "android",
     domain: "my.babbel.com",
