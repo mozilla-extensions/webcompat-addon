@@ -1,0 +1,20 @@
+/* This Source Code Form is subject to the terms of the Mozilla Public
+ * License, v. 2.0. If a copy of the MPL was not distributed with this
+ * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
+
+/**
+ * tv.apple.com - Login dialog is not displayed
+ * Bug #1863420 - https://bugzilla.mozilla.org/show_bug.cgi?id=1863420
+ * WebCompat issue #129369 - https://github.com/webcompat/web-bugs/issues/129369
+ */
+
+#ck-modal {
+  position: fixed;
+  inset: 0;
+  border: none;
+  width: auto;
+  height: auto;
+  background: transparent;
+  max-width: none;
+  max-height: none;
+}

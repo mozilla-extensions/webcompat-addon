@@ -1108,6 +1108,20 @@ const AVAILABLE_INJECTIONS = [
       ],
     },
   },
+  {
+    id: "bug1863420",
+    platform: "all",
+    domain: "tv.apple.com",
+    bug: "1863420",
+    contentScripts: {
+      matches: ["*://tv.apple.com/*"],
+      css: [
+        {
+          file: "injections/css/bug1863420-tv.apple.com-dialog-fix.css",
+        },
+      ],
+    },
+  },
 ];
 
 module.exports = AVAILABLE_INJECTIONS;
