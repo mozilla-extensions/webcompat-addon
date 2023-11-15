@@ -680,6 +680,8 @@ const AVAILABLE_INJECTIONS = [
         "*://torguard.net/*", // 120113
         "*://*.arcsivr.com/*", // 120716
         "*://drafthouse.com/*", // 126385
+        "*://*.lafoodbank.org/*", // 127006
+        "*://rutamayacoffee.com/*", // 129353
       ],
       js: [
         {
