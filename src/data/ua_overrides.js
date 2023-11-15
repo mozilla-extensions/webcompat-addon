@@ -328,26 +328,6 @@ const AVAILABLE_UA_OVERRIDES = [
   },
   {
     /*
-     * Bug 1697324 - Update the override for mobile2.bmo.com
-     * Previously Bug 1622081 - UA override for mobile2.bmo.com
-     * Webcompat issue #45019 - https://webcompat.com/issues/45019
-     *
-     * Unless the UA string contains "Chrome", mobile2.bmo.com will
-     * display a modal saying the browser is out-of-date.
-     */
-    id: "bug1697324",
-    platform: "android",
-    domain: "mobile2.bmo.com",
-    bug: "1697324",
-    config: {
-      matches: ["*://mobile2.bmo.com/*"],
-      uaTransformer: originalUA => {
-        return originalUA + " Chrome";
-      },
-    },
-  },
-  {
-    /*
      * Bug 1646791 - bancosantander.es - Re-add UA override.
      * Bug 1665129 - *.gruposantander.es - Add wildcard domains.
      * WebCompat issue #33462 - https://webcompat.com/issues/33462
@@ -475,25 +455,6 @@ const AVAILABLE_UA_OVERRIDES = [
   },
   {
     /*
-     * Bug 1722954 - Add UA override for game.granbluefantasy.jp
-     * Webcompat issue #34310 - https://github.com/webcompat/web-bugs/issues/34310
-     *
-     * The website is sending a version of the site which is too small. Adding a partial
-     * safari iOS version of the UA sends us the right layout.
-     */
-    id: "bug1722954",
-    platform: "android",
-    domain: "granbluefantasy.jp",
-    bug: "1722954",
-    config: {
-      matches: ["*://*.granbluefantasy.jp/*", "*://*.gbf.game.mbga.jp/*"],
-      uaTransformer: originalUA => {
-        return originalUA + " iPhone OS 12_0 like Mac OS X";
-      },
-    },
-  },
-  {
-    /*
      * Bug 1738317 - Add UA override for vmos.cn
      * Webcompat issue #90432 - https://github.com/webcompat/web-bugs/issues/90432
      *
@@ -607,25 +568,6 @@ const AVAILABLE_UA_OVERRIDES = [
       matches: ["*://serieson.naver.com/*"],
       uaTransformer: originalUA => {
         return "Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/97.0.4692.99 Safari/537.36";
-      },
-    },
-  },
-  {
-    /*
-     * Bug 1756872 - UA override for www.dolcegabbana.com
-     * Webcompat issue #99993 - https://webcompat.com/issues/99993
-     *
-     * The site's layout is broken on Firefox for Android
-     * without a full Chrome user-agent string.
-     */
-    id: "bug1756872",
-    platform: "android",
-    domain: "www.dolcegabbana.com",
-    bug: "1756872",
-    config: {
-      matches: ["*://www.dolcegabbana.com/*"],
-      uaTransformer: originalUA => {
-        return UAHelpers.getDeviceAppropriateChromeUA();
       },
     },
   },
@@ -1260,27 +1202,6 @@ const AVAILABLE_UA_OVERRIDES = [
       matches: ["*://*.flatsatshadowglen.com/*"],
       uaTransformer: originalUA => {
         return UAHelpers.getDeviceAppropriateChromeUA();
-      },
-    },
-  },
-  {
-    /*
-     * Bug 1843234 - UA override for fdj.fr
-     *
-     * The site blocks Linux users from playing games,
-     * so use a Windows user-agent on Linux.
-     */
-    id: "bug1843234",
-    platform: "desktop",
-    domain: "fdj.fr",
-    bug: "1843234",
-    config: {
-      matches: ["*://*.fdj.fr/*"],
-      uaTransformer: originalUA => {
-        if (originalUA.includes("Linux")) {
-          return UAHelpers.getWindowsUA(originalUA);
-        }
-        return originalUA;
       },
     },
   },
