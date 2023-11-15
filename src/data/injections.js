@@ -572,15 +572,21 @@ const AVAILABLE_INJECTIONS = [
     bug: "1784199",
     contentScripts: {
       matches: [
+        "*://*.7streetbrownstones.com/*", // #129553
         "*://*.aptsovation.com/*",
         "*://*.avanabayview.com/*", // #118617
         "*://*.breakpointeandcoronado.com/*", // #117735
+        "*://*.courtsatspringmill.com/*", // #128404
+        "*://*.gslbriarcreek.com/*", // #126401
         "*://*.liveatlasathens.com/*", // #111189
         "*://*.liveobserverpark.com/*", // #105244
+        "*://*.liveupark.com/*", // #121083
+        "*://*.metropolisapt.com/*", // #129105
         "*://*.midwayurban.com/*", // #116523
         "*://*.nhcalaska.com/*",
         "*://*.prospectportal.com/*", // #115206
         "*://*.securityproperties.com/*",
+        "*://*.thefoundryat41st.com/*", // #128994
         "*://*.theloftsorlando.com/*",
         "*://*.vanallenapartments.com/*", // #120056
         "*://*.waterfordapartmentstulsa.com/*", // #125870
@@ -590,6 +596,7 @@ const AVAILABLE_INJECTIONS = [
           file: "injections/css/bug1784199-entrata-platform-unsupported.css",
         },
       ],
+      allFrames: true,
     },
   },
   {
