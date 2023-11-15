@@ -1226,25 +1226,6 @@ const AVAILABLE_UA_OVERRIDES = [
   },
   {
     /*
-     * Bug 1849029 - UA override for publi24.ro
-     * Webcompat issue #124958 - https://webcompat.com/issues/124958
-     *
-     * The site is adding "desktop" class instead of "mobile"
-     * for Firefox on Android and it breaks the filter button.
-     */
-    id: "bug1849029",
-    platform: "android",
-    domain: "publi24.ro",
-    bug: "1849029",
-    config: {
-      matches: ["*://*.publi24.ro/*"],
-      uaTransformer: originalUA => {
-        return UAHelpers.getDeviceAppropriateChromeUA();
-      },
-    },
-  },
-  {
-    /*
      * Bug 1850455 - UA override for frontgate.com
      * Webcompat issue #36277 - https://webcompat.com/issues/36277
      *
