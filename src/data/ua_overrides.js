@@ -1396,6 +1396,49 @@ const AVAILABLE_UA_OVERRIDES = [
       },
     },
   },
+  {
+    /*
+     * Bug 1864903 - UA override for Publitas catalogs
+     * Webcompat issue #128814 - https://webcompat.com/issues/128814
+     *
+     * Catalogs break without -moz-transform, since
+     * https://bugzilla.mozilla.org/show_bug.cgi?id=1855763 was
+     * shipped, spoofing as Chrome makes them work.
+     */
+    id: "bug1864903",
+    platform: "all",
+    domain: "Publitas catalogs",
+    bug: "1864903",
+    config: {
+      matches: [
+        "*://aktionen.metro.at/*",
+        "*://cataloagele.metro.ro/*",
+        "*://catalogs.metro-cc.ru/*",
+        "*://catalogues.metro.bg/*",
+        "*://catalogues.metro-cc.hr/*",
+        "*://catalogues.metro.ua/*",
+        "*://folders.makro.nl/*",
+        "*://katalog.metro.rs/*",
+        "*://katalogi.metro-kz.com/*",
+        "*://kataloglar.metro-tr.com/*",
+        "*://katalogus.metro.hu/*",
+        "*://letaky.makro.cz/*",
+        "*://letaky.metro.sk/*",
+        "*://ofertas.makro.es/*",
+        "*://oferte.metro.md/*",
+        "*://promotions-deals.metro.pk/*",
+        "*://promocoes.makro.pt/*",
+        "*://prospekt.aldi-sued.de/*",
+        "*://prospekte.metro.de/*",
+        "*://thematiques.metro.fr/*",
+        "*://volantino.metro.it/*",
+        "*://view.publitas.com/*",
+      ],
+      uaTransformer: originalUA => {
+        return UAHelpers.getDeviceAppropriateChromeUA();
+      },
+    },
+  },
 ];
 
 module.exports = AVAILABLE_UA_OVERRIDES;
