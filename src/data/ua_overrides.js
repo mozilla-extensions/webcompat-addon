@@ -1359,6 +1359,25 @@ const AVAILABLE_UA_OVERRIDES = [
       },
     },
   },
+  {
+    /*
+     * Bug 1865000 - UA override for bmo.com
+     * Webcompat issue #127620 - https://webcompat.com/issues/127620
+     *
+     * Spoofing as Chrome removes the unsupported message and allows
+     * to proceed with application
+     */
+    id: "bug1865000",
+    platform: "all",
+    domain: "bmo.com",
+    bug: "1865000",
+    config: {
+      matches: ["*://*.bmo.com/main/personal/*/getting-started/*"],
+      uaTransformer: originalUA => {
+        return UAHelpers.getDeviceAppropriateChromeUA();
+      },
+    },
+  },
 ];
 
 module.exports = AVAILABLE_UA_OVERRIDES;
