@@ -1396,6 +1396,24 @@ const AVAILABLE_UA_OVERRIDES = [
       },
     },
   },
+  {
+    /*
+     * Bug 1865007 - UA override for portal.circle.ms
+     * Webcompat issue #127739 - https://webcompat.com/issues/127739
+     *
+     * The site returns desktop layout on Firefox for Android
+     */
+    id: "bug1865007",
+    platform: "android",
+    domain: "portal.circle.ms",
+    bug: "1865007",
+    config: {
+      matches: ["*://*.circle.ms/*"],
+      uaTransformer: originalUA => {
+        return UAHelpers.getDeviceAppropriateChromeUA();
+      },
+    },
+  },
 ];
 
 module.exports = AVAILABLE_UA_OVERRIDES;
