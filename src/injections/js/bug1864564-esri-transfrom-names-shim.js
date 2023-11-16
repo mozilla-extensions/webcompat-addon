@@ -19,7 +19,7 @@
 /* globals exportFunction, cloneInto */
 
 console.info(
-  "esri._css.names for compatibility reasons. See https://bugzilla.mozilla.org/show_bug.cgi?id=1864564 for details."
+  "Overriding esri._css.names for compatibility reasons. See https://bugzilla.mozilla.org/show_bug.cgi?id=1864564 for details."
 );
 
 const transformNames = {
