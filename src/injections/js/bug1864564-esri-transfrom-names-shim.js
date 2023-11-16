@@ -34,8 +34,8 @@ let esriGlobal;
 
 Object.defineProperty(window.wrappedJSObject, "esri", {
   get: exportFunction(function () {
-    if ("_css" in esriGlobal && "names" in esriGlobal["_css"]) {
-      esriGlobal["_css"]["names"] = cloneInto(transformNames, esriGlobal);
+    if ("_css" in esriGlobal && "names" in esriGlobal._css) {
+      esriGlobal._css.names = cloneInto(transformNames, esriGlobal);
     }
     return esriGlobal;
   }, window),
