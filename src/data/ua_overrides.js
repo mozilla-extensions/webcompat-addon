@@ -1341,6 +1341,24 @@ const AVAILABLE_UA_OVERRIDES = [
       },
     },
   },
+  {
+    /*
+     * Bug 1864999 - UA override for autotrader.ca
+     * Webcompat issue #126822 - https://webcompat.com/issues/126822
+     *
+     * Spoofing as Chrome for Android makes filters work on the site
+     */
+    id: "bug1864999",
+    platform: "android",
+    domain: "autotrader.ca",
+    bug: "1864999",
+    config: {
+      matches: ["*://*.autotrader.ca/*"],
+      uaTransformer: originalUA => {
+        return UAHelpers.getDeviceAppropriateChromeUA();
+      },
+    },
+  },
 ];
 
 module.exports = AVAILABLE_UA_OVERRIDES;
