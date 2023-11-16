@@ -1378,6 +1378,24 @@ const AVAILABLE_UA_OVERRIDES = [
       },
     },
   },
+  {
+    /*
+     * Bug 1865004 - UA override for digimart.net
+     * Webcompat issue #126647 - https://webcompat.com/issues/126647
+     *
+     * The site returns desktop layout on Firefox for Android
+     */
+    id: "bug1865004",
+    platform: "android",
+    domain: "digimart.net",
+    bug: "1865004",
+    config: {
+      matches: ["*://*.digimart.net/*"],
+      uaTransformer: originalUA => {
+        return UAHelpers.getDeviceAppropriateChromeUA();
+      },
+    },
+  },
 ];
 
 module.exports = AVAILABLE_UA_OVERRIDES;
