@@ -591,20 +591,6 @@ const AVAILABLE_INJECTIONS = [
     },
   },
   {
-    id: "bug1800000",
-    platform: "desktop",
-    domain: "www.honda.co.uk",
-    bug: "1800000",
-    contentScripts: {
-      matches: ["*://www.honda.co.uk/cars/book-a-service.html*"],
-      css: [
-        {
-          file: "injections/css/bug1800000-www.honda.co.uk-choose-dealer-button-fix.css",
-        },
-      ],
-    },
-  },
-  {
     id: "bug1448747",
     platform: "android",
     domain: "FastClick breakage",
