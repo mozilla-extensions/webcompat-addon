@@ -1057,6 +1057,23 @@ const AVAILABLE_INJECTIONS = [
       allFrames: true,
     },
   },
+  {
+    id: "bug1868345",
+    platform: "desktop",
+    domain: "tvmovie.de",
+    bug: "1868345",
+    contentScripts: {
+      matches: [
+        "*://www.tvmovie.de/tv/fernsehprogramm",
+        "*://www.tvmovie.de/tv/fernsehprogramm*",
+      ],
+      css: [
+        {
+          file: "injections/css/bug1868345-tvmovie.de-scroll-fix.css",
+        },
+      ],
+    },
+  },
 ];
 
 module.exports = AVAILABLE_INJECTIONS;
