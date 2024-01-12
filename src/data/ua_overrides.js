@@ -1281,25 +1281,6 @@ const AVAILABLE_UA_OVERRIDES = [
   },
   {
     /*
-     * Bug 1858664 - UA override for tesco.com
-     *
-     * tesco.com shows access denied with a UA string with "rv:" segment
-     * higher than 109, and version higher than 120.
-     */
-    id: "bug1858664",
-    platform: "all",
-    domain: "tesco.com",
-    bug: "1858664",
-    config: {
-      matches: ["*://*.tesco.com/*"],
-      uaTransformer: originalUA => {
-        const cappedRv = UAHelpers.capRvTo109(originalUA);
-        return UAHelpers.capVersionToNumber(cappedRv);
-      },
-    },
-  },
-  {
-    /*
      * Bug 1864903 - UA override for Publitas catalogs
      * Webcompat issue #128814 - https://webcompat.com/issues/128814
      *
