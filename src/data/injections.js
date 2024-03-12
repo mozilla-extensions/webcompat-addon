@@ -1026,6 +1026,20 @@ const AVAILABLE_INJECTIONS = [
       ],
     },
   },
+  {
+    id: "bug1877346",
+    platform: "android",
+    domain: "offerup.com",
+    bug: "1877346",
+    contentScripts: {
+      matches: ["*://offerup.com/*"],
+      css: [
+        {
+          file: "injections/css/bug1877346-offerup.com-infinite-scroll-fix.css",
+        },
+      ],
+    },
+  },
 ];
 
 module.exports = AVAILABLE_INJECTIONS;
