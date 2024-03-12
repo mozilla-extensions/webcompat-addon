@@ -1275,6 +1275,24 @@ const AVAILABLE_UA_OVERRIDES = [
       },
     },
   },
+  {
+    /*
+     * Bug 1884779 - UA override for
+     * Webcompat issue #134287 - https://webcompat.com/issues/134287
+     *
+     * The site returns desktop layout on Firefox for Android
+     */
+    id: "bug1884779",
+    platform: "android",
+    domain: "memurlar.net",
+    bug: "1884779",
+    config: {
+      matches: ["*://*.memurlar.net/*"],
+      uaTransformer: originalUA => {
+        return UAHelpers.getDeviceAppropriateChromeUA();
+      },
+    },
+  },
 ];
 
 module.exports = AVAILABLE_UA_OVERRIDES;
