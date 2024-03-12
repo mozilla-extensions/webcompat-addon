@@ -1194,6 +1194,8 @@ const AVAILABLE_UA_OVERRIDES = [
         "*://thematiques.metro.fr/*",
         "*://volantino.metro.it/*",
         "*://view.publitas.com/*",
+        "*://magazine.kruidvat.be/*",
+        "*://folder.kruidvat.nl/*",
       ],
       uaTransformer: originalUA => {
         return UAHelpers.getDeviceAppropriateChromeUA();
