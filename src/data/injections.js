@@ -1040,6 +1040,20 @@ const AVAILABLE_INJECTIONS = [
       ],
     },
   },
+  {
+    id: "bug1884842",
+    platform: "android",
+    domain: "foodora.cz",
+    bug: "1884842",
+    contentScripts: {
+      matches: ["*://*.foodora.cz/*"],
+      css: [
+        {
+          file: "injections/css/bug1884842-foodora.cz-height-fix.css",
+        },
+      ],
+    },
+  },
 ];
 
 module.exports = AVAILABLE_INJECTIONS;
