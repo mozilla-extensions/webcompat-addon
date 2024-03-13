@@ -508,7 +508,9 @@ const AVAILABLE_INJECTIONS = [
         "*://*.avanabayview.com/*", // #118617
         "*://*.breakpointeandcoronado.com/*", // #117735
         "*://*.courtsatspringmill.com/*", // #128404
+        "*://*.fieldstoneamherst.com/*", // #132974
         "*://*.gslbriarcreek.com/*", // #126401
+        "*://*.hpixeniatrails.com/*", // #131703
         "*://*.liveatlasathens.com/*", // #111189
         "*://*.liveobserverpark.com/*", // #105244
         "*://*.liveupark.com/*", // #121083
