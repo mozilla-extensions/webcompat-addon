@@ -14,19 +14,15 @@ Running the extension without a built and set up `mozilla-central` is not possib
 
 If this is the first time you're working with this repository, install the dependencies with `npm install`.
 
-### Exporting the sources to `mozilla-central`
+### Exporting the built source code for committing
 
 1. Ensure the version number is bumped in `src/manifest.json`, appropriately (see [Versioning Scheme](https://github.com/mozilla/webcompat-addon/wiki/Versioning-Scheme) for more info).
 2. Make sure the `EXPORT_MC_LOCATION` environment variable is set to the root of your `mozilla-central` checkout.
-3. Run `npm run jake export-mc`.
-4. Find the exported files in your `mozilla-central` directory, ready to commit.
-
-### Exporting the sources into Android Components
-
-1. Ensure the version number is bumped in and `src/manifest.json`, appropriately (see [Versioning Scheme](https://github.com/mozilla/webcompat-addon/wiki/Versioning-Scheme) for more info).
-2. Make sure the `EXPORT_ANDROID_MONOREPO_LOCATION` environment variable is set to the root of your [firefox-android monorepo](https://github.com/mozilla-mobile/firefox-android) checkout.
-3. Run `npm run jake export-ac`.
-4. Find the exported files in your Android Components directory, ready to commit.
+3. Depending on where you want to export to, run one of the following:
+   - For exporting into `mozilla-central` into both the Desktop build and the Android Components, run `npm run jake export`.
+   - For exporting into the Desktop tree of `mozilla-central`, run `npm run jake export-mc`.
+   - For exporting into the Android Components tree of `mozilla-central`, run `npm run jake export-ac`.
+4. Your changes will now be in your `mozilla-central` checkout. Double-check the results, and you're ready to commit.
 
 ### Run the changed extension sources
 
@@ -41,7 +37,7 @@ If you want to debug this extension on recent Desktop versions, you can use `abo
 5. Select `./src/manifest.json` and hit open.
 6. Test!
 
-### Testing on the new Firefox for Android (Fenix)
+### Testing in Firefox for Android (Fenix)
 
 Since the WebCompat feature inside Fenix is not shipped directly to the product but is included via a universal android component, you need both a local copy of Fenix and a local copy of Android-Components on your system. To build, make sure to follow the [Mozilla Android Components' instructions on how to test unreleased component code](https://mozac.org/contributing/testing-components-inside-app), and use the android-component exporter (see above) to get your sources into the repo.
 
