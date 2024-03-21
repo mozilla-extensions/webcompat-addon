@@ -639,7 +639,7 @@ const AVAILABLE_INJECTIONS = [
     },
   },
   {
-    id: "bug1827678-webc77727",
+    id: "bug1827678-webc77727-js",
     platform: "android",
     domain: "free4talk.com",
     bug: "1827678",

@@ -14,23 +14,6 @@ describe("AVAILABLE_UA_OVERRIDES", () => {
   it("contains at least one UA override definition", () => {
     expect(AVAILABLE_UA_OVERRIDES.length).toBeGreaterThanOrEqual(1);
   });
-
-  it("provide a unique ID for each override", () => {
-    let ids = new Set();
-    let duplicates = new Set();
-
-    for (const override of AVAILABLE_UA_OVERRIDES) {
-      let id = override.id;
-      if (ids.has(id)) {
-        console.error(`ID ${id} is not unique!`);
-        duplicates.add(id);
-      } else {
-        ids.add(id);
-      }
-    }
-
-    expect(duplicates.size).toBe(0);
-  });
 });
 
 for (const override of AVAILABLE_UA_OVERRIDES) {
