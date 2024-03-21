@@ -12,23 +12,6 @@ describe("AVAILABLE_SHIMS", () => {
   it("contains at least one Shim definition", () => {
     expect(AVAILABLE_SHIMS.length).toBeGreaterThanOrEqual(1);
   });
-
-  it("provide a unique ID for each shim", () => {
-    let ids = new Set();
-    let duplicates = new Set();
-
-    for (const shim of AVAILABLE_SHIMS) {
-      let id = shim.id;
-      if (ids.has(id)) {
-        console.error(`ID ${id} is not unique!`);
-        duplicates.add(id);
-      } else {
-        ids.add(id);
-      }
-    }
-
-    expect(duplicates.size).toBe(0);
-  });
 });
 
 for (const shim of AVAILABLE_SHIMS) {

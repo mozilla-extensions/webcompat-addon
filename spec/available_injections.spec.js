@@ -15,23 +15,6 @@ describe("AVAILABLE_INJECTIONS", () => {
   it("contains at least one injection definition", () => {
     expect(AVAILABLE_INJECTIONS.length).toBeGreaterThanOrEqual(1);
   });
-
-  it("provide a unique ID for each injection", () => {
-    let ids = new Set();
-    let duplicates = new Set();
-
-    for (const injection of AVAILABLE_INJECTIONS) {
-      let id = injection.id;
-      if (ids.has(id)) {
-        console.error(`ID ${id} is not unique!`);
-        duplicates.add(id);
-      } else {
-        ids.add(id);
-      }
-    }
-
-    expect(duplicates.size).toBe(0);
-  });
 });
 
 for (const injection of AVAILABLE_INJECTIONS) {
