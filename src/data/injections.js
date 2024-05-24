@@ -545,6 +545,20 @@ const AVAILABLE_INJECTIONS = [
     },
   },
   {
+    id: "bug1860417",
+    platform: "android",
+    domain: "www.samsung.com",
+    bug: "1860417",
+    contentScripts: {
+      matches: ["*://www.samsung.com/*"],
+      js: [
+        {
+          file: "injections/js/bug1799968-www.samsung.com-appVersion-linux-fix.js",
+        },
+      ],
+    },
+  },
+  {
     id: "bug1799980",
     platform: "all",
     domain: "healow.com",
