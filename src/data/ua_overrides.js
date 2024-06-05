@@ -1195,6 +1195,24 @@ const AVAILABLE_UA_OVERRIDES = [
       },
     },
   },
+  {
+    /*
+     * Bug 1898531 - UA override for www.cwb.digital
+     * Webcompat issue #137285 - https://webcompat.com/issues/137285
+     *
+     * Spoofing as Chrome makes the login form work
+     */
+    id: "bug1898531",
+    platform: "all",
+    domain: "cwb.digital",
+    bug: "1898531",
+    config: {
+      matches: ["*://*.cwb.digital/*"],
+      uaTransformer: originalUA => {
+        return UAHelpers.getDeviceAppropriateChromeUA();
+      },
+    },
+  },
 ];
 
 module.exports = AVAILABLE_UA_OVERRIDES;
