@@ -6,7 +6,7 @@
 
 /*
  * Bug 1896383 - Shim "captureStackTrace" in Error
- * Webcompat issue #129144 - https://github.com/webcompat/web-bugs/issues/136865
+ * Webcompat issue #136865 - https://github.com/webcompat/web-bugs/issues/136865
  *
  * The site is using Error.captureStackTrace and completely breaks in Firefox
  * since it's not supported. Depends on https://bugzilla.mozilla.org/show_bug.cgi?id=1886820

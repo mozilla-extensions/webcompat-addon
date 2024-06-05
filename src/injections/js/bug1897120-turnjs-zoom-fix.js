@@ -6,7 +6,7 @@
 
 /*
  * Bug 1897120 - Override "MozTransform" in element.style and return false
- * Webcompat issue #129144 - https://github.com/webcompat/web-bugs/issues/137038
+ * Webcompat issue #137038 - https://github.com/webcompat/web-bugs/issues/137038
  *
  * The site is using turn js and detecting "MozTransform" in document.body.style,
  * which returns true at the moment and uses the -moz-transform, which doesn't work,
