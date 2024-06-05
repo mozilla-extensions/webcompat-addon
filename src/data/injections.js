@@ -1085,6 +1085,20 @@ const AVAILABLE_INJECTIONS = [
       allFrames: true,
     },
   },
+  {
+    id: "1896383",
+    platform: "all",
+    domain: "unimarc.cl",
+    bug: "1896383",
+    contentScripts: {
+      matches: ["*://*.unimarc.cl/*"],
+      js: [
+        {
+          file: "injections/js/bug1896383-error-capturestacktrace-shim.js",
+        },
+      ],
+    },
+  },
 ];
 
 module.exports = AVAILABLE_INJECTIONS;
