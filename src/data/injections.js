@@ -584,6 +584,7 @@ const AVAILABLE_INJECTIONS = [
         "*://drafthouse.com/*", // 126385
         "*://*.lafoodbank.org/*", // 127006
         "*://rutamayacoffee.com/*", // 129353
+        "*://ottoandspike.com.au/*", // bugzilla 1644602
       ],
       js: [
         {
