@@ -1070,6 +1070,21 @@ const AVAILABLE_INJECTIONS = [
       ],
     },
   },
+  {
+    id: "bug1897120",
+    platform: "desktop",
+    domain: "turn.js breakage",
+    bug: "1897120",
+    contentScripts: {
+      matches: ["*://flipbook.se.com/*", "*://*.flipbookpdf.net/*"],
+      js: [
+        {
+          file: "injections/js/bug1897120-turnjs-zoom-fix.js",
+        },
+      ],
+      allFrames: true,
+    },
+  },
 ];
 
 module.exports = AVAILABLE_INJECTIONS;
