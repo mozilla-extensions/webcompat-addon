@@ -233,20 +233,6 @@ const AVAILABLE_INJECTIONS = [
     },
   },
   {
-    id: "bug1712833",
-    platform: "all",
-    domain: "buskocchi.desuca.co.jp",
-    bug: "1712833",
-    contentScripts: {
-      matches: ["*://buskocchi.desuca.co.jp/*"],
-      css: [
-        {
-          file: "injections/css/bug1712833-buskocchi.desuca.co.jp-fix-map-height.css",
-        },
-      ],
-    },
-  },
-  {
     id: "bug1722955",
     platform: "android",
     domain: "frontgate.com",
@@ -511,7 +497,6 @@ const AVAILABLE_INJECTIONS = [
         "*://*.fieldstoneamherst.com/*", // #132974
         "*://*.gslbriarcreek.com/*", // #126401
         "*://*.hpixeniatrails.com/*", // #131703
-        "*://*.liveatlasathens.com/*", // #111189
         "*://*.liveobserverpark.com/*", // #105244
         "*://*.liveupark.com/*", // #121083
         "*://*.midwayurban.com/*", // #116523
@@ -704,20 +689,6 @@ const AVAILABLE_INJECTIONS = [
       css: [
         {
           file: "injections/css/bug1829949-tomshardware.com-scrollbar-width.css",
-        },
-      ],
-    },
-  },
-  {
-    id: "bug1830747",
-    platform: "android",
-    domain: "my.babbel.com",
-    bug: "1830747",
-    contentScripts: {
-      matches: ["*://my.babbel.com/*"],
-      css: [
-        {
-          file: "injections/css/bug1830747-babbel.com-page-height.css",
         },
       ],
     },
@@ -937,20 +908,6 @@ const AVAILABLE_INJECTIONS = [
     },
   },
   {
-    id: "bug1849019",
-    platform: "android",
-    domain: "axa-assistance.pl",
-    bug: "1849019",
-    contentScripts: {
-      matches: ["*://*.axa-assistance.pl/*"],
-      css: [
-        {
-          file: "injections/css/bug1849019-axa-assistance.pl-datepicker-fix.css",
-        },
-      ],
-    },
-  },
-  {
     id: "bug1849058",
     platform: "all",
     domain: "nicochannel.jp",
@@ -1034,6 +991,7 @@ const AVAILABLE_INJECTIONS = [
       matches: [
         "*://www.tvmovie.de/tv/fernsehprogramm",
         "*://www.tvmovie.de/tv/fernsehprogramm*",
+        "*://www.goodcarbadcar.net/*",
       ],
       css: [
         {

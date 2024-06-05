@@ -666,25 +666,6 @@ const AVAILABLE_UA_OVERRIDES = [
   },
   {
     /*
-     * Bug 1819702 - UA override for feelgoodcontacts.com
-     * Webcompat issue #118030 - https://webcompat.com/issues/118030
-     *
-     * Spoof the UA to receive the mobile version instead
-     * of the broken desktop version for Android.
-     */
-    id: "bug1819702",
-    platform: "android",
-    domain: "feelgoodcontacts.com",
-    bug: "1819702",
-    config: {
-      matches: ["*://*.feelgoodcontacts.com/*"],
-      uaTransformer: () => {
-        return UAHelpers.getDeviceAppropriateChromeUA();
-      },
-    },
-  },
-  {
-    /*
      * Bug 1823966 - UA override for elearning.dmv.ca.gov
      * Original report: https://bugzilla.mozilla.org/show_bug.cgi?id=1823785
      */
@@ -721,7 +702,7 @@ const AVAILABLE_UA_OVERRIDES = [
      * Webcompat issue #67924 - https://webcompat.com/issues/67924
      */
     id: "bug1827678-webc67924",
-    platform: "android",
+    platform: "all",
     domain: "bankmandiri.co.id",
     bug: "1827678",
     config: {
@@ -749,15 +730,15 @@ const AVAILABLE_UA_OVERRIDES = [
   },
   {
     /*
-     * Bug 1827678 - UA override for mobile.onvue.com
+     * Bug 1827678 - UA override for onvue.com
      * Webcompat issue #68520 - https://webcompat.com/issues/68520
      */
     id: "bug1827678-webc68520",
-    platform: "android",
-    domain: "mobile.onvue.com",
+    platform: "all",
+    domain: "onvue.com",
     bug: "1827678",
     config: {
-      matches: ["*://mobile.onvue.com/*"],
+      matches: ["*://*.onvue.com/*"],
       uaTransformer: () => {
         return UAHelpers.getDeviceAppropriateChromeUA();
       },
@@ -849,7 +830,7 @@ const AVAILABLE_UA_OVERRIDES = [
      * Webcompat issue #83269 - https://webcompat.com/issues/83269
      */
     id: "bug1827678-webc83269",
-    platform: "android",
+    platform: "all",
     domain: "jelly.jd.com",
     bug: "1827678",
     config: {
@@ -1000,23 +981,6 @@ const AVAILABLE_UA_OVERRIDES = [
   },
   {
     /*
-     * Bug 1836116 - UA override for www.slushy.com
-     *
-     * The site's content is not loaded without a Chrome UA spoof.
-     */
-    id: "bug1836116",
-    platform: "all",
-    domain: "www.slushy.com",
-    bug: "1836116",
-    config: {
-      matches: ["*://www.slushy.com/*"],
-      uaTransformer: originalUA => {
-        return originalUA + " Chrome/113.0.0.0";
-      },
-    },
-  },
-  {
-    /*
      * Bug 1836135 - UA override for gts-pro.sdimedia.com
      *
      * The site's content is not loaded without a Chrome UA spoof.
@@ -1063,23 +1027,6 @@ const AVAILABLE_UA_OVERRIDES = [
       matches: ["*://atracker.pro/*"],
       uaTransformer: originalUA => {
         return originalUA + " Chrome/113.0.0.0";
-      },
-    },
-  },
-  {
-    /*
-     * Bug 1836182 - UA override for www.flatsatshadowglen.com
-     *
-     * The site's content is not loaded unless a Chrome UA is used.
-     */
-    id: "bug1836182",
-    platform: "all",
-    domain: "www.flatsatshadowglen.com",
-    bug: "1836182",
-    config: {
-      matches: ["*://*.flatsatshadowglen.com/*"],
-      uaTransformer: () => {
-        return UAHelpers.getDeviceAppropriateChromeUA();
       },
     },
   },
