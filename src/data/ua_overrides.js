@@ -1190,7 +1190,7 @@ const AVAILABLE_UA_OVERRIDES = [
     bug: "1884779",
     config: {
       matches: ["*://*.memurlar.net/*"],
-      uaTransformer: originalUA => {
+      uaTransformer: () => {
         return UAHelpers.getDeviceAppropriateChromeUA();
       },
     },
@@ -1208,7 +1208,7 @@ const AVAILABLE_UA_OVERRIDES = [
     bug: "1898531",
     config: {
       matches: ["*://*.cwb.digital/*"],
-      uaTransformer: originalUA => {
+      uaTransformer: () => {
         return UAHelpers.getDeviceAppropriateChromeUA();
       },
     },
