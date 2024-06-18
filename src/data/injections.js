@@ -290,6 +290,8 @@ const AVAILABLE_INJECTIONS = [
         "*://www.facebook.com/*", // Bug 1739489
         "*://twitter.com/*", // Bug 1776229
         "*://mobile.twitter.com/*", // Bug 1776229
+        "*://x.com/*", // Bug 1776229
+        "*://mobile.x.com/*", // Bug 1776229
         "*://*.reddit.com/*", // Bug 1829755
       ],
       js: [
