@@ -1074,6 +1074,29 @@ const AVAILABLE_INJECTIONS = [
       ],
     },
   },
+  {
+    id: "bug1889326",
+    platform: "desktop",
+    domain: "Office 365 email handling prompt",
+    bug: "1889326",
+    contentScripts: {
+      matches: [
+        "*://*.live.com/*",
+        "*://*.office.com/*",
+        "*://*.office365.com/*",
+        "*://*.office365.us/*",
+        "*://*.outlook.cn/*",
+        "*://*.outlook.com/*",
+        "*://*.sharepoint.com/*",
+      ],
+      js: [
+        {
+          file: "injections/js/bug1889326-office365-email-handling-prompt-autohide.js",
+        },
+      ],
+      allFrames: true,
+    },
+  },
 ];
 
 module.exports = AVAILABLE_INJECTIONS;
