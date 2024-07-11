@@ -1083,6 +1083,20 @@ const AVAILABLE_INJECTIONS = [
       allFrames: true,
     },
   },
+  {
+    id: "bug1881922",
+    platform: "all",
+    domain: "helpdeskgeek.com",
+    bug: "1881922",
+    contentScripts: {
+      matches: ["*://helpdeskgeek.com/*"],
+      js: [
+        {
+          file: "injections/js/bug1881922-disable-legacy-mutation-events.js",
+        },
+      ],
+    },
+  },
 ];
 
 module.exports = AVAILABLE_INJECTIONS;
