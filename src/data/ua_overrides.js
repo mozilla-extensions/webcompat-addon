@@ -1321,7 +1321,7 @@ const AVAILABLE_UA_OVERRIDES = [
      *
      * Site blocks Firefox, so a UA spoof and an intervention is needed.
      */
-    id: "bug1899937",
+    id: "bug1899937-ua",
     platform: "all",
     domain: "plus.nhk.jp",
     bug: "1899937",
