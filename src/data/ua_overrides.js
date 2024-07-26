@@ -1314,6 +1314,24 @@ const AVAILABLE_UA_OVERRIDES = [
       },
     },
   },
+  {
+    /*
+     * Bug 1899937 - UA override for plus.nhk.jp
+     * Webcompat issue #103463 - https://webcompat.com/issues/103463
+     *
+     * Site blocks Firefox, so a UA spoof and an intervention is needed.
+     */
+    id: "bug1899937",
+    platform: "all",
+    domain: "plus.nhk.jp",
+    bug: "1899937",
+    config: {
+      matches: ["*://plus.nhk.jp/*"],
+      uaTransformer: () => {
+        return UAHelpers.getDeviceAppropriateChromeUA();
+      },
+    },
+  },
 ];
 
 module.exports = AVAILABLE_UA_OVERRIDES;

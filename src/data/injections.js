@@ -1161,6 +1161,20 @@ const AVAILABLE_INJECTIONS = [
       allFrames: true,
     },
   },
+  {
+    id: "bug1899937",
+    platform: "all",
+    domain: "plus.nhk.jp",
+    bug: "1899937",
+    contentScripts: {
+      matches: ["*://plus.nhk.jp/*"],
+      js: [
+        {
+          file: "injections/js/bug1899937-plus.nhk.jp-request-picture-in-picture.js",
+        },
+      ],
+    },
+  },
 ];
 
 module.exports = AVAILABLE_INJECTIONS;
