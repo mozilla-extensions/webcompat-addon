@@ -1376,7 +1376,7 @@ const AVAILABLE_UA_OVERRIDES = [
      * Site blocks Firefox, but seems to work with a UA spoof.
      */
     id: "bug1899067",
-    platform: "all",
+    platform: "desktop",
     domain: "game.granbluefantasy.jp",
     bug: "1899067",
     config: {
