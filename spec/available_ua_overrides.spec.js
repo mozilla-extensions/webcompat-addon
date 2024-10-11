@@ -24,7 +24,9 @@ for (const override of AVAILABLE_UA_OVERRIDES) {
 
     it("provides a valid platform", () => {
       expect(
-        ["all", "desktop", "android"].includes(override.platform)
+        ["all", "desktop", "android", "mac", "win", "linux"].includes(
+          override.platform
+        )
       ).toBeTruthy();
     });
 
