@@ -99,20 +99,6 @@ const AVAILABLE_INJECTIONS = [
     },
   },
   {
-    id: "bug1583366",
-    platform: "desktop",
-    domain: "Download prompt for files with no content-type",
-    bug: "1583366",
-    data: {
-      urls: ["https://ads-us.rd.linksynergy.com/as.php*"],
-      contentType: {
-        name: "content-type",
-        value: "text/html; charset=utf-8",
-      },
-    },
-    customFunc: "noSniffFix",
-  },
-  {
     id: "bug1575000",
     platform: "all",
     domain: "apply.lloydsbank.co.uk",
@@ -158,15 +144,31 @@ const AVAILABLE_INJECTIONS = [
     },
   },
   {
-    id: "bug1653075",
+    id: "bug1886293",
     platform: "desktop",
-    domain: "livescience.com",
-    bug: "1653075",
+    domain: "Future PLC websites",
+    bug: "1886293",
     contentScripts: {
-      matches: ["*://*.livescience.com/*"],
+      matches: [
+        "*://*.androidcentral.com/*",
+        "*://*.creativebloq.com/*",
+        "*://*.cyclingnews.com/*",
+        "*://*.gamesradar.com/*",
+        "*://*.imore.com/*",
+        "*://*.itpro.com/*",
+        "*://*.laptopmag.com/*",
+        "*://*.livescience.com/*",
+        "*://*.loudersound.com/*",
+        "*://*.musicradar.com/*",
+        "*://*.pcgamer.com/*",
+        "*://*.space.com/*",
+        "*://*.techradar.com/*",
+        "*://*.tomshardware.com/*",
+        "*://*.windowscentral.com/*",
+      ],
       css: [
         {
-          file: "injections/css/bug1653075-livescience.com-scrollbar-width.css",
+          file: "injections/css/bug1886293-futurePLC-sites-trending_scrollbars.css",
         },
       ],
     },
@@ -324,11 +326,9 @@ const AVAILABLE_INJECTIONS = [
     bug: "1774005",
     contentScripts: {
       matches: [
-        "*://*.crunchyroll.com/*", // Bug 1777597
         "*://*.webex.com/*", // Bug 1788934
         "*://ifcinema.institutfrancais.com/*", // Bug 1806423
         "*://islamionline.islamicbank.ps/*", // Bug 1821439
-        "*://*.itv.com/*", // Bug 1830203
         "*://www.schoolnutritionandfitness.com/*", // Bug 1793761
       ],
       js: [
@@ -540,20 +540,6 @@ const AVAILABLE_INJECTIONS = [
     },
   },
   {
-    id: "bug1829949",
-    platform: "desktop",
-    domain: "tomshardware.com",
-    bug: "1829949",
-    contentScripts: {
-      matches: ["*://*.tomshardware.com/*"],
-      css: [
-        {
-          file: "injections/css/bug1829949-tomshardware.com-scrollbar-width.css",
-        },
-      ],
-    },
-  },
-  {
     id: "bug1830752",
     platform: "all",
     domain: "afisha.ru",
@@ -759,24 +745,23 @@ const AVAILABLE_INJECTIONS = [
     domain: "nicochannel.jp",
     bug: "1849058",
     contentScripts: {
-      matches: ["*://nicochannel.jp/*", "*://gs-ch.com/*"],
+      matches: [
+        "*://ado-dokidokihimitsukichi-daigakuimo.com/*",
+        "*://canan8181.com/*",
+        "*://gs-ch.com/*", // 124511
+        "*://keisuke-ueda.jp/*",
+        "*://kemomimirefle.net/*",
+        "*://nicochannel.jp/*", // 124463
+        "*://p-jinriki-fc.com/*",
+        "*://pizzaradio.jp/*",
+        "*://rnqq.jp/*",
+        "*://ryogomatsumaru.com/*",
+        "*://takahashifumiya.com/*",
+        "*://yamingfc.net/*",
+      ],
       js: [
         {
           file: "injections/js/bug1849058-nicochannel.jp-picture-in-picture-shim.js",
-        },
-      ],
-    },
-  },
-  {
-    id: "bug1849388",
-    platform: "android",
-    domain: "kucharkaprodceru.cz",
-    bug: "1849388",
-    contentScripts: {
-      matches: ["*://*.kucharkaprodceru.cz/*"],
-      css: [
-        {
-          file: "injections/css/bug1849388-kucharkaprodceru.cz-scroll-fix.css",
         },
       ],
     },
@@ -796,27 +781,8 @@ const AVAILABLE_INJECTIONS = [
     },
   },
   {
-    id: "bug1864564",
-    platform: "all",
-    domain: "Esri breakage",
-    bug: "1864564",
-    contentScripts: {
-      matches: [
-        "*://*.ncep.noaa.gov/*",
-        "*://*.northumberland.gov.uk/*",
-        "*://webmap.gis.gov.mo/*",
-      ],
-      js: [
-        {
-          file: "injections/js/bug1864564-esri-transfrom-names-shim.js",
-        },
-      ],
-      allFrames: true,
-    },
-  },
-  {
     id: "bug1868345",
-    platform: "desktop",
+    platform: "all",
     domain: "tvmovie.de",
     bug: "1868345",
     contentScripts: {
@@ -1026,7 +992,7 @@ const AVAILABLE_INJECTIONS = [
   {
     id: "bug1779908",
     platform: "desktop",
-    domain: "docs.google.com",
+    domain: "play.google.com",
     bug: "1779908",
     contentScripts: {
       matches: ["*://play.google.com/store/*"],
@@ -1131,6 +1097,20 @@ const AVAILABLE_INJECTIONS = [
       js: [
         {
           file: "injections/js/bug1889505-bankmandiri.co.id-window.chrome.js",
+        },
+      ],
+    },
+  },
+  {
+    id: "bug1925508",
+    platform: "android",
+    domain: "developer.apple.com",
+    bug: "1925508",
+    contentScripts: {
+      matches: ["*://developer.apple.com/*"],
+      css: [
+        {
+          file: "injections/css/bug1925508-developer-apple.com-transform-scale.css",
         },
       ],
     },

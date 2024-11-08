@@ -42,7 +42,7 @@ const AVAILABLE_UA_OVERRIDES = [
      * Bug 1577519 - directv.com - Create a UA override for directv.com for playback on desktop
      * WebCompat issue #3846 - https://webcompat.com/issues/3846
      *
-     * directv.com (attwatchtv.com) is blocking Firefox via UA sniffing. Spoofing as Chrome allows
+     * directv.com is blocking Firefox via UA sniffing. Spoofing as Chrome allows
      * to access the site and playback works fine. This is former directvnow.com
      */
     id: "bug1577519",
@@ -51,7 +51,6 @@ const AVAILABLE_UA_OVERRIDES = [
     bug: "1577519",
     config: {
       matches: [
-        "*://*.attwatchtv.com/*",
         "*://*.directv.com.ec/*", // bug 1827706
         "*://*.directv.com/*",
       ],
@@ -84,18 +83,18 @@ const AVAILABLE_UA_OVERRIDES = [
   },
   {
     /*
-     * Bug 1582582 - sling.com - UA override for sling.com
+     * Bug 1582582 - watch.sling.com - UA override for watch.sling.com
      * WebCompat issue #17804 - https://webcompat.com/issues/17804
      *
-     * sling.com blocks Firefox users showing unsupported browser message.
+     * watch.sling.com blocks Firefox users showing unsupported browser message.
      * When spoofing as Chrome playing content works fine
      */
     id: "bug1582582",
     platform: "desktop",
-    domain: "sling.com",
+    domain: "watch.sling.com",
     bug: "1582582",
     config: {
-      matches: ["https://watch.sling.com/*", "https://www.sling.com/*"],
+      matches: ["https://watch.sling.com/*"],
       uaTransformer: originalUA => {
         return (
           UAHelpers.getPrefix(originalUA) +
@@ -426,25 +425,6 @@ const AVAILABLE_UA_OVERRIDES = [
     bug: "1719859",
     config: {
       matches: ["*://*.saxoinvestor.fr/*"],
-      uaTransformer: () => {
-        return UAHelpers.getDeviceAppropriateChromeUA();
-      },
-    },
-  },
-  {
-    /*
-     * Bug 1738317 - Add UA override for vmos.cn
-     * Webcompat issue #90432 - https://github.com/webcompat/web-bugs/issues/90432
-     *
-     * Firefox for Android receives a desktop-only layout based on server-side
-     * UA sniffing. Spoofing as Chrome works fine.
-     */
-    id: "bug1738317",
-    platform: "android",
-    domain: "vmos.cn",
-    bug: "1738317",
-    config: {
-      matches: ["*://*.vmos.cn/*"],
       uaTransformer: () => {
         return UAHelpers.getDeviceAppropriateChromeUA();
       },
@@ -1417,6 +1397,39 @@ const AVAILABLE_UA_OVERRIDES = [
     bug: "1899948",
     config: {
       matches: ["*://tv.partner.co.il/*"],
+      uaTransformer: () => {
+        return UAHelpers.getDeviceAppropriateChromeUA();
+      },
+    },
+  },
+  {
+    /*
+     * Bug 1844503 - UA override for nicochannel.jp and similar video sites
+     * Webcompat issue #124511 - https://webcompat.com/issues/124511
+     * Webcompat issue #124463 - https://webcompat.com/issues/124463
+     *
+     * These sites' video APIs block Firefox, yet they allow a Chrome UA.
+     * (Note that some are NSFW).
+     */
+    id: "1844503",
+    platform: "all",
+    domain: "nicochannel.jp",
+    bug: "1844503",
+    config: {
+      matches: [
+        "*://api.ado-dokidokihimitsukichi-daigakuimo.com/fc/video_pages/*",
+        "*://api.canan8181.com/fc/video_pages/*",
+        "*://api.gs-ch.com/fc/video_pages/*", // 124511
+        "*://api.keisuke-ueda.jp/fc/video_pages/*",
+        "*://api.kemomimirefle.net/fc/video_pages/*",
+        "*://api.nicochannel.jp/fc/video_pages/*", // 124463
+        "*://api.p-jinriki-fc.com/fc/video_pages/*",
+        "*://api.pizzaradio.jp/fc/video_pages/*",
+        "*://api.rnqq.jp/fc/video_pages/*",
+        "*://api.ryogomatsumaru.com/fc/video_pages/*",
+        "*://api.takahashifumiya.com/fc/video_pages/*",
+        "*://api.yamingfc.net/fc/video_pages/*",
+      ],
       uaTransformer: () => {
         return UAHelpers.getDeviceAppropriateChromeUA();
       },
