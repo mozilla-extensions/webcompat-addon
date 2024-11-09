@@ -823,7 +823,7 @@ const AVAILABLE_UA_OVERRIDES = [
      * Webcompat issue #119012 - https://webcompat.com/issues/119012
      */
     id: "bug1827678-webc119012",
-    platform: "all",
+    platform: "desktop",
     domain: "kt.com",
     bug: "1827678",
     config: {
@@ -1392,7 +1392,7 @@ const AVAILABLE_UA_OVERRIDES = [
      * Site blocks Firefox, but seems to work with a UA spoof.
      */
     id: "1899948",
-    platform: "all",
+    platform: "desktop",
     domain: "tv.partner.co.il",
     bug: "1899948",
     config: {
@@ -1432,6 +1432,158 @@ const AVAILABLE_UA_OVERRIDES = [
       ],
       uaTransformer: () => {
         return UAHelpers.getDeviceAppropriateChromeUA();
+      },
+    },
+  },
+  {
+    /*
+     * Bug 1912923 - UA override for livelesson.class.com/class
+     *
+     * Site blocks Firefox, but seems to work with a UA spoof.
+     */
+    id: "1912923",
+    platform: "all",
+    domain: "livelesson.class.com",
+    bug: "1912923",
+    config: {
+      matches: ["*://livelesson.class.com/class/*"],
+      uaTransformer: () => {
+        return UAHelpers.getDeviceAppropriateChromeUA();
+      },
+    },
+  },
+  {
+    /*
+     * Bug 1899945 - UA override for nytimes.com Modern Love Questions
+     * Webcompat issue #41961 - https://webcompat.com/issues/41961
+     *
+     * Site blocks Firefox on Android, but seems to work with a UA spoof.
+     */
+    id: "1899945",
+    platform: "android",
+    domain: "nytimes.com Modern Love Questions",
+    bug: "1899945",
+    config: {
+      matches: ["*://www.nytimes.com/interactive/projects/modern-love/*"],
+      uaTransformer: () => {
+        return UAHelpers.getDeviceAppropriateChromeUA();
+      },
+    },
+  },
+  {
+    /*
+     * Bug 1898992 - UA override for asp.attenix.co.il
+     * Webcompat issue #101497 - https://webcompat.com/issues/101497
+     *
+     * Site blocks Firefox, but seems to work with a UA spoof.
+     */
+    id: "1898992",
+    platform: "all",
+    domain: "asp.attenix.co.il",
+    bug: "1898992",
+    config: {
+      matches: ["*://asp.attenix.co.il/*"],
+      uaTransformer: () => {
+        return UAHelpers.getDeviceAppropriateChromeUA();
+      },
+    },
+  },
+  {
+    /*
+     * Bug 1899060 - UA override for wbte.drcedirect.com
+     * Webcompat issue #66885 - https://webcompat.com/issues/66885
+     *
+     * Site blocks Firefox, but seems to work with a UA spoof.
+     */
+    id: "1899060",
+    platform: "desktop",
+    domain: "wbte.drcedirect.com",
+    bug: "1899060",
+    config: {
+      matches: ["*://wbte.drcedirect.com/*"],
+      uaTransformer: () => {
+        return UAHelpers.getDeviceAppropriateChromeUA();
+      },
+    },
+  },
+  {
+    /*
+     * Bug 1898988 - UA override for prudential.com.hk
+     * Webcompat issue #105184 - https://webcompat.com/issues/105184
+     *
+     * Site blocks Firefox, but seems to work with a UA spoof. The site also
+     * has flawed UA detection for Linux, causing its page to not load correctly
+     * unless we spoof as a different OS.
+     */
+    id: "1898988",
+    platform: "all",
+    domain: "prudential.com.hk",
+    bug: "1898988",
+    config: {
+      matches: ["*://*.prudential.com.hk/*"],
+      uaTransformer: originalUA => {
+        const override = UAHelpers.getDeviceAppropriateChromeUA();
+        if (originalUA.includes("Linux") && !originalUA.includes("Android")) {
+          return override.replace(
+            /\(.*Linux.*\)/,
+            "(Macintosh; Intel Mac OS X 10.15)"
+          );
+        }
+        return override;
+      },
+    },
+  },
+  {
+    /*
+     * Bug 1898994 - UA override for eportal.uestc.edu.cn
+     * Webcompat issue #100234 - https://webcompat.com/issues/100234
+     *
+     * Site blocks Firefox, but seems to work with a UA spoof.
+     */
+    id: "1898994",
+    platform: "all",
+    domain: "eportal.uestc.edu.cn",
+    bug: "1898994",
+    config: {
+      matches: ["*://eportal.uestc.edu.cn/*"],
+      uaTransformer: () => {
+        return UAHelpers.getDeviceAppropriateChromeUA();
+      },
+    },
+  },
+  {
+    /*
+     * Bug 1898960 - UA override for hrm.online.comarch.pl
+     * Webcompat issue #117868 - https://webcompat.com/issues/117868
+     *
+     * Site blocks Firefox, but seems to work with a UA spoof.
+     */
+    id: "1898960",
+    platform: "android",
+    domain: "hrm.online.comarch.pl",
+    bug: "1898960",
+    config: {
+      matches: ["*://hrm.online.comarch.pl/*"],
+      uaTransformer: () => {
+        return UAHelpers.getDeviceAppropriateChromeUA();
+      },
+    },
+  },
+  {
+    /*
+     * Bug 1898938 - UA override for conference.amwell.com
+     * Webcompat issue #122754 - https://webcompat.com/issues/122754
+     *
+     * The site requires a Chrome UA or it will block the browser.
+     */
+    id: "bug1898938",
+    platform: "all",
+    domain: "conference.amwell.com",
+    bug: "1898938",
+    config: {
+      matches: ["*://conference.amwell.com/*"],
+      uaTransformer: () => {
+        return UAHelpers.getDeviceAppropriateChromeUA({ noFxQuantum: true });
       },
     },
   },

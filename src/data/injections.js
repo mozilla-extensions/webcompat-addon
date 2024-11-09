@@ -365,6 +365,7 @@ const AVAILABLE_INJECTIONS = [
       matches: [
         "*://*.7streetbrownstones.com/*", // #129553
         "*://*.aptsovation.com/*", // #100131
+        "*://*.arboretumapartments.com/*", // bugzilla 1894682
         "*://*.avanabayview.com/*", // #118617
         "*://*.breakpointeandcoronado.com/*", // #117735
         "*://*.courtsatspringmill.com/*", // #128404
@@ -380,6 +381,7 @@ const AVAILABLE_INJECTIONS = [
         "*://*.securityproperties.com/*", // #107969
         "*://*.thefoundryat41st.com/*", // #128994
         "*://*.theloftsorlando.com/*", // #101496
+        "*://*.thepointatkingston.com/*", // #139030
         "*://*.vanallenapartments.com/*", // #120056
       ],
       css: [
@@ -443,7 +445,6 @@ const AVAILABLE_INJECTIONS = [
         "*://*.franmar.com/*", // 27273
         "*://*.themusiclab.org/*", // 49667
         "*://*.oregonfoodbank.org/*", // 53203
-        "*://bluetokaicoffee.com/*", // 99867
         "*://bathpublishing.com/*", // 100145
         "*://dylantalkstone.com/*", // 101356
         "*://renewd.com.au/*", // 104998
@@ -456,7 +457,6 @@ const AVAILABLE_INJECTIONS = [
         "*://drafthouse.com/*", // 126385
         "*://*.lafoodbank.org/*", // 127006
         "*://rutamayacoffee.com/*", // 129353
-        "*://ottoandspike.com.au/*", // bugzilla 1644602
         "*://give.umrelief.org/give/*", // bugzilla 1916407
       ],
       js: [
@@ -1125,6 +1125,34 @@ const AVAILABLE_INJECTIONS = [
       js: [
         {
           file: "injections/js/bug1928216-voice.google.com-permissions.query.js",
+        },
+      ],
+    },
+  },
+  {
+    id: "bug1873166",
+    platform: "android",
+    domain: "nsandi.com",
+    bug: "1873166",
+    contentScripts: {
+      matches: ["*://*.nsandi.com/*"],
+      css: [
+        {
+          file: "injections/css/bug1873166-nsandi.com-hide-unsupported-message.css",
+        },
+      ],
+    },
+  },
+  {
+    id: "1875540",
+    platform: "all",
+    domain: "allstate.com",
+    bug: "1875540",
+    contentScripts: {
+      matches: ["*://*.allstate.com/*"],
+      css: [
+        {
+          file: "injections/css/bug1875540-allstate.com-hide-unsupported-message.css",
         },
       ],
     },
