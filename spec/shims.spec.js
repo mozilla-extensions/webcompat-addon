@@ -38,7 +38,11 @@ jasmine.getGlobal().onMessageFromTab = () => {};
 
 // Mock for the getPref calls originated by the Shims.
 async function mockGetPref(prefName) {
-  expect(["disabled_shims.TestShim", "enable_shims"]).toContain(prefName);
+  expect([
+    "disabled_shims.TestShim",
+    "enable_shims",
+    "smartblockEmbeds.enabled",
+  ]).toContain(prefName);
   switch (prefName) {
     case "disabled_shims.TestShim":
       return false;
