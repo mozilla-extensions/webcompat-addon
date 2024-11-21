@@ -46,6 +46,12 @@ jasmine.getGlobal().browser = {
   trackingProtection: {
     allow: async () => {},
     isDFPIActive: async () => false,
+    onSmartBlockEmbedReblock: {
+      addListener: () => {},
+    },
+    onSmartBlockEmbedUnblock: {
+      addListener: () => {},
+    },
     revoke: async () => {},
     shim: async () => {},
     wasRequestUnblocked: async () => false,
