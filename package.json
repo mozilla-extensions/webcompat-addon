@@ -21,7 +21,7 @@
   "devDependencies": {
     "jake": "10.9.2",
     "jasmine": "5.5.0",
-    "npm-run-all2": "7.0.1",
+    "npm-run-all2": "7.0.2",
     "prettier": "3.4.1"
   }
 }
