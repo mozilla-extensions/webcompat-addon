@@ -52,6 +52,9 @@ jasmine.getGlobal().browser = {
     onSmartBlockEmbedUnblock: {
       addListener: () => {},
     },
+    onPrivateSessionEnd: {
+      addListener: () => {},
+    },
     revoke: async () => {},
     shim: async () => {},
     wasRequestUnblocked: async () => false,
