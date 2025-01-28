@@ -9,16 +9,6 @@ const path = require("path");
 const exec = require("child_process").exec;
 
 /**
- * The name of the extension as written in the manifest.json
- */
-
-const EXTENSION_NAME = {
-  default: "Web Compatibility Interventions",
-  androidComponents:
-    "Mozilla Android Components - Web Compatibility Interventions",
-};
-
-/**
  * The directory the extension files are copied into for exporting, linking,
  * etc.
  */
@@ -41,12 +31,6 @@ const SRC_DIR = "./src";
  * mozilla-central.
  */
 const BUILD_IGNORE_PATHS = [".eslintrc.js"];
-
-/**
- * List of files or directories that should not get exported into
- * android_components.
- */
-const AC_IGNORE_PATHS = ["components.conf", "moz.build", "tests"];
 
 /**
  * List of files or directories that should not get exported into
@@ -120,22 +104,6 @@ function replaceFilelistPlaceholders(cssInjections, jsInjections, shims) {
 }
 
 /**
- * Sets the extension name in manifest.json
- *
- * returns {promise}
- */
-function setExtensionName(name) {
-  return new Promise((resolve, reject) => {
-    let manifestFilename = path.join(BUILD_DIR, "manifest.json");
-    let manifestContents = fs.readFileSync(manifestFilename).toString();
-    manifestContents = manifestContents.replace(`@EXTENSION_NAME@`, name);
-    fs.writeFileSync(manifestFilename, manifestContents);
-
-    resolve();
-  });
-}
-
-/**
  * Deletes a set of files from the build directory
  */
 function deleteBuiltFiles(paths) {
@@ -162,28 +130,13 @@ task(
   () => {}
 );
 
-desc("Exports the sources into both mozilla-central and android-components");
-task("export", ["export-mc", "export-ac"]);
-
 desc("Exports the sources into mozilla-central");
-task("export-mc", ["build"], { async: true }, async () => {
-  await setExtensionName(EXTENSION_NAME.default);
+task("export", ["build"], { async: true }, async () => {
   exportFiles(getMozillaCentralLocation(), "browser/extensions/webcompat");
-});
-
-desc("Exports the sources into android-components");
-task("export-ac", ["build"], { async: true }, async () => {
-  await setExtensionName(EXTENSION_NAME.androidComponents);
-  deleteBuiltFiles(AC_IGNORE_PATHS);
-  exportFiles(
-    getMozillaCentralLocation(),
-    "mobile/android/android-components/components/feature/webcompat/src/main/assets/extensions/webcompat"
-  );
 });
 
 desc("Exports the sources into an .xpi for update shipping");
 task("export-xpi", ["build"], { async: true }, async () => {
-  await setExtensionName(EXTENSION_NAME.default);
   deleteBuiltFiles(XPI_IGNORE_PATHS);
   jake.mkdirP(XPI_DIR);
   return jake.exec(
