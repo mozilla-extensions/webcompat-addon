@@ -18,10 +18,7 @@ If this is the first time you're working with this repository, install the depen
 
 1. Ensure the version number is bumped in `src/manifest.json`, appropriately (see [Versioning Scheme](https://github.com/mozilla/webcompat-addon/wiki/Versioning-Scheme) for more info).
 2. Make sure the `EXPORT_MC_LOCATION` environment variable is set to the root of your `mozilla-central` checkout.
-3. Depending on where you want to export to, run one of the following:
-   - For exporting into `mozilla-central` into both the Desktop build and the Android Components, run `npm run jake export`.
-   - For exporting into the Desktop tree of `mozilla-central`, run `npm run jake export-mc`.
-   - For exporting into the Android Components tree of `mozilla-central`, run `npm run jake export-ac`.
+3. Run `npm run jake export` to export the sources.
 4. Your changes will now be in your `mozilla-central` checkout. Double-check the results, and you're ready to commit.
 
 ### Run the changed extension sources
