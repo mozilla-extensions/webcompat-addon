@@ -4,7 +4,7 @@
   "description": "Urgent post-release fixes for web compatibility.",
   "license": "MPL-2.0",
   "repository": "https://github.com/mozilla/webcompat-addon",
-  "version": "137.1.0",
+  "version": "137.2.0",
   "docker-image": "node-lts-latest",
   "private": true,
   "scripts": {
