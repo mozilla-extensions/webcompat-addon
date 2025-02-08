@@ -43,6 +43,12 @@ jasmine.getGlobal().browser = {
   systemManufacturer: {
     getManufacturer: () => {},
   },
+  testUtils: {
+    interventionsAactive: () => {},
+    interventionsInactive: () => {},
+    shimsAactive: () => {},
+    shimsInactive: () => {},
+  },
   trackingProtection: {
     allow: async () => {},
     isDFPIActive: async () => false,
