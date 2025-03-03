@@ -126,7 +126,12 @@ function exportFiles(root, target) {
 desc(`Builds the extension into the ${BUILD_DIR}/ directory`);
 task(
   "build",
-  ["building:cleanup", "building:copy", "building:injectionfilelist"],
+  [
+    "building:cleanup",
+    "building:copy",
+    "building:injectjsonpayload",
+    "building:injectionfilelist",
+  ],
   () => {}
 );
 
@@ -155,6 +160,20 @@ namespace("building", () => {
   task("copy", () => {
     jake.cpR(SRC_DIR, BUILD_DIR);
     deleteBuiltFiles(BUILD_IGNORE_PATHS);
+  });
+
+  desc("Injects interventions.json contents into run.js");
+  task("injectjsonpayload", () => {
+    let runjsFilename = path.join(BUILD_DIR, "run.js");
+    let runjsContents = fs.readFileSync(runjsFilename).toString();
+    let jsonFilename = path.join(BUILD_DIR, "data", "interventions.json");
+    let jsonContents = fs.readFileSync(jsonFilename).toString();
+
+    runjsContents = runjsContents.replace(
+      "#include data/interventions.json",
+      jsonContents
+    );
+    fs.writeFileSync(runjsFilename, runjsContents);
   });
 
   desc("Generates a list of injection files required for 'moz.build'");
