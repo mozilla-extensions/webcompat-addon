@@ -1,3 +1,9 @@
+# Note: The primary source location moved!
+
+The primary source code location for the WebCompat Interventions System Addon is now [in-tree at `browser/extensions/webcompat`](https://github.com/mozilla-firefox/firefox/tree/main/browser/extensions/webcompat). This repo will stick around for prosperity, but it will remain archived unless we have a need for this to be updated.
+
+---
+
 # WebCompat Go Faster add-on
 
 This is the development repository for the Firefox WebCompat Go Faster add-on.
